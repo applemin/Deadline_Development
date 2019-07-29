@@ -1,0 +1,50 @@
+[Version]
+Type=enum
+Values=4
+Label=Unreal Engine Version
+Category=Global Settings
+CategoryOrder=0
+CategoryIndex=0
+Description=The version of Unreal Engine to use.
+Required=false
+DisableIfBlank=true
+
+[AgentGroupName]
+Type=String
+Label=Agent Group Name
+Category=Unreal Swarm Settings
+CategoryOrder=1
+CategoryIndex=0
+Description=The name of the agent group that the machine will belong to.
+Required=false
+DisableIfBlank=true
+
+[AllowedRemoteAgentNames]
+Type=String
+Label=Allowed Remote Agent Names
+Category=Unreal Swarm Settings
+CategoryOrder=1
+CategoryIndex=1
+Description=The remote machine filter string ( ' ', ',' or ';' delimited ).
+Required=false
+DisableIfBlank=true
+
+[AllowedRemoteAgentGroup]
+Type=String
+Label=Allowed Remote Agent Group
+Category=Unreal Swarm Settings
+CategoryOrder=1
+CategoryIndex=2
+Description=The name of the agent group jobs can be distributed to.
+Required=false
+DisableIfBlank=true
+
+[CoordinatorRemotingHost]
+Type=String
+Label=Coordinator Remoting Host
+Category=Unreal Swarm Settings
+Description=The name of the machine hosting the coordinator.  This can be either a host-name or IP address.
+CategoryOrder=1
+CategoryIndex=3
+Required=false
+DisableIfBlank=true

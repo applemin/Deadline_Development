@@ -1,0 +1,98 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=VRED Cluster Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[ClusterExecutable7_0]
+Type=multilinemultifilename
+Category=Cluster Executables
+CategoryOrder=0
+Index=0
+Label=VRED 2015 Cluster Executable
+Default=C:\Program Files\Autodesk\VREDPro-7.05\Bin\WIN64\VREDClusterService.exe;/opt/Autodesk/VREDCluster-7.05/bin/clusterService
+Description=The path to the VRED 2015 cluster service used for rendering. Enter alternative paths on separate lines.
+
+[ClusterExecutable8_0]
+Type=multilinemultifilename
+Category=Cluster Executables
+CategoryOrder=0
+Index=1
+Label=VRED 2016 Cluster Executable
+Default=C:\Program Files\Autodesk\VREDPro-8.04\Bin\WIN64\VREDClusterService.exe;/opt/Autodesk/VREDCluster-8.04/bin/clusterService;/Applications/Autodesk/VREDPro-2016/VREDPro-2016.app/Contents/vred/bin/MAC/VREDClusterService
+Description=The path to the VRED 2016 cluster service used for rendering. Enter alternative paths on separate lines.
+
+[ClusterExecutable9_0]
+Type=multilinemultifilename
+Category=Cluster Executables
+CategoryOrder=0
+Index=2
+Label=VRED 2017 Cluster Executable
+Default=C:\Program Files\Autodesk\VREDPro-9.0\Bin\WIN64\VREDClusterService.exe;/opt/Autodesk/VREDCluster-9.0/bin/clusterService;/Applications/Autodesk/VREDPro-2017/VREDPro-2017.0.2-Update.app/Contents/VREDPro-9.02/bin/MAC/VREDClusterService
+Description=The path to the VRED 2017 cluster service used for rendering. Enter alternative paths on separate lines.
+
+[ClusterExecutable9_1]
+Type=multilinemultifilename
+Category=Cluster Executables
+CategoryOrder=0
+Index=3
+Label=VRED 2017.1 Cluster Executable
+Default=C:\Program Files\Autodesk\VREDPro-9.1\Bin\WIN64\VREDClusterService.exe;/opt/Autodesk/VREDCluster-9.1/bin/clusterService;/Applications/Autodesk/VREDPro-2017/VREDPro-2017.1-Update.app/Contents/VREDPro-9.1/bin/MAC/VREDClusterService
+Description=The path to the VRED 2017.1 cluster service used for rendering. Enter alternative paths on separate lines.
+
+[ClusterExecutable9_2]
+Type=multilinemultifilename
+Category=Cluster Executables
+CategoryOrder=0
+Index=4
+Label=VRED 2017.2 Cluster Executable
+Default=C:\Program Files\Autodesk\VREDPro-9.2\Bin\WIN64\VREDClusterService.exe;/opt/Autodesk/VREDCluster-9.2/bin/clusterService;/Applications/Autodesk/VREDPro-2017/VREDPro-2017.2-Update.app/Contents/VREDPro-9.2/bin/MAC/VREDClusterService
+Description=The path to the VRED 2017.2 cluster service used for rendering. Enter alternative paths on separate lines.
+
+[ClusterExecutable10_0]
+Type=multilinemultifilename
+Category=Cluster Executables
+CategoryOrder=0
+Index=5
+Label=VRED 2018 Cluster Executable
+Default=C:\Program Files\Autodesk\VREDPro-10.01\Bin\WIN64\VREDClusterService.exe;/opt/Autodesk/VREDCluster-10.01/bin/clusterService;/Applications/Autodesk/VREDPro-2018/VREDPro-2018.app/Contents/VREDPro-10.01/bin/MAC/VREDClusterService
+Description=The path to the VRED 2018 cluster service used for rendering. Enter alternative paths on separate lines.
+
+[ClusterExecutable10_1]
+Type=multilinemultifilename
+Category=Cluster Executables
+CategoryOrder=0
+Index=6
+Label=VRED 2018.1 Cluster Executable
+Default=C:\Program Files\Autodesk\VREDPro-10.1\Bin\WIN64\VREDClusterService.exe;/opt/Autodesk/VREDCluster-10.1/bin/clusterService;/Applications/Autodesk/VREDPro-2018/VREDPro-2018.1-Update.app/Contents/VREDPro-10.1/bin/MAC/VREDClusterService
+Description=The path to the VRED 2018.1 cluster service used for rendering. Enter alternative paths on separate lines.
+
+[ClusterExecutable10_2]
+Type=multilinemultifilename
+Category=Cluster Executables
+CategoryOrder=0
+Index=7
+Label=VRED 2018.2 Cluster Executable
+Default=C:\Program Files\Autodesk\VREDPro-10.2\Bin\WIN64\VREDClusterService.exe;/opt/Autodesk/VREDCluster-10.2/bin/clusterService;/Applications/Autodesk/VREDPro-2018/VREDPro-2018.2-Update.app/Contents/VREDPro-10.2/bin/MAC/VREDClusterService
+Description=The path to the VRED 2018.2 cluster service used for rendering. Enter alternative paths on separate lines.
+
+[ClusterExecutable11_0]
+Type=multilinemultifilename
+Category=Cluster Executables
+CategoryOrder=0
+Index=8
+Label=VRED 2019 Cluster Executable
+Default=C:\Program Files\Autodesk\VREDPro-11.0\Bin\WIN64\VREDClusterService.exe;/opt/Autodesk/VREDCluster-11.0/bin/clusterService;/Applications/Autodesk/VREDPro-2019/VREDPro-2019.app/Contents/VREDPro-11.0/bin/MAC/VREDClusterService
+Description=The path to the VRED 2019 cluster service used for rendering. Enter alternative paths on separate lines.

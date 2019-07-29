@@ -1,0 +1,27 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=TVPaint Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[RenderExecutable11]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=2
+Label=TVPaint 11 Render Executable
+Default=C:\Program Files\TVPaint Developpement\TVPaint Animation 11 Pro (64bits)\TVPaint Animation 11 Pro (64bits).exe
+Description=The path to the TVPaint 11 executable file used for rendering. Enter alternative paths on separate lines.
+

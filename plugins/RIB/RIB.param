@@ -1,0 +1,89 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=RIB Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[ThreeDelight_Executable]
+Type=multilinemultifilename
+Label=3Delight Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\3Delight\bin\renderdl.exe;C:\Program Files (x86)\3Delight\bin\renderdl.exe
+Description=The path to the 3Delight executable used for rendering. Leave blank to ignore.
+
+[Air_Executable]
+Type=multilinemultifilename
+Label=Air Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\air\bin\air.exe;C:\Program Files (x86)\air\bin\air.exe
+Description=The path to the Air executable used for rendering. Leave blank to ignore.
+
+[Aqsis_Executable]
+Type=multilinemultifilename
+Label=Aqsis Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\aqsis\bin\aqsis.exe;C:\Program Files (x86)\aqsis\bin\aqsis.exe
+Description=The path to the Aqsis executable used for rendering. Leave blank to ignore.
+
+[BMRT_Executable]
+Type=multilinemultifilename
+Label=BMRT Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\BMRT2.6\bin\rendrib.exe;C:\Program Files (x86)\BMRT2.6\bin\rendrib.exe
+Description=The path to the BMRT2.6 executable used for rendering. Leave blank to ignore.
+
+[Entropy_Executable]
+Type=multilinemultifilename
+Label=Entropy Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Exluna\Entropy\3.1\bin\entropy.exe;C:\Program Files (x86)\Exluna\Entropy\3.1\bin\entropy.exe
+Description=The path to the Entropy executable used for rendering. Leave blank to ignore.
+
+[Pixie_Executable]
+Type=multilinemultifilename
+Label=Pixie Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Pixie\bin\rndr.exe;C:\Program Files (x86)\Pixie\bin\rndr.exe
+Description=The path to the Pixie executable used for rendering. Leave blank to ignore.
+
+[RenderMan_Executable]
+Type=multilinemultifilename
+Label=RenderMan Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Pixar\prman-11.3.1\bin\prman.exe;C:\Program Files (x86)\Pixar\prman-11.3.1\bin\prman.exe
+Description=The path to the RenderMan executable used for rendering. Leave blank to ignore.
+
+[RenderDotC_Executable]
+Type=multilinemultifilename
+Label=RenderDotC Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\rdc\bin\renderdc.exe
+Description=The path to the RenderDotC executable used for rendering. Leave blank to ignore.
+
+[RenderPipe_Executable]
+Type=multilinemultifilename
+Label=RenderPipe Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\rdrive\renderpipe.exe
+Description=The path to the RenderPipe executable used for rendering. Leave blank to ignore.

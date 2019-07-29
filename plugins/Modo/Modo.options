@@ -1,0 +1,83 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+Index=0
+Description=The scene filename as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[SceneDirectory]
+Type=folder
+Label=Scene Directory
+Category=Scene File
+Index=1
+Description=The original directory of the submitted scene.  Used for path mapping relative paths.
+Required=false
+DisableIfBlank=true
+
+[ProjectDirectory]
+Type=folder
+Label=Project Directory
+Category=Scene File
+Index=2
+Description=The project directory associated with the scene.  Used for path mapping relative paths.
+Required=false
+DisableIfBlank=true
+
+[Version]
+Type=label
+Label=Version
+Category=modo Info
+Index=0
+Description=The version of modo to use to render.
+Required=false
+DisableIfBlank=true
+
+[Threads]
+Type=integer
+Minimum=0
+Maximum=16
+Label=Render Threads
+Category=modo Info
+Index=1
+Description=The number of render threads to use. Specify 0 to use automatic render threads.
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build To Force
+Category=modo Info
+Index=2
+Description=The build of modo to force.
+Required=false
+DisableIfBlank=true
+
+[PassGroup]
+Type=string
+Label=Pass Group
+Category=modo Info
+Index=3
+Description=The passes group to render, or blank to not render a passes group. Used in modo 6xx or later.
+Required=false
+DisableIfBlank=true
+
+[ModoDBRJob]
+Type=boolean
+Label=Modo DBR Job
+Category=modo Info
+Index=4
+Description=Determines if the job uses Modo's Network Rendering, or not. Used in 7xx or later.
+Required=false
+DisableIfBlank=true
+
+[BakeItems]
+Type=boolean
+Label=Bake Items
+Category=modo Info
+Index=5
+Description=Determines if the job should Bake Items instead of Rendering.
+Required=false
+DisableIfBlank=true

@@ -1,0 +1,170 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=After Effects Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[RenderExecutable8_0]
+Type=multilinemultifilename
+Label=After Effects CS3 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=0
+Default=C:\Program Files\Adobe\Adobe After Effects CS3\Support Files\aerender.exe;C:\Program Files (x86)\Adobe\Adobe After Effects CS3\Support Files\aerender.exe;/Applications/Adobe After Effects CS3/aerender
+Description=The path to the After Effects CS3 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable9_0]
+Type=multilinemultifilename
+Label=After Effects CS4 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=1
+Default=C:\Program Files\Adobe\Adobe After Effects CS4\Support Files\aerender.exe;C:\Program Files (x86)\Adobe\Adobe After Effects CS4\Support Files\aerender.exe;/Applications/Adobe After Effects CS4/aerender
+Description=The path to the After Effects CS4 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable10_0]
+Type=multilinemultifilename
+Label=After Effects CS5 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=2
+Default=C:\Program Files\Adobe\Adobe After Effects CS5\Support Files\aerender.exe;C:\Program Files (x86)\Adobe\Adobe After Effects CS5\Support Files\aerender.exe;/Applications/Adobe After Effects CS5/aerender
+Description=The path to the After Effects CS5 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable10_5]
+Type=multilinemultifilename
+Label=After Effects CS5.5 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=3
+Default=C:\Program Files\Adobe\Adobe After Effects CS5.5\Support Files\aerender.exe;C:\Program Files (x86)\Adobe\Adobe After Effects CS5.5\Support Files\aerender.exe;/Applications/Adobe After Effects CS5.5/aerender
+Description=The path to the After Effects CS5.5 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable11_0]
+Type=multilinemultifilename
+Label=After Effects CS6 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=4
+Default=C:\Program Files\Adobe\Adobe After Effects CS6\Support Files\aerender.exe;C:\Program Files (x86)\Adobe\Adobe After Effects CS6\Support Files\aerender.exe;/Applications/Adobe After Effects CS6/aerender
+Description=The path to the After Effects CS6 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable12_0]
+Type=multilinemultifilename
+Label=After Effects CC Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=5
+Default=C:\Program Files\Adobe\Adobe After Effects CC\Support Files\aerender.exe;C:\Program Files (x86)\Adobe\Adobe After Effects CC\Support Files\aerender.exe;/Applications/Adobe After Effects CC/aerender
+Description=The path to the After Effects CC executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable13_0]
+Type=multilinemultifilename
+Label=After Effects CC 2014 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=6
+Default=C:\Program Files\Adobe\Adobe After Effects CC 2014\Support Files\aerender.exe;/Applications/Adobe After Effects CC 2014/aerender
+Description=The path to the After Effects CC 2014 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable13_5]
+Type=multilinemultifilename
+Label=After Effects CC 2015 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=7
+Default=C:\Program Files\Adobe\Adobe After Effects CC 2015\Support Files\aerender.exe;/Applications/Adobe After Effects CC 2015/aerender
+Description=The path to the After Effects CC 2015 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable14_0]
+Type=multilinemultifilename
+Label=After Effects CC 2017 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=8
+Default=C:\Program Files\Adobe\Adobe After Effects CC 2017\Support Files\aerender.exe;/Applications/Adobe After Effects CC 2017/aerender
+Description=The path to the After Effects CC 2017 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable15_0]
+Type=multilinemultifilename
+Label=After Effects CC 2018 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=9
+Default=C:\Program Files\Adobe\Adobe After Effects CC 2018\Support Files\aerender.exe;/Applications/Adobe After Effects CC 2018/aerender
+Description=The path to the After Effects CC 2018 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable16_0]
+Type=multilinemultifilename
+Label=After Effects CC 2019 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=10
+Default=C:\Program Files\Adobe\Adobe After Effects CC 2019\Support Files\aerender.exe;/Applications/Adobe After Effects CC 2019/aerender
+Description=The path to the After Effects CC 2019 executable file used for rendering. Enter alternative paths on separate lines.
+
+[FailOnExistingAEProcess]
+Category=Render Options
+Label=Fail On Existing After Effects Process
+CategoryOrder=1
+CategoryIndex=0
+Type=Boolean
+Description=Prevent Deadline from rendering when After Effects is already open.
+Default=False
+
+[ForceRenderingEnglish]
+Category=Render Options
+Label=Force Rendering In English
+CategoryOrder=1
+CategoryIndex=1
+Type=Boolean
+Description=Creates a text file in the current user's Documents folder to force After Effects to run in English. This will ensure Deadline's standard output and progress handling will function as expected.
+Default=False
+
+[ForceRenderEngine]
+Category=Render Options
+Label=Enable Render Engine Mode
+CategoryOrder=1
+CategoryIndex=2
+Type=Boolean
+Description=If this option is set to true, the Slaves will render in Render Engine mode.
+Default=True
+
+[DeleteRenderEngineFile]
+Category=Render Options
+Label=Delete Render Engine File
+CategoryOrder=1
+CategoryIndex=3
+Type=Boolean
+Description=If this option is set to true, the Slaves will remove the Force Engine before rendering and after it is done rendering in Force Engine Mode.
+Default=True
+
+[FailWithoutFinishedMessage]
+Type=boolean
+Category=Render Options
+Label=Fail Without Finished Message
+CategoryOrder=1
+CategoryIndex=4
+Description=If this option is set to true, the Slaves will fail any task that does not print the message "Finished composition". This setting must be set to False to successfully render movie files.
+Default=False
+
+[EnableAepxPathMapping]
+Type=boolean
+Category=Path Mapping For aepx Project Files (For Mixed Farms)
+CategoryOrder=3
+CategoryIndex=0
+Label=Enable Path Mapping For aepx Files
+Default=True
+Description=If enabled, a temporary aepx file will be created locally on the Slave for rendering and Deadline will do path mapping directly in the aepx file.

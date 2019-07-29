@@ -1,0 +1,97 @@
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build Of EnergyPlus To Force
+Category=File Options
+CategoryOrder=0
+Index=0
+Description=You can force 32 or 64 bit processing with this option.
+Required=true
+Default=None
+DisableIfBlank=false
+
+[OverrideOutputDirectory]
+Type=Folder
+Label=Override Output Directory
+Category=File Options
+CategoryOrder=0
+Index=1
+Description=Override the output path of the data file. This is optional, and can be left blank.
+Required=false
+DisableIfBlank=false
+
+[ReadVarsESOMaxCol]
+Type=enum
+Label=../ReadVarsESO.exe Max.Columns
+Category=Post-Process Options
+CategoryOrder=1
+Index=0
+Description=Limit the maximium number of columns used when calling readVarsESO.exe.
+Required=false
+DisableIfBlank=false
+
+[ConvESO]
+Type=boolean
+Label=Execute ../convertESOMTR.exe
+Category=Post-Process Options
+CategoryOrder=1
+Index=1
+Description=Execute the convertESOMTR.exe application as a post-process.
+Required=false
+Default=false
+DisableIfBlank=false
+
+[CSVproc]
+Type=boolean
+Label=Execute ../CSVproc.exe
+Category=Post-Process Options
+CategoryOrder=1
+Index=2
+Description=Execute the csvProc.exe application as a post-process.
+Required=false
+Default=false
+DisableIfBlank=false
+
+[Multithreading]
+Type=boolean
+Label=Multithreading
+Category=Processing Options
+CategoryOrder=2
+Index=0
+Description=If enabled, EnergyPlus simulations will use multithreading. Ignored if Concurrent Tasks > 1.
+Required=false
+Default=false
+DisableIfBlank=false
+
+[Debug]
+Type=boolean
+Label=Pause Mode (DEBUG only)
+Category=Processing Options
+CategoryOrder=2
+Index=1
+Description=Only for Debug purposes. Will PAUSE the program execution at key steps.
+Required=false
+Default=false
+DisableIfBlank=false
+
+[IncludeDataFile]
+Type=boolean
+Label=Include Data File
+Category=Other Options
+CategoryOrder=3
+Index=0
+Description=If enabled, the output zip file will contain the data file OR if outputting to a directory path, the data file will be included.
+Required=true
+Default=true
+DisableIfBlank=false
+
+[CompressOutput]
+Type=Boolean
+Label=Compress (ZIP) Output
+Category=Other Options
+CategoryOrder=3
+Index=1
+Description=Automatically compress the EP output to a single zip file.
+Required=false
+Default=false
+DisableIfBlank=false

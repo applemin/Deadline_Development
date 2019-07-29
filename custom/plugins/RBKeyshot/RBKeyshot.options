@@ -1,0 +1,401 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Global Settings
+CategoryOrder=0
+Index=0
+Description=The scene filename as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[OutputFile]
+Type=filenamesave
+Label=Output Filename
+Category=Global Settings
+CategoryOrder=0
+Index=2
+Description=The filename of the file(s) to be rendered.
+Required=false
+DisableIfBlank=true
+
+[version]
+Type=string
+Label=Keyshot Version
+Category=Version Settings
+CategoryOrder=1
+Index=0
+Description=The version of Keyshot to use.
+Required=false
+DisableIfBlank=true
+
+[start_frame]
+Type=integer
+Label=Start Frame
+Category=Frame Range 
+CategoryOrder=2
+Index=1
+Description=start_frame
+Required=false
+DisableIfBlank=true
+
+[end_frame]
+Type=integer
+Label=End Frame
+Category=Frame Range 
+CategoryOrder=2
+Index=2
+Description=end_frame
+Required=false
+DisableIfBlank=true
+
+[render_width]
+Type=integer
+Label=Render Width
+Category=Image Resolution 
+CategoryOrder=3
+Index=0
+Description=The width of the rendered images.
+Required=false
+DisableIfBlank=true
+
+[render_height]
+Type=integer
+Label=Render Height
+Category=Image Resolution
+CategoryOrder=3
+Index=1
+Description=The height of the rendered images.
+Required=false
+DisableIfBlank=true
+
+
+[Camera0]
+Type=string
+Label=Camera
+Category=Camera Settings
+CategoryOrder=4
+Index=0
+Description=Camera name.
+Required=false
+DisableIfBlank=true
+
+[output_ambient_occlusion_pass]
+Type=boolean
+Label=Ambient Occlusion Pass
+Category=Pass Settings
+CategoryOrder=5
+Index=0
+Description=Enable to override the pass settings in the scene.
+Required=false
+DisableIfBlank=true
+
+[output_caustics_pass]
+Type=boolean
+Label=Caustics Pass
+Category=Pass Settings
+CategoryOrder=5
+Index=1
+Description=Enable to override the pass settings in the scene.
+Required=false
+DisableIfBlank=true
+
+[output_clown_pass]
+Type=boolean
+Label=Clown Pass
+Category=Pass Settings
+CategoryOrder=5
+Index=2
+Description=Enable to override the pass settings in the scene.
+Required=false
+DisableIfBlank=true
+
+[output_depth_pass]
+Type=boolean
+Label=Depth Pass
+Category=Pass Settings
+CategoryOrder=5
+Index=3
+Description=Enable to override the pass settings in the scene.
+Required=false
+DisableIfBlank=true
+
+[output_diffuse_pass]
+Type=boolean
+Label=Diffuse Pass
+Category=Pass Settings
+CategoryOrder=5
+Index=4
+Description=Enable to override the pass settings in the scene.
+Required=false
+DisableIfBlank=true
+
+[output_direct_lighting_pass]
+Type=boolean
+Label=Direct Lighting Pass
+Category=Pass Settings
+CategoryOrder=5
+Index=5
+Description=Enable to override the pass settings in the scene.
+Required=false
+DisableIfBlank=true
+
+[output_indirect_lighting_pass]
+Type=boolean
+Label=Indirect Lighting Pass
+Category=Pass Settings
+CategoryOrder=5
+Index=6
+Description=Enable to override the pass settings in the scene.
+Required=false
+DisableIfBlank=true
+
+[output_normals_pass]
+Type=boolean
+Label=Normals Pass
+Category=Pass Settings
+CategoryOrder=5
+Index=7
+Description=Enable to override the pass settings in the scene.
+Required=false
+DisableIfBlank=true
+
+[output_reflection_pass]
+Type=boolean
+Label=Reflection Pass
+Category=Pass Settings
+CategoryOrder=5
+Index=8
+Description=Enable to override the pass settings in the scene.
+Required=false
+DisableIfBlank=true
+
+[output_refraction_pass]
+Type=boolean
+Label=Refraction Pass
+Category=Pass Settings
+CategoryOrder=5
+Index=9
+Description=Enable to override the pass settings in the scene.
+Required=false
+DisableIfBlank=true
+
+[output_shadow_pass]
+Type=boolean
+Label=Shadow Pass
+Category=Pass Settings
+CategoryOrder=5
+Index=10
+Description=Enable to override the pass settings in the scene.
+Required=false
+DisableIfBlank=true
+
+[render_mode]
+Type=enum
+Values=0;1;2
+Label=Quality Mode
+Category=Quality Settings
+CategoryOrder=6
+Index=0
+Description=The type of quality to render by.
+Required=false
+DisableIfBlank=true
+
+
+[advanced_samples]
+Type=integer
+Label=Ray Bounces
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=0
+Description=advanced_samples
+DisableIfBlank=true
+DefaultValue=16
+Maximum=9999
+Minimum=4
+
+[engine_anti_aliasing]
+Type=integer
+Label=Anti Aliasing
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=1
+Description=engine_anti_aliasing
+DisableIfBlank=true
+DefaultValue=1
+Maximum=8
+Minimum=1
+
+[engine_caustics_quality]
+Type=integer
+Label=Caustics Quality
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=2
+Description=engine_caustics_quality
+DisableIfBlank=true
+DefaultValue=1
+Maximum=10
+Minimum=1
+
+[engine_dof_quality]
+Type=float
+Label=DOF Quality
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=3
+Description=engine_dof_quality
+DisableIfBlank=true
+DefaultValue=3
+Maximum=10
+Minimum=1
+DecimalPlaces=2
+
+[engine_global_illumination]
+Type=float
+Label=Global Illumination
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=4
+Description=engine_global_illumination
+DisableIfBlank=true
+DefaultValue=1
+Maximum=5
+Minimum=1
+DecimalPlaces=2
+
+[engine_global_illumination_cache]
+Type=boolean
+Label=Shadow Pass
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=5
+Description=engine_global_illumination_cache
+Required=false
+DisableIfBlank=true
+
+[engine_indirect_bounces]
+Type=integer
+Label=Indirect Bounces
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=6
+Description=engine_indirect_bounces
+DisableIfBlank=true
+DefaultValue=0
+Maximum=64
+Minimum=0
+
+[engine_pixel_blur]
+Type=float
+Label=Pixel Blur
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=7
+Description=engine_pixel_blur
+DisableIfBlank=true
+DefaultValue=1.5
+Maximum=3
+Minimum=1
+DecimalPlaces=2
+
+[engine_ray_bounces]
+Type=integer
+Label=Ray Bounces
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=8
+Description=engine_ray_bounces
+DisableIfBlank=true
+DefaultValue=0
+Maximum=64
+Minimum=0
+
+[engine_shadow_quality]
+Type=float
+Label=Shadow Quality
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=9
+Description=engine_shadow_quality
+DisableIfBlank=true
+DefaultValue=1
+Maximum=10
+Minimum=1
+DecimalPlaces=2
+
+[engine_sharp_shadows]
+Type=boolean
+Label=Sharp Shadows
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=10
+Description=engine_sharp_shadows
+Required=false
+DisableIfBlank=true
+
+[engine_sharper_texture_filtering]
+Type=boolean
+Label=Sharper Texture Filtering
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=11
+Description=engine_sharper_texture_filtering
+Required=false
+DisableIfBlank=true
+
+[engine_threads]
+Type=integer
+Label=Engine Threads
+Category=Advanced Samples Setting
+CategoryOrder=7
+Index=12
+Description=engine_threads
+DisableIfBlank=true
+DefaultValue=88
+Maximum=128
+Minimum=2
+
+[progressive_max_time]
+Type=integer
+Label=Maximum Time (s)
+Category=Maximum Time Settings
+CategoryOrder=8
+Index=0
+Description=progressive_max_time
+DisableIfBlank=true
+DefaultValue=30
+Maximum=99999
+Minimum=1
+
+
+[progressive_max_samples]
+Type=integer
+Label=Maximum Samples
+Category=Maximum Samples Settings
+CategoryOrder=9
+Index=0
+Description=progressive_max_samples
+DisableIfBlank=true
+DefaultValue=30
+Maximum=99999
+Minimum=1
+
+[output_alpha_channel]
+Type=boolean
+Label=Alpha Channel
+Category=Extra Options
+CategoryOrder=10
+Index=0
+Description=output_alpha_channel
+Required=false
+DisableIfBlank=true
+
+[output_render_layers]
+Type=boolean
+Label=Render Layers
+Category=Extra Options
+CategoryOrder=10
+Index=0
+Description=output_render_layers
+Required=false
+DisableIfBlank=true

@@ -1,0 +1,148 @@
+#define LABEL_WIDTH 1.59
+#define MENU_WIDTH 1.58
+#define TOGGLE_WIDTH 1.49
+#define COLLAPSER_WIDTH 1.48
+#define MULTI_MENUS_WIDTH 1.10
+#define V_SPACE 0.05
+#define H_SPACE 0.10
+#define BLANK LABEL VALUE(blank.val) HSTRETCH
+#define CONTROL_WIDTH 3.00
+
+joboptions.val := 1;
+pool.val = STRING_MENU{"none"}
+secondarypool.val = STRING_MENU{" "}
+group.val = STRING_MENU{"none"}
+onjobcomplete.val = STRING_MENU{"Nothing" "Archive" "Delete"}
+rendernode.val = STRING_MENU{"No Valid ROPs"}
+
+dlg.win = DIALOG "Submit HServer Reserve Job To Deadline"
+{
+    LAYOUT(vertical) EXCLUSIVE MARGIN(0.1) SPACING(0.1) LOOK(plain) 
+    VALUE(dlg.val) MIN_SIZE(5.85, 7.15) PREF_SIZE(5.5, 4.5)
+        
+
+    SCROLLER vertical
+    {
+        LAYOUT(vertical) HSTRETCH
+
+        COLLAPSER "General Options"
+        {
+            LAYOUT(vertical) HSTRETCH VALUE(joboptions.val) SPACING(H_SPACE) JUSTIFY(left, center)
+
+            #Job Description
+            {
+                LAYOUT(vertical) HSTRETCH SPACING(V_SPACE)
+                LABEL (bold) "Job Description";
+
+                STRING_FIELD "Job Name":LABEL_WIDTH   HSTRETCH VALUE(jobname.val);
+                STRING_FIELD "Comment":LABEL_WIDTH    HSTRETCH VALUE(comment.val);
+                STRING_FIELD "Department":LABEL_WIDTH HSTRETCH VALUE(department.val);
+                BLANK;
+            }
+
+            SEPARATOR;
+
+            #Job Options
+            { 
+                LAYOUT(vertical) HSTRETCH SPACING(V_SPACE) JUSTIFY(left, center)
+                LABEL(bold) "Job Options";
+
+                { 
+                    LAYOUT(horizontal) HSTRETCH SPACING(H_SPACE) JUSTIFY(left, center)
+
+                    SELECT_MENU_BUTTON "Pool":MENU_WIDTH HSTRETCH MENU(pool.val);
+                    SELECT_MENU_BUTTON "Secondary Pool":MULTI_MENUS_WIDTH HSTRETCH MENU(secondarypool.val);
+                }
+
+                SELECT_MENU_BUTTON "Group":MENU_WIDTH HSTRETCH MENU(group.val);
+                INT_FIELD "Priority":LABEL_WIDTH VALUE(priority.val) WIDTH(CONTROL_WIDTH);
+                
+                {
+                    LAYOUT(cell) HSTRETCH SPACING(0.1, V_SPACE) JUSTIFY(left, center)
+
+                    INT_FIELD "Task Timeout":LABEL_WIDTH     CELL(0,0,0,0) VALUE(tasktimeout.val) WIDTH(CONTROL_WIDTH);
+                    TOGGLE_BUTTON "Enable Auto Task Timeout" CELL(1,0,1,0) VALUE(autotimeout.val);
+                    INT_FIELD "Concurrent Tasks":LABEL_WIDTH CELL(0,1,0,1) VALUE(concurrent.val) WIDTH(CONTROL_WIDTH);
+                    TOGGLE_BUTTON "Limit Tasks To Slave's Task Limit" CELL(1,1,1,1) VALUE(slavelimit.val);
+                    INT_FIELD "Machine Limit":LABEL_WIDTH CELL(0,2,0,2) VALUE(machinelimit.val) WIDTH(CONTROL_WIDTH);
+                    TOGGLE_BUTTON "Machine List Is A Blacklist" CELL (1,2,1,2) VALUE(isblacklist.val);              
+                }
+
+                #separate container, because each column has the same length (the textboxes mess up the look of task timeout, etc.)
+                {
+                    LAYOUT(cell) HSTRETCH SPACING (H_SPACE, V_SPACE) JUSTIFY (left, center)
+
+                    STRING_FIELD "Machine List":LABEL_WIDTH CELL(0,0,0,0) HSTRETCH VALUE(machinelist.val);
+                    ACTION_BUTTON "..." CELL (1,0,1,0) VALUE(getmachinelist.val);
+                    STRING_FIELD "Limits":LABEL_WIDTH CELL(0,1,0,1) HSTRETCH VALUE(limits.val);
+                    ACTION_BUTTON "..." CELL(1,1,1,1) VALUE(getlimits.val);
+                    STRING_FIELD "Dependencies":LABEL_WIDTH CELL(0,2,0,2) HSTRETCH VALUE(dependencies.val);
+                    ACTION_BUTTON "..." CELL(1,2,1,2) VALUE(getdependencies.val);
+                }
+                
+                {
+                    LAYOUT(horizontal) HSTRETCH SPACING(H_SPACE) JUSTIFY(left, center)
+
+                    INT_FIELD "HServer Count":LABEL_WIDTH VALUE(servercount.val) WIDTH(CONTROL_WIDTH);
+                    TOGGLE_BUTTON "Use IP Address"  VALUE(useipaddress.val);
+                }
+                
+                #separate container, because each column has the same length (the textboxes mess up the look of task timeout, etc.)
+                {
+                    LAYOUT(cell) HSTRETCH SPACING (H_SPACE, V_SPACE) JUSTIFY (left, center)
+                    
+                    SELECT_MENU_BUTTON "Render Node":MENU_WIDTH CELL(0,0) WIDTH(CONTROL_WIDTH) VALUE(rendernode.val);
+                    
+                }
+                
+                #separate container, because each column has the same length (the textboxes mess up the look of task timeout, etc.)
+                {
+                    LAYOUT(cell) HSTRETCH SPACING (H_SPACE, V_SPACE) JUSTIFY (left, center)
+                    STRING_FIELD "Job ID":LABEL_WIDTH CELL(0,0,0,0) HSTRETCH VALUE(renderjobid.val);
+                    STRING_FIELD "Job Status":LABEL_WIDTH CELL(0,1,0,1) HSTRETCH VALUE(renderjobstatus.val);
+                    STRING_FIELD "Active Servers":LABEL_WIDTH CELL(0,2,0,2) HSTRETCH VALUE(activeservers.val);
+                }
+                
+            }
+
+            BLANK;
+            SEPARATOR;
+        }
+    }
+    
+    {
+        LAYOUT(horizontal) HSTRETCH SPACING(H_SPACE)
+
+        ACTION_BUTTON "Reserve Servers" VALUE(reserveservers.val);
+        ACTION_BUTTON "Update Servers" VALUE(updateservers.val);
+        ACTION_BUTTON "Start Render" VALUE(startrender.val);
+        ACTION_BUTTON "Release Servers"  VALUE(releaseservers.val);
+    }
+    {
+        LAYOUT(horizontal) HSTRETCH SPACING(H_SPACE)
+
+        # Status bar
+        LABEL(bold) VALUE(status.val) HSTRETCH;
+    }
+}
+
+OPEN dlg.win;
+
+################################################################################
+## DEBUGGING
+################################################################################
+#
+# For the (un)lucky soul who has the pleasure of editing the Houdini UI, turn back!
+#
+# If you continue, consider yourself warned!
+# 
+#   First off, as of when this comment was written (2014/02/05 YYYY/MM/DD). There's barely any 
+# documentation for the native UI scripting language. So I'll link the website: 
+#
+# 10.0: http://www.sidefx.com/docs/hdk10.0/hdk_uinative_uiscript.html
+# 13.0: http://www.sidefx.com/docs/hdk13.0/hdk_uinative_uiscript.html
+# 
+#   However, there's barely anything there (even if you go to 13.0), so I recommend that you 
+# look over what I've done, so you can try to wrap your head around how I managed to get this 
+# language to works. Other than that, there's not much else I can say!
+#

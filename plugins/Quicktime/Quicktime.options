@@ -1,0 +1,21 @@
+[FrameRate]
+Type=float
+Minimum=0.01
+Maximum=100.00
+DecimalPlaces=2
+Increment=0.01
+Label=Frame Rate
+Category=Quicktime Options
+Description=The frame rate
+Required=true
+DisableIfBlank=false
+Default=24.00
+
+[AudioFile]
+Type=filename
+Label=Audio File
+Category=Audio Options
+Index=0
+Description=The audio file to add to the quicktime
+Required=false
+DisableIfBlank=true

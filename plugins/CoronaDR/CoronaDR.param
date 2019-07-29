@@ -1,0 +1,93 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Corona DR Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[CoronaDrServerExecutable]
+Label=Corona DrServer Executable
+Category=Corona DrServer Executables
+CategoryOrder=0
+CategoryIndex=0
+Type=multilinemultifilename
+Default=C:\Program Files (x86)\Corona\DrServer\DrServer.exe;C:\Program Files\Corona\DrServer.exe
+Description=The path to the Corona DrServer executable file. Enter alternative paths on separate lines.
+
+[ExistingDRProcess]
+Type=enum
+Category=DR Process Handling
+Label=Handle Existing DR Process
+CategoryOrder=1
+CategoryIndex=0
+Items=Do Nothing;Fail On Existing Process;Kill On Existing Process
+Description=Either Do Nothing, FAIL on existing DR process or KILL the existing DR process if already running.
+Default=Fail On Existing Process
+
+[DROnJobComplete]
+Type=enum
+Category=DR Job Handling
+Label=DR On Job Complete
+CategoryOrder=2
+CategoryIndex=0
+Description=If desired, you can automatically archive or delete the DR job when it completes.
+Items=Do Nothing;Archive;Delete
+Default=Do Nothing
+
+[DRAutoClose]
+Type=Boolean
+Category=DR Session Handling
+Label=DR Session Auto Timeout Enable
+CategoryOrder=3
+CategoryIndex=0
+Description=Enable to force DR Session to be marked as complete if no DR Session has run with a specified time.
+Default=False
+
+[DRCloseTimeoutBeforeRender]
+Type=Integer
+Category=DR Session Handling
+Label=DR Session Auto Timeout (Minutes)
+Minimum=1
+CategoryOrder=3
+CategoryIndex=1
+Description=DR Session minimum timeout before last closed DR Session is marked as complete on slave (minutes). This timeout occurs before at least one render has been completed.
+Default=15
+
+[DRCloseWaitForRender]
+Type=Boolean
+Category=DR Session Handling
+Label=DR Session Auto Timeout: Wait for first render
+CategoryOrder=3
+CategoryIndex=2
+Description=Enable to Force at least one render to be completed before Auto Timeout becomes active.
+Default=True
+
+[DRCloseTimeoutAfterRender]
+Type=Integer
+Category=DR Session Handling
+Label=DR Session Auto Timeout: After first render (Minutes)
+Minimum=0
+CategoryOrder=3
+CategoryIndex=3
+Description=DR Session minimum timeout after at least one render has been completed.
+Default=15
+
+[DRServerNoGui]
+Type=Boolean
+Label=DR Server No Gui
+Category=DR Server Options
+CategoryOrder=4
+CategoryIndex=0
+Description=In Corona 1.4 onwards, a ‘–-noGui’ option is available to run the DR Server without UI.
+Default=False

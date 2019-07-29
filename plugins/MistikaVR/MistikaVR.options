@@ -1,0 +1,20 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+CategoryOrder=0
+Index=0
+Description=The Mistika VR scene filename as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[ImageRender]
+Type=Boolean
+Label=Image Render
+Category=Render Information
+CategoryOrder=1
+Index=0
+Description=Whether or not this render is for an image sequence.
+Required=true
+Default=false
+DisableIfBlank=true

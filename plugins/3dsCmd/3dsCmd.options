@@ -1,0 +1,1019 @@
+[Version]
+Type=label
+Label=Version
+Category=Application Info
+CategoryOrder=0
+Index=0
+Description=The 3ds application version to render with.
+Required=false
+DisableIfBlank=true
+
+[SubmittedFromVersion]
+Type=label
+Label=Submitted Version Of Max
+Category=Application Info
+CategoryOrder=0
+Index=1
+Description=Submitted from Version Of Max.
+Required=false
+DisableIfBlank=true
+
+[IsMaxDesign]
+Type=boolean
+Label=Use Design Edition
+Category=Application Info
+CategoryOrder=0
+Index=2
+Description=Whether or not to use the Design Edition of 3ds Max Cmd.
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=Enum
+Values=None;32bit;64bit
+Label=Max Build To Force
+Category=Application Info
+CategoryOrder=0
+Index=3
+Description=The build type to force.
+Required=false
+DisableIfBlank=true
+
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Job Options
+CategoryOrder=1
+Index=0
+Description=The scene filename as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[RenderOutput]
+Type=filenamesave
+Label=Render Output
+Category=Job Options
+CategoryOrder=1
+Index=1
+Description=The render output filename (if blank then the output will be determined by the scene).
+Required=false
+DisableIfBlank=false
+
+[Camera]
+Type=enum
+Label=Camera
+Category=Advanced Options
+CategoryOrder=2
+Index=0
+Description=The camera to render with (if blank then the camera will be determined by the scene).
+Required=false
+DisableIfBlank=true
+
+[RenderPresetFile]
+Type=filenamesave
+Label=Render Preset File
+Category=Advanced Options
+CategoryOrder=2
+Index=1
+Description=Uses a render preset settings file where <filename> is the name of the preset file.
+Required=false
+DisableIfBlank=true
+
+[PreRenderScript]
+Type=filenamesave
+Label=Pre Render MAXScript File
+Category=Advanced Options
+CategoryOrder=2
+Index=2
+Description=Uses a pre-render script where <filename> is the name of the maxscript (*.ms) file.
+Required=false
+DisableIfBlank=true
+
+[PostRenderScript]
+Type=filenamesave
+Label=Post Render MAXScript File
+Category=Advanced Options
+CategoryOrder=2
+Index=3
+Description=Uses a post-render script where <filename> is the name of the maxscript (*.ms) file.
+Required=false
+DisableIfBlank=true
+
+[SceneState]
+Type=string
+Label=Scene State
+Category=Advanced Options
+CategoryOrder=2
+Index=4
+Description=Loads the specified scene state in the 3ds Max scene file before rendering the image.
+Required=false
+DisableIfBlank=true
+
+[BatchRender]
+Type=boolean
+Label=Batch Render (ALL Views)
+Category=Advanced Options
+CategoryOrder=2
+Index=5
+Description=Renders all enabled tasks in the Batch Render dialog.
+Required=false
+DisableIfBlank=true
+
+[BatchRenderName]
+Type=string
+Label=Batch Render Name
+Category=Advanced Options
+CategoryOrder=2
+Index=6
+Description=Renders batch renders in the file named batch-render-name.
+Required=false
+DisableIfBlank=true
+
+[StripRendering]
+Type=boolean
+Label=Strip Rendering
+Category=Advanced Options
+CategoryOrder=2
+Index=7
+Description=Enable Strip Rendering: number of strips, overlap amount should be defined.
+Required=false
+DisableIfBlank=true
+
+[StripCount]
+Type=integer
+Minimum=2
+Maximum=1000
+Increment=1
+Label=Strip Count
+Category=Advanced Options
+CategoryOrder=2
+Index=8
+Description=Number of strips when Strip Rendering is enabled.
+Required=false
+DisableIfBlank=true
+
+[StripOverlap]
+Type=integer
+Minimum=0
+Maximum=5000
+Increment=1
+Label=Strip Overlap
+Category=Advanced Options
+CategoryOrder=2
+Index=9
+Description=Amount of overlap between strips when Strip Rendering is enabled.
+Required=false
+DisableIfBlank=true
+
+[ImageWidth]
+Type=integer
+Minimum=1
+Maximum=32768
+Increment=1
+Label=Image Width
+Category=Render Size
+CategoryOrder=3
+Index=0
+Description=The width of the image in pixels.
+Required=false
+DisableIfBlank=true
+
+[ImageHeight]
+Type=integer
+Minimum=1
+Maximum=32768
+Increment=1
+Label=Image Height
+Category=Render Size
+CategoryOrder=3
+Index=1
+Description=The height of the image in pixels.
+Required=false
+DisableIfBlank=true
+
+[PixelAspect]
+Type=float
+Minimum=0.001
+Maximum=1000.0
+Label=Pixel Aspect
+Category=Render Size
+CategoryOrder=3
+Index=2
+Description=The value that defines the output pixel aspect.
+Required=false
+DisableIfBlank=true
+
+[ContinueOnError]
+Type=boolean
+Label=Continue On Error
+Category=Render Parameters
+CategoryOrder=4
+Index=0
+Description=Try to continue rendering when the renderer reports an error.
+Required=false
+DisableIfBlank=true
+
+[LocalRendering]
+Type=boolean
+Label=Enable Local Rendering
+Category=Render Parameters
+CategoryOrder=4
+Index=1
+Description=If this option is set to true, the slaves will render locally, and then copy the images to the network output directory on completion.
+Required=false
+DisableIfBlank=true
+
+[StillFrame]
+Type=boolean
+Label=Remove Padding (Still-Frame)
+Category=Render Parameters
+CategoryOrder=4
+Index=2
+Description=Indicates that this is a still-frame render; no frame suffix will be added.
+Required=false
+DisableIfBlank=true
+
+[VideoPost]
+Type=boolean
+Label=Apply VideoPost To Scene
+Category=Render Parameters
+CategoryOrder=4
+Index=3
+Description=Whether or not to use VideoPost during rendering.
+Required=false
+DisableIfBlank=true
+
+[ImageSequenceFile]
+Type=enum
+Label=Image Sequence File Creation
+Category=Render Parameters
+CategoryOrder=4
+Index=4
+Description=Image-sequence file creation: 0=none; 1=.imsq; 2=.ifl.
+Required=false
+DisableIfBlank=true
+
+[GammaCorrection]
+Type=boolean
+Label=Enable Gamma Correction
+Category=Gamma Options
+CategoryOrder=5
+Index=0
+Description=Enable gamma correction during rendering.
+Required=false
+DisableIfBlank=true
+
+[GammaInput]
+Type=float
+Minimum=0.01
+Maximum=5.00
+DecimalPlaces=2
+Label=Input Gamma
+Category=Gamma Options
+CategoryOrder=5
+Index=1
+Description=The input gamma value.
+Required=false
+DisableIfBlank=true
+
+[GammaOutput]
+Type=float
+Minimum=0.01
+Maximum=5.00
+DecimalPlaces=2
+Label=Output Gamma
+Category=Gamma Options
+CategoryOrder=5
+Index=2
+Description=The output gamma value.
+Required=false
+DisableIfBlank=true
+
+[GPUsPerTask]
+Type=integer
+Minimum=0
+Maximum=16
+Label=GPUs Per Task
+Category=GPU Options
+CategoryOrder=6
+Index=0
+Description=The number of GPUs to use per task. If set to 0, the default number of GPUs will be used.
+Required=false
+DisableIfBlank=true
+
+[GPUsSelectDevices]
+Type=string
+Label=Select GPU Devices
+Category=GPU Options
+CategoryOrder=6
+Index=1
+Description=A comma separated list of the GPU devices to use specified by device Id. 'GPUs Per Task' will be ignored.
+Required=false
+DisableIfBlank=true
+
+[ShowVFB]
+Type=boolean
+Label=Show VFB
+Category=Render Flags
+CategoryOrder=7
+Index=0
+Description=Whether or not to show the virtual frame buffer during rendering.
+Required=false
+DisableIfBlank=true
+
+[SkipRenderedFrames]
+Type=boolean
+Label=Skip Rendered Frames
+Category=Render Flags
+CategoryOrder=7
+Index=1
+Description=Whether to skip rendered frames.
+Required=false
+DisableIfBlank=true
+
+[VideoColorCheck]
+Type=boolean
+Label=Video Color Check
+Category=Render Flags
+CategoryOrder=7
+Index=2
+Description=Perform a color check during a render.
+Required=false
+DisableIfBlank=true
+
+[TwoSided]
+Type=boolean
+Label=Force 2 Sided
+Category=Render Flags
+CategoryOrder=7
+Index=3
+Description=Force two-sided during a render.
+Required=false
+DisableIfBlank=true
+
+[HiddenGeometry]
+Type=boolean
+Label=Render Hidden Geometry
+Category=Render Flags
+CategoryOrder=7
+Index=4
+Description=Enables the renderer to render hidden objects.
+Required=false
+DisableIfBlank=true
+
+[Atmospherics]
+Type=boolean
+Label=Atmospheric Effects
+Category=Render Flags
+CategoryOrder=7
+Index=5
+Description=Enables the renderer to use atmospheric effects.
+Required=false
+DisableIfBlank=true
+
+[SuperBlack]
+Type=boolean
+Label=Super Black
+Category=Render Flags
+CategoryOrder=7
+Index=6
+Description=Use super black during a render.
+Required=false
+DisableIfBlank=true
+
+[RenderToFields]
+Type=boolean
+Label=Render To Fields
+Category=Render Flags
+CategoryOrder=7
+Index=7
+Description=Enable field rendering during a render.
+Required=false
+DisableIfBlank=true
+
+[FieldOrder]
+Type=enum
+Label=Field Order
+Category=Render Flags
+CategoryOrder=7
+Index=8
+Description=Control Field Order if rendering to fields is enabled.
+Required=false
+DisableIfBlank=true
+
+[RenderElements]
+Type=boolean
+Label=Output Render Elements
+Category=Render Flags
+CategoryOrder=7
+Index=9
+Description=Output render elements. Must be explicitly enabled for 3ds Max 2013 or earlier to create render elements.
+Required=false
+DisableIfBlank=true
+
+[Displacements]
+Type=boolean
+Label=Displacements
+Category=Render Flags
+CategoryOrder=7
+Index=10
+Description=Perform displacement mapping during a render.
+Required=false
+DisableIfBlank=true
+
+[Effects]
+Type=boolean
+Label=Render Effects
+Category=Render Flags
+CategoryOrder=7
+Index=11
+Description=Perform render effects after a scene render.
+Required=false
+DisableIfBlank=true
+
+[AreaLights]
+Type=boolean
+Label=Area Lights
+Category=Render Flags
+CategoryOrder=7
+Index=12
+Description=If checked, area lights will be examined and converted to point light sources when appropriate.
+Required=false
+DisableIfBlank=true
+
+[UseAdvLighting]
+Type=boolean
+Label=Use Advanced Lighting
+Category=Render Flags
+CategoryOrder=7
+Index=13
+Description=Toggles use advanced lighting.
+Required=false
+DisableIfBlank=true
+
+[ComputeAdvLighting]
+Type=boolean
+Label=Compute Advanced Lighting
+Category=Render Flags
+CategoryOrder=7
+Index=14
+Description=Toggles compute advanced lighting.
+Required=false
+DisableIfBlank=true
+
+[DitherPaletted]
+Type=boolean
+Label=Dither (Paletted)
+Category=Render Flags
+CategoryOrder=7
+Index=15
+Description=Toggles Output Dithering (paletted).
+Required=false
+DisableIfBlank=true
+
+[DitherTrueColor]
+Type=boolean
+Label=Dither (True-Color)
+Category=Render Flags
+CategoryOrder=7
+Index=16
+Description=Toggles Output Dithering (true-color).
+Required=false
+DisableIfBlank=true
+
+[BMP_TYPE]
+Type=enum
+Label=BMP_TYPE
+Category=Bitmap Parameters: BMP
+CategoryOrder=8
+Index=0
+Description=Sets the type of BMP file being rendered. “2”=paletted, “8”=true 24-bit.
+Required=false
+DisableIfBlank=true
+
+[JPEG_QUALITY]
+Type=integer
+Label=JPEG_QUALITY
+Category=Bitmap Parameters: JPEG
+CategoryOrder=9
+Index=0
+Minimum=1
+Maximum=100
+Increment=1
+Description=Sets the JPG quality value. Ranges from 1 to 100.
+Required=false
+DisableIfBlank=true
+
+[JPEG_SMOOTHING]
+Type=integer
+Label=JPEG_SMOOTHING
+Category=Bitmap Parameters: JPEG
+CategoryOrder=9
+Index=1
+Minimum=1
+Maximum=100
+Increment=1
+Description=Sets the JPG smoothing value. Ranges from 1 to 100.
+Required=false
+DisableIfBlank=true
+
+[TARGA_COLORDEPTH]
+Type=enum
+Label=TARGA_COLORDEPTH
+Category=Bitmap Parameters: TGA
+CategoryOrder=10
+Index=0
+Description=Sets the color depth for TGA files.
+Required=false
+DisableIfBlank=true
+
+[TARGA_COMPRESSED]
+Type=boolean
+Label=TARGA_COMPRESSED
+Category=Bitmap Parameters: TGA
+CategoryOrder=10
+Index=1
+Description=Toggles TGA Compression. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[TARGA_ALPHASPLIT]
+Type=boolean
+Label=TARGA_ALPHASPLIT
+Category=Bitmap Parameters: TGA
+CategoryOrder=10
+Index=2
+Description=Toggles TGA Alpha Split. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[TARGA_PREMULTALPHA]
+Type=boolean
+Label=TARGA_PREMULTALPHA
+Category=Bitmap Parameters: TGA
+CategoryOrder=10
+Index=3
+Description=Toggles TGA Pre-Multiplied Alpha. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[TIF_TYPE]
+Type=enum
+Label=TIF_TYPE
+Category=Bitmap Parameters: TIF
+CategoryOrder=11
+Index=0
+Description=Sets the TIF type. “0”=mono, “1”=color, “2”=logl, “3”=logluv, “4”=16–bit color.
+Required=false
+DisableIfBlank=true
+
+[TIF_ALPHA]
+Type=boolean
+Label=TIF_ALPHA
+Category=Bitmap Parameters: TIF
+CategoryOrder=11
+Index=1
+Description=Toggles TIF file alpha. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[TIF_COMPRESSION]
+Type=boolean
+Label=TIF_COMPRESSION
+Category=Bitmap Parameters: TIF
+CategoryOrder=11
+Index=2
+Description=Toggles TIF Compression. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[TIF_DPI]
+Type=integer
+Label=TIF_DPI
+Category=Bitmap Parameters: TIF
+CategoryOrder=11
+Index=3
+Description=Sets the dots-per-inch value for TIF files.
+Required=false
+DisableIfBlank=true
+
+[RLA_COLORDEPTH]
+Type=enum
+Label=RLA_COLORDEPTH
+Category=Bitmap Parameters: RLA
+CategoryOrder=12
+Index=0
+Description=Sets the RLA color bitdepth.
+Required=false
+DisableIfBlank=true
+
+[RLA_ALPHA]
+Type=boolean
+Label=RLA_ALPHA
+Category=Bitmap Parameters: RLA
+CategoryOrder=12
+Index=1
+Description=Toggles RLA Alpha. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RLA_PREMULTALPHA]
+Type=boolean
+Label=RLA_PREMULTALPHA
+Category=Bitmap Parameters: RLA
+CategoryOrder=12
+Index=2
+Description=Toggles RLA Premultiplied Alpha. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RLA_DESCRIPTION]
+Type=string
+Label=RLA_DESCRIPTION
+Category=Bitmap Parameters: RLA
+CategoryOrder=12
+Index=3
+Description=Lets you specify an RLA description.
+Required=false
+DisableIfBlank=true
+
+[RLA_AUTHOR]
+Type=string
+Label=RLA_AUTHOR
+Category=Bitmap Parameters: RLA
+CategoryOrder=12
+Index=4
+Description=Lets you specify an RLA author name.
+Required=false
+DisableIfBlank=true
+
+[RLA_ZDEPTHCHANNEL]
+Type=boolean
+Label=RLA_ZDEPTHCHANNEL
+Category=Bitmap Parameters: RLA
+CategoryOrder=12
+Index=5
+Description=Toggles RLA Z-Depth Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RLA_MTLIDCHANNEL]
+Type=boolean
+Label=RLA_MTLIDCHANNEL
+Category=Bitmap Parameters: RLA
+CategoryOrder=12
+Index=6
+Description=Toggles RLA Material ID Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RLA_OBJECTIDCHANNEL]
+Type=boolean
+Label=RLA_OBJECTIDCHANNEL
+Category=Bitmap Parameters: RLA
+CategoryOrder=12
+Index=7
+Description=Toggles RLA Object Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RLA_UVCHANNEL]
+Type=boolean
+Label=RLA_UVCHANNEL
+Category=Bitmap Parameters: RLA
+CategoryOrder=12
+Index=8
+Description=Toggles RLA UV Coordinates Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RLA_NORMALCHANNEL]
+Type=boolean
+Label=RLA_NORMALCHANNEL
+Category=Bitmap Parameters: RLA
+CategoryOrder=12
+Index=9
+Description=Toggles RLA Surface Normals Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RLA_NONCLAMPEDCOLORCHANNEL]
+Type=boolean
+Label=RLA_NONCLAMPEDCOLORCHANNEL
+Category=Bitmap Parameters: RLA
+CategoryOrder=12
+Index=10
+Description=Toggles RLA Non-Clamped Color Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RLA_COVERAGECHANNEL]
+Type=boolean
+Label=RLA_COVERAGECHANNEL
+Category=Bitmap Parameters: RLA
+CategoryOrder=12
+Index=11
+Description=Toggles RLA Coverage Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RPF_COLORDEPTH]
+Type=enum
+Label=RPF_COLORDEPTH
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=0
+Description=Sets the RPF color bitdepth.
+Required=false
+DisableIfBlank=true
+
+[RPF_ALPHA]
+Type=boolean
+Label=RPF_ALPHA
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=1
+Description=Toggles RPF Alpha. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RPF_PREMULTALPHA]
+Type=boolean
+Label=RPF_PREMULTALPHA
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=2
+Description=Toggles RPF Premultiplied Alpha. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RPF_DESCRIPTION]
+Type=string
+Label=RPF_DESCRIPTION
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=3
+Description=Lets you specify an RPF description.
+Required=false
+DisableIfBlank=true
+
+[RPF_AUTHOR]
+Type=string
+Label=RPF_AUTHOR
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=4
+Description=Lets you specify an RPF author name.
+Required=false
+DisableIfBlank=true
+
+[RPF_ZDEPTHCHANNEL]
+Type=boolean
+Label=RPF_ZDEPTHCHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=5
+Description=Toggles RPF Z-Depth Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RPF_MTLIDCHANNEL]
+Type=boolean
+Label=RPF_MTLIDCHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=6
+Description=Toggles RPF Material ID Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RPF_OBJECTIDCHANNEL]
+Type=boolean
+Label=RPF_OBJECTIDCHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=7
+Description=Toggles RPF Object Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RPF_UVCHANNEL]
+Type=boolean
+Label=RPF_UVCHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=8
+Description=Toggles RPF UV Coordinates Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RPF_NORMALCHANNEL]
+Type=boolean
+Label=RPF_NORMALCHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=9
+Description=Toggles RPF Surface Normals Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RPF_NONCLAMPEDCOLORCHANNEL]
+Type=boolean
+Label=RPF_NONCLAMPEDCOLORCHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=10
+Description=Toggles RPF Non-Clamped Color Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RPF_COVERAGECHANNEL]
+Type=boolean
+Label=RPF_COVERAGECHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=11
+Description=Toggles RPF Coverage Channel. “1”=On, “0”=Off.
+Required=false
+DisableIfBlank=true
+
+[RPF_NODERENDERIDCHANNEL]
+Type=boolean
+Label=RPF_NODERENDERIDCHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=12
+Description=Turns on RPF Node Render ID Channel.
+Required=false
+DisableIfBlank=true
+
+[RPF_COLORCHANNEL]
+Type=boolean
+Label=RPF_COLORCHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=13
+Description=Turns on RPF Color Channel.
+Required=false
+DisableIfBlank=true
+
+[RPF_TRANSPCHANNEL]
+Type=boolean
+Label=RPF_TRANSPCHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=14
+Description=Turns on RPF Transparency Channel.
+Required=false
+DisableIfBlank=true
+
+[RPF_VELOCCHANNEL]
+Type=boolean
+Label=RPF_VELOCCHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=15
+Description=Turns on RPF Velocity Channel.
+Required=false
+DisableIfBlank=true
+
+[RPF_WEIGHTCHANNEL]
+Type=boolean
+Label=RPF_WEIGHTCHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=16
+Description=Turns on RPF Sub-Pixel Weight Channel.
+Required=false
+DisableIfBlank=true
+
+[RPF_MASKCHANNEL]
+Type=boolean
+Label=RPF_MASKCHANNEL
+Category=Bitmap Parameters: RPF
+CategoryOrder=13
+Index=17
+Description=Turns on RPF Sub-Pixel Mask Channel.
+Required=false
+DisableIfBlank=true
+
+[EXR_USEEXPONENT]
+Type=boolean
+Label=EXR_USEEXPONENT
+Category=Bitmap Parameters: EXR
+CategoryOrder=14
+Index=0
+Description=EXR use exponent on/off.
+Required=false
+DisableIfBlank=true
+
+[EXR_EXPONENT]
+Type=float
+Label=EXR_EXPONENT
+Category=Bitmap Parameters: EXR
+CategoryOrder=14
+Index=1
+DecimalPlaces=2
+Description=EXR exponent value (float).
+Required=false
+DisableIfBlank=true
+
+[EXR_PREMULTALPHA]
+Type=boolean
+Label=EXR_PREMULTALPHA
+Category=Bitmap Parameters: EXR
+CategoryOrder=14
+Index=2
+Description=EXR premultiplied alpha on/off.
+Required=false
+DisableIfBlank=true
+
+[EXR_ALPHA]
+Type=boolean
+Label=EXR_ALPHA
+Category=Bitmap Parameters: EXR
+CategoryOrder=14
+Index=3
+Description=EXR save alpha component on/off.
+Required=false
+DisableIfBlank=true
+
+[EXR_RED]
+Type=boolean
+Label=EXR_RED
+Category=Bitmap Parameters: EXR
+CategoryOrder=14
+Index=4
+Description=EXR save red component on/off.
+Required=false
+DisableIfBlank=true
+
+[EXR_GREEN]
+Type=boolean
+Label=EXR_GREEN
+Category=Bitmap Parameters: EXR
+CategoryOrder=14
+Index=5
+Description=EXR save green component on/off.
+Required=false
+DisableIfBlank=true
+
+[EXR_BLUE]
+Type=boolean
+Label=EXR_BLUE
+Category=Bitmap Parameters: EXR
+CategoryOrder=14
+Index=6
+Description=EXR save blue component on/off.
+Required=false
+DisableIfBlank=true
+
+[EXR_BITDEPTH]
+Type=enum
+Label=EXR_BITDEPTH
+Category=Bitmap Parameters: EXR
+CategoryOrder=14
+Index=7
+Description=EXR bit depth: 0=8-bit integers; 1=half float; 2=float.
+Required=false
+DisableIfBlank=true
+
+[EXR_USEFRAMENUMDIGITS]
+Type=boolean
+Label=EXR_USEFRAMENUMDIGITS
+Category=Bitmap Parameters: EXR
+CategoryOrder=14
+Index=8
+Description=EXR use number of frame digits on/off.
+Required=false
+DisableIfBlank=true
+
+[EXR_FRAMENUMDIGITS]
+Type=integer
+Label=EXR_FRAMENUMDIGITS
+Category=Bitmap Parameters: EXR
+CategoryOrder=14
+Index=9
+Description=EXR number of frame digits (integer).
+Required=false
+DisableIfBlank=true
+
+[EXR_COMPRESSIONTYPE]
+Type=enum
+Label=EXR_COMPRESSIONTYPE
+Category=Bitmap Parameters: EXR
+CategoryOrder=14
+Index=10
+Description=EXR compression type: 0=no compression; 1=RLE; 2=ZIP (1 scanline); 3=ZIP (16 scanlines); 4=PIZ.
+Required=false
+DisableIfBlank=true
+
+[EXR_USEREALPIX]
+Type=boolean
+Label=EXR_USEREALPIX
+Category=Bitmap Parameters: EXR
+CategoryOrder=14
+Index=11
+Description=EXR use RealPix RGB data on/off.
+Required=false
+DisableIfBlank=true

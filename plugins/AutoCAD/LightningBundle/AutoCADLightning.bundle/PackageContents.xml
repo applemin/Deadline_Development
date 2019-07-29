@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationPackage SchemaVersion="1.0" AutodeskProduct="AutoCAD" Name="AutoCADLightning" Description="The render plugin for AutoCAD in Deadline" AppVersion="1.0.1" ProductType="Application" Author="Grant Bartel" ProductCode="{1640fdac-4c8f-4c17-9c73-f70443779ae4}">
+  <CompanyDetails Name="Thinkbox Software" Email="supportticket@thinkboxsoftware.com" />
+  <Components>
+    <RuntimeRequirements OS="Win64|Win32" Platform="AutoCAD*" SeriesMin="R20.0" SeriesMax="R20.1.99" />
+    <ComponentEntry AppName="AutoCADLightning" ModuleName=".\Contents\AutoCADLightning.dll" LoadOnAutoCADStartup="True" LoadOnCommandInvocation="True">
+      <Commands GroupName="DeadlineCommands">
+        <Command Local="LightningCommands" Global="ConnectToDeadlineSocket" />
+        <Command Local="DeadlineReloadFile" Global="DeadlineReloadFile" />
+      </Commands>
+    </ComponentEntry>
+  </Components>
+</ApplicationPackage>

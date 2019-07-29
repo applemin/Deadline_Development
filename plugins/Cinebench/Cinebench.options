@@ -1,0 +1,38 @@
+[Version]
+Type=label
+Label=Version
+Index=0
+Category=Cinebench Info
+Description=The version of Cinebench to render with
+Required=false
+DisableIfBlank=true
+
+[SingleCoreTest]
+Type=boolean
+Label=Single Core Test
+Category=Test Procedures
+CategoryOrder=0
+Index=0
+Description=If this option is set to true, the slave will run Cinebench's Single core test.
+Required=false
+DisableIfBlank=true
+
+[MultiCoreTest]
+Type=boolean
+Label=Multi Core Test
+Category=Test Procedures
+CategoryOrder=0
+Index=1
+Description=If this option is set to true, the slave will run Cinebench's Multi core test.
+Required=false
+DisableIfBlank=true
+
+[OpenglCoreTest]
+Type=boolean
+Label=OpenGL Core Test
+Category=Test Procedures
+CategoryOrder=0
+Index=1
+Description=If this option is set to true, the slave will run Cinebench's OpenGL core test.
+Required=false
+DisableIfBlank=true

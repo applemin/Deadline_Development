@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RhinoUI major_ver="2" minor_ver="0" guid="73da9dcd-bd07-4f6e-a384-694a2b8003e8" localize="False" default_language_id="1033">
+  <extend_rhino_menus>
+    <menu guid="d58ceae7-fdb0-4104-80da-274b94ad44a9">
+      <text>
+        <locale_1033>Extend Rhino Menus</locale_1033>
+      </text>
+    </menu>
+  </extend_rhino_menus>
+  <menus />
+  <tool_bar_groups>
+    <tool_bar_group guid="e51b2028-84ec-43ce-88c7-66d4138f96c6" dock_bar_guid32="b00653be-451a-4fdb-b987-db9395ec1e55" dock_bar_guid64="56a5a056-39ff-4ad8-9f58-267c548cb2f7" active_tool_bar_group="46e973f8-f9e4-46c8-bd6b-aad9d49a433b" single_file="False" hide_single_tab="True" point_floating="265,565">
+      <text>
+        <locale_1033>Deadline</locale_1033>
+      </text>
+      <tool_bar_group_item guid="46e973f8-f9e4-46c8-bd6b-aad9d49a433b" major_version="1" minor_version="1">
+        <text>
+          <locale_1033>Deadline</locale_1033>
+        </text>
+        <tool_bar_id>b49ce247-69d9-459d-8c88-f0552e0de347</tool_bar_id>
+      </tool_bar_group_item>
+      <dock_bar_info dock_bar="False" docking="True" horz="False" visible="False" floating="True" mru_float_style="8192" bar_id="59466" mru_width="32767" point_pos="-2,-2" float_point="265,565" rect_mru_dock_pos="0,0,7667823,7602286" dock_location_u="59419" dock_location="top" float_size="70,61" />
+    </tool_bar_group>
+  </tool_bar_groups>
+  <tool_bars>
+    <tool_bar guid="b49ce247-69d9-459d-8c88-f0552e0de347" bitmap_id="8e49366d-f5be-4de3-b5a9-4430e464f70c" item_display_style="control_only">
+      <text>
+        <locale_1033>Deadline</locale_1033>
+      </text>
+      <tool_bar_item guid="5ef752e6-ba14-4457-8444-7351fbe169e0" button_display_mode="control_only" display_style_from_parent="False" button_style="normal">
+        <text>
+          <locale_1033>Deadline</locale_1033>
+        </text>
+        <left_macro_id>85181573-4cc6-4210-ab66-ffb81e6d52c1</left_macro_id>
+        <right_macro_id>33194af0-172a-4b91-b038-1bd1b31893d6</right_macro_id>
+      </tool_bar_item>
+    </tool_bar>
+  </tool_bars>
+  <macros>
+    <macro_item guid="85181573-4cc6-4210-ab66-ffb81e6d52c1" bitmap_id="e94128ba-c9ad-44f5-9ffc-b4e07a5831ea">
+      <text>
+        <locale_1033>Deadline.Submit Rhino To Deadline</locale_1033>
+      </text>
+      <tooltip>
+        <locale_1033>Submit Rhino To Deadline</locale_1033>
+      </tooltip>
+      <help_text>
+        <locale_1033>Submit Rhino To Deadline</locale_1033>
+      </help_text>
+      <button_text>
+        <locale_1033>Deadline</locale_1033>
+      </button_text>
+      <menu_text>
+        <locale_1033>Submit Rhino To Deadline</locale_1033>
+      </menu_text>
+      <script>!-_Runscript (
+Option Explicit
+
+'------------------------------------------------------------------------------
+' An integrated Rhino script for Deadline Render submission
+'------------------------------------------------------------------------------
+
+Call Main()
+
+Sub Main()
+    ' Save the file before submitting.
+    Rhino.Command( "_Save" )
+
+    ' This is required to go before any deadlinecommand calls as of Rhino 6, since in that version
+    ' deadlinecommand causes Rhino to lose focus and to no longer have a current view.
+    Dim allViews
+    allViews = GetAllViews()
+    
+    Dim objShell, deadlinePath, deadlinecommandbg
+    Set objShell = CreateObject( "WScript.Shell" )
+
+    deadlinePath = objShell.ExpandEnvironmentStrings( "%DEADLINE_PATH%" )
+    deadlinecommandbg = deadlinePath &amp; "\deadlinecommandbg.exe"
+    
+    Dim strName, strPath, strFileName, currRenderer, repositoryPath, scriptFileName, quote, oldDirectory, workSession
+    quote = Chr(34)
+    Dim botLeftPt, topRightPt, topLeftPt, botRightPt, resolution, strView, newView
+    strView = Rhino.CurrentView
+    resolution = Rhino.RenderResolution
+    botLeftPt = Array(0.0, 0.0)
+    topRightPt = Rhino.RenderResolution
+    topLeftPt = Array(0.0,0.0)
+    topLeftPt(1) = topRightPt(1)
+    botRightPt = Array(0.0,0.0)
+    botRightPt(0) = topRightPt(0)   
+    
+    Dim tempFolder, jigsawBackground
+    tempFolder = objShell.ExpandEnvironmentStrings("%Temp%")
+    
+    jigsawBackground = tempFolder &amp; "/RhinoJigsawImage.jpg"
+    
+    Dim view, viewDimensions, matchedAspectRatioY, backgroundResolution
+    view = Rhino.currentView
+    viewDimensions = Rhino.ViewSize(view)
+    matchedAspectRatioY = viewDimensions(0)*resolution(1)/resolution(0)
+    matchedAspectRatioY = Int(matchedAspectRatioY+0.5)
+    Rhino.Command("-NewFloatingViewport Enter")
+    Rhino.Command("-_ViewportProperties I JIGSAWVIEW Enter")
+    Rhino.Command("-_ViewportProperties S " &amp; resolution(0) &amp; " " &amp; resolution(1) &amp; " Enter")
+    newView = Rhino.CurrentView
+    botLeftPt = Rhino.XformScreenToWorld(botLeftPt, newView)
+    topLeftPt = Rhino.XformScreenToWorld(topLeftPt, newView)
+    botRightPt = Rhino.XformScreenToWorld(botRightPt, newView)
+    topRightPt = Rhino.XformScreenToWorld(topRightPt, newView)
+    
+    Rhino.Command("-_ViewportProperties S " &amp; viewDimensions(0) &amp; " " &amp; matchedAspectRatioY &amp; " Enter")
+    Rhino.Command("-_ViewCaptureToFile "&amp; quote &amp; jigsawBackground &amp; quote &amp;" Width "&amp; viewDimensions(0) &amp; " Height " &amp; matchedAspectRatioY &amp;" Enter" )
+    Rhino.Command("-_CloseViewport")
+    
+    backgroundResolution = Array(0,0)
+    backgroundResolution(0) = viewDimensions(0)
+    backgroundResolution(1) = matchedAspectRatioY
+
+    ' Get the current document name and path.
+    strName = Rhino.DocumentName()
+    strPath = Rhino.DocumentPath()
+    strFileName = strPath &amp; strName
+    
+    workSession = Rhino.WorkSessionFileName()
+    If Not IsNull( workSession ) Then
+        If Rhino.MessageBox( "Would you like to submit the current workspace instead of the 3DM file?", 4 ) = 6 Then
+            strFileName = workSession
+        End If
+    End If
+    
+    ' Check that the file has been saved to disk.
+    If IsNull( strFileName ) Then
+        MsgBox "Please save this model to disk before submitting to Deadline."
+        Exit Sub
+    End If
+    
+    ' Get the current renderer
+    currRenderer = Rhino.DefaultRenderer()
+    
+    Dim objWshScriptExec, objStdOut
+    
+    oldDirectory = objShell.CurrentDirectory
+    objShell.CurrentDirectory = objShell.ExpandEnvironmentStrings( "%DEADLINE_PATH%" )
+    
+    Set objWshScriptExec = objShell.Exec( """" &amp; objShell.ExpandEnvironmentStrings( "%DEADLINE_PATH%\deadlinecommand.exe" ) &amp; """ GetRepositoryFilePath scripts/Submission/RhinoSubmission.py" )
+    
+    objShell.CurrentDirectory = oldDirectory
+    
+    Set objStdOut = objWshScriptExec.StdOut
+    While Not objStdOut.AtEndOfStream
+        scriptFileName = objStdOut.ReadLine
+    Wend
+    
+    If scriptFileName = "" Then
+        MsgBox "The Deadline Repository path could not be obtained. Make sure that Deadline Client is configured to point to a Repository, and that the Deadline Client bin folder is in the PATH."
+        Exit Sub
+    End If
+        
+    ' Launch the submission script.
+    oldDirectory = objShell.CurrentDirectory
+    objShell.CurrentDirectory = deadlinePath
+
+    Dim cmdlineArray
+    cmdlineArray = Array( _
+        deadlinecommandbg, _
+        "ExecuteScript", _
+        scriptFileName, _
+        strFileName, _
+        currRenderer, _
+        Rhino.Pt2Str(botLeftPt), _
+        Rhino.Pt2Str(topLeftPt), _
+        Rhino.Pt2Str(botRightPt), _
+        Rhino.Pt2Str(resolution), _
+        jigsawBackground, _
+        Rhino.Pt2Str(backgroundResolution), _
+        allViews, _
+        Rhino.Version _
+    )
+    Set objWshScriptExec = objShell.Exec( ArrayToCmdline(cmdlineArray) )
+    
+    objShell.CurrentDirectory = oldDirectory
+End Sub
+
+' Surrounds a string in quotes. Useful for quoting command-line arguments
+Function QuotedString(str)
+    QuotedString = Chr(34) &amp; str &amp; Chr(34)
+End Function
+
+' Transforms an array of strings into a string with each element quoted with strings and separated with spaces
+Function ArrayToCmdline(strArray)
+    Dim str
+    ArrayToCmdline = ""
+    For Each str In strArray
+      ArrayToCmdline = ArrayToCmdline &amp; QuotedString(str) &amp; " "
+    Next
+End Function
+
+Function GetAllViews()
+  Dim all_views, std_views, named_views, view
+  std_views = GetStandardViews
+  named_views = Rhino.NamedViews
+  If IsArray(named_views) Then
+    named_views = Rhino.SortStrings(named_views)
+    all_views = Rhino.JoinArrays(named_views, std_views)
+    all_views = Rhino.CullDuplicateStrings(all_views)
+  Else
+    all_views = std_views
+  End If
+
+  GetAllViews = "Current - [" + Rhino.CurrentView + "]"
+  For Each view In all_views
+    GetAllViews = GetAllViews + ";" + view
+  Next
+End Function
+
+Function GetStandardViews()
+  GetStandardViews = Array("Back", "Bottom", "Front", "Left", "Perspective", "Right", "Top")
+End Function
+)</script>
+    </macro_item>
+    <macro_item guid="33194af0-172a-4b91-b038-1bd1b31893d6" bitmap_id="f0176f22-e7dc-474f-9738-4207e241542d">
+      <text>
+        <locale_1033>Deadline.Open Deadline Monitor</locale_1033>
+      </text>
+      <tooltip>
+        <locale_1033>Open Deadline Monitor</locale_1033>
+      </tooltip>
+      <help_text>
+        <locale_1033>Open Deadline Monitor</locale_1033>
+      </help_text>
+      <button_text>
+        <locale_1033>Deadline</locale_1033>
+      </button_text>
+      <menu_text>
+        <locale_1033>Open Deadline Monitor</locale_1033>
+      </menu_text>
+      <script>!-_Runscript (
+Option Explicit
+
+Call Main()
+
+Sub Main()
+    Dim objShell
+    Set objShell = CreateObject( "WScript.Shell" )
+    
+    Dim oldDirectory
+    oldDirectory = objShell.CurrentDirectory
+    objShell.CurrentDirectory = objShell.ExpandEnvironmentStrings( "%DEADLINE_PATH%" )
+
+    objShell.Exec( """" &amp; objShell.ExpandEnvironmentStrings( "%DEADLINE_PATH%\deadlinemonitor.exe" ) &amp; """" )
+    objShell.CurrentDirectory = oldDirectory
+End Sub
+)</script>
+    </macro_item>
+  </macros>
+  <bitmaps>
+    <small_bitmap item_width="16" item_height="16">
+      <bitmap_item guid="8e49366d-f5be-4de3-b5a9-4430e464f70c" index="0" />
+      <bitmap_item guid="e94128ba-c9ad-44f5-9ffc-b4e07a5831ea" index="1" />
+      <bitmap_item guid="f0176f22-e7dc-474f-9738-4207e241542d" index="2" />
+      <bitmap>iVBORw0KGgoAAAANSUhEUgAAADAAAAAQCAYAAABQrvyxAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZSURBVEhL7cEBAQAAAIIg/69uSEAAAMCpGgwQ
+AAEF2CEFAAAAAElFTkSuQmCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</bitmap>
+    </small_bitmap>
+    <normal_bitmap item_width="24" item_height="24">
+      <bitmap_item guid="8e49366d-f5be-4de3-b5a9-4430e464f70c" index="0" />
+      <bitmap_item guid="e94128ba-c9ad-44f5-9ffc-b4e07a5831ea" index="1" />
+      <bitmap_item guid="f0176f22-e7dc-474f-9738-4207e241542d" index="2" />
+      <bitmap>iVBORw0KGgoAAAANSUhEUgAAAEgAAAAYCAYAAABZY7uwAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJHSURBVFhH7Zi9axRBGIfPqKhw2IidjSApDsHg
+7MzOcQmLbJRgIYqYS86AX2Ua6yBcKWnUJkUkhU1AV0/YmdnBQtxSSAoL7ays/Ads1OD5m+VOxmVl
+FyHF7e4cD3s3O+8u73Pv3NxsY7/bcDg8YGCKXSCC7FJBf1BFh0VBzE8a0o8kIhfH17IZ3WZym0mC
+C37ekc7nLAFFIZLsudq9XEpBjnJWiCJ7dsK+9O/62r/lKW/FfHaluzOrZpfn9NxNKukje6zF43IK
+Es6qneiCXrgXBMFBQ7/fn0r6JX0Vx/FRrfURHA+h6gZ2zGjMRukFucLd7USdHo7djuj0kopBP5Ns
+p63ay3i/aCrJjBnH/KEKgsBiUdq6vYRjtQShTY2TK0IVBf2VYB61oBxqQTnUgnKonCDwEtuOoChW
+XGUE/T+1oBSCfnNCZw3x17GX2wYPa0EW2MM9YyE7jfg7rbjV5G/4mVqQjaTXWMSuJo9IQhozzY5X
+ShAJyVck/4BLzjB9zqZpBa0mxpltRzIe13lHJGGVEQQ5T2hEpyHqadYKZoCo99b4XxD0CX1XqiEo
+oj3s4tcyz+WB2NILQn+XCdbPOpcHYrfIJjk8us3kthxBq5hGN8zj1Kzz/8JMO1TeudJUEJK6nU4y
+QdCBF3jNGT1z0iznWaTlEkWem2uOGd1mcptJAsszx5L9xU40QdLvqAbzum9EpGEDdspUWDLW/GlU
+zrr/2j9ROkH8BT+GhLv49t+aVagoEDKP36hLRJAPkLjkxV7TlrP/ghqN39Hy9oULH6wvAAAAAElF
+TkSuQmCC</bitmap>
+    </normal_bitmap>
+    <large_bitmap item_width="32" item_height="32">
+      <bitmap_item guid="8e49366d-f5be-4de3-b5a9-4430e464f70c" index="0" />
+      <bitmap_item guid="e94128ba-c9ad-44f5-9ffc-b4e07a5831ea" index="1" />
+      <bitmap_item guid="f0176f22-e7dc-474f-9738-4207e241542d" index="2" />
+      <bitmap>iVBORw0KGgoAAAANSUhEUgAAAGAAAAAgCAYAAADtwH1UAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAjSURBVGhD7cEBDQAAAMKg909tDjcgAAAAAAAA
+AAAAAADgXA0wIAABCBTZbAAAAABJRU5ErkJgggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</bitmap>
+    </large_bitmap>
+  </bitmaps>
+  <scripts />
+</RhinoUI>

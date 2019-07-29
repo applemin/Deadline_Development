@@ -1,0 +1,91 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Adobe Media Encoder Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[MediaEncoder_ServiceExecutable13_0]
+Type=multilinemultifilename
+Label=ME CC 2014 Web Service Executable
+Category=Web Service Executables
+CategoryOrder=0
+Index=0
+Default=C:\Program Files\Adobe\Adobe Media Encoder CC 2014\ame_webservice_console.exe;/Applications/Adobe Media Encoder CC 2014/Adobe Media Encoder CC 2014.app/Contents/ame_webservice_console.app/Contents/MacOS/ame_webservice_agent
+Description=The path to Adobe Media Encoder's CC 2014 webservice console (Windows) or agent (OSX) executable.
+
+[MediaEncoder_ServiceExecutable13_5]
+Type=multilinemultifilename
+Label=ME CC 2015 Web Service Executable
+Category=Web Service Executables
+CategoryOrder=0
+Index=1
+Default=C:\Program Files\Adobe\Adobe Media Encoder CC 2015\ame_webservice_console.exe;/Applications/Adobe Media Encoder CC 2015/Adobe Media Encoder CC 2015.app/Contents/ame_webservice_console.app/Contents/MacOS/ame_webservice_agent
+Description=The path to Adobe Media Encoder's CC 2015 webservice console (Windows) or agent (OSX) executable.
+
+[MediaEncoder_ServiceExecutable14_0]
+Type=multilinemultifilename
+Label=ME CC 2017 Web Service Executable
+Category=Web Service Executables
+CategoryOrder=0
+Index=2
+Default=C:\Program Files\Adobe\Adobe Media Encoder CC 2017\ame_webservice_console.exe;/Applications/Adobe Media Encoder CC 2017/Adobe Media Encoder CC 2017.app/Contents/ame_webservice_console.app/Contents/MacOS/ame_webservice_agent
+Description=The path to Adobe Media Encoder's CC 2017 webservice console (Windows) or agent (OSX) executable.
+
+[MediaEncoder_ServiceExecutable15_0]
+Type=multilinemultifilename
+Label=ME CC 2018 Web Service Executable
+Category=Web Service Executables
+CategoryOrder=0
+Index=3
+Default=C:\Program Files\Adobe\Adobe Media Encoder CC 2018\ame_webservice_console.exe;/Applications/Adobe Media Encoder CC 2018/Adobe Media Encoder CC 2018.app/Contents/ame_webservice_console.app/Contents/MacOS/ame_webservice_agent
+Description=The path to Adobe Media Encoder's CC 2018 webservice console (Windows) or agent (OSX) executable.
+
+[AltMacIPLookup]
+Type=boolean
+Label=Use Alternate IP Lookup (OSX only)
+Category=Host Settings
+CategoryOrder=1
+Index=0
+Description=If enabled and only applicable on Mac OS X, use an alternate method to return the current local IP address (optional).
+Default=False
+
+[ExistingAMEProcess]
+Type=enum
+Category=AME Process Handling
+Label=Handle Existing AME Process
+CategoryOrder=2
+CategoryIndex=0
+Items=Do Nothing;Fail On Existing Process;Kill On Existing Process
+Description=Either Do Nothing, FAIL on existing AME process or KILL the existing AME process if already running.
+Default=Fail On Existing Process
+
+[AMEAutoShutdown]
+Type=boolean
+Category=AME Process Handling
+Label=AME Auto Shutdown
+CategoryOrder=2
+CategoryIndex=1
+Description=Automatically force shutdown of Adobe Media Encoder application when job completes.
+Default=True
+
+[AMEOnJobComplete]
+Type=enum
+Category=AME Job Handling
+Label=AME On Job Complete
+CategoryOrder=3
+CategoryIndex=0
+Description=If desired, you can automatically archive or delete the Adobe Media Encoder job when it completes.
+Items=Do Nothing;Archive;Delete
+Default=Do Nothing

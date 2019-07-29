@@ -1,0 +1,242 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Fusion Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[Fusion5RenderExecutable]
+Type=multilinemultifilename
+Label=Fusion 5 Render Executable
+Category=Fusion 5 Options
+CategoryOrder=1
+CategoryIndex=0
+Default=C:\Program Files\Fusion Render Slave\RenderSlave.exe;C:\Program Files (x86)\Fusion Render Slave\RenderSlave.exe
+Description=The path to the Fusion 5 Render Slave executable used for rendering. Enter alternative paths on separate lines.
+
+[Fusion5WaitForExecutable]
+Type=string
+Label=Fusion 5 Wait For Executable
+Category=Fusion 5 Options
+CategoryOrder=1
+CategoryIndex=1
+Default=
+Description=If you use a proxy RenderSlave.exe, set this to the name of the renamed original.  For example, it might be set to RenderSlave_original.exe.
+
+[Fusion5VersionToEnforce]
+Type=string
+Label=Fusion 5 Version To Enforce
+Category=Fusion 5 Options
+CategoryOrder=1
+CategoryIndex=2
+Default=
+Description=Deadline will only render Fusion 5 jobs on slaves running this version of Fusion 5. Use a ; to separate alternative versions. Leave blank to disable this feature.
+
+[Fusion5SlavePreferenceFile]
+Type=filename
+Label=Fusion 5 Slave Preference File
+Category=Fusion 5 Options
+CategoryOrder=1
+CategoryIndex=3
+Default=
+Description=The path to a global RenderSlave.prefs preference file that is copied over before starting the Render Slave. Leave blank to disable this feature.
+
+[Fusion6RenderExecutable]
+Type=multilinemultifilename
+Label=Fusion 6 Render Executable
+Category=Fusion 6 Options
+CategoryOrder=2
+CategoryIndex=0
+Default=C:\Program Files\eyeon\Render Slave 6.0\RenderSlave.exe;C:\Program Files (x86)\eyeon\Render Slave 6.0\RenderSlave.exe
+Description=The path to the Fusion 6 Render Slave executable used for rendering. Enter alternative paths on separate lines.
+
+[Fusion6WaitForExecutable]
+Type=string
+Label=Fusion 6 Wait For Executable
+Category=Fusion 6 Options
+CategoryOrder=2
+CategoryIndex=1
+Default=
+Description=If you use a proxy RenderSlave.exe, set this to the name of the renamed original.  For example, it might be set to RenderSlave_original.exe. Leave blank to disable this feature.
+
+[Fusion6VersionToEnforce]
+Type=string
+Label=Fusion 6 Version To Enforce
+Category=Fusion 6 Options
+CategoryOrder=2
+CategoryIndex=2
+Default=
+Description=Deadline will only render Fusion 6 jobs on slaves running this version of Fusion 6. Use a ; to separate alternative versions. Leave blank to disable this feature.
+
+[Fusion6SlavePreferenceFile]
+Type=filename
+Label=Fusion 6 Slave Preference File
+Category=Fusion 6 Options
+CategoryOrder=2
+CategoryIndex=3
+Default=
+Description=The path to a global RenderSlave.prefs preference file that is copied over before starting the Render Slave. Leave blank to disable this feature.
+
+[Fusion7RenderExecutable]
+Type=multilinemultifilename
+Label=Fusion 7 Render Executable
+Category=Fusion 7 Options
+CategoryOrder=3
+CategoryIndex=0
+Default=C:\Program Files\Blackmagic Design\Fusion Render Node\FusionRenderNode.exe;C:\Program Files (x86)\Blackmagic Design\Fusion Render Node\FusionRenderNode.exe;C:\Program Files\eyeon\Render Slave 7.0\RenderSlave.exe;C:\Program Files (x86)\eyeon\Render Slave 7.0\RenderSlave.exe
+Description=The path to the Fusion 7 Render Slave executable used for rendering. Enter alternative paths on separate lines.
+
+[Fusion7WaitForExecutable]
+Type=string
+Label=Fusion 7 Wait For Executable
+Category=Fusion 7 Options
+CategoryOrder=3
+CategoryIndex=1
+Default=
+Description=If you use a proxy RenderSlave.exe, set this to the name of the renamed original.  For example, it might be set to RenderSlave_original.exe.
+
+[Fusion7VersionToEnforce]
+Type=string
+Label=Fusion 7 Version To Enforce
+Category=Fusion 7 Options
+CategoryOrder=3
+CategoryIndex=2
+Default=
+Description=Deadline will only render Fusion 7 jobs on slaves running this version of Fusion 7. Use a ; to separate alternative versions. Leave blank to disable this feature.
+
+[Fusion7SlavePreferenceFile]
+Type=filename
+Label=Fusion 7 Slave Preference File
+Category=Fusion 7 Options
+CategoryOrder=3
+CategoryIndex=3
+Default=
+Description=The path to a global RenderSlave.prefs preference file that is copied over before starting the Render Slave. Leave blank to disable this feature.
+
+[Fusion8RenderExecutable]
+Type=multilinemultifilename
+Label=Fusion 8 Render Executable
+Category=Fusion 8 Options
+CategoryOrder=3
+CategoryIndex=0
+Default=C:\Program Files\Blackmagic Design\Fusion Render Node 8\FusionRenderNode.exe;C:\Program Files (x86)\Blackmagic Design\Fusion Render Node 8\FusionRenderNode.exe;C:\Program Files\eyeon\Render Slave 8.0\RenderSlave.exe;C:\Program Files (x86)\eyeon\Render Slave 8.0\RenderSlave.exe;/opt/BlackmagicDesign/FusionRenderNode8/FusionRenderNode;/opt/BlackmagicDesign/Fusion8/Fusion;/Applications/Blackmagic Fusion 8 Render Node/Fusion Render Node.app/Contents/MacOS/Fusion Render Node;/Applications/Blackmagic Fusion 8/Fusion.app/Contents/MacOS/Fusion
+Description=The path to the Fusion 8 Render Slave executable used for rendering. Enter alternative paths on separate lines.
+
+[Fusion8WaitForExecutable]
+Type=string
+Label=Fusion 8 Wait For Executable
+Category=Fusion 8 Options
+CategoryOrder=3
+CategoryIndex=1
+Default=
+Description=If you use a proxy RenderSlave.exe, set this to the name of the renamed original.  For example, it might be set to RenderSlave_original.exe.
+
+[Fusion8VersionToEnforce]
+Type=string
+Label=Fusion 8 Version To Enforce
+Category=Fusion 8 Options
+CategoryOrder=3
+CategoryIndex=2
+Default=
+Description=Deadline will only render Fusion 8 jobs on slaves running this version of Fusion 8. Use a ; to separate alternative versions. Leave blank to disable this feature.
+
+[Fusion8SlavePreferenceFile]
+Type=filename
+Label=Fusion 8 Slave Preference File
+Category=Fusion 8 Options
+CategoryOrder=3
+CategoryIndex=3
+Default=
+Description=The path to a global RenderSlave.prefs preference file that is copied over before starting the Render Slave. Leave blank to disable this feature.
+
+[Fusion9RenderExecutable]
+Type=multilinemultifilename
+Label=Fusion 9 Render Executable
+Category=Fusion 9 Options
+CategoryOrder=4
+CategoryIndex=0
+Default=C:\Program Files\Blackmagic Design\Fusion Render Node 9\FusionRenderNode.exe;C:\Program Files\Blackmagic Design\Fusion 9\Fusion.exe;/opt/BlackmagicDesign/FusionRenderNode9/FusionRenderNode;/opt/BlackmagicDesign/Fusion9/Fusion;/Applications/Blackmagic Fusion 9 Render Node/Fusion Render Node.app/Contents/MacOS/Fusion Render Node;/Applications/Blackmagic Fusion 9/Fusion.app/Contents/MacOS/Fusion
+Description=The path to the Fusion 9 Render Slave executable used for rendering. Enter alternative paths on separate lines.
+
+[Fusion9WaitForExecutable]
+Type=string
+Label=Fusion 9 Wait For Executable
+Category=Fusion 9 Options
+CategoryOrder=4
+CategoryIndex=1
+Default=
+Description=If you use a proxy RenderSlave.exe, set this to the name of the renamed original.  For example, it might be set to RenderSlave_original.exe.
+
+[Fusion9VersionToEnforce]
+Type=string
+Label=Fusion 9 Version To Enforce
+Category=Fusion 9 Options
+CategoryOrder=4
+CategoryIndex=2
+Default=
+Description=Deadline will only render Fusion 9 jobs on slaves running this version of Fusion 9. Use a ; to separate alternative versions. Leave blank to disable this feature.
+
+[Fusion9SlavePreferenceFile]
+Type=filename
+Label=Fusion 9 Slave Preference File
+Category=Fusion 9 Options
+CategoryOrder=4
+CategoryIndex=3
+Default=
+Description=The path to a global RenderSlave.prefs preference file that is copied over before starting the Render Slave. Leave blank to disable this feature.
+
+[LoadFlowTimeout]
+Type=integer
+Label=Load Comp Timeout
+Category=General Fusion Options
+CategoryOrder=5
+CategoryIndex=0
+Default=120
+Description=Maximum time for Fusion to load a comp, in seconds.
+
+[ScriptConnectTimeout]
+Type=integer
+Label=Script Connect Timeout
+Category=General Fusion Options
+CategoryOrder=5
+CategoryIndex=1
+Default=30
+Description=Amount of time allowed for Fusion to start up and accept a script connection, in seconds.
+
+[LoadScriptSystemTimeout]
+Type=integer
+Label=Load Script System Timeout
+Category=General Fusion Options
+CategoryOrder=5
+CategoryIndex=2
+Default=60
+Description=Amount of time allowed for Fusion to start up and start its script system, in seconds.
+
+[EnablePathMapping]
+Type=boolean
+Category=Path Mapping For Mixed Farms (Fusion 8 and later)
+CategoryOrder=6
+CategoryIndex=0
+Label=Enable Path Mapping
+Default=true
+Description=If enabled, a temporary Fusion comp file will be created locally on the slave for rendering because Deadline does the path mapping directly in the comp file. This feature can be turned off if there are no Path Mapping entries defined in the Repository Options.
+
+[ShowQuicktimeProgress]
+Type=boolean
+Label=Show Rendering Progress
+Category=Fusion Quicktime Options
+CategoryOrder=7
+CategoryIndex=0
+Default=True
+Description=If true, progress will be displayed when rendering Fusion Quicktime jobs (submitted from the Fusion Quicktime submitter).

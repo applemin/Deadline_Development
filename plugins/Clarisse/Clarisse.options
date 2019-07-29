@@ -1,0 +1,56 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[RenderUsing]
+Type=enum
+Values=CNode;CRender
+Label=Render Using
+Category=Rendering Options
+Index=0
+Description=The render executable to use for rendering.
+Required=false
+DisableIfBlank=true
+
+[Threads]
+Type=integer
+Minimum=0
+Maximum=64
+Label=Threads
+Category=Rendering Options
+Index=1
+Description=The number of rendering threads (0 to use the value specified in the Clarisse configuration file)
+Required=false
+DisableIfBlank=true
+
+[Verbose]
+Type=boolean
+Label=Verbose Logging
+Category=Rendering Options
+Index=2
+Description=Enables verbose logging during rendering.
+Required=false
+DisableIfBlank=true
+
+[Version]
+Type=label
+Label=Version
+Category=Clarisse Info
+Index=3
+Description=The version of Clarisse to use to render.
+Required=false
+DisableIfBlank=true
+
+[Image]
+Type=string
+Label=Image
+Category=Clarisse Info
+Index=4
+Description=The image to render within the scene.
+Required=false
+DisableIfBlank=true

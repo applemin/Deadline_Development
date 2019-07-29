@@ -1,0 +1,337 @@
+[SceneFile]
+Type=filename
+Label=Scene File
+Category=Input and Output Options
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[HDROutputFile]
+Type=filenameSave
+Label=HDR Output File
+Category=Input and Output Options
+Index=1
+Description=The HDR output filename
+Required=false
+DisableIfBlank=true
+
+[LDROutputFile]
+Type=filenameSave
+Label=LDR Output File
+Category=Input and Output Options
+Index=2
+Description=The LDR output filename
+Required=false
+DisableIfBlank=true
+
+
+
+[Passes]
+Type=integer
+Label=Passes
+Category=Render Options
+Index=5
+Description=Passes
+Required=false
+DisableIfBlank=false
+Default=
+
+[Minutes]
+Type=integer
+Label=Minutes
+Category=Render Options
+Index=6
+Description=Minutes
+Required=false
+DisableIfBlank=false
+Default=
+
+[Threads]
+Type=integer
+Label=Threads
+Category=Render Options
+Index=9
+Description=Threads
+Required=false
+DisableIfBlank=true
+
+
+
+[Main]
+Type=boolean
+Label=Main
+Category=Render Channels
+Index=0
+Description=Main
+Required=false
+DisableIfBlank=true
+
+[Alpha]
+Type=boolean
+Label=Alpha
+Category=Render Channels
+Index=1
+Description=Alpha
+Required=false
+DisableIfBlank=true
+
+[Ambient]
+Type=boolean
+Label=Ambient
+Category=Render Channels
+Index=2
+Description=Ambient
+Required=false
+DisableIfBlank=true
+
+[Ao]
+Type=boolean
+Label=AO
+Category=Render Channels
+Index=3
+Description=Ambient Occlusion
+Required=false
+DisableIfBlank=true
+
+[Coverage]
+Type=boolean
+Label=Coverage
+Category=Render Channels
+Index=4
+Description=Coverage
+Required=false
+DisableIfBlank=true
+
+[Depth]
+Type=boolean
+Label=Depth
+Category=Render Channels
+Index=5
+Description=Depth
+Required=false
+DisableIfBlank=true
+
+
+
+[Diffuse]
+Type=boolean
+Label=Difffuse
+Category=Render Channels
+Index=6
+Description=Diffuse
+Required=false
+DisableIfBlank=true
+
+[Direct]
+Type=boolean
+Label=direct
+Category=Render Channels
+Index=7
+Description=Direct
+Required=false
+DisableIfBlank=true
+
+[Fresnel]
+Type=boolean
+Label=Fresnel
+Category=Render Channels
+Index=8
+Description=Fresnel
+Required=false
+DisableIfBlank=true
+
+[Glossy]
+Type=boolean
+Label=Glossy
+Category=Render Channels
+Index=9
+Description=Glossy
+Required=false
+DisableIfBlank=true
+
+[Indirect]
+Type=boolean
+Label=Indirect
+Category=Render Channels
+Index=10
+Description=Indirect
+Required=false
+DisableIfBlank=true
+
+[Lights]
+Type=boolean
+Label=Lights
+Category=Render Channels
+Index=11
+Description=Lights
+Required=false
+DisableIfBlank=true
+
+
+
+[Lm1]
+Type=boolean
+Label=Light Mixer 1
+Category=Render Channels
+Index=12
+Description=Light Mixer 1
+Required=false
+DisableIfBlank=true
+
+[Lm2]
+Type=boolean
+Label=Light Mixer 2
+Category=Render Channels
+Index=13
+Description=Light Mixer 2
+Required=false
+DisableIfBlank=true
+
+[Lm3]
+Type=boolean
+Label=Light Mixer 3
+Category=Render Channels
+Index=14
+Description=Light Mixer 3
+Required=false
+DisableIfBlank=true
+
+[Lm4]
+Type=boolean
+Label=Light Mixer 4
+Category=Render Channels
+Index=15
+Description=Light Mixer 4
+Required=false
+DisableIfBlank=true
+
+[Lm5]
+Type=boolean
+Label=Light Mixer 5
+Category=Render Channels
+Index=16
+Description=Light Mixer 5
+Required=false
+DisableIfBlank=true
+
+[Lm6]
+Type=boolean
+Label=Light Mixer 6
+Category=Render Channels
+Index=17
+Description=Light Mixer 6
+Required=false
+DisableIfBlank=true
+
+
+
+[Lm7]
+Type=boolean
+Label=Light Mixer 7
+Category=Render Channels
+Index=18
+Description=Light Mixer 7
+Required=false
+DisableIfBlank=true
+
+[Lm8]
+Type=boolean
+Label=Light Mixer 8
+Category=Render Channels
+Index=19
+Description=Light Mixer 8
+Required=false
+DisableIfBlank=true
+
+[MtlId]
+Type=boolean
+Label=MtlId
+Category=Render Channels
+Index=20
+Description=Material Id
+Required=false
+DisableIfBlank=true
+
+[Normals]
+Type=boolean
+Label=Normals
+Category=Render Channels
+Index=21
+Description=Normals
+Required=false
+DisableIfBlank=true
+
+[ObjId]
+Type=boolean
+Label=ObjId
+Category=Render Channels
+Index=22
+Description=Object Id
+Required=false
+DisableIfBlank=true
+
+[Reflection]
+Type=boolean
+Label=Reflection
+Category=Render Channels
+Index=23
+Description=Reflection
+Required=false
+DisableIfBlank=true
+
+
+
+[Refraction]
+Type=boolean
+Label=Refraction
+Category=Render Channels
+Index=24
+Description=Refraction
+Required=false
+DisableIfBlank=true
+
+[Roughness]
+Type=boolean
+Label=Roughness
+Category=Render Channels
+Index=25
+Description=Roughness
+Required=false
+DisableIfBlank=true
+
+[Shadows]
+Type=boolean
+Label=Shadows
+Category=Render Channels
+Index=26
+Description=Shadows
+Required=false
+DisableIfBlank=true
+
+[Specular]
+Type=boolean
+Label=Specular
+Category=Render Channels
+Index=27
+Description=Specular
+Required=false
+DisableIfBlank=true
+
+[SSS]
+Type=boolean
+Label=SSS
+Category=Render Channels
+Index=28
+Description=SSS
+Required=false
+DisableIfBlank=true
+
+[Sun]
+Type=boolean
+Label=Sun
+Category=Render Channels
+Index=29
+Description=Sun
+Required=false
+DisableIfBlank=true

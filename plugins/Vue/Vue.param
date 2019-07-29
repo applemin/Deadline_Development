@@ -1,0 +1,81 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Vue Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Vue7_RenderExecutable]
+Type=multilinemultifilename
+Label=Vue 7 Render Executable
+Category=Render Executables
+Index=1
+Default=C:\Program Files\e-on software\Vue 7 Infinite\Application\RenderBull.eon;C:\Program Files (x86)\e-on software\Vue 7 Infinite\Application\RenderBull.eon;C:\Program Files\e-on software\Vue 7 Infinite\Application\StandaloneRenderer.eon;C:\Program Files (x86)\e-on software\Vue 7 Infinite\Application\StandaloneRenderer.eon;/Applications/Vue 7 Infinite/StandaloneRenderer.app/Contents/MacOS/StandaloneRenderer;/Applications/Vue 7 xStream/StandaloneRenderer.app/Contents/MacOS/StandaloneRenderer
+Description=The path to the Vue 7 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Vue8_RenderExecutable]
+Type=multilinemultifilename
+Label=Vue 8 Render Executable
+Category=Render Executables
+Index=2
+Default=C:\Program Files\e-on software\Vue 8 xStream\Application\StandaloneRenderer.eon;C:\Program Files (x86)\e-on software\Vue 8 xStream\Application\StandaloneRenderer.eon;C:\Program Files\e-on software\Vue 8 Infinite\Application\StandaloneRenderer.eon;C:\Program Files (x86)\e-on software\Vue 8 Infinite\Application\StandaloneRenderer.eon;/Applications/Vue 8 Infinite/StandaloneRenderer.app/Contents/MacOS/StandaloneRenderer;/Applications/Vue 8 xStream/StandaloneRenderer.app/Contents/MacOS/StandaloneRenderer
+Description=The path to the Vue 8 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Vue9_RenderExecutable]
+Type=multilinemultifilename
+Label=Vue 9 Render Executable
+Category=Render Executables
+Index=3
+Default=C:\Program Files\e-on software\Vue 9 xStream\Application\StandaloneRenderer.eon;C:\Program Files (x86)\e-on software\Vue 9 xStream\Application\StandaloneRenderer.eon;C:\Program Files\e-on software\Vue 9 Infinite\Application\StandaloneRenderer.eon;C:\Program Files (x86)\e-on software\Vue 9 Infinite\Application\StandaloneRenderer.eon;/Applications/Vue 9 Infinite/StandaloneRenderer.app/Contents/MacOS/StandaloneRenderer;/Applications/Vue 9 xStream/StandaloneRenderer.app/Contents/MacOS/StandaloneRenderer
+Description=The path to the Vue 9 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Vue10_RenderExecutable]
+Type=multilinemultifilename
+Label=Vue 10 Render Executable
+Category=Render Executables
+Index=4
+Default=C:\Program Files\e-on software\Vue 10 xStream\Application\StandaloneRenderer.eon;C:\Program Files (x86)\e-on software\Vue 10 xStream\Application\StandaloneRenderer.eon;C:\Program Files\e-on software\Vue 10 Infinite\Application\StandaloneRenderer.eon;C:\Program Files (x86)\e-on software\Vue 10 Infinite\Application\StandaloneRenderer.eon;/Applications/Vue 10 Infinite/StandaloneRenderer.app/Contents/MacOS/StandaloneRenderer;/Applications/Vue 10 xStream/StandaloneRenderer.app/Contents/MacOS/StandaloneRenderer
+Description=The path to the Vue 10 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Vue11_RenderExecutable]
+Type=multilinemultifilename
+Label=Vue 11 Render Executable
+Category=Render Executables
+Index=5
+Default=C:\Program Files\e-on software\Vue 11 xStream\Application\StandaloneRenderer.eon;C:\Program Files (x86)\e-on software\Vue 11 xStream\Application\StandaloneRenderer.eon;C:\Program Files\e-on software\Vue 11 Infinite\Application\StandaloneRenderer.eon;C:\Program Files (x86)\e-on software\Vue 11 Infinite\Application\StandaloneRenderer.eon;/Applications/Vue 11 Infinite/StandaloneRenderer.app/Contents/MacOS/StandaloneRenderer;/Applications/Vue 11 xStream/StandaloneRenderer.app/Contents/MacOS/StandaloneRenderer
+Description=The path to the Vue 11 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Vue2014_RenderExecutable]
+Type=multilinemultifilename
+Label=Vue 2014 Render Executable
+Category=Render Executables
+Index=6
+Default=C:/Program Files/e-on software/Vue xStream 2014/Application/RenderNode.exe;C:\Program Files\e-on software\Vue RenderNode 2014\Application\Vue Infinite RenderNode.exe;C:\Program Files (x86)\e-on software\Vue RenderNode 2014\Application\Vue Infinite RenderNode.exe;C:\Program Files\e-on software\Vue RenderNode 2014 PLE\Application\Vue Infinite RenderNode.exe
+Description=The path to the Vue 2014 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Vue2015_RenderExecutable]
+Type=multilinemultifilename
+Label=Vue 2015 Render Executable
+Category=Render Executables
+Index=7
+Default=C:/Program Files/e-on software/Vue xStream 2015/Application/RenderNode.exe;C:\Program Files\e-on software\Vue RenderNode 2015\Application\Vue Infinite RenderNode.exe;C:\Program Files (x86)\e-on software\Vue RenderNode 2015\Application\Vue Infinite RenderNode.exe;C:\Program Files\e-on software\Vue RenderNode 2015 PLE\Application\Vue Infinite RenderNode.exe
+Description=The path to the Vue 2015 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Vue2016_RenderExecutable]
+Type=multilinemultifilename
+Label=Vue 2016 Render Executable
+Category=Render Executables
+Index=8
+Default=C:\Program Files\e-on software\Vue xStream 2016\Application\RenderNode.exe;C:\Program Files\e-on software\Vue RenderNode 2016\Application\Vue Infinite RenderNode.exe;C:\Program Files (x86)\e-on software\Vue RenderNode 2016\Application\Vue Infinite RenderNode.exe;C:\Program Files\e-on software\Vue RenderNode 2016 PLE\Application\Vue Infinite RenderNode.exe
+Description=The path to the Vue 2015 executable file used for rendering. Enter alternative paths on separate lines.

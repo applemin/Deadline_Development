@@ -1,0 +1,402 @@
+[ExecutableType]
+Type=enum
+Values=Auto Select;OpenCl;GPU;C++
+Label=Executable Type
+Category=Altus Options
+CategoryOrder=0
+Index=0
+Description=Which executable type of the Altus Denoiser should be run.
+Required=false
+DisableIfBlank=false
+
+[Version]
+Type=label
+Label=Version Of Altus
+Category=Altus Options
+CategoryOrder=0
+Index=1
+Description=Version of the Altus Denoiser.
+Required=false
+DisableIfBlank=true
+
+[GPUsPerTask]
+Type=integer
+Minimum=0
+Maximum=1
+Label=GPUs Per Task
+Category=GPU Options
+CategoryOrder=1
+Index=0
+Description=The number of GPUs to use per task. If set to 0, the default number of GPUs will be used.
+Required=false
+DisableIfBlank=true
+
+[GPUsSelectDevices]
+Type=string
+Label=Select GPU Devices
+Category=GPU Options
+CategoryOrder=1
+Index=1
+Description=A GPU device to use specified by device Id. 'GPUs Per Task' will be ignored.
+Required=false
+DisableIfBlank=true
+
+[OutputFile]
+Type=FilenameSave
+Label=Output File
+Category=Output Options
+CategoryOrder=2
+Index=0
+Description=The final filtered output file.
+Required=false
+DisableIfBlank=false
+
+[Config]
+Type=Filename
+Label=Config File
+Category=File Options
+CategoryOrder=3
+Index=0
+Description=Path to configuration file.
+Required=false
+DisableIfBlank=false
+Default=
+
+[Stereo]
+Type=boolean
+Default=false
+Label=Stereo
+Category=Frame Pass Files
+CategoryOrder=4
+Index=0
+Description=Enable rendering of stereo images generated from the same seed. When enabled, each file image input in this input file section is expected to be a single stereo exr image.
+Required=false
+DisableIfBlank=false
+
+[RgbFiles]
+Type=multilinemultifilename
+Label=Rgb Files
+Category=Frame Pass Files
+CategoryOrder=4
+Index=1
+Description=Expects file name and paths of frame beauty pass exr image where either b0, b1, or var appears in the file name. The var (variance) file is optional; the b0 and b1 files are required.
+Required=false
+DisableIfBlank=false
+
+[NormalsFiles]
+Type=multilinemultifilename
+Label=Normals Files
+Category=Frame Pass Files
+CategoryOrder=4
+Index=2
+Description=Expects file name and paths of frame normal pass exr image where either b0, b1, or var appears in the file name. The var (variance) file is optional; the b0 and b1 files are required.
+Required=false
+DisableIfBlank=false
+
+[PositionFiles]
+Type=multilinemultifilename
+Label=Position Files
+Category=Frame Pass Files
+CategoryOrder=4
+Index=3
+Description=Expects file name and paths of frame world position pass exr image where either b0, b1, or var appears in the file name. The var (variance) file is optional; the b0 and b1 files are required.
+Required=false
+DisableIfBlank=false
+
+[VisibilityFiles]
+Type=multilinemultifilename
+Label=Visibility Files
+Category=Frame Pass Files
+CategoryOrder=4
+Index=4
+Description=Expects file name and paths of frame direct light visibility pass exr image where either b0, b1, or var appears in the file name. The var (variance) file is optional; the b0 and b1 files are required.
+Required=false
+DisableIfBlank=false
+
+[AlbedoFiles]
+Type=multilinemultifilename
+Label=Albedo Files
+Category=Frame Pass Files
+CategoryOrder=4
+Index=5
+Description=Expects file name and paths of frame albedo pass exr image where either b0, b1, or var appears in the file name. The var (variance) file is optional; the b0 and b1 files are required.
+Required=false
+DisableIfBlank=false
+
+[CausticFiles]
+Type=multilinemultifilename
+Label=Caustic Files
+Category=Frame Pass Files
+CategoryOrder=4
+Index=6
+Description=Expects file name and paths of frame caustic pass exr image where either b0, b1, or var appears in the file name. The var (variance) file is optional; the b0 and b1 files are required.
+Required=false
+DisableIfBlank=false
+
+[HairFiles]
+Type=multilinemultifilename
+Label=Hair Files
+Category=Frame Pass Files
+CategoryOrder=4
+Index=7
+Description=Expects file name and paths of frame hair pass exr image where either b0, b1, or var appears in the file name. The var (variance) file is optional; the b0 and b1 files are required.
+Required=false
+DisableIfBlank=false
+
+[ExtraFiles]
+Type=multilinemultifilename
+Label=Extra Files
+Category=Frame Pass Files
+CategoryOrder=4
+Index=8
+Description=The file path of extra AOV EXR image(s).
+Required=false
+DisableIfBlank=false
+
+[AdditionalFiles]
+Type=multilinemultifilename
+Label=Additional Files
+Category=Frame Pass Files
+CategoryOrder=4
+Index=9
+Description=The file path of additional AOV EXR image(s).
+Required=false
+DisableIfBlank=false
+
+[Renderer]
+Type=enum
+Values=3Delight;Arnold;Corona;Maxwell;Octane;RedShift;VRay;Other
+Label=Renderer
+Category=Altus Settings
+CategoryOrder=5
+Index=0
+Description=Specify your renderer for specific optimizations.
+Required=false
+DisableIfBlank=false
+Default=Other
+
+[PreserveLayers]
+Type=enum
+Values=none;preserve layers
+Label=Layer Preservation
+Category=Altus Settings
+CategoryOrder=5
+Index=1
+Description=Whether or not to preserve original layers in output image.
+Required=false
+DisableIfBlank=false
+Default=none
+
+[OutputQuality]
+Type=enum
+Values=production;preview
+Label=Output Quality
+Category=Altus Settings
+CategoryOrder=5
+Index=2
+Description=Filter the image at different quality levels.
+Required=false
+DisableIfBlank=false
+Default=production
+
+[AOVQuality]
+Type=enum
+Values=none;prefiltered;preview;production
+Label=Output AOV Quality
+Category=Altus Settings
+CategoryOrder=5
+Index=3
+Description=Filter and output the AOV input images at different quality levels.
+Required=false
+DisableIfBlank=false
+Default=production
+
+[FrameRadius]
+Type=integer
+Label=Frame Radius
+Category=Altus Settings
+CategoryOrder=5
+Index=4
+Description=Neighboring frames for averaging motion blur in an animation (ie: a value of one is a frame on either side of the current frame).
+Required=true
+DisableIfBlank=false
+Default=1
+
+[FilterRadius]
+Type=float
+Label=Filter Radius
+Category=Altus Settings
+CategoryOrder=5
+Index=5
+Description=Filter radius. Default value is 10.
+Required=false
+DisableIfBlank=false
+Default=10
+DecimalPlaces=3
+
+[Kc_1]
+Type=float
+Default=0.45
+Label=First Sensitivity (KC_1)
+Category=Altus Settings
+CategoryOrder=5
+Index=6
+Description=Filter parameter that controls the sensitivity of the first candidate filter to color differences. A higher value leads to more aggressive filtering (default 0.45).
+Required=false
+DisableIfBlank=false
+DecimalPlaces=3
+
+[Kc_2]
+Type=float
+Default=0.45
+Label=Second Sensitivity (KC_2)
+Category=Altus Settings
+CategoryOrder=5
+Index=7
+Description=Filter parameter that controls the sensitivity of the second candidate filter to color differences. A higher value leads to more agressive filtering (default 0.45).
+Required=false
+DisableIfBlank=false
+DecimalPlaces=3
+
+[Kc_3]
+Type=string
+Default=1e+010
+Label=KC_3 (Deprecated)
+Category=Altus Settings
+CategoryOrder=5
+Index=8
+Description=Value not used. Present for backward compatability with older configuration files.
+Required=false
+DisableIfBlank=false
+
+[Kc_4]
+Type=float
+Default=0.45
+Label=Final Sensitivity (KC_4)
+Category=Altus Settings
+CategoryOrder=5
+Index=9
+Description=Filter parameter that controls the sensitivity of the second pass filter to color differences. A higher value leads to more agressive filtering (default 0.45).
+Required=false
+DisableIfBlank=false
+DecimalPlaces=3
+
+[Kf]
+Type=float
+Default=0.60
+Label=Feature Sensitivity (KF)
+Category=Altus Settings
+CategoryOrder=5
+Index=10
+Description=Filter parameter that controls the sensitivity of all candidates, and the second pass filter, to feature differences. Lowering the kf value may help fine detail preservation and decrease smoothing in the final image.
+Required=false
+DisableIfBlank=false
+DecimalPlaces=3
+
+[ForceContinue]
+Type=boolean
+Default=false
+Label=Force Continue (Only 1.8)
+Category=Altus Settings
+CategoryOrder=5
+Index=11
+Description=Altus will attempt to continue after warnings and errors. Output might be black, sub-optimal or incorrect.
+Required=false
+DisableIfBlank=false
+
+[Tile]
+Type=boolean
+Default=false
+Label=Tile
+Category=Altus Settings
+CategoryOrder=5
+Index=12
+Description=<html><head/><body><p>Altus can internally divide, denoise, and combine tiles in order to denoise large images that wouldn’t otherwise fit in memory. Generally this feature is more useful when using GPU’s to denoise since GPU’s typically have a small amount of VRAM. This causes large images to be impossible to denoise on GPU unless using tiling.</p></body></html>
+Required=false
+DisableIfBlank=true
+
+[TileSize]
+Type=integer
+Default=1024
+Label=Tile Size
+Category=Altus Settings
+CategoryOrder=5
+Index=13
+Description=<html><head/><body><p>Controls the max size of the internal tile. The tile-size given is an upper bound, the actual tile size will always be less than the tile-size in each dimension. Altus finds the subdivision for each axis independently such that the length of the tile in that axis is smaller than the tile-size maximum. If the tile-size is larger than the full image then it is clamped to the size of the image. By default the tile-size is set to 1024.</p></body></html>
+Required=false
+DisableIfBlank=true
+
+[FireFly]
+Type=boolean
+Default=false
+Label=Firefly
+Category=Altus Settings
+CategoryOrder=5
+Index=14
+Description=<html><head/><body><p>Enables the firefly suppressor. This will detect and reduce the spread of high energy pixels. By default it’s turned off. Minor performance hit to enable.</p></body></html>
+Required=false
+DisableIfBlank=true
+
+[ForceContinueInt]
+Type=integer
+Default=0
+Label=Force Continue (1.9 and later)
+Category=Altus Settings
+CategoryOrder=5
+Index=15
+Description=Added in Altus 1.9, Force Continue was changed to an integer value from 0-3. 0 means it won't force-continue, and 3 means it will ignore all errors.
+Required=false
+DisableIfBlank=false
+
+[IgnoreAlpha]
+Type=boolean
+Default=false
+Label=Ignore Alpha
+Category=Altus Settings
+CategoryOrder=5
+Index=16
+Description=Disables denoising of the alpha channel.
+Required=false
+DisableIfBlank=true
+
+[SkipFrameRadius]
+Type=boolean
+Default=false
+Label=Skip Frame Radius
+Category=Altus Settings
+CategoryOrder=5
+Index=17
+Description=For animations, skips frames within the frame radius of the first and end frames.
+Required=false
+DisableIfBlank=true
+
+[SinglePass]
+Type=boolean
+Label=Single Pass
+Category=Altus Settings
+CategoryOrder=5
+Index=18
+Description=Use single-pass denoising on images exported from Altus integrated products.
+Required=false
+DisableIfBlank=true
+
+[Force16bitOutput]
+Type=boolean
+Label=Ignore Alpha
+Category=Altus Settings
+CategoryOrder=5
+Index=19
+Description=Force the output EXR image to be 16 bit to reduce file-size.
+Required=false
+DisableIfBlank=true
+
+[EXRCompression]
+Type=enum
+Values=No Compression;RLE;ZIPS;ZIP;PIZ;PXR24;B44,B44A;DWAA;DWAB
+Label=EXR Compression Rate
+Category=Altus Settings
+CategoryOrder=5
+Index=20
+Description=Sets compression for output EXR images.
+Required=false
+DisableIfBlank=true

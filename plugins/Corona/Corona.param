@@ -1,0 +1,62 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Corona Standalone Render Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[CoronaRenderExecutable1_4]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+Index=0
+Label=Corona 1.4 Standalone Render Executable
+Description=The path to the Corona 1.4 Render executable file used for rendering. Enter alternative paths on separate lines.
+Default=C:\Program Files\Corona\Standalone\Corona.exe
+
+[CoronaRenderExecutable1_5]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+Index=10
+Label=Corona 1.5 Standalone Render Executable
+Description=The path to the Corona 1.5 Render executable file used for rendering. Enter alternative paths on separate lines.
+Default=C:\Program Files\Corona\Standalone\Corona.exe
+
+[CoronaRenderExecutable1_6]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+Index=20
+Label=Corona 1.6 Standalone Render Executable
+Description=The path to the Corona 1.6 Render executable file used for rendering. Enter alternative paths on separate lines.
+Default=C:\Program Files\Corona\Standalone\Corona.exe
+
+[CoronaRenderExecutable1_7]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+Index=30
+Label=Corona 1.7 Standalone Render Executable
+Description=The path to the Corona 1.7 Render executable file used for rendering. Enter alternative paths on separate lines.
+Default=C:\Program Files\Corona\Corona.exe
+
+[CoronaRenderExecutable2]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+Index=40
+Label=Corona 2 Standalone Render Executable
+Description=The path to the Corona 2 Render executable file used for rendering. Enter alternative paths on separate lines.
+Default=C:\Program Files\Corona\Corona.exe

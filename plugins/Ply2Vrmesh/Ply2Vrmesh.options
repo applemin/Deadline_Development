@@ -1,0 +1,311 @@
+[OutputFile]
+Type=filenamesave
+Label=Output Filename
+Category=Output Options
+CategoryOrder=0
+Index=0
+Description=Optionally override the output file name. If left blank, the output name will be the same as the input name (with the vrmesh extension).
+Required=True
+DisableIfBlank=false
+Default=
+
+[Append]
+Type=boolean
+Label=Append
+Category=Output Options
+CategoryOrder=0
+Index=1
+Description=appends the information as a new frame to the .vrmesh file
+Required=false
+DisableIfBlank=true
+
+[MergeOutputFiles]
+Type=boolean
+Label=Merge Output Files
+Category=Output Options
+CategoryOrder=0
+Index=2
+Description=Merges all of the files into a single output file.
+Required=false
+DisableIfBlank=true
+
+[SmoothNormals]
+Type=boolean
+Label=Smooth Normals
+Category=Conversion Options
+CategoryOrder=1
+Index=2
+Description=generates smooth vertex normals. Only valid for .obj and .geo files; always enabled for .bin files
+Required=false
+DisableIfBlank=true
+
+[SetSmoothAngle]
+Type=boolean
+Label=Set Smooth Angle
+Category=Conversion Options
+CategoryOrder=1
+Index=3
+Description=enable to set the smooth angle value
+Required=false
+DisableIfBlank=true
+
+[SmoothAngle]
+Type=float
+Minimum=0.0
+DecimalPlaces=2
+Label=Smooth Angle
+Category=Conversion Options
+CategoryOrder=1
+Index=4
+Description=a floating point number that specifies the angle (in degrees) used to distinguish if the normals should be  smoothed or not. If present it automatically enables the -smoothNormals flag.
+Required=false
+DisableIfBlank=true
+
+[FlipNormals]
+Type=boolean
+Label=Flip Normals
+Category=Conversion Options
+CategoryOrder=1
+Index=5
+Description=reverses the face/vertex normals. Only valid for .obj, .geo and .bin files
+Required=false
+DisableIfBlank=true
+
+[FlipVertexNormals]
+Type=boolean
+Label=Flip Vertex Normals
+Category=Conversion Options
+CategoryOrder=1
+Index=6
+Description=reverses the vertex normals. Only valid for .obj, .geo and .bin files
+Required=false
+DisableIfBlank=true
+
+[FlipFaceNormals]
+Type=boolean
+Label=Flip Face Normals
+Category=Conversion Options
+CategoryOrder=1
+Index=7
+Description=reverses the face normals. Only valid for .obj, .geo and .bin files
+Required=false
+DisableIfBlank=true
+
+[FlipYZ]
+Type=boolean
+Label=Flip YZ
+Category=Conversion Options
+CategoryOrder=1
+Index=8
+Description=swap y/z axes. Needed for some programs i.e. Poser, ZBrush. Valid for .ply, .obj, .geo and .bin files.
+Required=false
+DisableIfBlank=true
+
+[FlipYPosZ]
+Type=boolean
+Label=Flip Y Positive Z
+Category=Conversion Options
+CategoryOrder=1
+Index=9
+Description=same as -flipYZ but does not reverse the sign of the z coordinate.
+Required=false
+DisableIfBlank=true
+
+[FlipXPosZ]
+Type=boolean
+Label=Flip X Positive Z
+Category=Conversion Options
+CategoryOrder=1
+Index=10
+Description=same as -flipYPosZ but swaps x/z axes.
+Required=false
+DisableIfBlank=true
+
+[MapChannel]
+Type=integer
+Minimum=0
+Label=Map Channel
+Category=Conversion Options
+CategoryOrder=1
+Index=11
+Description=stores the UVW coordinates to the specified mapping channel (default is 1). Only valid for .obj and .geo files. When exporting a mesh that will be used in Maya, currently this must be set to 0 or the textures on the mesh will not render properly
+Required=false
+DisableIfBlank=true
+
+[DisableColorSetPacking]
+Type=boolean
+Label=Disable Color Set Packing
+Category=Conversion Options
+CategoryOrder=1
+Index=12
+Description=only valid for .geo and .bgeo files; disables the packing of float1 and float2 attributes in vertex color sets.
+Required=false
+DisableIfBlank=true
+
+[MaterialIDs]
+Type=boolean
+Label=Material IDs
+Category=Conversion Options
+CategoryOrder=1
+Index=13
+Description=only valid for .geo files; assigns material IDs based on the primitive groups in the file.
+Required=false
+DisableIfBlank=true
+
+[FPS]
+Type=float
+Minimum=0.0
+DecimalPlaces=2
+Label=FPS
+Category=Conversion Options
+CategoryOrder=1
+Index=14
+Description=a floating-point number that specifies the frames per second at which a .geo or .bin file is exported, so that vertex velocities can be scaled accordingly. The default is 24.0
+Required=false
+DisableIfBlank=true
+
+[PreviewFaces]
+Type=integer
+Minimum=0
+Label=Preview Faces
+Category=Conversion Options
+CategoryOrder=1
+Index=15
+Description=specifies the maximum number of faces in the .vrmesh preview information. Default is 9973 faces.
+Required=false
+DisableIfBlank=true
+
+[FacesPerVoxel]
+Type=integer
+Minimum=0
+Label=Faces Per Voxel
+Category=Conversion Options
+CategoryOrder=1
+Index=16
+Description=specifies the maximum number of faces per voxel in the resulting .vrmesh file. Default is 10000 faces.
+Required=false
+DisableIfBlank=true
+
+[PreviewHairs]
+Type=integer
+Minimum=0
+Label=Preview Hairs
+Category=Conversion Options
+CategoryOrder=1
+Index=17
+Description=specifies the maximum number of hairs in the .vrmesh preview information. Default is 500 hairs.
+Required=false
+DisableIfBlank=true
+
+[SegmentsPerVoxel]
+Type=integer
+Minimum=0
+Label=Segments Per Voxel
+Category=Conversion Options
+CategoryOrder=1
+Index=18
+Description=specifies maximum segments per voxel in the resulting .vrmesh file. Default is 64000 hairs.
+Required=false
+DisableIfBlank=true
+
+[HairWidthMultiplier]
+Type=float
+Minimum=0.01
+DecimalPlaces=2
+Label=Hair Width Multiplier
+Category=Conversion Options
+CategoryOrder=1
+Index=19
+Description=specifies the multiplier to scale hair widths in the resulting .vrmesh file. Default is 1.0.
+Required=false
+DisableIfBlank=true
+
+[PreviewParticles]
+Type=integer
+Minimum=0
+Label=Preview Particles
+Category=Conversion Options
+CategoryOrder=1
+Index=20
+Description=specifies the maximum number of particles in the .vrmesh preview information. Default is 20000 particles.
+Required=false
+DisableIfBlank=true
+
+[ParticlesPerVoxel]
+Type=integer
+Minimum=0
+Label=Particles Per Voxel
+Category=Conversion Options
+CategoryOrder=1
+Index=21
+Description=specifies maximum particles per voxel in the resulting .vrmesh file. Default is 64000 particles.
+Required=false
+DisableIfBlank=true
+
+[ParticleWidthMultiplier]
+Type=float
+Minimum=0.01
+DecimalPlaces=2
+Label=Particle Width Multiplier
+Category=Conversion Options
+CategoryOrder=1
+Index=22
+Description=specifies the multiplier to scale particles in the resulting .vrmesh file. Default is 1.0.
+Required=false
+DisableIfBlank=true
+
+[VelocityAttrName]
+Type=string
+Label=Velocity Attr Name
+Category=Conversion Options
+CategoryOrder=1
+Index=24
+Description=specifies the name of the point attribute which should be used to generate the velocity channel. By default the 'v' attribute is used.
+Required=false
+DisableIfBlank=true
+
+[MergeVoxels]
+Type=boolean
+Label=Merge Voxels
+Category=Conversion Options
+CategoryOrder=1
+Index=25
+Description=merge objects before voxelization to reduce overlapping voxels
+Required=false
+DisableIfBlank=true
+
+[VrsceneNodeName]
+Type=string
+Label=Node Name
+Category=VRSCENE Options
+CategoryOrder=2
+Index=0
+Description=specifies the name of the node in the VRSCENE file to export
+Required=false
+
+[VrsceneApplyTm]
+Type=boolean
+Label=Apply Transform
+Category=VRSCENE Options
+CategoryOrder=2
+Index=1
+Description=Specifies whether to apply the VRSCENE node's transformation matrix to the mesh.
+Required=false
+
+[VrsceneVelocity]
+Type=boolean
+Label=Velocity Channel
+Category=VRSCENE Options
+CategoryOrder=2
+Index=2
+Description=Specifies whether to generate a velocity channel.
+Required=false
+
+[VrsceneFrames]
+Type=string
+Label=VRSCENE Animation Frame Range
+Category=VRSCENE Options
+CategoryOrder=2
+Index=3
+Description=Specifies a range of frames of the VRSCENE animation to export. The format is MIN-MAX inclusive. Leaving this blank will export the first frame in the VRSCENE file.
+Required=false

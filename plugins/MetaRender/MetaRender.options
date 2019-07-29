@@ -1,0 +1,94 @@
+[OutputFile]
+Type=filenamesave
+Label=Output File
+Category=Output Options
+Index=0
+Description=The output filename.
+Required=true
+DisableIfBlank=false
+Default=
+
+[StripAlpha]
+Type=boolean
+Label=Strip Alpha Channel
+Category=Output Options
+Index=1
+Description=Forces RGB output.
+Required=false
+DisableIfBlank=true
+
+[RenderingMode]
+Type=enum
+Values=CPU;GPU
+Category=Rendering Mode Options
+Index=0
+Description=Rendering mode to use.
+Required=false
+DisableIfBlank=true
+
+[Threads]
+Type=integer
+Minimum=1
+Maximum=8
+Label=Threads (CPU Mode Only)
+Category=Rendering Mode Options
+Index=1
+Description=The number of rendering threads to use in CPU mode.
+Required=false
+DisableIfBlank=true
+
+[DraftMode]
+Type=boolean
+Label=Draft Mode (GPU Mode Only)
+Category=Rendering Mode Options
+Index=2
+Description=Render CPU masks in draft mode.
+Required=false
+DisableIfBlank=true
+
+[CPUMasks]
+Type=boolean
+Label=CPU Masks (GPU/Draft Mode Only)
+Category=Rendering Mode Options
+Index=3
+Description=Render CPU masks in draft mode.
+Required=false
+DisableIfBlank=true
+
+[Flex]
+Type=boolean
+Label=Write Flex File
+Category=Flex File Options
+Index=0
+Description=Write Flex file.
+Required=false
+DisableIfBlank=true
+
+[Takes]
+Type=boolean
+Label=Render Takes Into Subfolders
+Category=Flex File Options
+Index=1
+Description=Render takes into subfolders.
+Required=false
+DisableIfBlank=true
+
+[CoreCommandLine]
+Type=string
+Label=Core Command Line Args
+Category=Command Line
+Index=0
+Description=Additional core command line arguments.
+Required=false
+DisableIfBlank=false
+DefaultValue=
+
+[CommandLine]
+Type=string
+Label=MetaRender Command Line Args
+Category=Command Line
+Index=1
+Description=Additional MetaRender command line arguments.
+Required=false
+DisableIfBlank=false
+DefaultValue=

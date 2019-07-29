@@ -1,0 +1,53 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=CSi SAP2000 Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[SAP2000_Executable14]
+Type=multilinemultifilename
+Label=SAP2000 14 Executable
+Category=Executables
+CategoryOrder=0
+Index=0
+Default=C:\Program Files (x86)\Computers and Structures\SAP2000 14\SAP2000.exe;C:\Program Files\Computers and Structures\SAP2000 14\SAP2000.exe
+Description=The path to the SAP2000 14 executable file used for simulating. Enter alternative paths on separate lines.
+
+[SAP2000_Executable15]
+Type=multilinemultifilename
+Label=SAP2000 15 Executable
+Category=Executables
+CategoryOrder=0
+Index=1
+Default=C:\Program Files (x86)\Computers and Structures\SAP2000 15\SAP2000.exe;C:\Program Files\Computers and Structures\SAP2000 15\SAP2000.exe
+Description=The path to the SAP2000 15 executable file used for simulating. Enter alternative paths on separate lines.
+
+[SAP2000_Executable16]
+Type=multilinemultifilename
+Label=SAP2000 16 Executable
+Category=Executables
+CategoryOrder=0
+Index=2
+Default=C:\Program Files (x86)\Computers and Structures\SAP2000 16\SAP2000.exe;C:\Program Files\Computers and Structures\SAP2000 16\SAP2000.exe
+Description=The path to the SAP2000 16 executable file used for simulating. Enter alternative paths on separate lines.
+
+[SAP2000_Executable17]
+Type=multilinemultifilename
+Label=SAP2000 17 Executable
+Category=Executables
+CategoryOrder=0
+Index=3
+Default=C:\Program Files (x86)\Computers and Structures\SAP2000 17\SAP2000.exe;C:\Program Files\Computers and Structures\SAP2000 17\SAP2000.exe
+Description=The path to the SAP2000 17 executable file used for simulating. Enter alternative paths on separate lines.

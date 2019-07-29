@@ -1,0 +1,17 @@
+[ScriptFile]
+Type=filename
+Label=Script File
+Category=Python Options
+Index=0
+Description=The script file to be executed.
+Required=false
+DisableIfBlank=true
+
+[Arguments]
+Type=string
+Label=Arguments
+Category=Python Options
+Index=1
+Description=The arguments to pass to the script. If no arguments are required, leave this blank.
+Required=false
+DisableIfBlank=true

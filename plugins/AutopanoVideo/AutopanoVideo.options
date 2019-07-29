@@ -1,0 +1,32 @@
+[Version]
+Type=enum
+Values=2
+Label=Version
+Category=Application Options
+CategoryOrder=0
+Index=0
+Description=The Autopano Video version to render with.
+Required=true
+DisableIfBlank=false
+Default=2
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build To Force
+Category=Application Options
+CategoryOrder=0
+Index=1
+Description=The build of Autopano Video to force.
+Required=false
+DisableIfBlank=true
+
+[KavaFile]
+Type=filename
+Label=Kava Filename
+Category=File Options
+CategoryOrder=1
+Index=0
+Description=The Autopano Video kava filename as it exists on the network.
+Required=false
+DisableIfBlank=true

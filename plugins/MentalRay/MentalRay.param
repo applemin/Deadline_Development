@@ -1,0 +1,43 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Mental Ray Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[MentalRay_RenderExecutable]
+Type=multilinemultifilename
+Label=Render Executable
+Category=Render Executables
+CategoryOrder=0
+Default=
+Description=The path to the Mental Ray executable file used for rendering. Enter alternative paths on separate lines.
+
+[ErrorCodesToIgnore]
+Type=string
+Label=Error Codes To Ignore
+Category=Render Options
+CategoryOrder=1
+Index=0
+Default=
+Description=Mental Ray error codes that Deadline should ignore and instead assume the render has finished successfully. Use a ; to separate the error codes.
+
+[ExitCode1]
+Type=boolean
+Label=Treat Exit Code 1 as Error
+Category=Render Options
+CategoryOrder=1
+Index=1
+Default=False
+Description=If set then Exit Code 1 will not be treated as success.

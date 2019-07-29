@@ -1,0 +1,46 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[OutputFile]
+Type=filenamesave
+Label=Output Filename
+Category=Output File
+Index=0
+Description=The output image filename
+Required=true
+DisableIfBlank=false
+Default=
+
+[Version]
+Type=label
+Label=Rhino Version
+Category=Render Options
+Index=0
+Description=The Version of Rhino to use
+Required=false
+DisableIfBlank=true
+
+[Renderer]
+Type=enum
+Label=Renderer
+Category=Render Options
+Index=1
+Description=The renderer to use
+Required=false
+DisableIfBlank=true
+
+[View]
+Type=enum
+Label=View
+Category=Render Options
+Index=2
+Description=The view to render
+Required=false
+DisableIfBlank=true
+

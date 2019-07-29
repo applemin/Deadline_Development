@@ -1,0 +1,56 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=0
+Default=Mocha Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=0
+Default=True
+Description=Not configurable
+
+[Verbosity]
+Type=enum
+Label=Verbosity Level
+Category=Common Settings
+CategoryOrder=1
+Items=v1;v2;v3;v4
+Description=The level of verbosity for Mocha log (v4 - highest, v1 - lowest).
+Default=v4
+
+[EnablePathMapping]
+Type=boolean
+Category=Common Settings
+CategoryOrder=1
+Label=Enable Path Mapping
+Default=true
+Description=If enabled, a temporary Mocha project file will be created locally on the slave for rendering because Deadline does the path mapping directly in the Mocha project file. This feature can be turned off if there are no Path Mapping entries defined in the Repository Options.
+
+[Mocha_Python_Executable_5]
+Type=multilinemultifilename
+Label=Mocha Pro 5 Python Executable
+Category=Python Executables
+CategoryOrder=2
+Default=C:/Program Files/Imagineer Systems Ltd/mocha Pro V5.0/python/python.exe;~/Applications/mocha Pro/Contents/MacOS/python;~/opt/isl/mochaprov5/Python/bin/python
+Description=The path to the Mocha's custom Python executable. Enter alternative paths on separate lines.
+
+[Mocha_Render_Executable_5]
+Type=multilinemultifilename
+Label=Mocha Pro 5 Render Executable
+Category=Render Executables
+CategoryOrder=3
+Default=C:/Program Files/Imagineer Systems Ltd/mocha Pro V5.0/python/mocharender.py;~/Applications/mocha Pro/Contents/MacOS/mocharender.py;~/opt/isl/mochaprov5/Python/mocharender.py
+Description=The path to the Mocha render executable used for rendering. Enter alternative paths on separate lines.
+
+[Mocha_Export_Executable_5]
+Type=multilinemultifilename
+Label=Mocha Pro 5 Export Executable
+Category=Export Executables
+CategoryOrder=4
+Default=C:/Program Files/Imagineer Systems Ltd/mocha Pro V5.0/python/mochaexport.py;~/Applications/mocha Pro/Contents/MacOS/mochaexport.py;~/opt/isl/mochaprov5/Python/mochaexport.py
+Description=The path to the Mocha export executable used for exporting. Enter alternative paths on separate lines.

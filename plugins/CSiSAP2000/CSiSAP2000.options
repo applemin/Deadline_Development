@@ -1,0 +1,140 @@
+[Version]
+Type=enum
+Values=14;15;16;17
+Label=Version of CSi SAP2000 To Use
+Category=File Options
+CategoryOrder=0
+Index=0
+Description=The version of CSi SAP2000 to process with.
+Required=true
+Default=17
+DisableIfBlank=false
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build Of CSi SAP2000 To Force
+Category=File Options
+CategoryOrder=0
+Index=1
+Description=You can force 32 or 64 bit processing with this option.
+Required=true
+Default=None
+DisableIfBlank=false
+
+[OverrideOutputDirectory]
+Type=Folder
+Label=Override Output Directory
+Category=File Options
+CategoryOrder=0
+Index=2
+Description=Override the output path of the data file. This is optional, and can be left blank.
+Required=false
+DisableIfBlank=false
+
+[ProcessMethod]
+Type=enum
+Label=Process Method
+Category=Processing Options
+CategoryOrder=1
+Index=0
+Description=Choose to execute inside of the existing SAP2000 application process or as a separate process.
+Required=false
+DisableIfBlank=false
+
+[SolverMethod]
+Type=enum
+Label=Solver Method
+Category=Processing Options
+CategoryOrder=1
+Index=1
+Description=Select the Solver to perform the analysis on the data file.
+Required=false
+DisableIfBlank=false
+
+[DesignSteelFrame]
+Type=boolean
+Label=Steel Frame Design
+Category=Design Options
+CategoryOrder=2
+Index=0
+Description=Perform steel frame design after the analysis has completed.
+Required=false
+Default=false
+DisableIfBlank=false
+
+[DesignConcreteFrame]
+Type=boolean
+Label=Concrete Frame Design
+Category=Design Options
+CategoryOrder=2
+Index=1
+Description=Perform concrete frame design after the analysis has completed.
+Required=false
+Default=false
+DisableIfBlank=false
+
+[DesignAluminiumFrame]
+Type=boolean
+Label=Aluminium Frame Design
+Category=Design Options
+CategoryOrder=2
+Index=2
+Description=Perform aluminium frame design after the analysis has completed.
+Required=false
+Default=false
+DisableIfBlank=false
+
+[DesignColdFormedFrame]
+Type=boolean
+Label=Cold Formed Frame Design
+Category=Design Options
+CategoryOrder=2
+Index=3
+Description=Perform cold frame design after the analysis has completed.
+Required=false
+Default=false
+DisableIfBlank=false
+
+[DeletionOption]
+Type=enum
+Label=Temp File Deletion
+Category=Deletion Option
+CategoryOrder=3
+Index=0
+Description=Choose a deletion option to clean-up the analysis/log/out files if required.
+Required=false
+DisableIfBlank=false
+
+[IncludeDataFile]
+Type=boolean
+Label=Include Data File
+Category=Extra Options
+CategoryOrder=4
+Index=0
+Description=If enabled, the output zip file will contain the data file OR if outputting to a directory path, the data file will be included.
+Required=true
+Default=true
+DisableIfBlank=false
+
+[CompressOutput]
+Type=boolean
+Label=Compress (ZIP) Output
+Category=Extra Options
+CategoryOrder=4
+Index=1
+Description=Automatically compress the output to a single zip file.
+Required=true
+Default=true
+DisableIfBlank=false
+
+[CommandLineArgs]
+Type=String
+Label=Command Line Args
+Category=Extra Options
+CategoryOrder=4
+Index=2
+Description=Additional command line flags/options can be added here if required.
+Required=true
+Default=
+DisableIfBlank=false

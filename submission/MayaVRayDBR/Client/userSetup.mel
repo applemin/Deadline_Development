@@ -1,0 +1,1 @@
+if( startsWith( `whatIs DeadlineMayaVRayDBRClient`, "Mel procedure found in" ) ){ DeadlineMayaVRayDBRClient(); }else{ warning( "DeadlineMayaVRayDBRClient either has errors or has not been installed." ); }

@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RhinoUI major_ver="2" minor_ver="0" guid="0ad692f6-ebab-4699-bd54-093987ca2c0d" localize="False" default_language_id="1033">
+  <extend_rhino_menus>
+    <menu guid="d58ceae7-fdb0-4104-80da-274b94ad44a9">
+      <text>
+        <locale_1033>Extend Rhino Menus</locale_1033>
+      </text>
+    </menu>
+  </extend_rhino_menus>
+  <menus />
+  <tool_bar_groups>
+    <tool_bar_group guid="23beaf84-8609-4842-b190-1a8e3bb6f00a" dock_bar_guid32="00000000-0000-0000-0000-000000000000" dock_bar_guid64="e6f24714-9a08-49e6-a1ca-e9504f874249" active_tool_bar_group="2300ba37-531b-4c50-83a8-c6580995721d" single_file="False" hide_single_tab="False" point_floating="646,739">
+      <text>
+        <locale_1033>Deadline V-Ray DBR</locale_1033>
+      </text>
+      <tool_bar_group_item guid="2300ba37-531b-4c50-83a8-c6580995721d" major_version="1" minor_version="1">
+        <text>
+          <locale_1033>Deadline V-Ray DBR</locale_1033>
+        </text>
+        <tool_bar_id>309f7df2-5d2e-4f44-ab6d-ccfe78b4282b</tool_bar_id>
+      </tool_bar_group_item>
+      <dock_bar_info dock_bar="False" docking="True" horz="False" visible="True" floating="True" mru_float_style="4096" bar_id="59465" mru_width="32767" point_pos="-2,-2" float_point="646,739" rect_mru_dock_pos="0,0,0,0" dock_location_u="0" dock_location="left" float_size="43,58" />
+    </tool_bar_group>
+  </tool_bar_groups>
+  <tool_bars>
+    <tool_bar guid="309f7df2-5d2e-4f44-ab6d-ccfe78b4282b" bitmap_id="ddf67b89-56e7-4a06-ba9c-94f1977e21a5" item_display_style="text_only">
+      <text>
+        <locale_1033>Deadline V-Ray DBR</locale_1033>
+      </text>
+      <tool_bar_item guid="90716f72-ab11-4a7d-9053-5b3dc0cd715a" button_display_mode="control_only" display_style_from_parent="False" button_style="normal">
+        <text>
+          <locale_1033>Toolbar item</locale_1033>
+        </text>
+        <left_macro_id>4b6fc193-8caf-4a8f-bd29-b7d6bd158bab</left_macro_id>
+      </tool_bar_item>
+    </tool_bar>
+  </tool_bars>
+  <macros>
+    <macro_item guid="4b6fc193-8caf-4a8f-bd29-b7d6bd158bab" bitmap_id="7210fa27-fff2-4fd0-9294-d72bd5bdf5ef">
+      <text>
+        <locale_1033>Deadline.Submit V-Ray to Deadline</locale_1033>
+      </text>
+      <tooltip>
+        <locale_1033>Submit V-Ray DBR To Deadline</locale_1033>
+      </tooltip>
+      <help_text>
+        <locale_1033>Submit V-Ray DBR To Deadline</locale_1033>
+      </help_text>
+      <button_text>
+        <locale_1033>Submit V-Ray DBR To Deadline</locale_1033>
+      </button_text>
+      <menu_text>
+        <locale_1033>Submit V-Ray DBR To Deadline</locale_1033>
+      </menu_text>
+      <script>_Save
+-_RunPythonScript (
+import os
+import sys
+import subprocess
+import traceback
+
+def GetDeadlineCommand():
+    deadlineBin = ""
+    try:
+        deadlineBin = os.environ['DEADLINE_PATH']
+    except KeyError:
+        #if the error is a key error it means that DEADLINE_PATH is not set. however Deadline command may be in the PATH or on OSX it could be in the file /Users/Shared/Thinkbox/DEADLINE_PATH
+        pass
+        
+    # On OSX, we look for the DEADLINE_PATH file if the environment variable does not exist.
+    if deadlineBin == "" and  os.path.exists( "/Users/Shared/Thinkbox/DEADLINE_PATH" ):
+        with open( "/Users/Shared/Thinkbox/DEADLINE_PATH" ) as f:
+            deadlineBin = f.read().strip()
+
+    deadlineCommand = os.path.join(deadlineBin, "deadlinecommand")
+    
+    return deadlineCommand
+
+def GetRepositoryPath(subdir = None):
+    deadlineCommand = GetDeadlineCommand()
+    
+    startupinfo = None
+    if os.name == 'nt':
+        # Python 2.6 has subprocess.STARTF_USESHOWWINDOW, and Python 2.7 has subprocess._subprocess.STARTF_USESHOWWINDOW, so check for both.
+        if hasattr( subprocess, '_subprocess' ) and hasattr( subprocess._subprocess, 'STARTF_USESHOWWINDOW' ):
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess._subprocess.STARTF_USESHOWWINDOW
+        elif hasattr( subprocess, 'STARTF_USESHOWWINDOW' ):
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+    
+    args = [deadlineCommand, "-GetRepositoryPath"]
+    if subdir != None and subdir != "":
+        args.append(subdir)
+
+    proc = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, startupinfo=startupinfo)
+    proc.stdin.close()
+    proc.stderr.close()
+    
+    path = proc.stdout.read()
+    path = path.replace("\n","").replace("\r","")
+    return path
+
+# Get the repository path
+path = GetRepositoryPath("submission/RhinoVRayDBR/Main")
+if path != "":
+    path = path.replace( "\\", "/" )
+    
+    # Add the path to the system path
+    if path not in sys.path :
+        print "Appending \"" + path + "\" to system path to import SubmitRhinoVRayDBRToDeadline module"
+        sys.path.append( path )
+    else:
+        print( "\"%s\" is already in the system path" % path )
+
+    # Import the script and call the main() function
+    try:
+        import SubmitRhinoVRayDBRToDeadline
+        SubmitRhinoVRayDBRToDeadline.SubmitToDeadline()
+    except:
+        print( "The SubmitRhinoVRayDBRToDeadline.py script could not be found in the Deadline Repository. Please make sure that the Deadline Client has been installed on this machine, that the Deadline Client bin folder is set in the DEADLINE_PATH environment variable, and that the Deadline Client has been configured to point to a valid Repository.\n%s" % traceback.format_exc() )
+else:
+    print( "The SubmitRhinoVRayDBRToDeadline.py script could not be found in the Deadline Repository. Please make sure that the Deadline Client has been installed on this machine, that the Deadline Client bin folder is set in the DEADLINE_PATH environment variable, and that the Deadline Client has been configured to point to a valid Repository." )
+)</script>
+    </macro_item>
+  </macros>
+  <bitmaps>
+    <small_bitmap item_width="16" item_height="16">
+      <bitmap_item guid="ddf67b89-56e7-4a06-ba9c-94f1977e21a5" index="0" />
+      <bitmap_item guid="7210fa27-fff2-4fd0-9294-d72bd5bdf5ef" index="1" />
+      <bitmap>iVBORw0KGgoAAAANSUhEUgAAADAAAAAQCAYAAABQrvyxAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZSURBVEhL7cEBAQAAAIIg/69uSEAAAMCpGgwQ
+AAEF2CEFAAAAAElFTkSuQmCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</bitmap>
+    </small_bitmap>
+    <normal_bitmap item_width="24" item_height="24">
+      <bitmap_item guid="ddf67b89-56e7-4a06-ba9c-94f1977e21a5" index="0" />
+      <bitmap_item guid="7210fa27-fff2-4fd0-9294-d72bd5bdf5ef" index="1" />
+      <bitmap>iVBORw0KGgoAAAANSUhEUgAAAEgAAAAYCAYAAABZY7uwAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAN/SURBVFhH5ZhfSFNRHMd96CGIXiL8j383UEdC
+XmfElFXzD7pGsTkTl7qaWKSiQyJy03NnEpNAkurBMOglCKkXIyhS71FEHwp6qLdeegvysV7U7fz6
+ndOZaG5kPQje+4Mvd7v33N84n31/53fuTduvAI2ciVH1/fdZsgFUhb1qjaqbeN8nvL9WptJfMBo+
+uUnVL6/GO2G7VqaDsPpkEN5NdsNstB1e3/OjrmxpJygS25wnTTKlvoItqj4+wdzcXOAqKioCV38/
+BAJD0NfXB17vLaipaYb8/HxxLaHtgLjiNDIhU+orGCU3+AQ5nIKCAgQTgM7OTujunoJgcBSP3Xh8
+AA6HYwtOXl7ebkCa+kim1FdsB+SsuwxRfxNkZ2eDy+UCn88H7e3tcMlZDwOhm1Bb64WKigoB0nCA
+LAjEffY8RL0KpKenQ05OjgBVXFwMY846aLBVCVfZbDaorq42HiA+eZPJBFMSEHeU2WyGD1hi/JiZ
+mQkKjuHucbn6jQeot3cCMjIyYDJggdMlJVBmyoeHLeXgLC0VsLh42ZXid4/HY0xAvKQCVRaYQRdd
+rS+FkMciznE4WVlZUN3RIRZpp9NpPEAKlpLFYhEwYEqBmagCVqtpyz1cvAx5iSler/EA8XWmuWcA
+16EyCF44AaGu37C4CgsLhWt4edls9aAoduMB4iB4G2/pHQa73Q6VlSWig1mtVnC73QhFgYaGBrEf
+MmSbT7ilsbFRlBLfLJ7r6hJguHPa2sLic2Kc4QBd99RsacBXD6Nj/TAlNRm+Bn2tjh1jflDyk2nq
+bTZP3AjnGT5q3JUp9RUJQP+quEae4lN8ASwSP3s7eIQt3ymWKfUV/wsI4VzcRPFXJHGqamx5/KhM
+qa9IBWidqt8YVUOMRqxsPmzZJXQN0Ig3MT6+QBYYHbbKtPqJVICwhO4zGjbHKXkMlMwkU2yBrCTG
+r70gLEbJZwTqkqn1EakA4WTbUEPJrv1N/F6Z/uBHKkB4vgXdMJLs2t+E7pvGNeqQ/ImDHSkdtKj2
+MI0087eNya6nUoyqq2yJlMv0Bz/wn/YnmyjubV6KhVgjx0U7T6I/4aJznsu0+gm2FDm1QcnX7RPl
+WtPUdexMs+iiAQ5il+aGcmJ0xIudTmwacT8UZW/IMZlWP4FOOIwTbsFuNce70F7FFoYduEbVYUl9
+jGmklbtNptynSEv7BT9Py7Zb/W7EAAAAAElFTkSuQmCC</bitmap>
+    </normal_bitmap>
+    <large_bitmap item_width="32" item_height="32">
+      <bitmap_item guid="ddf67b89-56e7-4a06-ba9c-94f1977e21a5" index="0" />
+      <bitmap_item guid="7210fa27-fff2-4fd0-9294-d72bd5bdf5ef" index="1" />
+      <bitmap>iVBORw0KGgoAAAANSUhEUgAAAGAAAAAgCAYAAADtwH1UAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAjSURBVGhD7cEBDQAAAMKg909tDjcgAAAAAAAA
+AAAAAADgXA0wIAABCBTZbAAAAABJRU5ErkJgggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</bitmap>
+    </large_bitmap>
+  </bitmaps>
+  <scripts />
+</RhinoUI>

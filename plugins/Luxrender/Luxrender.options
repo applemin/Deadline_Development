@@ -1,0 +1,17 @@
+[SceneFile]
+Type=filename
+Label=LXS Filename
+Category=Render Options
+Index=0
+Description=The lxs filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[Threads]
+Type=integer
+Label=Threads
+Category=Render Options
+Index=1
+Description=Number of threads to use. Specify 0 to use as many threads as there are CPUs.
+Required=false
+DisableIfBlank=true

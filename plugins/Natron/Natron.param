@@ -1,0 +1,44 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Natron Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[RenderExecutable0_9]
+Type=multilinemultifilename
+Category=Natron Render Executables
+CategoryOrder=0
+CategoryIndex=0
+Label=Natron Renderer 0.9 Executable
+Default=C:\Program Files\INRIA\Natron\bin\NatronRenderer.exe;C:\Program Files (x86)\INRIA\Natron\bin\NatronRenderer.exe;/usr/local/Natron/NatronRenderer;/Applications/Natron.app/Contents/MacOS/NatronRenderer
+Description=The path to the NatronRenderer 0.9 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable1_0]
+Type=multilinemultifilename
+Category=Natron Render Executables
+CategoryOrder=0
+CategoryIndex=1
+Label=Natron Renderer 1.0 Executable
+Default=C:\Program Files\INRIA\Natron\bin\NatronRenderer.exe;C:\Program Files (x86)\INRIA\Natron\bin\NatronRenderer.exe;/usr/local/Natron/NatronRenderer;/Applications/Natron.app/Contents/MacOS/NatronRenderer
+Description=The path to the NatronRenderer 1.0 executable file used for rendering. Enter alternative paths on separate lines.
+
+[EnablePathMapping]
+Type=boolean
+Category=Path Mapping (For Mixed Farms)
+CategoryOrder=1
+CategoryIndex=0
+Label=Enable Path Mapping
+Default=true
+Description=If enabled, a temporary Natron project file will be created locally on the slave for rendering because Deadline does the path mapping directly in the Natron project file. This feature can be turned off if there are no Path Mapping entries defined in the Repository Options.

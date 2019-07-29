@@ -1,0 +1,25 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=VDenoise Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[VDenoise_RenderExecutable]
+Type=multilinemultifilename
+Label=VDenoise Executable
+Category=Render Executables
+CategoryOrder=0
+Default=
+Description=The path to the VDenoise executable file used for filtering. Enter alternative paths on separate lines.

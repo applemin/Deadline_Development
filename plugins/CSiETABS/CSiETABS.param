@@ -1,0 +1,35 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=CSi ETABS Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[ETABS_Executable2013]
+Type=multilinemultifilename
+Label=ETABS 2013 Executable
+Category=Executables
+CategoryOrder=0
+Index=0
+Default=C:\Program Files (x86)\Computers and Structures\ETABS 2013\ETABS.exe;C:\Program Files\Computers and Structures\ETABS 2013\ETABS.exe
+Description=The path to the ETABS 2013 executable file used for simulating. Enter alternative paths on separate lines.
+
+[ETABS_Executable2014]
+Type=multilinemultifilename
+Label=ETABS 2014 Executable
+Category=Executables
+CategoryOrder=0
+Index=1
+Default=C:\Program Files (x86)\Computers and Structures\ETABS 2014\ETABS.exe;C:\Program Files\Computers and Structures\ETABS 2014\ETABS.exe
+Description=The path to the ETABS 2014 executable file used for simulating. Enter alternative paths on separate lines.

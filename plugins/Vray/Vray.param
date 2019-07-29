@@ -1,0 +1,52 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=V-Ray Standalone Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[VRay_RenderExecutable]
+Label=V-Ray Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc14\vray.exe;C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc101\vray.exe;C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc11\vray.exe;/usr/ChaosGroup/V-Ray/Standalone_for_linux_x64/bin/linux_x64/gcc-4.6/vray;/Applications/ChaosGroup/V-Ray/Standalone_for_mavericks_x64/bin/mavericks_x64/gcc-4.2/vray;/usr/autodesk/mayaIO2017/vray/bin/vray
+Description=The path to the V-Ray executable file used for rendering. Enter alternative paths on separate lines.
+
+[EnableVrscenePathMapping]
+Type=boolean
+Category=Path Mapping For vrscene Files (For Mixed Farms)
+CategoryOrder=2
+CategoryIndex=0
+Label=Enable Path Mapping For vrscene Files
+Default=true
+Description=If enabled, a temporary vrscene file will be created locally on the slave for rendering and Deadline will do path mapping directly in the vrscene file.
+
+[DisableProgressColor]
+Type=boolean
+Category=Vray Progress Color
+CategoryOrder=3
+CategoryIndex=0
+Label=Disable Progress Color
+Default=False
+Description=V-Ray progress color is enabled by default. Disabling V-Ray progress color can help prevent crashes in some newer versions of windows.
+
+[LimitThreadsToCPUAffinity]
+Type=boolean
+Category=CPU Affinity
+CategoryOrder=4
+CategoryIndex=0
+Label=Limit Threads to CPU Affinity
+Description=If enabled, the number of render threads will be limited based on the slaves CPU affinity.
+Default=false

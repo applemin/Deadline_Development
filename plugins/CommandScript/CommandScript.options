@@ -1,0 +1,44 @@
+[StartupDirectory]
+Type=folder
+Label=Startup Directory
+Category=Command Script Options
+CategoryOrder=0
+Index=0
+Description=The directory to start the command script in (leave blank to use default).
+Required=true
+DisableIfBlank=false
+Default=
+
+[ShellExecute]
+Type=boolean
+Label=Execute In Shell
+Category=Command Script Options
+CategoryOrder=0
+Index=1
+Description=If enabled, the specified command(s) will be executed through the current shell.
+Required=true
+DisableIfBlank=false
+Default=false
+
+[Shell]
+Type=enum
+Values=default;bash;csh;ksh;sh;tcsh;zsh;cmd
+Label=Shell To Use
+CategoryOrder=0
+Index=2
+Category=Command Script Options
+Description=Specify the SHELL to use or use the 'default' shell for the platform.
+Required=true
+DisableIfBlank=false
+Default=default
+
+[SingleFramesOnly]
+Type=boolean
+Label=Single Frames Only
+Category=Command Script Options
+CategoryOrder=0
+Index=2
+Description=If enabled, the plugin will only render one frame at a time even if a single task contains a chunk of frames.
+Required=true
+DisableIfBlank=false
+Default=true

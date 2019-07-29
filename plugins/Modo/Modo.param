@@ -1,0 +1,163 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=modo Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[RenderExecutable3]
+Type=multilinemultifilename
+Label=modo 3xx Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=0
+Default=C:\Program Files\Luxology\modo 302\modo_cl.exe;C:\Program Files (x86)\Luxology\modo 302\modo_cl.exe;/Applications/modo.app/Contents/MacOS/modo
+Description=The path to the modo command line executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable4]
+Type=multilinemultifilename
+Label=modo 4xx Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=1
+Default=C:\Program Files\Luxology\modo 401\modo_cl.exe;C:\Program Files (x86)\Luxology\modo 401\modo_cl.exe;/Applications/modo.app/Contents/MacOS/modo
+Description=The path to the modo command line executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable5]
+Type=multilinemultifilename
+Label=modo 5xx Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=2
+Default=C:\Program Files\Luxology\modo\501\modo_cl.exe;C:\Program Files (x86)\Luxology\modo\501\modo_cl.exe;/Applications/modo.app/Contents/MacOS/modo_cl
+Description=The path to the modo command line executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable6]
+Type=multilinemultifilename
+Label=modo 6xx Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=3
+Default=C:\Program Files\Luxology\modo\601\modo_cl.exe;C:\Program Files (x86)\Luxology\modo\601\modo_cl.exe;/Applications/modo.app/Contents/MacOS/modo_cl
+Description=The path to the modo command line executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable7]
+Type=multilinemultifilename
+Label=modo 7xx Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=4
+Default=C:\Program Files\Luxology\modo\701\modo_cl.exe;C:\Program Files (x86)\Luxology\modo\701\modo_cl.exe;/Applications/modo.app/Contents/MacOS/modo_cl
+Description=The path to the modo command line executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable8]
+Type=multilinemultifilename
+Label=modo 8xx Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=5
+Default=C:\Program Files\Luxology\modo\801\modo_cl.exe;C:\Program Files (x86)\Luxology\modo\801\modo_cl.exe;/Applications/modo.app/Contents/MacOS/modo_cl
+Description=The path to the modo command line executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable9]
+Type=multilinemultifilename
+Label=modo 9xx Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=6
+Default=C:\Program Files\Luxology\modo\901\modo_cl.exe;C:\Program Files (x86)\Luxology\modo\901\modo_cl.exe;/Applications/modo.app/Contents/MacOS/modo_cl
+Description=The path to the modo command line executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable10]
+Type=multilinemultifilename
+Label=modo 10xx Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=6
+Default=C:\Program Files\Luxology\modo\10.0v1\modo_cl.exe;C:\Program Files (x86)\Luxology\modo\10.0v1\modo_cl.exe;/Applications/modo.app/Contents/MacOS/modo_cl
+Description=The path to the modo command line executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable11]
+Type=multilinemultifilename
+Label=modo 11xx Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=7
+Default=C:\Program Files\Luxology\modo\11.0v1\modo_cl.exe;C:\Program Files (x86)\Luxology\modo\11.0v1\modo_cl.exe;/Applications/modo.app/Contents/MacOS/modo_cl;/home/ec2-user/Modo11.2v1/modo_cl
+Description=The path to the modo command line executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable12]
+Type=multilinemultifilename
+Label=modo 12xx Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=8
+Default=C:\Program Files\Foundry\Modo\12.0v1\modo_cl.exe;C:\Program Files (x86)\Foundry\modo\12.0v1\modo_cl.exe;/Applications/modo.app/Contents/MacOS/modo_cl
+Description=The path to the modo command line executable file used for rendering. Enter alternative paths on separate lines.
+
+[GeoCacheEnabled]
+Type=boolean
+Label=Auto Set Geometry Cache
+Category=Geometry Cache
+CategoryOrder=1
+Index=0
+Default=False
+Description=Enable this option to have Deadline automatically set the modo geometry cache before rendering (based on the geometry cache buffer below).
+
+[GeoCacheBuffer]
+Type=integer
+Minumum=0
+Maximum=9999999
+Label=Geometry Cache Buffer (MB)
+Category=Geometry Cache
+CategoryOrder=1
+Index=1
+Default=512
+Description=When auto-setting the geometry cache, Deadline subtracts this buffer amount from the system's total memory to calculate what the geometry cache should be set to.
+
+[EnablePathMapping]
+Type=boolean
+Category=Path Mapping (For Mixed Farms)
+CategoryOrder=3
+CategoryIndex=0
+Label=Enable Path Mapping
+Default=true
+Description=If enabled, a temporary modo file will be created locally on the slave for rendering because Deadline does the path mapping directly in the modo file. This feature can be turned off if there are no Path Mapping entries defined in the Repository Options.
+
+[ResolvePathAliases]
+Type=boolean
+Category=Path Mapping (For Mixed Farms)
+CategoryOrder=3
+CategoryIndex=1
+Label=Resolve Path Aliases
+Default=True
+Description=If enabled, paths in the modo file will have their path aliases replaced with the path as defined on the submitting machine before pathmapping is applied.
+
+[MassagePaths]
+Type=boolean
+Category=Path Mapping (For Mixed Farms)
+CategoryOrder=3
+CategoryIndex=2
+Label=Massage modo Paths
+Default=true
+Description=If enabled, paths in the modo file will be massaged to look like regular paths before being fed into Deadline's path mapping system. For example, a path that starts with "server:share/" within the modo file will be massaged to start with "//server/share/" before path mapping is applied.
+
+[LimitThreadsToCPUAffinity]
+Type=boolean
+Category=CPU Affinity
+CategoryOrder=4
+CategoryIndex=0
+Label=Limit Threads to CPU Affinity
+Default=false
+Description=If enabled, the number of render threads will be limited based on the slaves CPU affinity.

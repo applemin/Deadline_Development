@@ -1,0 +1,25 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=EnergyPlus Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[EnergyPlus_Executable]
+Type=multilinemultifilename
+Label=EnergyPlus Executable
+Category=Executables
+CategoryOrder=0
+Default=C:\EnergyPlusV8-1-0\EnergyPlus.exe
+Description=The path to the EnergyPlus executable file used for simulating. Enter alternative paths on separate lines.

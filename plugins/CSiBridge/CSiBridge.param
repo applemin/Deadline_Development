@@ -1,0 +1,44 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=CSi Bridge Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[Bridge_Executable15]
+Type=multilinemultifilename
+Label=Bridge 15 Executable
+Category=Executables
+CategoryOrder=0
+Index=0
+Default=C:\Program Files (x86)\Computers and Structures\CSiBridge 15\CSiBridge.exe;C:\Program Files\Computers and Structures\CSiBridge 15\CSiBridge.exe
+Description=The path to the Bridge 15 executable file used for simulating. Enter alternative paths on separate lines.
+
+[Bridge_Executable2014]
+Type=multilinemultifilename
+Label=Bridge 2014 Executable
+Category=Executables
+CategoryOrder=0
+Index=1
+Default=C:\Program Files (x86)\Computers and Structures\CSiBridge 2014\CSiBridge.exe;C:\Program Files\Computers and Structures\CSiBridge 2014\CSiBridge.exe
+Description=The path to the Bridge 2014 executable file used for simulating. Enter alternative paths on separate lines.
+
+[Bridge_Executable2015]
+Type=multilinemultifilename
+Label=Bridge 2015 Executable
+Category=Executables
+CategoryOrder=0
+Index=2
+Default=C:\Program Files (x86)\Computers and Structures\CSiBridge 2015\CSiBridge.exe;C:\Program Files\Computers and Structures\CSiBridge 2015\CSiBridge.exe
+Description=The path to the Bridge 2015 executable file used for simulating. Enter alternative paths on separate lines.

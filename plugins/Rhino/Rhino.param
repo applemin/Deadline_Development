@@ -1,0 +1,53 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Rhino Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Rhino_RenderExecutable4]
+Label=Rhino 4 Executable
+Category=Render Executables
+CategoryOrder=0
+Index=0
+Type=multilinemultifilename
+Default=C:\Program Files\Rhinoceros 4.0\System\Rhino4.exe;C:\Program Files (x86)\Rhinoceros 4.0\System\Rhino4.exe
+Description=The path to the Rhino 4 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Rhino_RenderExecutable5]
+Label=Rhino 5 Executable
+Category=Render Executables
+CategoryOrder=0
+Index=1
+Type=multilinemultifilename
+Default=C:\Program Files\Rhinoceros 5 (64-bit)\System\Rhino.exe;C:\Program Files\Rhinoceros 5.0\System\Rhino.exe;C:\Program Files (x86)\Rhinoceros 5.0\System\Rhino.exe
+Description=The path to the Rhino 5 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Rhino_RenderExecutable6]
+Label=Rhino 6 Executable
+Category=Render Executables
+CategoryOrder=0
+Index=2
+Type=multilinemultifilename
+Default=C:\Program Files\Rhino 6\System\Rhino.exe
+Description=The path to the Rhino 6 executable file used for rendering. Enter alternative paths on separate lines.
+
+[SleepTime]
+Type=integer
+Label=SleepTime
+Category=Render Options
+CategoryOrder=1
+Index=0
+Default=5
+Description=Amount of time, in seconds, to wait before checking if the Maxwell process is still running.

@@ -1,0 +1,22 @@
+[Version]
+Type=enum
+Values=7.0;8.0;9.0;9.1;9.2;10.0;10.1;10.2;11.0
+Label=VRED Version
+Category=Global Settings
+CategoryOrder=0
+CategoryIndex=0
+Description=The version of VRED to use.
+Required=false
+DisableIfBlank=true
+
+[Port]
+Type=integer
+Label=Port Number
+Minimum=1024
+Maximum=65535
+Category=Cluster Settings
+CategoryOrder=1
+CategoryIndex=0
+Description=The port number to access the cluster service.
+Required=false
+DisableIfBlank=true

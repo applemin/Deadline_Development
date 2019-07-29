@@ -1,0 +1,41 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Terragen Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Terragen2_RenderExecutable]
+Type=multilinemultifilename
+Label=Terragen CLI Executable
+Category=Terragen 2 Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Planetside Software\Terragen 2 Technology Preview (Deep)\tgdcli.exe;C:\Program Files (x86)\Planetside Software\Terragen 2 Technology Preview (Deep)\tgdcli.exe;/Applications/Terragen/Terragen.app/Contents/MacOS/TerragenCLI
+Description=The path to the Terragen executable file used for rendering. Enter alternative paths on separate lines.
+
+[Terragen3_RenderExecutable]
+Type=multilinemultifilename
+Label=Terragen 3 CLI Executable
+Category=Terragen 3 Render Executables
+CategoryOrder=1
+Default=C:\Program Files\Planetside Software\Terragen 3\tgdcli.exe;C:\Program Files (x86)\Planetside Software\Terragen 3\tgdcli.exe;/Applications/Terragen 3/Terragen 3.app/Contents/MacOS/Terragen 3
+Description=The path to the Terragen 3 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Terragen4_RenderExecutable]
+Type=multilinemultifilename
+Label=Terragen 4 CLI Executable
+Category=Terragen 4 Render Executables
+CategoryOrder=2
+Default=C:\Program Files\Planetside Software\Terragen 4\tgdcli.exe;C:\Program Files (x86)\Planetside Software\Terragen 4\tgdcli.exe;/Applications/Terragen 4/Terragen 4.app/Contents/MacOS/Terragen 4
+Description=The path to the Terragen 3 executable file used for rendering. Enter alternative paths on separate lines.

@@ -1,0 +1,46 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[OverrideOutputBox]
+Type=boolean
+Label=Override Output Path
+Category=Output Options
+Index=0
+Description=Whether or not to override the output path specified in the scene.
+Required=false
+DisableIfBlank=true
+
+[OutputPath]
+Type=string
+Label=Output Path
+Category=Output Options
+Index=1
+Description=The output filename path.
+Required=false
+DisableIfBlank=true
+Default=
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Vue Build To Force
+Category=Render Options
+Index=0
+Description=The build of Vue to force
+Required=false
+DisableIfBlank=true
+
+[Animation]
+Type=boolean
+Label=Render Animation Sequence
+Category=Render Options
+Index = 1
+Description=If unchecked, a frame will not be passed to Vue, and it will instead rely on the scene settings to determine what to render.
+Required=false
+DisableIfBlank=true

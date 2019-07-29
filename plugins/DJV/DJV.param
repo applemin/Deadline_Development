@@ -1,0 +1,62 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=DJV Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[djvExecutable082]
+Type=multilinemultifilename
+Category=DJV Executables
+CategoryOrder=0
+CategoryIndex=0
+Label=djv_convert 0.8.2 Executable
+Default=C:\Program Files (x86)\djv 0.8.2\bin\djv_convert.exe;C:\Program Files\djv 0.8.2\bin\djv_convert.exe
+Description=The path to the djv_convert executable file used for processing. Enter alternative paths on separate lines.
+
+[djvExecutable083]
+Type=multilinemultifilename
+Category=DJV Executables
+CategoryOrder=0
+CategoryIndex=1
+Label=djv_convert 0.8.3 Executable
+Default=C:\Program Files (x86)\djv 0.8.3\bin\djv_convert.exe;C:\Program Files\djv 0.8.3\bin\djv_convert.exe
+Description=The path to the djv_convert executable file used for processing. Enter alternative paths on separate lines.
+
+[djvExecutable090]
+Type=multilinemultifilename
+Category=DJV Executables
+CategoryOrder=0
+CategoryIndex=2
+Label=djv_convert 0.9.0 Executable
+Default=C:\Program Files (x86)\djv 0.9.0\bin\djv_convert.exe;C:\Program Files\djv 0.9.0\bin\djv_convert.exe
+Description=The path to the djv_convert executable file used for processing. Enter alternative paths on separate lines.
+
+[djvExecutable101]
+Type=multilinemultifilename
+Category=DJV Executables
+CategoryOrder=0
+CategoryIndex=3
+Label=djv_convert 1.0.1 Executable
+Default=C:\Program Files (x86)\djv-1.0.1-Windows-32\bin\djv_convert.exe;C:\Program Files\djv-1.0.1-Windows-64\bin\djv_convert.exe
+Description=The path to the djv_convert executable file used for processing. Enter alternative paths on separate lines.
+
+[djvExecutable110]
+Type=multilinemultifilename
+Category=DJV Executables
+CategoryOrder=0
+CategoryIndex=4
+Label=djv_convert 1.1.0 Executable
+Default=C:\Program Files\djv-1.1.0-Windows-64\bin\djv_convert.exe
+Description=The path to the djv_convert executable file used for processing. Enter alternative paths on separate lines.

@@ -1,0 +1,97 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[OutputFolder]
+Type=folder
+Label=Output Folder
+Category=Rendering Options
+Index=0
+Description=Override the output folder where the buffers will be saved. This is optional, and can be left blank. Note that when specified, all enabled buffers will be saved to this folder.
+Required=false
+DisableIfBlank=true
+
+[Width]
+Type=integer
+Minimum=0
+Label=Image Width
+Category=Output Options
+Index=1
+Description=The width of the image in pixels (specify 0 to use the default width)
+Required=false
+DisableIfBlank=true
+
+[Height]
+Type=integer
+Minimum=0
+Label=Image Height
+Category=Output Options
+Index=2
+Description=The height of the image in pixels (specify 0 to use the default height)
+Required=false
+DisableIfBlank=true
+
+[ContentFolder]
+Type=folder
+Label=Content Folder
+Category=Rendering Options
+Index=0
+Description=The content folder that contains the assets used by the scene file. Using a content folder is recommended for network rendering, but can be left blank.
+Required=false
+DisableIfBlank=true
+
+[Threads]
+Type=integer
+Minimum=0
+Maximum=32
+Label=Threads
+Category=Rendering Options
+Index=2
+Description=The number of threads to use for rendering.
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build To Force
+Category=Rendering Options
+Index=3
+Description=The build of Blender to force.
+Required=false
+DisableIfBlank=true
+
+[OverrideAntialiasing]
+Type=boolean
+Label=Override Antialiasing Settings
+Category=Antialiasing Options
+Index=0
+Description=Enable to override the antialiasing mode and level.
+Required=false
+DisableIfBlank=true
+
+[AntialiasingMode]
+Type=enum
+Values=Off;Adaptive;Enhanced
+Label=Antialiasing Mode
+Category=Antialiasing Options
+Index=1
+Description=The antialiasing mode to use.
+Required=false
+DisableIfBlank=true
+
+[AntialiasingLevel]
+Type=integer
+Minimum=1
+Maximum=10
+Label=Threads
+Category=Antialiasing Options
+Index=2
+Description=The antialiasing level.
+Required=false
+DisableIfBlank=true

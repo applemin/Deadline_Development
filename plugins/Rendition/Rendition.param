@@ -1,0 +1,25 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Rendition Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Rendition_RenderExecutable]
+Type=multilinemultifilename
+Label=Rendition Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Rendition\Rendition.exe;C:\Program Files (x86)\Rendition\Rendition.exe;/usr/local/Rendition/Rendition;/Applications/Rendition.app/Contents/MacOS/Rendition
+Description=The path to the Rendition executable file used for rendering. Enter alternative paths on separate lines.

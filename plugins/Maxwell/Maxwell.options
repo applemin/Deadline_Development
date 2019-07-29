@@ -1,0 +1,211 @@
+[MxiFile]
+Type=FilenameSave
+Label=MXI File
+Category=Output Options
+Index=0
+Description=Optionally configure the output path for the MXI file which can be used to resume the render later. Note that this is required for co-op rendering though.
+Required=false
+DisableIfBlank=true
+
+[ResumeFromMxiFile]
+Type=Boolean
+Label=Resume Rendering From MXI File
+Category=Output Options
+Index=0
+Description=If enabled, Maxwell will use the specified MXI file to resume the render if it exists. If you suspend the job in Deadline, it will pick up from where it left off when it resumes.
+Required=false
+DisableIfBlank=true
+
+[OutputFile]
+Type=FilenameSave
+Label=Output File
+Category=Output Options
+Index=2
+Description=Optionally configure the output path for the image file (leave blank to use the default).
+Required=false
+DisableIfBlank=true
+
+[Version]
+Type=label
+Category=Render Options
+Index=0
+Description=The version of Maxwell
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build To Force
+Category=Render Options
+Index=1
+Description=The build of Maxwell to force
+Required=false
+DisableIfBlank=true
+
+[Verbosity]
+Type=enum
+Values=None;Errors;Warnings;Info;All
+Label=Verbosity
+Category=Render Options
+Index=2
+Description=The verbosity level. For Deadline to report render progress, use Info or All.
+Required=false
+DisableIfBlank=true
+
+[RenderThreads]
+Type=Integer
+Minimum=0
+Maximum=256
+Label=Render Threads
+Category=Render Options
+Index=3
+Description=The number of threads to use for the render (specify 0 to use the maximum number of threads available)
+Required=false
+DisableIfBlank=true
+
+[CommandLineOptions]
+Type=String
+Label=Additional Arguments
+Category=Command Line Options
+Index=0
+Description=Additional command line arguments to be passed to the renderer.
+Required=false
+DisableIfBlank=false
+Default=
+
+[CoopSeed]
+Type=Label
+Label=Seed
+Category=Cooperative Rendering
+Description=The seed value for this job.
+Required=false
+DisableIfBlank=true
+
+[OverrideTime]
+Type=Boolean
+Label=Override Time
+Category=Overrides
+Index=0
+Description=Enable this option to override the Time setting in the Maxwell file.
+Required=false
+DisableIfBlank=true
+
+[OverrideTimeValue]
+Type=float
+Minimum=1
+Maximum=9999999
+DecimalPlaces=2
+Label=Time
+Category=Overrides
+Index=1
+Description=The Time override value (minutes).
+Required=false
+DisableIfBlank=true
+
+[OverrideSampling]
+Type=Boolean
+Label=Override Sampling
+Category=Overrides
+Index=2
+Description=Enable this option to override the Sampling setting in the Maxwell file.
+Required=false
+DisableIfBlank=true
+
+[OverrideSamplingValue]
+Type=float
+Minimum=0
+Maximum=50
+DecimalPlaces=2
+Label=Sampling
+Category=Overrides
+Index=3
+Description=The Sampling override value.
+Required=false
+DisableIfBlank=true
+
+[OverrideExtraSampling]
+Type=Boolean
+Label=Override Extra Sampling
+Category=Extra Sampling
+Index=0
+Description=If the extra sampling settings should be overridden.
+Required=false
+DisableIfBlank=true
+
+[ExtraSamplingEnabled]
+Type=Boolean
+Label=Enabled
+Category=Extra Sampling
+Index=1
+Description=If extra sampling is enabled.
+Required=false
+DisableIfBlank=true
+
+[ExtraSamplingLevel]
+Type=float
+Minimum=0
+Maximum=50
+DecimalPlaces=2
+Label=Sampling Level
+Category=Extra Sampling
+Index=2
+Description=The extra sampling level.
+Required=false
+DisableIfBlank=true
+
+[ExtraSamplingMask]
+Type=enum
+Values=Custom Alpha;Alpha;Bitmap
+Label=Mask
+Category=Extra Sampling
+Index=3
+Description=The extra sampling mask.
+Required=false
+DisableIfBlank=true
+
+[ExtraSamplingCustomAlphaName]
+Type=String
+Label=Custom Alpha
+Category=Extra Sampling
+Index=4
+Description=The custom alpha name that will be used for the extra sampling mask (if Mask is set to Custom Alpha).
+Required=false
+DisableIfBlank=false
+Default=
+
+[ExtraSamplingBitmapFile]
+Type=Filename
+Label=Bitmap File
+Category=Extra Sampling
+Index=5
+Description=The bitmap file that will be used for the extra sampling mask (if Mask is set to Bitmap).
+Required=false
+DisableIfBlank=true
+
+[ExtraSamplingInvertMask]
+Type=Boolean
+Label=Invert Mask
+Category=Extra Sampling
+Index=6
+Description=If the extra sampling alpha mask must be inverted.
+Required=false
+DisableIfBlank=true
+
+[FailOnMissingFiles]
+Type=Boolean
+Label=Fail On Missing Intermediate Files
+Category=Merge Options
+Index=0
+Description=Enable to have the merge job fail if there are co-op results that are missing.
+Required=false
+DisableIfBlank=true
+
+[DeleteFiles]
+Type=Boolean
+Label=Delete Intermediate Files
+Category=Merge Options
+Index=1
+Description=Enable to have Deadline automatically delete the individual co-op results after merging the final result.
+Required=false
+DisableIfBlank=true

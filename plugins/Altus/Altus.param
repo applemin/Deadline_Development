@@ -1,0 +1,60 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Altus Denoiser Plugin for Deadline
+Description=Not configurable.
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=1
+Default=True
+Description=Not configurable.
+
+[Altus_RenderExecutable_1]
+Type=multilinemultifilename
+Label=Altus Version 1 Executable
+Category=Render Executables
+CategoryOrder=0
+Index=0
+Default=C:\Program Files\Altus Denoiser\bin\altus-cli.exe;/usr/bin/altus
+Description=The path to the Altus version 1 executable file used for filtering. Enter alternative paths on separate lines.
+
+[Altus_RenderExecutable_2]
+Type=multilinemultifilename
+Label=Altus Version 2 Executable
+Category=Render Executables
+CategoryOrder=0
+Index=1
+Default=C:\Program Files\Altus Denoiser\bin\altus-cli.exe;/usr/bin/altus-cli;/Applications/altus-cli
+Description=The path to the Altus version 2 executable file used for filtering. Enter alternative paths on separate lines.
+
+[Verbose]
+Type=boolean
+Default=true
+Label=Altus 1.X Verbose Output
+Category=General
+CategoryOrder=1
+Index=0
+Description=For Altus 1.X. Enable verbose output when denoising.
+Required=true
+DisableIfBlank=false
+
+[VerbosityLevel]
+Label=Verbosity Level
+Category=General
+CategoryOrder=1
+Index=1
+Description=<body><p>Specify Altus' verbosity level when denoising Altus 2.X and up.<br/><br/> 0 to log only license status and error messages<br/>1 to log license, errors and info messages<br/>2 to log license, warnings, errors, info messages<br/>3 to log license, warnings, errors, info and debug messages</p></body>
+Type=Integer
+Default=2
+Minimum=0
+Maximum=3
+Required=true
+DisableIfBlank=false
+

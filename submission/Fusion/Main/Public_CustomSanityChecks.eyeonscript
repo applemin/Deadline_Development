@@ -1,0 +1,9 @@
+-- This file does whatever custom sanity checks you would like to run on submission.
+
+---- CUSTOM FRANTIC SANITY CHECK ----
+function CustomDeadlineSanityChecks(comp)
+    local message = ""
+    
+    return message
+end
+

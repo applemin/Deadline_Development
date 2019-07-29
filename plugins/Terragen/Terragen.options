@@ -1,0 +1,44 @@
+[ProjectFile]
+Type=filename
+Label=Project Filename
+Category=Terragen Options
+Index=0
+Description=The project filename as it exists on the network
+Required=false
+DisableIfBlank=false
+
+[RenderNode]
+Type=string
+Label=Master Render Node
+Category=Terragen Options
+Index=1
+Description=The master render node to use when rendering (must be the name of a render node in the project)
+Required=false
+DisableIfBlank=false
+
+[OutputFile]
+Type=filenamesave
+Label=Output Image Filename
+Category=Output Options
+Index=0
+Description=Set the renderer's output image filename
+Required=false
+DisableIfBlank=false
+
+[ExtraOutputFile]
+Type=filenamesave
+Label=Extra Output Image Filename
+Category=Output Options
+Index=1
+Description=Set the renderer's "extra output images" filename
+Required=false
+DisableIfBlank=false
+
+[LocalRendering]
+Type=boolean
+Label=Enable Local Rendering
+Category=Output Options
+Index=2
+Description=If this option is set to true, the slaves will render locally, and then copy the images to the network output directory on completion.
+Required=false
+DisableIfBlank=true

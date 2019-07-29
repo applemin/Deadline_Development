@@ -1,0 +1,116 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Fusion Cmd Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Fusion5RenderExecutable]
+Type=multilinemultifilename
+Label=Fusion 5 Render Executable
+Category=Fusion 5 Options
+CategoryOrder=0
+CategoryIndex=0
+Default=C:\Program Files\Fusion Render Slave\ConsoleSlave.exe;C:\Program Files (x86)\Fusion Render Slave\ConsoleSlave.exe
+Description=The path to the Fusion 5 Console Slave executable used for rendering. Enter alternative paths on separate lines.
+
+[Fusion5SlavePreferenceFile]
+Type=filename
+Label=Fusion 5 Slave Preference File
+Category=Fusion 5 Options
+CategoryOrder=0
+CategoryIndex=1
+Default=
+Description=The path to a global RenderSlave.prefs preference file that is copied over before starting the Render Slave. Leave blank to disable this feature.
+
+[Fusion6RenderExecutable]
+Type=multilinemultifilename
+Label=Fusion 6 Render Executable
+Category=Fusion 6 Options
+CategoryOrder=1
+CategoryIndex=0
+Default=C:\Program Files\eyeon\Render Slave 6.0\ConsoleSlave.exe;C:\Program Files (x86)\eyeon\Render Slave 6.0\ConsoleSlave.exe
+Description=The path to the Fusion 6 Console Slave executable used for rendering. Enter alternative paths on separate lines.
+
+[Fusion6SlavePreferenceFile]
+Type=filename
+Label=Fusion 6 Slave Preference File
+Category=Fusion 6 Options
+CategoryOrder=1
+CategoryIndex=1
+Default=
+Description=The path to a global RenderSlave.prefs preference file that is copied over before starting the Render Slave. Leave blank to disable this feature.
+
+[Fusion7RenderExecutable]
+Type=multilinemultifilename
+Label=Fusion 7 Render Executable
+Category=Fusion 7 Options
+CategoryOrder=2
+CategoryIndex=0
+Default=C:\Program Files\Blackmagic Design\Fusion Render Node\FusionConsoleNode.exe;C:\Program Files (x86)\Blackmagic Design\Fusion Render Node\FusionConsoleNode.exe;C:\Program Files (x86)\eyeon\Render Slave 7.0\ConsoleSlave.exe;C:\Program Files\eyeon\Render Slave 7.0\ConsoleSlave.exe
+Description=The path to the Fusion 7 Console Slave executable used for rendering. Enter alternative paths on separate lines.
+
+[Fusion7SlavePreferenceFile]
+Type=filename
+Label=Fusion 7 Slave Preference File
+Category=Fusion 7 Options
+CategoryOrder=2
+CategoryIndex=1
+Default=
+Description=The path to a global RenderSlave.prefs preference file that is copied over before starting the Render Slave. Leave blank to disable this feature.
+
+[Fusion8RenderExecutable]
+Type=multilinemultifilename
+Label=Fusion 8 Render Executable
+Category=Fusion 8 Options
+CategoryOrder=3
+CategoryIndex=0
+Default=C:\Program Files\Blackmagic Design\Fusion Render Node\FusionConsoleNode.exe;C:\Program Files (x86)\Blackmagic Design\Fusion Render Node\FusionConsoleNode.exe;C:\Program Files (x86)\eyeon\Render Slave 8.0\ConsoleSlave.exe;C:\Program Files\eyeon\Render Slave 8.0\ConsoleSlave.exe
+Description=The path to the Fusion 8 Console Slave executable used for rendering. Enter alternative paths on separate lines.
+
+[Fusion8SlavePreferenceFile]
+Type=filename
+Label=Fusion 8 Slave Preference File
+Category=Fusion 8 Options
+CategoryOrder=3
+CategoryIndex=1
+Default=
+Description=The path to a global RenderSlave.prefs preference file that is copied over before starting the Render Slave. Leave blank to disable this feature.
+
+[Fusion9RenderExecutable]
+Type=multilinemultifilename
+Label=Fusion 9 Render Executable
+Category=Fusion 9 Options
+CategoryOrder=4
+CategoryIndex=0
+Default=C:\Program Files\Blackmagic Design\Fusion Render Node 9\FusionConsoleNode.exe;C:\Program Files (x86)\Blackmagic Design\Fusion Render Node 9\FusionConsoleNode.exe;C:\Program Files (x86)\eyeon\Render Slave 9.0\ConsoleSlave.exe;C:\Program Files\eyeon\Render Slave 9.0\ConsoleSlave.exe
+Description=The path to the Fusion 9 Console Slave executable used for rendering. Enter alternative paths on separate lines.
+
+[Fusion9SlavePreferenceFile]
+Type=filename
+Label=Fusion 9 Slave Preference File
+Category=Fusion 9 Options
+CategoryOrder=4
+CategoryIndex=1
+Default=
+Description=The path to a global RenderSlave.prefs preference file that is copied over before starting the Render Slave. Leave blank to disable this feature.
+
+[EnablePathMapping]
+Type=boolean
+Category=Path Mapping For Mixed Farms (Fusion 8 and later)
+CategoryOrder=5
+CategoryIndex=0
+Label=Enable Path Mapping
+Default=true
+Description=If enabled, a temporary Fusion comp file will be created locally on the slave for rendering because Deadline does the path mapping directly in the comp file. This feature can be turned off if there are no Path Mapping entries defined in the Repository Options.

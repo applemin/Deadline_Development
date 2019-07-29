@@ -1,0 +1,26 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Puppet Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[Puppet_Batch]
+Type=multilinemultifilename
+Label=Puppet Executable
+Category=Puppet Settings
+CategoryOrder=0
+Index=1
+Default=/etc/puppet
+Description=The path to the Puppet executable file. Enter alternative paths on separate lines.

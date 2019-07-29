@@ -1,0 +1,35 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=CSi SAFE Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[SAFE_Executable12]
+Type=multilinemultifilename
+Label=SAFE 12 Executable
+Category=Executables
+CategoryOrder=0
+Index=0
+Default=C:\Program Files (x86)\Computers and Structures\SAFE 12\SAFE.exe;C:\Program Files\Computers and Structures\SAFE 12\SAFE.exe
+Description=The path to the SAFE 12 executable file used for simulating. Enter alternative paths on separate lines.
+
+[SAFE_Executable2014]
+Type=multilinemultifilename
+Label=SAFE 2014 Executable
+Category=Executables
+CategoryOrder=0
+Index=1
+Default=C:\Program Files (x86)\Computers and Structures\SAFE 2014\SAFE.exe;C:\Program Files\Computers and Structures\SAFE 2014\SAFE.exe
+Description=The path to the SAFE 2014 executable file used for simulating. Enter alternative paths on separate lines.

@@ -1,0 +1,442 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[Renderer]
+Type=label
+Label=Renderer
+Category=Maya Info
+Index=0
+Description=The Maya renderer to use for rendering
+Required=false
+DisableIfBlank=true
+
+[Version]
+Type=label
+Label=Version
+Category=Maya Info
+Index=1
+Description=The version of Maya to use to render
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build To Force
+Category=Maya Info
+Index=2
+Description=The build of Maya to force
+Required=false
+DisableIfBlank=true
+
+[StrictErrorChecking]
+Type=boolean
+Label=Enable Strict Error Checking
+Category=Maya Info
+Index=3
+Description=If true, checks for errors printed by the Maya renderer. Some of these errors are not fatal, so this option can be turned off to ignore them.
+Required=true
+DisableIfBlank=false
+Default=true
+
+
+[OctaneMaxSamples]
+Type=integer
+Minimum=1
+Maximum=64000
+Label=Max Samples
+Category=Octane Options
+Index=0
+Description=The maximum number of samples to use for rendering.
+Required=false
+DisableIfBlank=true
+
+
+[GPUsPerTask]
+Type=integer
+Minimum=0
+Maximum=16
+Label=GPUs Per Task
+Category=GPU Options
+Index=0
+Description=The number of GPUs to use per task. If set to 0, the default number of GPUs will be used.
+Required=false
+DisableIfBlank=true
+
+[GPUsSelectDevices]
+Type=string
+Label=Select GPU Devices
+Category=GPU Options
+Index=1
+Description=A comma separated list of the GPU devices to use specified by device Id. 'GPUs Per Task' will be ignored.
+Required=false
+DisableIfBlank=true
+
+[MayaToArnoldVersion]
+Type=Label
+Label=Maya To Arnold Major Version
+Category=Arnold Options
+Index=0
+Description=The major version of the Maya To Arnold (mtoa) plugin installed.
+Required=false
+DisableIfBlank=true
+
+[ArnoldVerbose]
+Type=enum
+Values=0;1;2;3
+Label=Arnold Verbosity
+Category=Arnold Options
+Index=1
+Description=The level of verbosity when rendering with Arnold.
+Required=false
+DisableIfBlank=true
+
+
+[MentalRayVerbose]
+Type=enum
+Values=;No Messages;Fatal Messages Only;Error Messages;Warning Messages;Info Messages;Progress Messages;Detailed Messages (Debug)
+Label=Mental Ray Verbosity
+Category=Mental Ray Options
+Index=0
+Description=The level of verbosity when rendering with Mental Ray
+Required=false
+DisableIfBlank=true
+
+[AutoMemoryLimit]
+Type=boolean
+Label=Auto Memory Limit
+Category=Mental Ray Options
+Index=3
+Description=If checked, Mental Ray will automatically detect the optimal memory limit when rendering
+Required=false
+DisableIfBlank=true
+
+[MemoryLimit]
+Type=integer
+Label=Memory Limit
+Category=Mental Ray Options
+Index=4
+Description=Soft limit (in MB) for the memory used by Mental Ray (specify 0 for unlimited memory)
+Required=false
+DisableIfBlank=true
+
+
+[ImageWidth]
+Type=integer
+Minimum=1
+Label=Image Width
+Category=Output Resolution
+Index=0
+Description=The width of the image in pixels
+Required=false
+DisableIfBlank=true
+
+[ImageHeight]
+Type=integer
+Minimum=1
+Label=Image Height
+Category=Output Resolution
+Index=1
+Description=The height of the image in pixels
+Required=false
+DisableIfBlank=true
+
+[OutputFilePath]
+Type=folder
+Label=Output File Path
+Category=Output Image File Options
+Index=0
+Description=The directory in which output will be sent (must be an existing directory)
+Required=false
+DisableIfBlank=true
+
+[OutputFilePrefix]
+Type=string
+Label=Output File Prefix
+Category=Output Image File Options
+Index=1
+Description=The output filename prefix
+Required=false
+DisableIfBlank=true
+
+[LocalRendering]
+Type=boolean
+Label=Enable Local Rendering
+Category=Output Image File Options
+Index=2
+Description=If this option is set to true, the slaves will render locally, and then copy the images to the network output directory on completion.
+Required=false
+DisableIfBlank=true
+
+[SkipExistingFrames]
+Type=boolean
+Label=Skip Existing Frames
+Category=Output Image File Options
+Index=3
+Description=If this option is set to true, Maya will skip rendering existing frames.
+Required=false
+DisableIfBlank=true
+
+
+[Animation]
+Type=boolean
+Label=Animation
+Category=Render Options
+Index=0
+Description=If off, Deadline will not pass any animation options to the Maya renderer.
+Required=false
+DisableIfBlank=true
+
+[MotionBlur]
+Type=boolean
+Label=Motion Blur
+Category=Render Options
+Index=1
+Description=Turns motion blur on or off
+Required=false
+DisableIfBlank=true
+
+[FrameNumberOffset]
+Type=integer
+Label=Frame Number Offset
+Category=Render Options
+Index=2
+Description=Uses Maya's frame renumbering option to offset the frames that are rendered.
+Required=false
+DisableIfBlank=true
+
+[RenderHalfFrames]
+Type=boolean
+Label=Render Half Frames
+Category=Render Options
+Index=3
+Description=If checked, frames will be split into two using a step of 0.5
+Required=false
+DisableIfBlank=true
+
+[MaxProcessors]
+Type=integer
+Label=Threads
+Category=Render Options
+Index=4
+Description=The number of processors to use (specify 0 to use the default)
+Required=false
+DisableIfBlank=true
+
+[Camera]
+Type=enum
+Label=Camera
+Category=Render Options
+Index=5
+Description=Choose which camera to use in the drop-down list
+Required=false
+DisableIfBlank=true
+
+[AntiAliasing]
+Type=enum
+Values=; ;low;medium;high;highest
+Label=Anti-Aliasing
+Category=Render Options
+Index=6
+Description=The level of edge antialiasing to use
+Required=false
+DisableIfBlank=true
+
+[ProjectPath]
+Type=folder
+Label=Project Path
+Category=Render Options
+Index=7
+Description=The path to the Maya project folder
+Required=false
+DisableIfBlank=true
+
+[IgnoreError211]
+Type=Boolean
+Label=Ignore Error Code 211
+Category=Render Options
+Index=8
+Description=Does not fail and requeue the render on an Exit Code of 211. Useful if the render actually succeeds and is still throwing this error.
+Required=true
+DisableIfBlank=false
+DefaultValue=false
+
+[UseLegacyRenderLayers]
+Type=Boolean
+Label=Use Legacy Render Layers
+Category=Render Options
+Index=9
+Description=As of Maya 2016.5, Autodesk has added a new render layer system (render setup) that is incompatible with the older version (legacy). This value must be the same value as in the file to render or it will fail.
+Required=false
+DisableIfBlank=true
+
+[RenderSetupIncludeLights]
+Type=Boolean
+Label=Render Setup - Include All Lights
+Category=Render Options
+Index=10
+Description=If enabled, all lights in the scene will automatically be added to every render setup. This is a machine level setting in Maya and we match that behaviour by pulling from the submitting machine.
+Required=false
+DisableIfBlank=true
+
+[CommandLineOptions]
+Type=string
+Label=Additional Arguments
+Category=Command Line
+Description=Additional command line arguments that are sent to Maya
+Index=0
+Required=true
+DisableIfBlank=false
+DefaultValue=
+
+[UseOnlyCommandLineOptions]
+Type=boolean
+Label=Use Only Additional Arguments
+Category=Command Line
+Index=1
+Description=Uses only the Additional Arguments when checked (appends the Command Line Options to the other options when unchecked)
+Required=true
+DisableIfBlank=false
+DefaultValue=false
+
+[MaxwellRenderTime]
+Type=float
+Minimum=0.500
+Maximum=14400.000
+DecimalPlaces=3
+Label=Render Time (minutes)
+Category=Maxwell Options
+Index=0
+Description=Per-frame render time in minutes
+Required=false
+DisableIfBlank=true
+
+[MaxwellSamplingLevel]
+Type=integer
+Minimum=0
+Maximum=50
+Label=Sampling Level
+Category=Maxwell Options
+Index=1
+Description=Maximum sampling level
+Required=false
+DisableIfBlank=true
+
+[MaxwellResumeRender]
+Type=boolean
+Label=Resume Rendering From MXI File
+Category=Maxwell Options
+Index=2
+Description=If enabled, the Maxwell will try to resume from the previous render if the MXI file exists.
+Required=false
+DisableIfBlank=true
+
+[MentalRayExportfile]
+Type=filenamesave
+Label=MI File
+Category=Mental Ray Export Options
+Index=0
+Description=The filename of the exported Mental Ray files
+Required=false
+DisableIfBlank=true
+
+[MentalRayExportBinary]
+Type=boolean
+Label=Export Binary MI File
+Category=Mental Ray Export Options
+Index=1
+Description=Whether or not the exported Mental Ray files should be in binary format
+Required=false
+DisableIfBlank=true
+
+[MentalRayExportTabStop]
+Type=integer
+Minimum=0
+Maximum=100
+Label=ASCII Tabulator Size
+Category=Mental Ray Export Options
+Index=2
+Description=The tabulator size to use in ASCII Mental Ray files
+Required=false
+DisableIfBlank=true
+
+[MentalRayExportPerFrame]
+Type=enum
+Values=0;1;2;3
+Label=Animation Export Option
+Category=Mental Ray Export Options
+Index=3
+Description=0: single file (name.ext), 1: one file per frame (name.ext.#), 2: one file per frame (name.#.ext), 3: one file per frame (name.#)
+Required=false
+DisableIfBlank=true
+
+[MentalRayExportPadFrame]
+Type=integer
+Minimum=0
+Maximum=9
+Label=MI File Pad Size
+Category=Mental Ray Export Options
+Index=4
+Description=The number of digits used for the MI File filename number
+Required=false
+DisableIfBlank=true
+
+[MentalRayExportFragment]
+Type=boolean
+Label=Export Scene Fragment
+Category=Mental Ray Export Options
+Index=5
+Description=Whether or not to export a scene fragment
+Required=false
+DisableIfBlank=true
+
+[MentalRayExportFragmentMaterials]
+Type=boolean
+Label=Export Materials
+Category=Mental Ray Export Options
+Index=6
+Description=Whether or not to export materials (if Export Scene Fragment is enabled)
+Required=false
+DisableIfBlank=true
+
+[MentalRayExportFragmentShaders]
+Type=boolean
+Label=Export All Incoming Shaders
+Category=Mental Ray Export Options
+Index=7
+Description=Whether or not to export all incoming shaders (if Export Scene Fragment is enabled)
+Required=false
+DisableIfBlank=true
+
+[MentalRayExportFragmentChildDag]
+Type=boolean
+Label=Export Entire Child DAG
+Category=Mental Ray Export Options
+Index=8
+Description=Whether or not to export entire child DAG (if Export Scene Fragment is enabled)
+Required=false
+DisableIfBlank=true
+
+[RIBDirectory]
+Type=folder
+Label=RIB Directory
+Category=Renderman Export Options
+Index=0
+Description=The directory in which exported scenes will be sent to. Works with Renderman tokens.
+Required=false
+DisableIfBlank=true
+
+[RIBPrefix]
+Type=string
+Label=RIB File Prefix
+Category=Renderman Export Options
+Index=1
+Description=The file prefix for the exported scene files. Works with Renderman tokens.
+Required=false
+DisableIfBlank=true

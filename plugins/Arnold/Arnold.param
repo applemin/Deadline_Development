@@ -1,0 +1,62 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Arnold Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Arnold_RenderExecutable_Beta]
+Type=multilinemultifilename
+Label=Arnold Beta Kick Executable
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=0
+Default=
+Description=The path to the Arnold Kick executable file used for rendering (if you're still using the beta version of Arnold). Enter alternative paths on separate lines.
+
+[Arnold_RenderExecutable_Release]
+Type=multilinemultifilename
+Label=Arnold Kick Executable
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=1
+Default=/opt/solidangle/mtoa/2018/bin/kick;/opt/solidangle/mtoa/2017/bin/kick
+Description=The path to the Arnold Kick executable file used for rendering. Enter alternative paths on separate lines.
+
+[AbortOnLicenseFail]
+Type=boolean
+Category=Render Options
+CategoryOrder=1
+CategoryIndex=0
+Label=Abort On License Fail
+Default=true
+Description=If enabled, the render will fail if Arnold cannot get a license. If disabled, Arnold will will render with a watermark if it cannot get a license.
+
+[EnablePathMapping]
+Type=boolean
+Category=Path Mapping (For Mixed Farms)
+CategoryOrder=2
+CategoryIndex=0
+Label=Enable Path Mapping
+Default=true
+Description=If enabled, a temporary .ass file will be created locally on the slave for rendering because Deadline does the path mapping directly in the .ass file. This feature can be turned off if there are no Path Mapping entries defined in the Repository Options.
+
+[LimitThreadsToCPUAffinity]
+Type=boolean
+Category=CPU Affinity
+CategoryOrder=3
+CategoryIndex=0
+Label=Limit Threads to CPU Affinity
+Description=If enabled, the number of render threads will be limited based on the slaves CPU affinity.
+Default=false

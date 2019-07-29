@@ -1,0 +1,98 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Nuke Studio Frame Server Plugin for Deadline
+Description=Not configurable.
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable.
+
+[RenderExecutable9_0]
+Type=multilinemultifilename
+Category=Nuke 9 Render Executables
+CategoryOrder=3
+CategoryIndex=0
+Label=Nuke 9.0 Render Executable
+Default=C:\Program Files\Nuke9.0v1\Nuke9.0.exe;/usr/local/Nuke9.0v1/Nuke9.0;/Applications/Nuke9.0v1/Nuke9.0v1.app/Contents/MacOS/Nuke9.0v1
+Description=The path to the Nuke 9.0 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable10_0]
+Type=multilinemultifilename
+Category=Nuke 10 Render Executables
+CategoryOrder=4
+CategoryIndex=0
+Label=Nuke 10.0 Render Executable
+Default=C:\Program Files\Nuke10.0v1\Nuke10.0.exe;/usr/local/Nuke10.0v1/Nuke10.0;/Applications/Nuke10.0v1/Nuke10.0v1.app/Contents/MacOS/Nuke10.0v1
+Description=The path to the Nuke 10.0 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable10_5]
+Type=multilinemultifilename
+Category=Nuke 10.5 Render Executables
+CategoryOrder=5
+CategoryIndex=0
+Label=Nuke 10.5 Render Executable
+Default=C:\Program Files\Nuke10.5v1\Nuke10.5.exe;/usr/local/Nuke10.5v1/Nuke10.5;/Applications/Nuke10.5v1/Nuke10.5v1.app/Contents/MacOS/Nuke10.5v1
+Description=The path to the Nuke 10.5 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable11_0]
+Type=multilinemultifilename
+Category=Nuke 11 Render Executables
+CategoryOrder=6
+CategoryIndex=0
+Label=Nuke 11.0 Render Executable
+Default=C:\Program Files\Nuke11.0v1\Nuke11.0.exe;/usr/local/Nuke11.0v1/Nuke11.0;/Applications/Nuke11.0v1/Nuke11.0v1.app/Contents/MacOS/Nuke11.0v1
+Description=The path to the Nuke 11.0 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable11_1]
+Type=multilinemultifilename
+Category=Nuke 11 Render Executables
+CategoryOrder=6
+CategoryIndex=1
+Label=Nuke 11.1 Render Executable
+Default=C:\Program Files\Nuke11.1v1\Nuke11.1.exe;/usr/local/Nuke11.1v1/Nuke11.1;/Applications/Nuke11.1v1/Nuke11.1v1.app/Contents/MacOS/Nuke11.1v1
+Description=The path to the Nuke 11.1 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable11_2]
+Type=multilinemultifilename
+Category=Nuke 11 Render Executables
+CategoryOrder=6
+CategoryIndex=2
+Label=Nuke 11.2 Render Executable
+Default=C:\Program Files\Nuke11.2v1\Nuke11.2.exe;/usr/local/Nuke11.2v1/Nuke11.2;/Applications/Nuke11.2v1/Nuke11.2v1.app/Contents/MacOS/Nuke11.2v1
+Description=The path to the Nuke 11.2 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable11_3]
+Type=multilinemultifilename
+Category=Nuke 11 Render Executables
+CategoryOrder=6
+CategoryIndex=3
+Label=Nuke 11.3 Render Executable
+Default=C:\Program Files\Nuke11.3v1\Nuke11.3.exe;/usr/local/Nuke11.3v1/Nuke11.3;/Applications/Nuke11.3v1/Nuke11.3v1.app/Contents/MacOS/Nuke11.3v1
+Description=The path to the Nuke 11.3 executable file used for rendering. Enter alternative paths on separate lines.
+
+[InteractiveSlaves]
+Type=slavelist
+Category=Licensing Options
+CategoryOrder=50
+CategoryIndex=0
+Label=Slaves To Use Interactive License
+Default=
+Description=A list of Slaves that should use an interactive Nuke license instead of a render license. Use a , to separate multiple Slave names, for example: slave001,slave002,slave003.
+
+[PrepForOFX]
+Type=boolean
+Category=OFX Cache
+CategoryOrder=60
+CategoryIndex=0
+Label=Prepare OFX Cache Before Rendering
+Default=true
+Description=If enabled, Deadline will try to create the temporary ofx plugin cache folder before rendering, which helps ensure that comps that use OFX plugins render properly.

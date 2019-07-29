@@ -1,0 +1,25 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Luxrender Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Luxrender_RenderExecutable]
+Type=multilinemultifilename
+Label=Luxrender Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Luxrender\luxconsole.exe;C:\Program Files (x86)\Luxrender\luxconsole.exe;/usr/local/Luxrender/bin/luxconsole-gcc;/Applications/Luxrender/luxconsole;/Applications/LuxRender/LuxRender.app/Contents/MacOS/luxconsole
+Description=The path to the luxconsole executable file used for rendering. Enter alternative paths on separate lines.

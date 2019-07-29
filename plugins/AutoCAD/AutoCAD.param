@@ -1,0 +1,35 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=AutoCAD Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[RenderExecutable2015]
+Type=multilinemultifilename
+Label=AutoCAD 2015
+Category=Render Executables
+CategoryOrder=0
+Index=10
+Default=C:\Program Files\Autodesk\AutoCAD 2015\acad.exe
+Description=The path to the AutoCAD 2015 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable2016]
+Type=multilinemultifilename
+Label=AutoCAD 2016
+Category=Render Executables
+CategoryOrder=0
+Index=10
+Default=C:\Program Files\Autodesk\AutoCAD 2016\acad.exe
+Description=The path to the AutoCAD 2016 executable file used for rendering. Enter alternative paths on separate lines.

@@ -1,0 +1,159 @@
+[Version]
+Type=enum
+Label=Version
+Category=Corona Options
+CategoryOrder=0
+Description=Corona Standalone version to run.
+Index=0
+Required=false
+DisableIfBlank=true
+Values=1.4;1.5;1.6;1.7;2
+
+[SceneFile]
+Type=filename
+Default=""
+Label=Corona Scene File
+Description=The Corona scene file to be rendered.
+Category=Corona File Options
+CategoryOrder=10
+Index=0
+Required=false
+DisableIfBlank=false
+Filter=Corona Scene Files (*.scn)
+
+[OutputFile]
+Type=filename
+Default=""
+Label=Output File Name
+Description=The output image file. If left blank the name prefix will be "output".
+Category=Corona File Options
+CategoryOrder=10
+Index=10
+Required=false
+DisableIfBlank=false
+
+[OutputAlpha]
+Type=boolean
+Label=Save Alpha
+Description=If enabled, saves the output image with alpha channel. Only some image formats support alpha channel.
+Category=Corona File Options
+CategoryOrder=10
+Index=20
+Default=False
+Required=false
+DisableIfBlank=true
+
+[OutputRaw]
+Type=boolean
+Label=Save RAW
+Description=If enabled, no tone mapping will be applied to the saved image (which is useful when saving high dynamic range images).
+Category=Corona File Options
+CategoryOrder=10
+Index=30
+Default=False
+Required=false
+DisableIfBlank=true
+
+[ConfigFiles]
+Type=MultiFilename
+Default=""
+Label=Configuration File(s)
+Description=Configuration file(s) for the Corona Renderer.
+Category=Corona File Options
+CategoryOrder=10
+Index=40
+Required=false
+DisableIfBlank=false
+Filter=Corona Configuration Files (*.conf)
+
+[OverridePasses]
+Type=boolean
+Label=Override Maximum # of Passes
+Description=You can override the configuration file setting for the maximum number of passes here if this is enabled.
+Category=Advanced Options : Passes
+CategoryOrder=20
+Index=0
+Required=false
+DisableIfBlank=true
+
+[MaxPasses]
+Type=integer
+Label=Maximum # of Passes
+Description=Maximum # of Passes.
+Minimum=0
+Maximum=1048576
+Default=0
+Category=Advanced Options : Passes
+CategoryOrder=20
+Index=10
+Required=false
+DisableIfBlank=false
+
+[OverrideRenderTime]
+Type=boolean
+Label=Override Maximum Render Time
+Description=You can override the configuration file setting for the maximum render time here if this is enabled.
+Category=Advanced Options : Max Render Time
+CategoryOrder=30
+Index=0
+Required=false
+DisableIfBlank=true
+
+[RenderHourTime]
+Type=integer
+Label=Maximum Render Time (Hours)
+Description=Hours
+Minimum=0
+Maximum=23
+Category=Advanced Options : Max Render Time
+CategoryOrder=30
+Index=10
+Required=false
+DisableIfBlank=false
+
+[RenderMinuteTime]
+Type=integer
+Label=Maximum Render Time (Minutes)
+Description=Minutes
+Minimum=0
+Maximum=59
+Category=Advanced Options : Max Render Time
+CategoryOrder=30
+Index=20
+Required=false
+DisableIfBlank=true
+
+[RenderSecTime]
+Type=integer
+Label=Maximum Render Time (Seconds)
+Description=Seconds
+Minimum=0
+Maximum=59
+Category=Advanced Options : Max Render Time
+CategoryOrder=30
+Index=30
+Required=false
+DisableIfBlank=false
+
+[OverrideThreads]
+Type=boolean
+Label=Override Threads
+Description=You can override the configuration file setting for the number of threads here if this is enabled.
+Category=Advanced Options : Threads
+CategoryOrder=40
+Index=0
+Required=false
+DisableIfBlank=true
+
+[Threads]
+Type=integer
+Label=Threads
+Description=Threads.
+Minimum=-256
+Maximum=256
+Default=0
+Category=Advanced Options : Threads
+CategoryOrder=40
+Index=10
+Required=false
+DisableIfBlank=false

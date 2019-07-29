@@ -1,0 +1,74 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=V-Ray Swarm Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[VRaySwarmExecutable]
+Type=multilinemultifilename
+Label=V-Ray Swarm Executable
+Category=V-Ray Swarm Executables
+CategoryOrder=0
+CategoryIndex=0
+Default=C:\Program Files\Chaos Group\V-Ray Swarm\swrm.exe;C:\Program Files\Chaos Group\V-Ray\Swarm\swrm.exe;/Applications/ChaosGroup/V-Ray Swarm/swrm.bin;/Applications/ChaosGroup/V-Ray/Swarm/swrm.bin;/usr/ChaosGroup/V-Ray Swarm/swrm.bin;/usr/ChaosGroup/V-Ray/Swarm/swrm.bin
+Description=The path to the V-Ray Swarm executable file. Enter alternative paths on separate lines.
+
+[OnJobComplete]
+Type=enum
+Category=Job Handling
+Label=On Job Complete
+CategoryOrder=1
+CategoryIndex=0
+Description=If desired, you can automatically archive or delete the V-Ray Swarm job when it completes.
+Items=Do Nothing;Archive;Delete
+Default=Do Nothing
+
+[AutoClose]
+Type=Boolean
+Category=Swarm Session Handling
+Label=Swarm Session Auto Timeout Enable
+CategoryOrder=2
+CategoryIndex=0
+Description=Enable to force Swarm Session to be marked as complete if no Swarm render has occurred within a specified time.
+Default=False
+
+[WaitForRender]
+Type=Boolean
+Category=Swarm Session Handling
+Label=Swarm Session Auto Timeout: Wait for first render
+CategoryOrder=2
+CategoryIndex=1
+Description=Enable to Force at least one render to be completed before Auto Timeout becomes active.
+Default=True
+
+[TimeoutBeforeRender]
+Type=Integer
+Category=Swarm Session Handling
+Label=Swarm Session Auto Timeout (Minutes)
+CategoryOrder=2
+CategoryIndex=2
+Description=Swarm Session minimum timeout before last closed Swarm Session is marked as complete on slave (minutes). This timeout occurs before at least one render has been completed.
+Minimum=1
+Default=15
+
+[TimeoutAfterRender]
+Type=Integer
+Category=Swarm Session Handling
+Label=Swarm Session Auto Timeout: After first render (Minutes)
+CategoryOrder=2
+CategoryIndex=3
+Description=Swarm Session minimum timeout after at least one render has been completed.
+Minimum=0
+Default=15

@@ -1,0 +1,162 @@
+[DeleteInputFiles]
+Type=boolean
+Label=Delete Input vrimg Files
+Category=Input Options
+Index=0
+Description=Enable this option to delete the input vrimg file after the conversion has finished.
+Required=false
+DisableIfBlank=true
+
+[OutputFile]
+Type=filenamesave
+Label=Output Filename
+Category=Output Options
+Index=0
+Description=Optionally override the output file name (do not specify padding). If left blank, the output name will be the same as the input name (with the exr extension).
+Required=True
+DisableIfBlank=false
+Default=
+
+[Half]
+Type=boolean
+Label=Store EXR Data as 16-bit (Half)
+Category=Output Options
+Index=1
+Description=Enable this option to store the data in the .exr file as 16-bit floating point numbers instead of 32-bit floating point numbers.
+Required=false
+DisableIfBlank=true
+
+[sRGB]
+Type=boolean
+Label=Convert To sRGB Color Space
+Category=Output Options
+Index=2
+Description=Enable this option to converts the RGB data from the vrimg file to the sRGB color space (instead of linear RGB space) before writing to the exr file.
+Required=false
+DisableIfBlank=true
+
+[DataWindow]
+Type=boolean
+Label=Crop EXR Data Window
+Category=Output Options
+Index=3
+Description=Tries to find the valid data window from the .vrimg file. This requires that the file can be read in one pass. The non-zero pixels in the alpha channel are used to determine the data window.
+Required=false
+DisableIfBlank=true
+
+[SeparateFiles]
+Type=boolean
+Label=Separate Files
+Category=Output Options
+Index=4
+Description=Writes each channel into a separate .exr file.
+Required=false
+DisableIfBlank=true
+
+[MultiPart]
+Type=boolean
+Label=Multi Part
+Category=Output Options
+Index=5
+Description=Writes each channel into a separate OpenEXR2 'part'.
+Required=false
+DisableIfBlank=true
+
+[SetGamma]
+Type=boolean
+Label=Set Gamma
+Category=Gamma Options
+Index=0
+Description=Enable this option to apply the specified gamma correction to the RGB colors before writing to the exr file.
+Required=false
+DisableIfBlank=true
+
+[Gamma]
+Type=float
+Minimum=0.2
+Maximum=5.0
+DecimalPlaces=6
+Increment=0.2
+Label=Gamma
+Category=Gamma Options
+Index=1
+Description=The new gamma value.
+Required=false
+DisableIfBlank=true
+
+[SetChannel]
+Type=boolean
+Label=Set Channel
+Category=Channel Options
+Index=0
+Description=Enable this option to read the specified channel from the vrimg file and write it as the RGB channel in the output file.
+Required=false
+DisableIfBlank=true
+
+[Channel]
+Type=string
+Label=Channel
+Category=Channel Options
+Index=1
+Description=The channel value.
+Required=false
+DisableIfBlank=true
+
+[LongChanNames]
+Type=boolean
+Label=Long Channel Names
+Category=Channel Options
+Index=2
+Description=Enable channel names with more than 31 characters. Produced .exr file will NOT be compatible with OpenEXR 1.x if a long channel name is present.
+Required=false
+DisableIfBlank=true
+
+[SetCompression]
+Type=boolean
+Label=Set Compression
+Category=Compression Options
+Index=0
+Description=Enable this option to set the compression type. The Zip method is used by default.
+Required=false
+DisableIfBlank=true
+
+[Compression]
+Type=enum
+Values=none;piz;pxr24;zip;zips
+Label=Compression
+Category=Compression Options
+Index=1
+Description=The compression value.
+Required=false
+DisableIfBlank=true
+
+[SetBufferSize]
+Type=boolean
+Label=Set Buffer Size
+Category=Buffer Size Options
+Index=0
+Description=Enable this option to set the maximum allocated buffer size per channel in megabytes. If the image does not fit into the max buffer size, it is converted in several passes.
+Required=false
+DisableIfBlank=true
+
+[BufferSize]
+Type=integer
+Minimum=1
+Maximum=1000000
+Label=Buffer Size
+Category=Buffer Size Options
+Index=1
+Description=The new buffer size value.
+Required=false
+DisableIfBlank=true
+
+[Threads]
+Type=integer
+Minimum=0
+Maximum=256
+Label=Threads
+Category=General Options
+Index=0
+Description=The number of computation threads. Specify 0 to use the number of processors available.
+Required=false
+DisableIfBlank=true

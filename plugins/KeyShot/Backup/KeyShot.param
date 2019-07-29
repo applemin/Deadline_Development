@@ -1,0 +1,62 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=KeyShot Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[RenderExecutable6]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=0
+Label=KeyShot 6 Render Executable
+Default=C:\Program Files\KeyShot6 Floating\bin\keyshot6_floating.exe
+Description=The path to the KeyShot 6 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable7]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=1
+Label=KeyShot 7 Render Executable
+Default=C:\Program Files\KeyShot7\bin\keyshot7.exe
+Description=The path to the KeyShot 7 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable8]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=2
+Label=KeyShot 8 Render Executable
+Default=C:\Program Files\KeyShot8\bin\keyshot.exe;/Applications/Keyshot8.app/Contents/MacOS/keyshot
+Description=The path to the KeyShot 8 executable file used for rendering. Enter alternative paths on separate lines.
+
+[UseRenderNodeLicenses]
+Type=boolean
+Category=Licensing Options
+CategoryOrder=1
+CategoryIndex=0
+Label=Use Render Node Licenses
+Default=false
+Description=If enabled, Deadline will use KeyShot's render node licenses instead of its pro licenses.
+
+[ProSlaves]
+Type=slavelist
+Category=Licensing Options
+CategoryOrder=1
+CategoryIndex=1
+Label=Slaves To Use Pro License
+Default=
+Description=A list of slaves that should use a KeyShot pro license instead of a render node license. Only used if Use Render Node Licenses is Enabled. Use a , to separate multiple slave names, for example: slave001,slave002,slave003.

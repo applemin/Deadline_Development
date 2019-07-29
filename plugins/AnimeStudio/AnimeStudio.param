@@ -1,0 +1,64 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Anime Studio/Moho Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Anime_RenderExecutable8]
+Type=multilinemultifilename
+Label=Anime Studio 8 Executable
+Category=Render Executables
+Index=0
+Default=C:\Program Files\Smith Micro\Anime Studio Pro 8\Anime Studio Pro.exe;C:\Program Files (x86)\Smith Micro\Anime Studio Pro 8\Anime Studio Pro.exe;/Applications/Anime Studio Pro 8/Anime Studio Pro.app/Contents/MacOS/Anime Studio
+Description=The path to the Anime Studio 8 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Anime_RenderExecutable9]
+Type=multilinemultifilename
+Label=Anime Studio 9 Executable
+Category=Render Executables
+Index=1
+Default=C:\Program Files\Smith Micro\Anime Studio Pro 9\Anime Studio Pro x64.exe;C:\Program Files (x86)\Smith Micro\Anime Studio Pro 9\Anime Studio Pro.exe;/Applications/Anime Studio Pro.app/Contents/MacOS/Anime Studio
+Description=The path to the Anime Studio 9 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Anime_RenderExecutable9_5]
+Type=multilinemultifilename
+Label=Anime Studio 9.5 Executable
+Category=Render Executables
+Index=2
+Default=C:\Program Files\Smith Micro\Anime Studio Pro 9.5\Anime Studio Pro x64.exe;C:\Program Files (x86)\Smith Micro\Anime Studio Pro 9.5\Anime Studio Pro.exe;/Applications/Anime Studio Pro.app/Contents/MacOS/Anime Studio
+Description=The path to the Anime Studio 9.5 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Anime_RenderExecutable10]
+Type=multilinemultifilename
+Label=Anime Studio 10 Executable
+Category=Render Executables
+Index=3
+Default=C:\Program Files\Smith Micro\Anime Studio Pro 10\Anime Studio Pro x64.exe;C:\Program Files (x86)\Smith Micro\Anime Studio Pro 10\Anime Studio Pro Win32.exe;/Applications/Anime Studio Pro.app/Contents/MacOS/Anime Studio
+Description=The path to the Anime Studio 10 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Anime_RenderExecutable11]
+Type=multilinemultifilename
+Label=Anime Studio 11 Executable
+Category=Render Executables
+Index=4
+Default=C:\Program Files\Smith Micro\Anime Studio Pro 11\Anime Studio Pro x64.exe;C:\Program Files (x86)\Smith Micro\Anime Studio Pro 11\Anime Studio Pro Win32.exe;/Applications/Anime Studio Pro.app/Contents/MacOS/Anime Studio
+Description=The path to the Anime Studio 11 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Anime_RenderExecutable12]
+Type=multilinemultifilename
+Label=Anime Studio 12 (Moho) Executable
+Category=Render Executables
+Index=5
+Default=C:\Program Files\Smith Micro\Moho 12\MohoRT x64.exe; C:\Program Files (x86)\Smith Micro\Moho 12\MohoRT Win32.exe;C:\Program Files\Smith Micro\Moho Pro 12\Moho Pro x64.exe;C:\Program Files (x86)\Smith Micro\Moho Pro 12\Moho Pro Win32.exe;/Applications/Moho Pro.app/Contents/MacOS/Moho

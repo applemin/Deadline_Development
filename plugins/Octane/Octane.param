@@ -1,0 +1,49 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Octane Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Octane_RenderExecutable1]
+Type=multilinemultifilename
+Label=Octane 1 Executable
+Category=Render Executables
+CategoryOrder=0
+Default=
+Description=The path to the Octane 1 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Octane_RenderExecutable2]
+Type=multilinemultifilename
+Label=Octane 2 Executable
+Category=Render Executables
+CategoryOrder=0
+Default=
+Description=The path to the Octane 2 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Octane_RenderExecutable3]
+Type=multilinemultifilename
+Label=Octane 3 Executable
+Category=Render Executables
+CategoryOrder=0
+Default=
+Description=The path to the Octane 3 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Octane_RenderExecutable4]
+Type=multilinemultifilename
+Label=Octane 4 Executable
+Category=Render Executables
+CategoryOrder=0
+Default=
+Description=The path to the Octane 4 executable file used for rendering. Enter alternative paths on separate lines.

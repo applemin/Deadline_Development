@@ -1,0 +1,25 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=MetaFuze Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[MetaFuze_RenderExecutable]
+Type=multilinemultifilename
+Label=MetaFuze Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files (x86)\Avid\MetaFuze\MetaFuze.exe;C:\Program Files\Avid\MetaFuze\MetaFuze.exe
+Description=The path to the MetaFuze Console executable file used for rendering. Enter alternative paths on separate lines.

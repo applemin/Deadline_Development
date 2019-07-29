@@ -1,0 +1,73 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Maxwell Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Maxwell2_RenderExecutable]
+Label=Render Executable
+Type=multilinemultifilename
+Category=Maxwell 2 Options
+Index=0
+Default=C:\Program Files\Next Limit\Maxwell 2\maxwell.exe;C:\Program Files (x86)\Next Limit\Maxwell 2\maxwell.exe;/usr/local/maxwell64-2.0/maxwell;/Applications/Maxwell 2/Maxwell.app/Contents/MacOS/Maxwell
+Description=The path to the Maxwell 2 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Maxwell2_MergeExecutable]
+Label=Merge Executable
+Type=multilinemultifilename
+Category=Maxwell 2 Options
+Index=1
+Default=C:\Program Files\Next Limit\Maxwell 2\mximerge.exe;C:\Program Files (x86)\Next Limit\Maxwell 2\mximerge.exe;/usr/local/maxwell64-2.0/mximerge;/Applications/Maxwell 2/mximerge
+Description=The path to the Maxwell 2 executable file used for merging. Enter alternative paths on separate lines.
+
+[Maxwell3_RenderExecutable]
+Label=Render Executable
+Type=multilinemultifilename
+Category=Maxwell 3 Options
+Index=0
+Default=C:\Program Files\Next Limit\Maxwell 3\maxwell.exe;C:\Program Files (x86)\Next Limit\Maxwell 3\maxwell.exe;/usr/local/maxwell64-3.0/maxwell;/Applications/Maxwell 3/Maxwell.app/Contents/MacOS/Maxwell
+Description=The path to the Maxwell 3 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Maxwell3_MergeExecutable]
+Label=Merge Executable
+Type=multilinemultifilename
+Category=Maxwell 3 Options
+Index=1
+Default=C:\Program Files\Next Limit\Maxwell 3\mximerge.exe;C:\Program Files (x86)\Next Limit\Maxwell 3\mximerge.exe;/usr/local/maxwell64-3.0/mximerge;/Applications/Maxwell 3/mximerge
+Description=The path to the Maxwell 3 executable file used for merging. Enter alternative paths on separate lines.
+
+[Maxwell4_RenderExecutable]
+Label=Render Executable
+Type=multilinemultifilename
+Category=Maxwell 4 Options
+Index=0
+Default=C:\Program Files\Next Limit\Maxwell Studio 4\maxwell.exe;C:\Program Files (x86)\Next Limit\Maxwell Studio 4\maxwell.exe;/usr/local/maxwell64-4.0/maxwell;/Applications/Maxwell 4/Maxwell.app/Contents/MacOS/Maxwell
+Description=The path to the Maxwell 4 executable file used for rendering. Enter alternative paths on separate lines.
+
+[Maxwell4_MergeExecutable]
+Label=Merge Executable
+Type=multilinemultifilename
+Category=Maxwell 4 Options
+Index=1
+Default=C:\Program Files\Next Limit\Maxwell Studio 4\mximerge.exe;C:\Program Files (x86)\Next Limit\Maxwell Studio 4\mximerge.exe;/usr/local/maxwell64-4.0/mximerge;/Applications/Maxwell 3/mximerge
+Description=The path to the Maxwell 4 executable file used for merging. Enter alternative paths on separate lines.
+
+[InteractiveSlaves]
+Type=slavelist
+Category=General Maxwell Options
+Index=3
+Label=Slaves To Use Interactive License
+Default=
+Description=A list of slaves that should use an interactive Maxwell license instead of a render license. Use a , to separate multiple slave names, for example: slave001,slave002,slave003

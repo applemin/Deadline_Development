@@ -1,0 +1,468 @@
+---------------------------------------------------------------------------------
+-- Check proper usage.
+---------------------------------------------------------------------------------
+
+if( arg[5] == nil ) then
+	print( "RenderTasks.eyeonscript startframe endframe versiontoforce plugininfofile scriptfile" )
+	print( "SCRIPT ERROR: Invalid arguments to RenderTasks.eyeonscript" )
+	io.flush()
+	wait(5)
+	do return end
+end
+
+---------------------------------------------------------------------------------
+-- Connect to Fusion.
+---------------------------------------------------------------------------------
+
+print( "Connecting to Fusion..." )
+df = Fusion("127.0.0.1")
+if( df == nil ) then
+	print( "SCRIPT ERROR: eyeonScript failed to make a connection in RenderTasks.eyeonscript - check that eyeonScript is set to no login required" )
+	io.flush()
+	wait(5)
+	do return end
+end
+
+print( "Connected to Fusion" )
+
+---------------------------------------------------------------------------------
+-- These are included here, just in case eyeon.scriptlib is not available.
+---------------------------------------------------------------------------------
+
+function deadlineGetExtension(name)
+	for i = string.len(name), 1, -1 do
+		teststring = string.sub(name, i, i)
+		if teststring == "." then
+			return string.sub(name, i+1, -1)
+		end
+	end
+end
+
+function deadlineTrimExtension(filename)
+	for i = string.len(filename), 1, -1 do
+		if string.sub(filename, i, i) == "." then
+			period_loc = i
+			break
+		end
+	end
+
+	if( period_loc == nil ) then
+		return filename
+	else
+		return string.sub(filename, 1, period_loc-1)
+	end
+end
+
+function deadlineGetFilePath(path)
+	for i = string.len(path), 1, -1 do
+		teststring = string.sub(path, i, i)
+		if teststring == "\\" or teststring == "/" then
+			return string.sub(path, 1, i)
+		end
+	end
+end
+
+function deadlineGetSavers(comp)
+	saverTable = {}
+	for i, tool in ipairs(comp:GetToolList()) do
+		if tool:GetAttrs().TOOLS_RegID == "Saver" then
+			table.insert(saverTable, tool)
+		end
+	end
+	return saverTable
+end
+
+---------------------------------------------------------------------------------
+-- Additional helper functions.
+---------------------------------------------------------------------------------
+
+-- Returns true if rendererVersion appears in the semicolon separated list globalVersionList
+function isVersionValid(rendererVersion, globalVersionList)
+	print( "Begin isVersionValid" )
+	print( "  rendererVersion = " .. rendererVersion )
+	print( "  globalVersionList = " .. globalVersionList )
+	
+	-- loop until list is empty
+	while globalVersionList ~= "" do
+		-- find location of next semicolon
+		index, dummy = string.find( globalVersionList, ";" )
+		
+		-- get version that is infront of this semicolon
+		if index ~= nil then
+			-- this removes the semicolon from the end of the version
+			currVersion = string.sub( globalVersionList, 1, index )
+			currVersion = string.sub( currVersion, 1, -2 )
+		else
+			-- no semicolon to remove
+			currVersion = string.sub( globalVersionList, 1 )
+		end
+			
+		-- compare the two versions and return true if they match
+		if rendererVersion == currVersion then
+			io.flush()
+			return true
+		end
+		
+		-- update the globalVersionList
+		if index ~= nil then
+			-- remove the version that was checked above from the list
+			globalVersionList = string.sub( globalVersionList, index + 1 )
+		else
+			-- there were no more semicolons, so last version was checked above
+			globalVersionList = "";
+		end
+	end
+	
+	io.flush()
+	return false
+end
+
+-- Checks if the path is saving to a movie format.
+function pathIsMovieFormat(path)
+	local extension = deadlineGetExtension(path)
+	if extension ~= nil then 
+		if		( extension == "avi" ) or ( extension == "vdr" ) or ( extension == "wav" ) or
+				( extension == "dvs" ) or
+				( extension == "fb"  ) or
+				( extension == "omf" ) or ( extension == "omfi" ) or
+				( extension == "stm" ) or
+				( extension == "tar" ) or
+				( extension == "vpv" ) or
+				( extension == "mov" ) then
+			return true
+		end
+	end
+	return false
+end
+
+-- Replaces the frame number in the filename with the given frame number.
+function replaceFrameNo(filename, frameNumber)
+	-- the filename without the extension
+	local fileNoExt = deadlineTrimExtension(filename)
+	-- just the extension (no dot)
+	local fileExt = deadlineGetExtension(filename)
+	
+	local numberStart = string.len(fileNoExt)
+
+	for i = string.len(fileNoExt), 1, -1 do
+		if tonumber(string.sub(fileNoExt, i, i)) == nil then
+			numberStart = i
+			break
+		end
+	end
+	
+	local fileNoNumbers = string.sub( fileNoExt, 1, numberStart )
+	
+	local digitCount = string.len(fileNoExt) - numberStart
+	if digitCount == 0 then
+		digitCount = 4
+	end
+	
+	local digits
+	-- if no frame number is specified, pad it with ? characters, otherwise replace the frame number
+	if frameNumber == nil then
+		digits = "?"
+		while string.len(digits) < digitCount do
+			digits = "?" .. digits
+		end
+	else
+		
+		if frameNumber < 0 then
+			local positiveFrameNumber = math.abs( frameNumber )
+			digits = tostring( positiveFrameNumber )
+			while string.len(digits) < (digitCount - 1) do
+				digits = "0" .. digits
+			end
+			digits = "-" .. digits
+		else
+			digits = tostring( frameNumber )
+			while string.len(digits) < digitCount do
+				digits = "0" .. digits
+			end
+		end
+	end
+	
+	if fileExt == nil then
+		fileExt = ""
+	end
+	
+	return fileNoNumbers .. digits .. "." .. fileExt
+end
+
+-- This reads a key value file into a structure.
+function ReadKeyValueFile( filename )
+	local result = {}
+	local fh = io.open(filename, "r")
+	local line = fh:read( "*l" )
+	while line ~= nil do
+		local splitPos = 0
+		for splitPos = 1, string.len(line) do
+			if string.sub(line,splitPos,splitPos) == "=" then
+				result[string.sub(line,1,splitPos-1)] = string.sub( line,splitPos+1,string.len(line) )
+				break
+			end
+		end
+		
+		line = fh:read( "*l" )
+	end
+	io.close(fh)
+	return result
+end
+
+function iswindows()
+	return (package.config:sub(1,1) == "\\")
+end
+
+---------------------------------------------------------------------------------
+-- MAIN SCRIPT
+---------------------------------------------------------------------------------
+
+-- get start and end frame
+startFrame = tonumber(arg[1])
+endFrame = tonumber(arg[2])
+
+-- get version to enforce, could be empty
+version = arg[3]
+
+-- read the job info file into a structure, for easier access.
+jobInfo = ReadKeyValueFile(arg[4])
+
+-- get the auxiliary script file, could be empty
+auxiliaryFile = arg[5]
+
+fl = df:GetCompList()
+print( "There are " .. table.getn(fl) .. " comps loaded." );
+
+-- Get the current comp
+comp = df:GetCurrentComp()
+
+if (not comp) then
+	-- GetCurrentComp() fails sometimes. This is a workaround for that issue.
+	-- This code is a workaround pulled from version 7.2. It loads the comp while avoiding an error from eyeonscript when setting comp = fl[1].
+	comp = nil;
+	for i=1, table.getn(fl), 1 do
+		name =fl[i]:GetAttrs().COMPS_FileName 
+		if( name ~= "")then
+			if( name ~= nil) then
+				comp = df:LoadComp( name, true )
+			end
+		end
+	end
+end
+
+if (not comp) then
+	-- On linux render node (at least this is where we noticed it) either df:LoadComp() does not persist the composition in df.CurrentComp,
+	-- df:GetCurrentComp(), or df:GetCompList(). The only way to get a reference to a comp is to capture the return value of df:LoadComp()
+	comp = nil
+	print( "Reloading comp file..." )
+	comp = df:LoadComp( jobInfo["FlowFile"], true )
+end
+
+if (comp) then
+	print( "Composition Loaded Successfully" )
+else
+	print( "ERROR: Composition failed to load, rendering will now end." )
+	io.flush()
+	wait(5)
+	os.exit(0)
+end
+
+-- read in high quality, proxy, check output, and script job values from job info structure.
+highQuality = true
+if jobInfo.HighQuality ~= nil then
+	if string.lower(jobInfo.HighQuality) == "false" or jobInfo.HighQuality == "0" then
+		highQuality = false
+	end
+end
+
+proxyNumber = 1
+if jobInfo.Proxy ~= nil then
+	proxyNumber = tonumber( jobInfo.Proxy )
+end
+
+checkOutput = true
+if jobInfo.CheckOutput ~= nil then
+	if string.lower(jobInfo.CheckOutput) == "false" or jobInfo.CheckOutput == "0" then
+		checkOutput = false
+	end
+end
+
+isScriptJob = false
+if jobInfo.ScriptJob ~= nil then
+	if string.lower(jobInfo.ScriptJob) == "true" or jobInfo.ScriptJob == "1" then
+		isScriptJob = true
+	end
+end
+
+print( "Rendering from " .. tostring(startFrame) .. " to " .. tostring(endFrame) .. ", high quality is " .. tostring(highQuality) .. ", proxy is " .. tostring(proxyNumber) );
+io.flush()
+
+dfAttr = df:GetAttrs()
+
+-- if a version is being enforced, make sure this is the correct version of fusion
+if( version ~= "" ) then
+	print( "Enforcing Fusion version " .. version )
+	if( isVersionValid( dfAttr.FUSIONS_Version, version ) == false ) then
+		print( "Fusion versions are different" )
+		print( "Installed Fusion version = " .. dfAttr.FUSIONS_Version )
+		print( "SCRIPT ERROR: Fusion Version mismatch, got " .. dfAttr.FUSIONS_Version .. ", wanted " .. version )
+		io.flush()
+		wait(5)
+		do return end
+	end
+end
+
+print( "Rendering with Fusion version: ", dfAttr.FUSIONS_Version )
+
+-- Force a flush so these messages get to the Deadline Slave
+io.flush()
+
+if( (dfAttr.FUSIONI_VersionHi > 262144) or ((dfAttr.FUSIONI_VersionHi == 262144) and (dfAttr.FUSIONI_VersionLo >= 196613)) ) then
+	-- Only use the console history in version 4.03 and later
+	si = comp:GetConsoleHistory().Total
+	
+	-- Render the frames
+	print( "Beginning render..." )
+	io.flush()
+	
+	if( isScriptJob ) then
+		print( "Executing script " .. auxiliaryFile )
+		result = false
+		-- The eyeonscript job must set the global variable result to true
+		dofile(auxiliaryFile)
+	else
+		--Usage: Render([boolean wait[, number start, number end[, number step[, number proxy[, boolean hiq]]]]])
+		result = comp:Render( true, startFrame, endFrame, 1, proxyNumber, highQuality )
+	end
+	
+	se = comp:GetConsoleHistory().Total
+	messages = comp:GetConsoleHistory(si, se)
+	
+	io.flush()
+	
+	for i = 1, table.getn(messages)do
+	  print(messages[i].Text)
+	end
+else
+	-- Render the frames
+	print( "Beginning render..." )
+	io.flush()
+	
+	if( isScriptJob ) then
+		print( "Executing script " .. auxiliaryFile )
+		result = false
+		-- The eyeonscript job must set the global variable result to true
+		dofile(auxiliaryFile)
+	else
+		--Usage: Render([boolean wait[, number start, number end[, number step[, number proxy[, boolean hiq]]]]])
+		result = comp:Render( true, startFrame, endFrame, 1, proxyNumber,highQuality)
+	end
+	
+	io.flush()
+end
+
+-- Get the comp path, in case we need to replace "comp:" in the output path when checking output.
+compFileName = comp:GetAttrs().COMPS_FileName
+compDirName = deadlineGetFilePath( compFileName )
+
+-- Do a check to make sure all the result images got saved out. In some cases, fusion has
+-- reported success even though the savers didn't produce output. This should catch that error.
+if( result and checkOutput ) then
+	local savers = deadlineGetSavers(comp)
+	for i = 1, table.getn(savers) do
+		-- There seem to be situations where TOOLST_Clip_Name can be either a string
+		-- or a table. I have no idea what determines this.
+		local outputFile = ""
+		print( "output file type = " .. type( savers[i]:GetAttrs().TOOLST_Clip_Name ) )
+		if type( savers[i]:GetAttrs().TOOLST_Clip_Name ) == "string" then
+			outputFile = savers[i]:GetAttrs().TOOLST_Clip_Name
+		else
+			outputFile = savers[i]:GetAttrs().TOOLST_Clip_Name[1]
+		end
+		
+		if not savers[i]:GetAttrs().TOOLB_PassThrough and not (outputFile == nil) then
+			-- Manually replace "comp:" with the comp path first, to workaround a Fusion bug.
+			local outFile
+			outputFile = string.gsub( outputFile, "[cC][oO][mM][pP]:", compDirName )
+			
+			outputFile = df:MapPath( outputFile )
+			if( pathIsMovieFormat(outputFile) ) then
+				print( "Checking file ", outputFile );
+				if( not fileexists(outputFile) ) then
+					print( "Saver \"" .. savers[i]:GetAttrs().TOOLS_Name .. "\" did not produce output file." )
+					print( "Expected file \"" .. outputFile .. "\" to exist." )
+					print( "Fusion reported that the render succeeded, by returning true to comp:Render()," );
+					print( "but an expected output file from a saver was not found to exist. There is not generally a" );
+					print( "single cause for this, but some possibilities for figuring what happened include:" );
+					print( "- A drive mapping may be missing." );
+					print( "- An error occurred, producing log output (which would be displayed above if this is the case)," );
+					print( "  but for some reason dfscript still returned a success result." );
+					print( "- The file which is expected to exist perhaps shouldn't have existed.  In this case you should" );
+					print( "  email support@thinkboxsoftware.com with details of this, so we can fix this script." );
+					print( "If your problem is none of the above, email support@thinkboxsoftware.com for assistance" );
+					print( "in diagnosing the problem." );
+					print( "SCRIPT ERROR: Saver \"" .. savers[i]:GetAttrs().TOOLS_Name .. "\" did not produce output file." )
+					io.flush()
+					wait(5)
+					do return end
+				end
+			else
+				for frameNo = startFrame, endFrame do
+					local actualFile = replaceFrameNo( outputFile, frameNo )
+					print( "Checking file ", actualFile );
+					if( not fileexists(actualFile) ) then
+						print( "Saver \"" .. savers[i]:GetAttrs().TOOLS_Name .. "\" did not produce output file." )
+						print( "Expected file \"" .. actualFile .. "\" to exist." )
+						print( "Fusion reported that the render succeeded, by returning true to comp:Render()," );
+						print( "but an expected output file from a saver was not found to exist. There is not generally a" );
+						print( "single cause for this, but some possibilities for figuring what happened include:" );
+						print( "- A drive mapping may be missing." );
+						print( "- An error occurred, producing log output (which would be displayed above if this is the case)," );
+						print( "  but for some reason dfscript still returned a success result." );
+						print( "- The file which is expected to exist perhaps shouldn't have existed.  In this case you should" );
+						print( "  email support@thinkboxsoftware.com with details of this, so we can fix this script." );
+						print( "If your problem is none of the above, email support@thinkboxsoftware.com for assistance" );
+						print( "in diagnosing the problem." );
+						print( "SCRIPT ERROR: Saver \"" .. savers[i]:GetAttrs().TOOLS_Name .. "\" did not produce output file." )
+						io.flush()
+						wait(5)
+						do return end
+					end
+				end
+			end
+		end
+	end
+end
+
+if( result ) then
+	print( "Render succeeded" )
+	io.flush()
+end
+
+comp = nil
+fl = nil
+savers = nil
+
+if( df.CacheManager ~= nil ) then
+	df.CacheManager:Purge()
+end
+
+df = nil
+collectgarbage()
+io.flush()
+
+if( not result ) then
+	if isScriptJob then
+		print( "SCRIPT ERROR: The Script job reported that the render failed. Scroll down to the bottom of the log below for more details." )
+	else
+		print( "SCRIPT ERROR: Fusion reported that the render failed. Scroll down to the bottom of the log below for more details." )
+	end
+	io.flush()
+	wait(5)
+	do return end
+end
+
+print( "RenderTasks script complete" )
+io.flush()
+wait(2)
+os.exit(17)

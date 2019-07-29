@@ -1,0 +1,197 @@
+[Operation]
+Type=label
+Label=Operation
+Category=General
+CategoryOrder=0
+Index=0
+Description=The type of Operation that this Job will perform in MicroStation.
+Required=False
+
+[ExportMode]
+Type=label
+Label=Export Mode
+Category=General
+CategoryOrder=0
+Index=1
+Description=The type of file that this Job is Exporting.
+Required=False
+
+[DesignFile]
+Type=label
+Label=Design File
+Category=General
+CategoryOrder=0
+Index=2
+Description=The path to the Design File that will be used for this Job.
+Required=False
+
+[Version]
+Type=label
+Label=Version
+Category=MicroStation Version
+Description=The version of MicroStation to use for rendering.
+Required=false
+DisableIfBlank=true
+
+[PSETFile]
+Type=label
+Label=Print Settings
+Category=General
+CategoryOrder=0
+Index=3
+Description=The file containing the Print Settings for the Print operation
+Required=False
+
+[SMIFile]
+Type=Label
+Label=Save Multiple Script
+Category=General
+CategoryOrder=0
+Index=4
+Description=The script file that will be used for the Save Multiple Images operation.
+Required=False
+
+[DWSFile]
+Type=Label
+Label=DWS File
+Category=General
+CategoryOrder=0
+Index=5
+Description=The settings file used for the Export DWG/DXF operation.
+Required=False
+
+[OutputPath]
+Type=label
+Label=Output Path
+Category=General
+CategoryOrder=0
+Index=6
+Description=The expected location of this Job's output.
+Required=False
+
+[RenderMode]
+Type=enum
+Label=Render Mode
+Category=Render Options
+CategoryOrder=1
+Index=0
+Description=Choose which render mode to use.
+Required=False
+
+[ColorModel]
+Type=enum
+Label=Color Model
+Category=Render Options
+CategoryOrder=1
+Index=1
+Description=Choose which color model to use when rendering.
+Required=False
+
+[View]
+Type=integer
+Label=View
+Category=Render Options
+CategoryOrder=1
+Index=2
+Description=Choose which viewport will be used to render.
+Required=False
+Minimum=1
+Maximum=8
+
+[OutputSizeX]
+Type=integer
+Label=Output Size X
+Category=Render Options
+CategoryOrder=1
+Index=3
+Description=Specify the X component of the output Size.  A value of zero will leave it as-is in the Design file.
+Required=False
+Minimum=0
+Maximum=999999999
+
+[OutputSizeY]
+Type=integer
+Label=Output Size Y
+Category=Render Options
+CategoryOrder=1
+Index=4
+Description=Specify the Y component of the output Size. A value of zero will leave it as-is in the Design file.
+Required=False
+Minimum=0
+Maximum=999999999
+
+[SavedView]
+Type=enum
+Label=Saved View
+Category=Render Options
+CategoryOrder=1
+Index=5
+Description=Choose which (if any) Saved View to apply to the viewport before rendering.
+Required=False
+
+[RenderSetup]
+Type=enum
+Label=Render Setup
+Category=Render Options
+CategoryOrder=1
+Index=6
+Description=Choose the Render Setup to use (Luxology).
+Required=False
+
+[Environment]
+Type=enum
+Label=Environment
+Category=Render Options
+CategoryOrder=1
+Index=7
+Description=Choose the Environment Setup to use (Luxology).
+Required=False
+
+[LightSetup]
+Type=enum
+Label=Light Setup
+Category=Render Options
+CategoryOrder=1
+Index=8
+Description=Choose the Light Setup to use (Luxology).
+Required=False
+
+[DesignFileReadOnly]
+Type=boolean
+Label=Design File Read Only
+Category=General
+CategoryOrder=1
+Description=Choose whether the design file will be loaded as read-only.
+Required=False
+
+[ScriptFile]
+Type=filename
+Label=Script File
+Category=Script Job Options
+Index=0
+Description=The script file to execute for this job.
+Required=False
+
+[Module]
+Type=string
+Label=Module Name (.mvba)
+Category=Script Job Options
+Index=1
+Description=The Module of the script file to run. Leave blank if not using a .mvba script.
+Required=False
+
+[Submodule]
+Type=string
+Label=Submodule Name (.mvba)
+Category=Script Job Options
+Index=2
+Description=The Submodule/Function of the script file to run. Leave blank if not using a .mvba script.
+Required=False
+
+[KeyinArgs]
+Type=string
+Label=Key-in Arguments (.mvba)
+Category=Script Job Options
+Index=3
+Description=Additional Key-in Arguments to send to the script. Leave blank if not using a .mvba script.
+Required=False

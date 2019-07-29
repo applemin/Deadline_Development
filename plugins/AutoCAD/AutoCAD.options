@@ -1,0 +1,1290 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+CategoryOrder=0
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[OutputFileName]
+Type=filename
+Label=Output File Name
+Category=Render Context
+CategoryOrder=1
+Index=0
+Description=The directory in which output will be sent (must be an existing directory)
+Required=false
+DisableIfBlank=true
+
+[RenderWidth]
+Type=integer
+Minimum=1
+Label=Render Width
+Category=Render Context
+CategoryOrder=1
+Index=1
+Description=The width of the image in pixels
+Required=false
+DisableIfBlank=true
+
+[RenderHeight]
+Type=integer
+Minimum=1
+Label=Render Height
+Category=Render Context
+CategoryOrder=1
+Index=2
+Description=The height of the image in pixels
+Required=false
+DisableIfBlank=true
+
+[RenderPreset]
+Type=enum
+Label=Render Preset
+Category=Render Context
+CategoryOrder=1
+Index=3
+Description=Choose which render preset to use in the drop-down list.
+Required=false
+DisableIfBlank=true
+
+[PhysicalScale]
+Type=float
+Minimum=0.00
+Maximum=2000.00
+Label=Physical Scale
+Category=Render Context
+CategoryOrder=1
+Index=4
+Description=This global scale factor is used to adjust the relative brightness.
+Required=false
+DisableIfBlank=true
+
+[RenderProcedure]
+Type=enum
+Values=View;Selected
+Label=Render Procedure
+Category=Render Context
+CategoryOrder=1
+Index=5
+Description=Controls the model content that gets processed during rendering.
+Required=false
+DisableIfBlank=true
+
+[RenderSelection]
+Type=string
+Label=Render Selection
+Category=Render Context
+CategoryOrder=1
+Index=6
+Description=The handles of the objects to be used when using the Selected render procedure.
+Required=false
+DisableIfBlank=true
+
+[MaterialsEnabled]
+Type=boolean
+Label=Apply materials
+Category=Deadline Custom Preset: Materials
+CategoryOrder=2
+Index=0
+Description=Specifies if per object materials are used. (or the global material)
+Required=false
+DisableIfBlank=true
+
+[TextureSampling]
+Type=boolean
+Label=Texture filtering
+Category=Deadline Custom Preset: Materials
+CategoryOrder=2
+Index=1
+Description=Specifies how texture maps are filtered.
+Required=false
+DisableIfBlank=true
+
+[BackFacesEnabled]
+Type=boolean
+Label=Force 2-sided
+Category=Deadline Custom Preset: Materials
+CategoryOrder=2
+Index=2
+Description=Specifies if backfaces are shaded.
+Required=false
+DisableIfBlank=true
+
+[SamplingMin]
+Type=integer
+Label=Sampling: Min Samples
+Label=Sampling: Min samples
+Category=Deadline Custom Preset: Sampling
+CategoryOrder=3
+Index=0
+Description=Specifies the minimum number of samples to take when shading a pixel. Values less than 1 allow subsampling.
+Required=false
+DisableIfBlank=true
+
+[SamplingMax]
+Type=integer
+Label=Sampling: Max Samples
+Category=Deadline Custom Preset: Sampling
+CategoryOrder=3
+Index=1
+Description=Specifies the maximum number of samples to take when shading a pixel.
+Required=false
+DisableIfBlank=true
+
+[SamplingFilterType]
+Type=enum
+Values=Box;Triangle;Gauss;Mitchell;Lanczos
+Label=Sampling: Filter type
+Category=Deadline Custom Preset: Sampling
+CategoryOrder=3
+Index=2
+Description=Specifies the method for combining pixel samples into the final sample color.
+Required=false
+DisableIfBlank=true
+
+[SamplingFilterWidth]
+Type=float
+Minimum=0
+Maximum=8
+DecimalPlaces=4
+Label=Sampling: Filter width
+Category=Deadline Custom Preset: Sampling
+CategoryOrder=3
+Index=3
+Description=Specifies the width of the pixel filter. I.e. how many samples are to be combined to form the final pixel color.
+Required=false
+DisableIfBlank=true
+
+[SamplingFilterHeight]
+Type=float
+Minimum=0
+Maximum=8
+DecimalPlaces=4
+Label=Sampling: Filter height
+Category=Deadline Custom Preset: Sampling
+CategoryOrder=3
+Index=4
+Description=Specifies the height of the pixel filter. I.e. how many samples are to be combined to form the final pixel color.
+Required=false
+DisableIfBlank=true
+
+[SamplingContrastColorRed]
+Type=float
+Minimum=0.0000
+Maximum=1.0000
+Increment=0.0001
+DecimalPlaces=4
+Label=Sampling: Contrast red
+Category=Deadline Custom Preset: Sampling
+CategoryOrder=3
+Index=5
+Description=Specifies the threshold value of the red component for color sampling.
+Required=false
+DisableIfBlank=true
+
+[SamplingContrastColorBlue]
+Type=float
+Minimum=0.0000
+Maximum=1.0000
+Increment=0.0001
+DecimalPlaces=4
+Label=Sampling: Contrast blue
+Category=Deadline Custom Preset: Sampling
+CategoryOrder=3
+Index=6
+Description=Specifies the threshold value of the blue component for color sampling.
+Required=false
+DisableIfBlank=true
+
+[SamplingContrastColorGreen]
+Type=float
+Minimum=0.0000
+Maximum=1.0000
+Increment=0.0001
+DecimalPlaces=4
+Label=Sampling: Contrast green
+Category=Deadline Custom Preset: Sampling
+CategoryOrder=3
+Index=7
+Description=Specifies the threshold value of the green component for color sampling.
+Required=false
+DisableIfBlank=true
+
+[SamplingContrastColorAlpha]
+Type=float
+Minimum=0.0000
+Maximum=1.0000
+DecimalPlaces=4
+Label=Sampling: Contrast alpha
+Category=Deadline Custom Preset: Sampling
+CategoryOrder=3
+Index=8
+Description=Specifies the threshold value of the alpha component for color sampling.
+Required=false
+DisableIfBlank=true
+
+[ShadowsEnabled]
+Type=boolean
+Label=Shadows: Enabled
+Category=Deadline Custom Preset: Shadows
+CategoryOrder=4
+Index=0
+Description=Specifies if shadows are enabled or not.
+Required=false
+DisableIfBlank=true
+
+[ShadowMode]
+Type=enum
+Values=Segments;Simple;Sorted
+Label=Shadows: Mode
+Category=Deadline Custom Preset: Shadows
+CategoryOrder=4
+Index=1
+Description=Specifies what method to use when handling transparent shadows.
+Required=false
+DisableIfBlank=true
+
+[ShadowMapsEnabled]
+Type=boolean
+Label=Shadows: Shadow map
+Category=Deadline Custom Preset: Shadows
+CategoryOrder=4
+Index=2
+Description=Specifies if shadow maps should be used. If enabled, this option applies only to those lights using mapped shadows.
+Required=false
+DisableIfBlank=true
+
+[ShadowSamplingMultiplier]
+Type=enum
+Values=SamplingMultiplierZero;SamplingMultiplierOneEighth;SamplingMultiplierOneFourth;SamplingMultiplierOneHalf;SamplingMultiplierOne;SamplingMultiplierTwo
+Label=Shadows: Sampling Multiplier
+Category=Deadline Custom Preset: Shadows
+CategoryOrder=4
+Index=3
+Description=Specifies how many samples to take within the light's area to adjust the quality of shadows.
+Required=false
+DisableIfBlank=true
+
+[RayTracingEnabled]
+Type=boolean
+Label=Ray Tracing: Enabled
+Category=Deadline Custom Preset: Ray Tracing
+CategoryOrder=5
+Index=0
+Description=Specifies if ray tracing is enabled or not.
+Required=false
+DisableIfBlank=true
+
+[RayTraceDepthSum]
+Type=integer
+Minimum=0
+Maximum=2147483647
+Increment=1
+Label=Ray Tracing: Max depth
+Category=Deadline Custom Preset: Ray Tracing
+CategoryOrder=5
+Index=1
+Description=Specifies the number of reflections and refractions which can occur before the ray is terminated.
+Required=false
+DisableIfBlank=true
+
+[RayTraceDepthReflection]
+Type=integer
+Minimum=1
+Maximum=2147483647
+Increment=1
+Label=Ray Tracing: Max reflections
+Category=Deadline Custom Preset: Ray Tracing
+CategoryOrder=5
+Index=2
+Description=Sets the number of times a ray can be reflected.
+Required=false
+DisableIfBlank=true
+
+[RayTraceDepthRefraction]
+Type=integer
+Minimum=1
+Maximum=2147483647
+Increment=1
+Label=Ray Tracing:  Max refractions
+Category=Deadline Custom Preset: Ray Tracing
+CategoryOrder=5
+Index=3
+Description=Sets the number of times a ray can be refracted.
+Required=false
+DisableIfBlank=true
+
+[GlobalIlluminationEnabled]
+Type=boolean
+Label=Global Illumination: Enabled
+Category=Deadline Custom Preset: Indirect Illumination: GI
+CategoryOrder=6
+Index=0
+Description=Specifies if global illumination is enabled or not.
+Required=false
+DisableIfBlank=true
+
+[GISampleCount]
+Type=integer
+Minimum=1
+Maximum=2147483647
+Increment=1
+Label=Global Illumination: Photons/sample
+Category=Deadline Custom Preset: Indirect Illumination: GI
+CategoryOrder=6
+Index=1
+Description=Specifies the number of photons to average when calculating the surface illuminance.
+Required=false
+DisableIfBlank=true
+
+[GISampleRadiusEnabled]
+Type=boolean
+Label=Global Illumination: Use radius
+Category=Deadline Custom Preset: Indirect Illumination: GI
+CategoryOrder=6
+Index=2
+Description=Specifies if a radius should be used to limit photons contributing to the illuminance computation.
+Required=false
+DisableIfBlank=true
+
+[GISampleRadius]
+Type=float
+Minimum=0.0000
+Maximum=214748
+DecimalPlaces=4
+Label=Global Illumination: Radius
+Category=Deadline Custom Preset: Indirect Illumination: GI
+CategoryOrder=6
+Index=3
+Description=Specifies the area within which photons will be used when computing illuminance.
+Required=false
+DisableIfBlank=true
+
+[PhotonTraceDepthSum]
+Type=integer
+Minimum=1
+Maximum=2147483647
+Increment=1
+Label=Global Illumination: Max depth
+Category=Deadline Custom Preset: Indirect Illumination: GI
+CategoryOrder=6
+Index=4
+Description=Specifies the number of reflections and refractions which can occur before the photon ray is terminated.
+Required=false
+DisableIfBlank=true
+
+[PhotonTraceDepthReflection]
+Type=integer
+Minimum=1
+Maximum=2147483647
+Increment=1
+Label=Global Illumination: Max reflections
+Category=Deadline Custom Preset: Indirect Illumination: GI
+CategoryOrder=6
+Index=5
+Description=Sets the number of times a photon can be reflected.
+Required=false
+DisableIfBlank=true
+
+[PhotonTraceDepthRefraction]
+Type=integer
+Minimum=1
+Maximum=2147483647
+Increment=1
+Label=Global Illumination: Max refractions
+Category=Deadline Custom Preset: Indirect Illumination: GI
+CategoryOrder=6
+Index=6
+Description=Sets the number of times a photon can be refracted.
+Required=false
+DisableIfBlank=true
+
+[FinalGatheringMode]
+Type=enum
+Values=FinalGatherAuto;FinalGatherOff;FinalGatherOn
+Label=Final Gather: Mode
+Category=Deadline Custom Preset: Indirect Illumination: FG
+CategoryOrder=7
+Index=1
+Description=Controls whether the final gather process is turned on, turned off, or controlled by the Status setting under Sky Properties in the Sun Properties window in AutoCAD.
+Required=false
+DisableIfBlank=true
+
+[FGRayCount]
+Type=integer
+Minimum=0
+Maximum=2147483647
+Increment=1
+Label=Final Gather: Rays
+Category=Deadline Custom Preset: Indirect Illumination: FG
+CategoryOrder=7
+Index=2
+Description=Specifies the number of final gather rays to be shot from a point being shaded.
+Required=false
+DisableIfBlank=true
+
+[FGSampleRadiusStatePixels]
+Type=boolean
+Label=Final Gather: Radius mode
+Category=Deadline Custom Preset: Indirect Illumination: FG
+CategoryOrder=7
+Index=3
+Description=Determines how the Max Radius setting is used during final gather processing.
+Required=false
+DisableIfBlank=true
+
+[FGSampleRadiusStateMax]
+Type=boolean
+Label=Final Gather: Max radius
+Category=Deadline Custom Preset: Indirect Illumination: FG
+CategoryOrder=7
+Index=4
+Description=Sets the maximum radius within which final gathering is processed.
+Required=false
+DisableIfBlank=true
+
+[FGSampleRadiusStateMin]
+Type=boolean
+Label=Final Gather: Min radius
+Category=Deadline Custom Preset: Indirect Illumination: FG
+CategoryOrder=7
+Index=5
+Description=Sets the minimum radius within which final gathering is processed.
+Required=false
+DisableIfBlank=true
+
+[GIPhotonsPerLight]
+Type=integer
+Minimum=1
+Maximum=2147483647
+Increment=1
+Label=Light Properties: Photons/light
+Category=Deadline Custom Preset: Indirect Illumination: LP
+CategoryOrder=8
+Index=0
+Description=Specifies the average number of photons to shoot for each light.
+Required=false
+DisableIfBlank=true
+
+[EnergyMultiplier]
+Type=float
+Minimum=0.0000
+DecimalPlaces=4
+Label=Light Properties: Energy multiplier
+Category=Deadline Custom Preset: Indirect Illumination: LP
+CategoryOrder=8
+Index=1
+Description=Controls the the magnitude of indirect illumination.
+Required=false
+DisableIfBlank=true
+
+[DiagnosticMode]
+Type=enum
+Values=Off;BSP;Grid;Photon;Samples
+Label=Visual: Mode
+Category=Deadline Custom Preset: Diagnostic: Visual
+CategoryOrder=9
+Index=0
+Description=Specifies the diagnostic mode to be used.
+Required=false
+DisableIfBlank=true
+
+[DiagnosticGridMode]
+Type=enum
+Values=Object;Camera;World
+Label=Visual: Grid
+Category=Deadline Custom Preset: Diagnostic: Visual
+CategoryOrder=9
+Index=1
+Description=Shows the coordinate space of objects, the world, or a camera in the rendered image.
+Required=false
+DisableIfBlank=true
+
+[DiagnosticGridSize]
+Type=float
+Minimum=0.0000
+DecimalPlaces=4
+Label=Visual: Grid size
+Category=Deadline Custom Preset: Diagnostic: Visual
+CategoryOrder=9
+Index=2
+Description=Sets the size of the grid.
+Required=false
+DisableIfBlank=true
+
+[DiagnosticPhotonMode]
+Type=enum
+Values=Density;Irradiance
+Label=Visual: Photon
+Category=Deadline Custom Preset: Diagnostic: Visual
+CategoryOrder=9
+Index=3
+Description=Renders the effect of a photon map in the screen.
+Required=false
+DisableIfBlank=true
+
+[DiagnosticBSPMode]
+Type=enum
+Values=Depth;Size
+Label=Visual: BSP
+Category=Deadline Custom Preset: Diagnostic: Visual
+CategoryOrder=9
+Index=4
+Description=Renders a visualization of the parameters used by the BSP ray-trace acceleration method.
+Required=false
+DisableIfBlank=true
+
+[TileSize]
+Type=integer
+Minimum=4
+Maximum=512
+Increment=4
+Label=Processing: Tile size
+Category=Deadline Custom Preset: Processing
+CategoryOrder=10
+Index=0
+Description=Specifies the size of tiles.
+Required=false
+DisableIfBlank=true
+
+[TileOrder]
+Type=enum
+Values=Hilbert;Spiral;LeftToRight;RightToLeft;TopToBottom;BottomToTop
+Label=Processing: Tile order
+Category=Deadline Custom Preset: Processing
+CategoryOrder=10
+Index=1
+Description=Specifies the order of tiles.
+Required=false
+DisableIfBlank=true
+
+[MemoryLimit]
+Type=integer
+Minimum=128
+Maximum=2147483647
+Increment=1
+Label=Processing: Memory limit
+Category=Deadline Custom Preset: Processing
+CategoryOrder=10
+Index=2
+Description=Specifies the maximum memory mental ray should allocate. When reached texture memory should be released.
+Required=false
+DisableIfBlank=true
+
+[UseCustomSunSettings]
+Type=boolean
+Label=Use Custom Sun Settings
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=0
+Description=Enable or disable the custom sun settings
+Required=false
+DisableIfBlank=true
+
+[SunStatus]
+Type=boolean
+Label=Sun Status
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=1
+Description=Turns on and off the lighting effects of the sun in the current viewport.
+Required=false
+DisableIfBlank=true
+
+[SunIntensity]
+Type=float
+Minimum=0.0000
+Label=Sun Intensity
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=2
+Description=Sets the intensity or brightness of the sun. The range is from 0 (no light) to maximum. The higher the number, the brighter the light.
+Required=false
+DisableIfBlank=true
+
+[SunShadowsEnabled]
+Type=boolean
+Label=Shadows Enabled
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=3
+Description=Turns display and calculation of shadows for the sun on and off. Turning shadows off increases performance.
+Required=false
+DisableIfBlank=true
+
+[SunShadowsEnabled]
+Type=integer
+Minimum=0
+Maximum=2
+Label=Sky Status
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=4
+Description=Determines if the sky illumination is computed at render time. 0:Sky off, 1:Sky background, 2:Sky background and illumination
+Required=false
+DisableIfBlank=true
+
+[SunSkyIntensity]
+Type=float
+Minimum=0.0000
+Label=Sky Intensity
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=5
+Description=Provides a way to magnify the effect of the skylight. Values are 0.0-MAX. [1.0] is default.
+Required=false
+DisableIfBlank=true
+
+[SunSkyHaze]
+Type=float
+Minimum=0.0000
+Maximum=15.0000
+Label=Sky Haze
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=5
+Description=Determines the magnitude of scattering effects in the atmosphere
+Required=false
+DisableIfBlank=true
+
+[SunHorizonHeight]
+Type=float
+Minimum=-10.0000
+Maximum=10.0000
+Label=Horizon Height
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=6
+Description=Determines the absolute position of the ground plane relative to world zero. This parameter represents a world-space length and should be formatted in the current length unit
+Required=false
+DisableIfBlank=true
+
+[SunHorizonBlur]
+Type=float
+Minimum=0.0000
+Maximum=10.0000
+Label=Horizon Blur
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=7
+Description=Determines the amount of blurring between ground plane and sky.
+Required=false
+DisableIfBlank=true
+
+[SunGroundColorRed]
+Type=integer
+Minimum=0
+Maximum=255
+Label=Ground Color Red
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=8
+Description=Determines the color of the ground plane.
+Required=false
+DisableIfBlank=true
+
+[SunGroundColorGreen]
+Type=integer
+Minimum=0
+Maximum=255
+Label=Ground Color Green
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=9
+Description=Determines the color of the ground plane.
+Required=false
+DisableIfBlank=true
+
+[SunGroundColorBlue]
+Type=integer
+Minimum=0
+Maximum=255
+Label=Ground Color Blue
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=10
+Description=Determines the color of the ground plane.
+Required=false
+DisableIfBlank=true
+
+
+[SunGroundColorBlue]
+Type=integer
+Minimum=0
+Maximum=255
+Label=Ground Color Blue
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=11
+Description=Determines the color of the ground plane.
+Required=false
+DisableIfBlank=true
+
+[SunNightColorRed]
+Type=integer
+Minimum=0
+Maximum=255
+Label=Night Color Red
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=12
+Description=Determines the color of the ground plane.
+Required=false
+DisableIfBlank=true
+
+[SunNightColorGreen]
+Type=integer
+Minimum=0
+Maximum=255
+Label=Night Color Green
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=13
+Description=Determines the color of the ground plane.
+Required=false
+DisableIfBlank=true
+
+[SunNightColorBlue]
+Type=integer
+Minimum=0
+Maximum=255
+Label=Night Color Blue
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=14
+Description=Determines the color of the ground plane.
+Required=false
+DisableIfBlank=true
+
+[SunAerialPerspective]
+Type=boolean
+Label=Aerial Perspective
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=15
+Description=Specifies if aerial perspective is applied
+Required=false
+DisableIfBlank=true
+
+[SunVisibilityDistance]
+Type=float
+Minimum=0
+Label=Visibility Distance
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=16
+Description=Specifies the distance at which 10% haze occlusion results.
+Required=false
+DisableIfBlank=true
+
+[SunDiskScale]
+Type=float
+Minimum=0
+Label=Disk Scale
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=17
+Description=Specifies the scale of the sun disk
+Required=false
+DisableIfBlank=true
+
+[SunDiskGlowIntensity]
+Type=float
+Minimum=0.0000
+Maximum=25.0000
+Label=Disk Glow Intensity
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=18
+Description=Specifies the intensity of the sun glow.
+Required=false
+DisableIfBlank=true
+
+[SunDiskIntensity]
+Type=float
+Minimum=0.0000
+Maximum=25.0000
+Label=Disk Intensity
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=19
+Description=Specifies the intensity of the sun disk.
+Required=false
+DisableIfBlank=true
+
+[SunDate]
+Type=string
+Label=Date
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=20
+Description=Displays the current date setting. Used to calculate the angle of the sun
+Required=false
+DisableIfBlank=true
+
+[SunTime]
+Type=string
+Label=Sun Time
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=21
+Description=Displays the current date Time. Used to calculate the angle of the sun
+Required=false
+DisableIfBlank=true
+
+[SunDaylightSavings]
+Type=boolean
+Label=Daylight Savings Time
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=22
+Description=Displays if Daylight savings time is currently in effect. Used to calculate the angle of the sun.
+Required=false
+DisableIfBlank=true
+
+[SunDaylightSavings]
+Type=boolean
+Label=Daylight Savings Time
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=22
+Description=Displays if Daylight savings time is currently in effect. Used to calculate the angle of the sun.
+Required=false
+DisableIfBlank=true
+
+[SunShadowType]
+Type=enum
+Values=Sampled;Maps;RayTraced
+Label=Shadow Type
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=23
+Description=The selections are Sharp, Soft (mapped) which display the Map size option and Soft (area) which displays the Samples option.
+Required=false
+DisableIfBlank=true
+
+[SunShadowSamples]
+Type=integer
+Minimum=0
+Maximum=1000
+Label=Shadow Samples
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=24
+Description=Specifies the number of samples to take on the solar disk. This setting is read-only when display of shadows is turned off.
+Required=false
+DisableIfBlank=true
+
+[SunShadowSoftness]
+Type=integer
+Minimum=1
+Maximum=10
+Label=Shadow Softness
+Category=Custom Sun Settings
+CategoryOrder=11
+Index=25
+Description=Displays the setting for the appearance of the edges of shadows. This setting is read-only when display of shadows is turned off.
+Required=false
+DisableIfBlank=true
+
+[UseCustomFogSettings]
+Type=boolean
+Label=Use Custom Fog Settings
+Category=Custom Fog Settings
+CategoryOrder=12
+Index=0
+Description=Enable or disable the custom fog settings
+Required=false
+DisableIfBlank=true
+
+[EnableFog]
+Type=boolean
+Label=Enable Fog
+Category=Custom Fog Settings
+CategoryOrder=12
+Index=1
+Description=Turns fog on and off
+Required=false
+DisableIfBlank=true
+
+[FogColorRed]
+Type=integer
+Minimum=0
+Maximum=255
+Label=Fog Color Red
+Category=Custom Fog Settings
+CategoryOrder=12
+Index=2
+Description=Specifies the color of the fog.
+Required=false
+DisableIfBlank=true
+
+[FogColorGreen]
+Type=integer
+Minimum=0
+Maximum=255
+Label=Fog Color Green
+Category=Custom Fog Settings
+CategoryOrder=12
+Index=3
+Description=Specifies the color of the fog.
+Required=false
+DisableIfBlank=true
+
+[FogColorBlue]
+Type=integer
+Minimum=0
+Maximum=255
+Label=Fog Color Blue
+Category=Custom Fog Settings
+CategoryOrder=12
+Index=4
+Description=Specifies the color of the fog.
+Required=false
+DisableIfBlank=true
+
+[FogBackground]
+Type=boolean
+Label=Fog Background
+Category=Custom Fog Settings
+CategoryOrder=12
+Index=5
+Description=Applies fog to the background as well as to the geometry.
+Required=false
+DisableIfBlank=true
+
+[FogNearDistance]
+Type=float
+Minimum=0.0000
+Maximum=100.0000
+Label=Fog Near Distance
+Category=Custom Fog Settings
+CategoryOrder=12
+Index=6
+Description=Specifies the distance from the camera where the fog begins. It is specified as a percentage of the distance to the far clipping plane. The Near Distance setting cannot be greater than the Far Distance setting.
+Required=false
+DisableIfBlank=true
+
+[FogFarDistance]
+Type=float
+Minimum=0.0000
+Maximum=100.0000
+Label=Fog Far Distance
+Category=Custom Fog Settings
+CategoryOrder=12
+Index=7
+Description=Specifies the distance from the camera where the fog ends. It is specified as a percentage of the distance to the far clipping plane. The Far Distance setting cannot be less than the Near Distance setting.
+Required=false
+DisableIfBlank=true
+
+[FogNearPercentage]
+Type=float
+Minimum=0.0000
+Maximum=100.0000
+Label=Fog Near Distance
+Category=Custom Fog Settings
+CategoryOrder=12
+Index=8
+Description=Specifies the opacity of the fog at the near distance.
+Required=false
+DisableIfBlank=true
+
+[FogFarPercentage]
+Type=float
+Minimum=0.0000
+Maximum=100.0000
+Label=Fog Far Distance
+Category=Custom Fog Settings
+CategoryOrder=12
+Index=9
+Description=Specifies the opacity of the fog at the Far distance.
+Required=false
+DisableIfBlank=true
+
+[UseCustomExposureSettings]
+Type=boolean
+Label=Use Custom Exposure Settings
+Category=Custom Exposure Settings
+CategoryOrder=13
+Index=0
+Description=Enable or disable the custom exposure settings
+Required=false
+DisableIfBlank=true
+
+[ExposureBrightness]
+Type=float
+Minimum=0.0000
+Maximum=200.0000
+Label=Exposure Brightness
+Category=Custom Exposure Settings
+CategoryOrder=13
+Index=1
+Description=Controls the brightness level of the viewport when photometric lighting is enabled 
+Required=false
+DisableIfBlank=true
+
+[ExposureContrast]
+Type=float
+Minimum=0.0000
+Maximum=100.0000
+Label=Exposure Contrast
+Category=Custom Exposure Settings
+CategoryOrder=13
+Index=2
+Description=Controls the contrast level of the viewport when photometric lighting is enabled 
+Required=false
+DisableIfBlank=true
+
+[ExposureMidTones]
+Type=float
+Minimum=0.0100
+Maximum=20.0000
+Label=Exposure Brightness
+Category=Custom Exposure Settings
+CategoryOrder=13
+Index=3
+Description=Controls the mid tones level of the viewport when photometric lighting is enabled 
+Required=false
+DisableIfBlank=true
+
+[ExposureDaylight]
+Type=integer
+Minimum=0
+Maximum=2
+Label=Exposure Daylight
+Category=Custom Exposure Settings
+CategoryOrder=13
+Index=4
+Description=When this system variable is off, exterior daylight is turned off when photometric lighting is enabled.  When on, the exposure control algorithm in the rendering acts as if there is an extremely bright light source in the scene. 0:Off,1:On,2:Automatic, current sun status is used
+Required=false
+DisableIfBlank=true
+
+[PlotFilePrefix]
+Type=string
+Label=Plot File Prefix
+Category=Plotter Settings
+CategoryOrder=1
+Index=0
+Description=The prefix and location of the file that will be plotted to.
+Required=false
+DisableIfBlank=true
+
+[PlotArea]
+Type=enum
+Values=Display;Extents
+Label=Plot Area
+Category=Plotter Settings
+CategoryOrder=1
+Index=1
+Description=The area for the plotter to plot
+Required=false
+DisableIfBlank=true
+
+[PaperSize]
+Type=enum
+Label=Paper Size
+Category=Plotter Settings
+CategoryOrder=1
+Index=2
+Description=The size of Paper to plot to.
+Required=false
+DisableIfBlank=true
+
+[PaperUnits]
+Type=enum
+Values=Inches;Millimeters
+Label=Paper Units
+Category=Plotter Settings
+CategoryOrder=1
+Index=3
+Description=The units of the paper to plot to.
+Required=false
+DisableIfBlank=true
+
+[FitPlotScale]
+Type=boolean
+Label=Fit Plot Scale
+Category=Plotter Settings
+CategoryOrder=1
+Index=4
+Description=Should the plotter fit to scale or used the specified scale
+Required=false
+DisableIfBlank=true
+
+[PlottedUnitScale]
+Type=float
+Minimum=0.001
+Label=Plotted Unit Scale
+Category=Plotter Settings
+CategoryOrder=1
+Index=5
+Description=The Scale that the plotteruses
+Required=false
+DisableIfBlank=true
+
+[DrawingUnitScale]
+Type=float
+Minimum=0.001
+Label=Drawing Unit Scale
+Category=Plotter Settings
+CategoryOrder=1
+Index=6
+Description=The scale that the drawing uses
+Required=false
+DisableIfBlank=true
+
+[PlotStyleTable]
+Type=enum
+Label=Plot Style Table
+Category=Plotter Settings
+CategoryOrder=1
+Index=7
+Description=The file which contains the style table for plotting
+Required=false
+DisableIfBlank=true
+
+[UseLineWeights]
+Type=boolean
+Label=Use Line Weights
+Category=Plotter Settings
+CategoryOrder=1
+Index=8
+Description=Whether or not the plotter should use line weight
+Required=false
+DisableIfBlank=true
+
+[ScaleLineWeights]
+Type=boolean
+Label=Scale Line Weights
+Category=Plotter Settings
+CategoryOrder=1
+Index=9
+Description=Whether or not the line weights should be scaled
+Required=false
+DisableIfBlank=true
+
+[ExportFilename]
+Type=filename
+Label=Export File Name
+Category=Export Settings
+CategoryOrder=1
+Index=0
+Description=The directory in which output will be sent (must be an existing directory)
+Required=false
+DisableIfBlank=true
+
+[Selection]
+Type=string
+Label=Selection
+Category=Export Settings
+CategoryOrder=1
+Index=1
+Description=The objects to be selected.  Values Allowed: All, Visible (for some file formats), a comma separated list of object handles.
+Required=false
+DisableIfBlank=true
+
+[ExportAll]
+Type=boolean
+Label=Export All Types
+Category=Export Settings
+CategoryOrder=1
+Index=2
+Description=Whether or not all types of objects should be exported.
+Required=false
+DisableIfBlank=true
+
+[ExportObjects]
+Type=boolean
+Label=Export Objects
+Category=Export Settings
+CategoryOrder=1
+Index=3
+Description=Whether or not objects should be exported. Only used if Export All is False.
+Required=false
+DisableIfBlank=true
+
+[ExportLights]
+Type=boolean
+Label=Export Lights
+Category=Export Settings
+CategoryOrder=1
+Index=4
+Description=Whether or not Lights should be exported. Only used if Export All is False.
+Required=false
+DisableIfBlank=true
+
+[ExportCameras]
+Type=boolean
+Label=Export Cameras
+Category=Export Settings
+CategoryOrder=1
+Index=5
+Description=Whether or not Cameras should be exported. Only used if Export All is False.
+Required=false
+DisableIfBlank=true
+
+[ExportMaterials]
+Type=boolean
+Label=Export Materials
+Category=Export Settings
+CategoryOrder=1
+Index=6
+Description=Whether or not Materials should be exported. Only used if Export All is False.
+Required=false
+DisableIfBlank=true
+
+[HandleTextures]
+Type=enum
+Values=Copy;Embed;Reference
+Label=Handle Textures
+Category=Export Settings
+CategoryOrder=1
+Index=7
+Description=How the exporter should handle Textures
+Required=false
+DisableIfBlank=true
+
+[DGNVersion]
+Type=enum
+Values=V7;V8
+Label=DGN Version
+Category=Export Settings
+CategoryOrder=1
+Index=8
+Description=Which version of DGN File should be made.
+Required=false
+DisableIfBlank=true
+
+[DGNConversionUnits]
+Type=enum
+Values=Master;Sub
+Label=Conversion Units
+Category=Export Settings
+CategoryOrder=1
+Index=9
+Description=Which units should be used for conversion the master units or the sub units
+Required=false
+DisableIfBlank=true
+
+[DGNMappingSetup]
+Type=enum
+Label=Mapping Setup
+Category=Export Settings
+CategoryOrder=1
+Index=10
+Description=Which mapping setup should be used for the export.
+Required=false
+DisableIfBlank=true
+
+[DGNSeedFile]
+Type=filename
+Label=Seed File
+Category=Export Settings
+CategoryOrder=1
+Index=11
+Description=The seed file to control generate the DGN from.
+Required=false
+DisableIfBlank=true

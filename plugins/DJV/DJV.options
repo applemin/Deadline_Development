@@ -1,0 +1,968 @@
+[Version]
+Type=enum
+Label=Version of djv_convert.exe to use
+Category=DJV Options
+CategoryOrder=0
+Index=0
+Description=Version of djv_convert.exe to use
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=enum
+Label=Build of djv_convert.exe to use
+Category=DJV Options
+CategoryOrder=0
+Index=1
+Description=Build of djv_convert.exe to use
+Required=false
+DisableIfBlank=true
+
+[InputFile]
+Type=filename
+Label= Input File
+Category=File Options
+CategoryOrder=0
+Index=2
+Description=Specify the Input File and/or File Format (Do NOT alter the Frame Range/File Padding)
+Required=false
+DisableIfBlank=true
+
+[OutputFile]
+Type=filename
+Label= Output File
+Category=File Options
+CategoryOrder=0
+Index=3
+Description=Specify the Output File and/or File Format (Do NOT alter the Frame Range/File Padding)
+Required=false
+DisableIfBlank=true
+
+[TimeUnitsBox]
+Type=enum
+Label=Time Units
+Category=General Image Options
+CategoryOrder=1
+Index=0
+Description=Time Units
+Required=false
+DisableIfBlank=true
+
+[FrameRate]
+Type=enum
+Label=Frame Rate (seconds)
+Category=General Image Options
+CategoryOrder=1
+Index=1
+Description=Frame Rate (seconds)
+Required=false
+DisableIfBlank=true
+
+[InputLayerBox]
+Type=string
+Label=Input Layer
+Category=Input Options
+CategoryOrder=2
+Index=0
+Description=Define an input layer name to be used as the input image sequence
+Required=false
+DisableIfBlank=true
+
+[ProxyScaleBox]
+Type=enum
+Label=Proxy Scale
+Category=Input Options
+CategoryOrder=2
+Index=1
+Description=Define a proxy scale for the input image sequence
+Required=false
+DisableIfBlank=true
+
+[InputStartFrameBox]
+Type=integer
+Default=0
+Minimum=-1000000
+Maximum=1000000
+Increment=1
+Label=Input Start Frame
+Category=Input Options
+CategoryOrder=2
+Index=2
+Description=Define an input image sequence start time
+Required=false
+DisableIfBlank=true
+
+[InputEndFrameBox]
+Type=integer
+Default=0
+Minimum=-1000000
+Maximum=1000000
+Increment=1
+Label=Input End Frame
+Category=Input Options
+CategoryOrder=2
+Index=3
+Description=Define an input image sequence end time
+Required=false
+DisableIfBlank=true
+
+[SlateInputBox]
+Type=filename
+Label=Slate Input File
+Category=Input Options
+CategoryOrder=2
+Index=4
+Description=Specify a Slate Input File of any bitmap type
+Required=false
+DisableIfBlank=true
+
+[SlateFrameBox]
+Type=integer
+Default=0
+Minimum=-1000000
+Maximum=1000000
+Increment=1
+Label=Slate Input Frame
+Category=Input Options
+CategoryOrder=2
+Index=5
+Description=Specify the Slate Input File Frame Count
+Required=false
+DisableIfBlank=true
+
+[InputImageTimeoutBox]
+Type=integer
+Default=0
+Minimum=0
+Maximum=1000
+Increment=1
+Label=Input Image Timeout
+Category=Input Options
+CategoryOrder=2
+Index=6
+Description=Maximum number of seconds to wait for each input frame
+Required=false
+DisableIfBlank=true
+
+[PixelTypeBox]
+Type=enum
+Label=Pixel Type
+Category=Output Options
+CategoryOrder=3
+Index=0
+Description=Convert Pixel Type
+Required=false
+DisableIfBlank=true
+
+[OutputFrameRateBox]
+Type=enum
+Label=Frame Rate (seconds)
+Category=Output Options
+CategoryOrder=3
+Index=1
+Description=Frame Rate (seconds)
+Required=false
+DisableIfBlank=true
+
+[ImageTagNameBox]
+Type=string
+Label=Image Tag Name
+Category=Output Options
+CategoryOrder=3
+Index=2
+Description=Set an image tag name
+Required=false
+DisableIfBlank=true
+
+[ImageTagValueBox]
+Type=string
+Label=Image Tag Value
+Category=Output Options
+CategoryOrder=3
+Index=3
+Description=Set an image tag value
+Required=false
+DisableIfBlank=true
+
+[AutoGenerateTagsBox]
+Type=boolean
+Label=Automatically Generate Image Tags
+Category=Output Options
+CategoryOrder=3
+Index=4
+Description=Automatically generate image tags (e.g., timecode)
+Required=false
+DisableIfBlank=true
+
+[RendererBox]
+Type=enum
+Label=Renderer
+Category=LOAD : OpenGL Options
+CategoryOrder=4
+Index=0
+Description=Choose OpenGL Renderer to use
+Required=false
+DisableIfBlank=true
+
+[RenderFilterMinBox]
+Type=enum
+Label=Render Filter : Minify
+Category=LOAD : OpenGL Options
+CategoryOrder=4
+Index=1
+Description=Render Filter : Minify
+Required=false
+DisableIfBlank=true
+
+[RenderFilterMagBox]
+Type=enum
+Label=Render Filter : Magnify
+Category=LOAD : OpenGL Options
+CategoryOrder=4
+Index=2
+Description=Render Filter : Magnify
+Required=false
+DisableIfBlank=true
+
+[OffscreenBufferBox]
+Type=enum
+Label=Render Filter : Offscreen Buffer
+Category=LOAD : OpenGL Options
+CategoryOrder=4
+Index=3
+Description=Render Filter : Offscreen Buffer
+Required=false
+DisableIfBlank=true
+
+[ThreadCountBox_NOT_USED]
+Type=integer
+Default=4
+Minimum=0
+Maximum=100
+Increment=1
+Label=Thread Count
+Category=LOAD : OpenEXR Options
+CategoryOrder=5
+Index=0
+Description=OpenEXR thread count (0 - disable threading : maximum - thread count)
+Required=false
+DisableIfBlank=true
+
+[ColorProfileBox]
+Type=enum
+Label=Color Profile
+Category=LOAD : OpenEXR Options
+CategoryOrder=5
+Index=1
+Description=Load OpenEXR Color Profile (default = gamma)
+Required=false
+DisableIfBlank=true
+
+[EXRGammaBox]
+Type=float
+Default=2.2
+Minimum=0.1
+Maximum=4.0
+DecimalPlaces=1
+Increment=0.1
+Label=Gamma Value
+Category=LOAD : OpenEXR Options
+CategoryOrder=5
+Index=2
+Description=Load OpenEXR Gamma Value (default = 2.2)
+Required=false
+DisableIfBlank=true
+
+[EXRValueBox]
+Type=float
+Default=0.0
+Minimum=-10.0
+Maximum=10.0
+DecimalPlaces=3
+Increment=0.1
+Label=Exposure Value
+Category=LOAD : OpenEXR Options
+CategoryOrder=5
+Index=3
+Description=Load OpenEXR Exposure Value (default = 0.0)
+Required=false
+DisableIfBlank=true
+
+[EXRDefogBox]
+Type=float
+Default=0.0
+Minimum=0.000
+Maximum=0.010
+DecimalPlaces=3
+Increment=0.001
+Label=Exposure Defog
+Category=LOAD : OpenEXR Options
+CategoryOrder=5
+Index=4
+Description=Load OpenEXR Exposure Defog Value (default = 0.0)
+Required=false
+DisableIfBlank=true
+
+[EXRKneeLowBox]
+Type=float
+Default=0.0
+Minimum=-3.000
+Maximum=3.000
+DecimalPlaces=3
+Increment=0.1
+Label=Exposure Knee Low
+Category=LOAD : OpenEXR Options
+CategoryOrder=5
+Index=5
+Description=Load OpenEXR Exposure Knee Low Value (default = 0.0)
+Required=false
+DisableIfBlank=true
+
+[EXRKneeHighBox]
+Type=float
+Default=5.0
+Minimum=3.5
+Maximum=7.5
+DecimalPlaces=1
+Increment=0.1
+Label=Exposure Knee High
+Category=LOAD : OpenEXR Options
+CategoryOrder=5
+Index=6
+Description=Load OpenEXR Exposure Knee High Value (default = 5.0)
+Required=false
+DisableIfBlank=true
+
+[EXRChannelsBox]
+Type=enum
+Label=EXR Channels
+Category=LOAD : OpenEXR Options
+CategoryOrder=5
+Index=7
+Description=Load OpenEXR Channels (value)
+Required=false
+DisableIfBlank=true
+
+[CineonLoadColorProfileBox]
+Type=enum
+Label=Color Profile
+Category=LOAD : Cineon Options
+CategoryOrder=6
+Index=0
+Description=Load Cineon Color Profile (default = auto)
+Required=false
+DisableIfBlank=true
+
+[CineonLoadBlackBox]
+Type=integer
+Default=95
+Minimum=0
+Maximum=1023
+Increment=1
+Label=Film Print : Black
+Category=LOAD : Cineon Options
+CategoryOrder=6
+Index=1
+Description=Load Cineon Film Print Black (default = 95)
+Required=false
+DisableIfBlank=true
+
+[CineonLoadWhiteBox]
+Type=integer
+Default=685
+Minimum=0
+Maximum=1023
+Increment=1
+Label=Film Print : White
+Category=LOAD : Cineon Options
+CategoryOrder=6
+Index=2
+Description=Load Cineon Film Print White (default = 685)
+Required=false
+DisableIfBlank=true
+
+[CineonLoadGammaBox]
+Type=float
+Default=1.7
+Minimum=0.1
+Maximum=4.0
+DecimalPlaces=1
+Increment=0.1
+Label=Film Print : Gamma
+Category=LOAD : Cineon Options
+CategoryOrder=6
+Index=3
+Description=Load Cineon Film Print Gamma (default = 1.7)
+Required=false
+DisableIfBlank=true
+
+[CineonLoadSoftClipBox]
+Type=integer
+Default=0
+Minimum=0
+Maximum=50
+Increment=1
+Label=Film Print : Soft Clip
+Category=LOAD : Cineon Options
+CategoryOrder=6
+Index=4
+Description=Load Cineon Film Print Soft Clip (default = 0)
+Required=false
+DisableIfBlank=true
+
+[CineonLoadConvertBox]
+Type=enum
+Label=Film Print : Convert
+Category=LOAD : Cineon Options
+CategoryOrder=6
+Index=5
+Description=Load Cineon Convert (default = none)
+Required=false
+DisableIfBlank=true
+
+[DPXColorProfileBox]
+Type=enum
+Label=Color Profile
+Category=LOAD : DPX Options
+CategoryOrder=7
+Index=0
+Description=Load DPX Color Profile (default = auto)
+Required=false
+DisableIfBlank=true
+
+[DPXBlackBox]
+Type=integer
+Default=95
+Minimum=0
+Maximum=1023
+Increment=1
+Label=Film Print : Black
+Category=LOAD : DPX Options
+CategoryOrder=7
+Index=1
+Description=Load DPX Film Print Black (default = 95)
+Required=false
+DisableIfBlank=true
+
+[DPXWhiteBox]
+Type=integer
+Default=685
+Minimum=0
+Maximum=1023
+Increment=1
+Label=Film Print : White
+Category=LOAD : DPX Options
+CategoryOrder=7
+Index=2
+Description=Load DPX Film Print White (default = 685)
+Required=false
+DisableIfBlank=true
+
+[DPXGammaBox]
+Type=float
+Default=1.7
+Minimum=0.1
+Maximum=4.0
+DecimalPlaces=1
+Increment=0.1
+Label=Film Print : Gamma
+Category=LOAD : DPX Options
+CategoryOrder=7
+Index=3
+Description=Load DPX Film Print Gamma (default = 1.7)
+Required=false
+DisableIfBlank=true
+
+[DPXSoftClipBox]
+Type=integer
+Default=0
+Minimum=0
+Maximum=50
+Increment=1
+Label=Film Print : Soft Clip
+Category=LOAD : DPX Options
+CategoryOrder=7
+Index=4
+Description=Load DPX Film Print Soft Clip (default = 0)
+Required=false
+DisableIfBlank=true
+
+[DPXConvertBox]
+Type=enum
+Label=Film Print : Convert
+Category=LOAD : DPX Options
+CategoryOrder=7
+Index=5
+Description=Load DPX Convert (default = none)
+Required=false
+DisableIfBlank=true
+
+[LUTFileLoadFormatBox]
+Type=enum
+Label=File Format
+Category=LOAD : LUT Options
+CategoryOrder=8
+Index=0
+Description=Load LUT File Format (default = auto)
+Required=false
+DisableIfBlank=true
+
+[LUTFileLoadTypeBox]
+Type=enum
+Label=File Type
+Category=LOAD : LUT Options
+CategoryOrder=8
+Index=1
+Description=Load LUT File Type (default = auto)
+Required=false
+DisableIfBlank=true
+
+[QTStartFrameBox]
+Type=integer
+Default=0
+Minimum=0
+Maximum=1000000
+Increment=1
+Label=Start Frame
+Category=LOAD : QuickTime Options
+CategoryOrder=9
+Index=0
+Description=Load QuickTime Start Frame (default = 0)
+Required=false
+DisableIfBlank=true
+
+[EXRCompressionTypeBox]
+Type=enum
+Label=Compression Type
+Category=SAVE : OpenEXR Options
+CategoryOrder=10
+Index=0
+Description=Save OpenEXR Compression (default = none)
+Required=false
+DisableIfBlank=true
+
+[EXRCompressionLevelBox]
+Type=integer
+Default=45
+Minimum=0
+Maximum=100
+Increment=1
+Label=DWAA/DWAB Compression Level
+Category=SAVE : OpenEXR Options
+CategoryOrder=10
+Index=1
+Description=Save OpenEXR DWAA / DWAB Compression Level (default = 45)
+Required=false
+DisableIfBlank=true
+
+[CineonSaveColorProfileBox]
+Type=enum
+Label=Cineon Color Profile
+Category=SAVE : Cineon Options
+CategoryOrder=11
+Index=0
+Description=Save Cineon Color Profile (default = film print)
+Required=false
+DisableIfBlank=true
+
+[CineonSaveBlackBox]
+Type=integer
+Default=95
+Minimum=0
+Maximum=1023
+Increment=1
+Label=Film Print : Black
+Category=SAVE : Cineon Options
+CategoryOrder=11
+Index=1
+Description=Save Cineon Film Print Black (default = 95)
+Required=false
+DisableIfBlank=true
+
+[CineonSaveWhiteBox]
+Type=integer
+Default=685
+Minimum=0
+Maximum=1023
+Increment=1
+Label=Film Print : White
+Category=SAVE : Cineon Options
+CategoryOrder=11
+Index=2
+Description=Save Cineon Film Print White (default = 685)
+Required=false
+DisableIfBlank=true
+
+[CineonSaveGammaBox]
+Type=float
+Default=1.7
+Minimum=0.1
+Maximum=4.0
+DecimalPlaces=1
+Increment=0.1
+Label=Film Print : Gamma
+Category=SAVE : Cineon Options
+CategoryOrder=11
+Index=3
+Description=Save Cineon Film Print Gamma (default = 1.7)
+Required=false
+DisableIfBlank=true
+
+[DPXSaveColorProfileBox]
+Type=enum
+Label=DPX Color Profile
+Category=SAVE : DPX Options
+CategoryOrder=12
+Index=0
+Description=Save DPX Color Profile (default = film print)
+Required=false
+DisableIfBlank=true
+
+[DPXSaveBlackBox]
+Type=integer
+Default=95
+Minimum=0
+Maximum=1023
+Increment=1
+Label=Film Print : Black
+Category=SAVE : DPX Options
+CategoryOrder=12
+Index=1
+Description=Save DPX Film Print Black (default = 95)
+Required=false
+DisableIfBlank=true
+
+[DPXSaveWhiteBox]
+Type=integer
+Default=685
+Minimum=0
+Maximum=1023
+Increment=1
+Label=Film Print : White
+Category=SAVE : DPX Options
+CategoryOrder=12
+Index=2
+Description=Save DPX Film Print White (default = 685)
+Required=false
+DisableIfBlank=true
+
+[DPXSaveGammaBox]
+Type=float
+Default=1.7
+Minimum=0.1
+Maximum=4.0
+DecimalPlaces=1
+Increment=0.1
+Label=Film Print : Gamma
+Category=SAVE : DPX Options
+CategoryOrder=12
+Index=3
+Description=Save DPX Film Print Gamma (default = 1.7)
+Required=false
+DisableIfBlank=true
+
+[DPXSaveFileVersionBox]
+Type=enum
+Label=DPX File Version
+Category=SAVE : DPX Options
+CategoryOrder=12
+Index=4
+Description=Save DPX File Version (default = 2.0)
+Required=false
+DisableIfBlank=true
+
+[DPXSaveFileTypeBox]
+Type=enum
+Label=DPX File Type
+Category=SAVE : DPX Options
+CategoryOrder=12
+Index=5
+Description=Save DPX File Type (default = u10)
+Required=false
+DisableIfBlank=true
+
+[DPXSaveFileEndianBox]
+Type=enum
+Label=DPX File Endian
+Category=SAVE : DPX Options
+CategoryOrder=12
+Index=6
+Description=Save DPX File Endian (default = msb)
+Required=false
+DisableIfBlank=true
+
+[IFFCompressionTypeBox]
+Type=enum
+Label=Compression Type
+Category=SAVE : IFF Options
+CategoryOrder=13
+Index=0
+Description=Save IFF Compression (default = rle)
+Required=false
+DisableIfBlank=true
+
+[LUTFileSaveFormatBox]
+Type=enum
+Label=File Format
+Category=SAVE : LUT Options
+CategoryOrder=14
+Index=0
+Description=Save File Format (default = auto)
+Required=false
+DisableIfBlank=true
+
+[PPMFileTypeBox]
+Type=enum
+Label=File Type
+Category=SAVE : PPM Options
+CategoryOrder=15
+Index=0
+Description=Save File Type (default = auto)
+Required=false
+DisableIfBlank=true
+
+[PPMFileDataBox]
+Type=enum
+Label=File Data
+Category=SAVE : PPM Options
+CategoryOrder=15
+Index=1
+Description=Save File Data (default = binary)
+Required=false
+DisableIfBlank=true
+
+[SGICompressionTypeBox]
+Type=enum
+Label=Compression Type
+Category=SAVE : SGI Options
+CategoryOrder=16
+Index=0
+Description=Save Compression Type (default = none)
+Required=false
+DisableIfBlank=true
+
+[TGACompressionTypeBox]
+Type=enum
+Label=Compression Type
+Category=SAVE : Targa Options
+CategoryOrder=17
+Index=0
+Description=Save Compression Type (default = none)
+Required=false
+DisableIfBlank=true
+
+[JPEGQualityBox]
+Type=integer
+Default=100
+Minimum=0
+Maximum=100
+Increment=1
+Label=Quality ( 0-100 )
+Category=SAVE : JPEG Options
+CategoryOrder=18
+Index=0
+Description=Save JPEG Quality (default = 100)
+Required=false
+DisableIfBlank=true
+
+[QTcodec]
+Type=enum
+Label=QT Codec
+Category=SAVE : QuickTime Options
+CategoryOrder=19
+Index=0
+Description=Save QuickTime Codec (default = jpeg)
+Required=false
+DisableIfBlank=true
+
+[QTLibQuicktimeCodecBox]
+Type=enum
+Label=QT LibQuicktime Codec (Linux)
+Category=SAVE : QuickTime Options
+CategoryOrder=19
+Index=1
+Description=Save QuickTime Codec - Linux Only (default = mjpa)
+Required=false
+DisableIfBlank=true
+
+[QTquality]
+Type=enum
+Label=QT Quality
+Category=SAVE : QuickTime Options
+CategoryOrder=19
+Index=2
+Description=Save QuickTime Quality (default = normal)
+Required=false
+DisableIfBlank=true
+
+[TIFFCompressionTypeBox]
+Type=enum
+Label=Compression Type
+Category=SAVE : TIFF Options
+CategoryOrder=20
+Index=0
+Description=Save TIFF Compression (default = none)
+Required=false
+DisableIfBlank=true
+
+[MirrorImage]
+Type=enum
+Label=Mirror Image
+Category=Image Options
+CategoryOrder=21
+Index=0
+Description=Mirror the Image Horizontally or Vertically
+Required=false
+DisableIfBlank=true
+
+[ImageScalePercentage]
+Type=enum
+Label=Scale Image %
+Category=Image Options
+CategoryOrder=21
+Index=1
+Description=Scale the Image %
+Required=false
+DisableIfBlank=true
+
+[ImageScaleXBox]
+Type=integer
+Default=0
+Minimum=-1000000
+Maximum=1000000
+Increment=1
+Label=Scale X
+Category=Image Options
+CategoryOrder=21
+Index=2
+Description=Scale the Image (x)
+Required=false
+DisableIfBlank=true
+
+[ImageScaleYBox]
+Type=integer
+Default=0
+Minimum=-1000000
+Maximum=1000000
+Increment=1
+Label=Scale Y
+Category=Image Options
+CategoryOrder=21
+Index=3
+Description=Scale the Image (y)
+Required=false
+DisableIfBlank=true
+
+[ImageReSizeWBox]
+Type=integer
+Default=0
+Minimum=-1000000
+Maximum=1000000
+Increment=1
+Label=ReSize Width
+Category=Image Options
+CategoryOrder=21
+Index=4
+Description=ReSize Width (w)
+Required=false
+DisableIfBlank=true
+
+[ImageReSizeHBox]
+Type=integer
+Default=0
+Minimum=-1000000
+Maximum=1000000
+Increment=1
+Label=ReSize Height
+Category=Image Options
+CategoryOrder=21
+Index=5
+Description=ReSize Height (h)
+Required=false
+DisableIfBlank=true
+
+[MaintainAspectRatioBox]
+Type=boolean
+Label=Maintain Aspect Ratio
+Category=Image Options
+CategoryOrder=21
+Index=6
+Description=Maintain Aspect Ratio
+Required=false
+DisableIfBlank=true
+
+[ImageCropXBox]
+Type=integer
+Default=0
+Minimum=-1000000
+Maximum=1000000
+Increment=1
+Label=Crop X
+Category=Crop Options
+CategoryOrder=22
+Index=0
+Description=Crop Size X
+Required=false
+DisableIfBlank=true
+
+[ImageCropYBox]
+Type=integer
+Default=0
+Minimum=-1000000
+Maximum=1000000
+Increment=1
+Label=Crop Y
+Category=Crop Options
+CategoryOrder=22
+Index=1
+Description=Crop Size Y
+Required=false
+DisableIfBlank=true
+
+[ImageCropWBox]
+Type=integer
+Default=0
+Minimum=-1000000
+Maximum=1000000
+Increment=1
+Label=Crop Width
+Category=Crop Options
+CategoryOrder=22
+Index=2
+Description=Crop Width (w)
+Required=false
+DisableIfBlank=true
+
+[ImageCropHBox]
+Type=integer
+Default=0
+Minimum=-1000000
+Maximum=1000000
+Increment=1
+Label=Crop Height
+Category=Crop Options
+CategoryOrder=22
+Index=3
+Description=Crop Height (h)
+Required=false
+DisableIfBlank=true
+
+[ImageChannels]
+Type=enum
+Label=Show Specific Channel
+Category=Image Channel Options
+CategoryOrder=23
+Index=0
+Description=Show Specific Channel
+Required=false
+DisableIfBlank=true
+
+[FileSequenceBox]
+Type=boolean
+Label=File Sequencing
+Category=File Sequence Options
+CategoryOrder=24
+Index=0
+Description=Set whether File Sequencing is Enabled
+Required=false
+DisableIfBlank=true

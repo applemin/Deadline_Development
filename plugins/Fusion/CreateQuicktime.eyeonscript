@@ -1,0 +1,764 @@
+---------------------------------------------------------------------------------
+-- Check proper usage.
+---------------------------------------------------------------------------------
+
+if( arg[7] == nil ) then
+	print( "RenderTasks.eyeonscript startframe endframe frameoverride showprogress versiontoforce plugininfofile timeout" )
+	print( "SCRIPT ERROR: Invalid arguments to CreateQuicktime.eyeonscript" )
+	io.flush()
+	wait(5)
+	do return end
+end
+
+---------------------------------------------------------------------------------
+-- Connect to Fusion.
+---------------------------------------------------------------------------------
+
+print( "Connecting to Fusion..." )
+io.flush()
+
+df = Fusion("127.0.0.1")
+timeout = tonumber(arg[7])
+while( df == nil and timeout > 0 ) do
+	--wait(0.5)
+	--timeout = timeout - 0.5
+	wait(1)
+	timeout = timeout - 1
+	print( "Connection timeout in " .. timeout .. " seconds" )
+	io.flush()
+	df = Fusion("127.0.0.1")
+end
+print(df)
+if( df == nil ) then
+	print( "SCRIPT ERROR: eyeonScript failed to make a connection in CreateQuicktime.eyeonscript - check that eyeonscript options are set to no login required" )
+	io.flush()
+	wait(5)
+	do return end
+end
+
+print( "Connected to Fusion" )
+io.flush()
+
+---------------------------------------------------------------------------------
+-- Additional helper functions.
+---------------------------------------------------------------------------------
+
+-- This reads a key value file into a structure.
+function ReadKeyValueFile( filename )
+	local result = {}
+	local fh = io.open(filename, "r")
+	local line = fh:read( "*l" )
+	while line ~= nil do
+		local splitPos = 0
+		for splitPos = 1, string.len(line) do
+			if string.sub(line,splitPos,splitPos) == "=" then
+				result[string.sub(line,1,splitPos-1)] = string.sub( line,splitPos+1,string.len(line) )
+				break
+			end
+		end
+		
+		line = fh:read( "*l" )
+	end
+	io.close(fh)
+	return result
+end
+
+-- peter.L's move function
+function MoveClip(loader, oldstart, newstart)
+	-- Remember clip trimming values
+	local globalin    = loader.GlobalIn[oldstart]
+	local globalout   = loader.GlobalOut[oldstart]
+	local clipstart   = loader.ClipTimeStart[oldstart]
+	local clipend     = loader.ClipTimeEnd[oldstart]
+	local extfirst    = loader.HoldFirstFrame[oldstart]
+	local extlast     = loader.HoldLastFrame[oldstart]
+
+	local len = globalout - globalin + 1.0
+
+	if newstart > oldstart then -- Moving forwards
+		loader.GlobalOut[oldstart] = newstart + len - 1.0
+		loader.GlobalIn[oldstart]  = newstart
+	else -- Moving Backwards
+		loader.GlobalIn[oldstart]  = newstart
+		loader.GlobalOut[newstart] = newstart + len - 1.0
+	end
+
+	-- Now fix our trimming
+	loader.ClipTimeStart[newstart]   = clipstart
+	loader.ClipTimeEnd[newstart]     = clipend
+	loader.HoldFirstFrame[newstart]  = extfirst
+	loader.HoldLastFrame[newstart]   = extlast
+end
+
+function GetToolType(comp, toolname)
+	toolresult = {}
+
+	for i, tool in comp:GetToolList() do
+		if tool:GetAttrs().TOOLS_RegID == toolname then
+			table.insert(toolresult, tool)
+		end
+	end
+
+	return toolresult
+end
+
+function GetLoaders(comp)
+	return GetToolType(comp, "Loader")
+end
+
+function GetMerges(comp)
+	return GetToolType(comp, "Merge")
+end
+
+function GetSavers(comp)
+	return GetToolType(comp, "Saver")
+end
+
+function GetBrightnessContrasts(comp)
+	return GetToolType(comp, "BrightnessContrast")
+end
+
+function GetColorCurves(comp)
+	return GetToolType(comp, "ColorCurve")
+end
+
+--eyeon lib stuff
+function parseFilename(filename)
+	local seq = {}
+	seq.FullPath = filename
+	
+	string.gsub(seq.FullPath, "^(.+[/\\])(.+)", function(path, name) seq.Path = path seq.FullName = name end)
+	string.gsub(seq.FullName, "^(.+)(%..+)$", function(name, ext) seq.Name = name seq.Extension = ext end)
+	
+	if not seq.Name then -- no extension?
+		seq.Name = seq.FullName
+	end
+	
+	string.gsub(seq.Name, "^(.-)(%d+)$", function(name, SNum) seq.CleanName = name seq.SNum = SNum end)
+	
+	if seq.SNum then 
+		seq.Number = tonumber( seq.SNum ) 
+		seq.Padding = string.len( seq.SNum )
+	else
+		seq.SNum = ""
+		seq.CleanName = seq.Name
+	end
+	
+	if seq.Extension == nil then 
+		seq.Extension = ""
+	end
+	
+	seq.UNC = ( string.sub(seq.Path, 1, 2) == [[\\]] )
+	
+	return seq
+end
+
+-- trim function
+function trim(strTrim)
+	strTrim = string.gsub(strTrim, "^(%s+)", "") -- remove leading spaces
+	strTrim = string.gsub(strTrim, "$(%s+)", "") -- remove trailing spaces
+	return strTrim
+end
+
+-- Returns true if rendererVersion appears in the semicolon separated list globalVersionList
+function isVersionValid(rendererVersion, globalVersionList)
+	print( "Begin isVersionValid" )
+	print( "  rendererVersion = " .. rendererVersion )
+	print( "  globalVersionList = " .. globalVersionList )
+	
+	-- loop until list is empty
+	while globalVersionList ~= "" do
+		-- find location of next semicolon
+		index, dummy = string.find( globalVersionList, ";" )
+		
+		-- get version that is infront of this semicolon
+		if index ~= nil then
+			-- this removes the semicolon from the end of the version
+			currVersion = string.sub( globalVersionList, 1, index )
+			currVersion = string.sub( currVersion, 1, -2 )
+		else
+			-- no semicolon to remove
+			currVersion = string.sub( globalVersionList, 1 )
+		end
+			
+		-- compare the two versions and return true if they match
+		if rendererVersion == currVersion then
+			io.flush()
+			return true
+		end
+		
+		-- update the globalVersionList
+		if index ~= nil then
+			-- remove the version that was checked above from the list
+			globalVersionList = string.sub( globalVersionList, index + 1 )
+		else
+			-- there were no more semicolons, so last version was checked above
+			globalVersionList = "";
+		end
+	end
+	
+	io.flush()
+	return false
+end
+
+-- template is the comp to be analyzed, usually just the variable "comp" (included for versatility sake)
+function analyze_template(templateToAnalyze) 
+
+	templateInfo = {}
+
+	-----------------------------
+	-- Find all the loaders
+	-----------------------------
+	loadersCount = 0
+	loadersToUse = {}
+
+	loaderListTemplate = GetLoaders(templateToAnalyze)
+	loadersCount = 0
+	for i = 1, table.getn(loaderListTemplate) do
+		--if loaderListTemplate[i].Loop[0] then
+		if loaderListTemplate[i]:GetAttrs().TOOLBT_Clip_Loop[1] then
+			loadersCount = loadersCount + 1
+			loadersToUse[loadersCount] = loaderListTemplate[i]
+			print("Loader " .. loadersCount .. ": " .. loaderListTemplate[i]:GetAttrs().TOOLS_Name)
+		else
+			print("Loader \"" .. loaderListTemplate[i]:GetAttrs().TOOLS_Name .. "\" is set to loop, so it is being left as is. (This is to allow for putting logos and other images into a template.)")
+		end
+	end
+	
+	if loadersToUse == nil or loadersCount == 0 then
+		print("SCRIPT ERROR: No sequence loaders were found, there must be at least one sequence loader in the quicktime generation template file. Check for looped loaders if this is unexpected.")
+		return "NOT A TEMPLATE"
+	end
+	
+	templateInfo.LoadersToUse = loadersToUse
+	
+	-----------------------------
+	-- Find the quicktime saver
+	-----------------------------  
+	saverTools = GetSavers(templateToAnalyze)
+	if table.getn(saverTools) > 0 then
+		for i = 1, table.getn(saverTools) do
+			print("Saver " .. i .. ": " .. saverTools[i]:GetAttrs().TOOLS_Name)
+		end
+		if( table.getn(saverTools) > 1 ) then
+			print("SCRIPT ERROR: More than one savers were found, there must only be one saver in the quicktime generation template file.")
+			return "NOT A TEMPLATE"
+		end
+	end
+	templateInfo.SaverTools = saverTools
+	
+	-----------------------------
+	-- Find the color correction tools
+	-----------------------------  
+	templateInfo.BCtools = GetBrightnessContrasts(templateToAnalyze)
+	templateInfo.CCvtools = GetColorCurves(templateToAnalyze)
+
+	-----------------------------
+	-- Find the tools for storing the date, shot, and comments info
+	-----------------------------  
+	toolListAt = templateToAnalyze:GetToolList()
+	for toolNumber = 1, table.getn(toolListAt) do
+		-- Unlock all the tools in the comp (the tools just silently ignore attempts to set their values otherwise)
+		toolListAt[toolNumber]:SetAttrs( { TOOLB_Locked = false } )
+
+		toolNameSearch = string.lower( toolListAt[toolNumber]:GetAttrs().TOOLS_Name )
+		toolRegIdSearch = toolListAt[toolNumber]:GetAttrs().TOOLS_RegID
+				
+		if toolRegIdSearch == "TextPlus" then 
+			if string.find(toolNameSearch, "date") then
+				templateInfo.TextDate = toolListAt[toolNumber]
+				print("Text Tool for Date: " .. toolListAt[toolNumber]:GetAttrs().TOOLS_Name)
+			end
+			if string.find(toolNameSearch, "shot") then
+				templateInfo.TextShot = toolListAt[toolNumber]
+				print("Text Tool for Shot: " .. toolListAt[toolNumber]:GetAttrs().TOOLS_Name)
+			end
+			if string.find(toolNameSearch, "comments") then
+				templateInfo.TextComments = toolListAt[toolNumber]
+				print("Text Tool for Comments: " .. toolListAt[toolNumber]:GetAttrs().TOOLS_Name)
+			end
+			if string.find(toolNameSearch, "gamma") then
+				templateInfo.TextGamma = toolListAt[toolNumber]
+				print("Text Tool for Gamma Message: " .. toolListAt[toolNumber]:GetAttrs().TOOLS_Name)
+			end
+			if string.find(toolNameSearch, "artist") then
+				templateInfo.TextArtist = toolListAt[toolNumber]
+				print("Text Tool for Artist Name: " .. toolListAt[toolNumber]:GetAttrs().TOOLS_Name)
+			end
+			if string.find(toolNameSearch, "dept") or string.find(toolNameSearch, "department") then
+				templateInfo.TextDept = toolListAt[toolNumber]
+				print("Text Tool for Department: " .. toolListAt[toolNumber]:GetAttrs().TOOLS_Name)
+			end
+			if string.find(toolNameSearch, "exposure") then
+				templateInfo.TextExpComp = toolListAt[toolNumber]
+				print("Text Tool for Exposure Compensation: " .. toolListAt[toolNumber]:GetAttrs().TOOLS_Name)
+			end
+		end
+	end
+	
+	return templateInfo
+end
+
+------------------------------------------------------------------
+--                          MAIN PROGRAM                        --                    
+------------------------------------------------------------------
+
+-- Read settings from command line
+QTargs = {}
+QTargs.StartFrame = math.floor(arg[1])
+QTargs.EndFrame = math.floor(arg[2])
+QTargs.FrameOverride = math.floor(arg[3])
+QTargs.ShowProgress = arg[4]
+QTargs.Version = arg[5]
+QTargs.Date = os.date("%b. %d, %Y")
+
+-- Load in the plugin info settings
+jobInfo = ReadKeyValueFile(arg[6])
+QTargs.InputImages = string.gsub(jobInfo.QuicktimeInputImages,"/","\\")
+QTargs.SaverOutput = string.gsub(jobInfo.QuicktimeOutputFile,"/","\\")
+QTargs.Template = string.gsub(jobInfo.QuicktimeTemplate,"/","\\")
+QTargs.BackgroundPlate = string.gsub(jobInfo.QuicktimeBackgroundPlate,"/","\\")
+
+QTargs.Quality = tonumber(jobInfo.QuicktimeQuality)
+QTargs.FrameRate = tonumber(jobInfo.QuicktimeFrameRate)
+QTargs.MissingFrames = tonumber(jobInfo.QuicktimeMissingFrames)
+QTargs.Proxy = tonumber(jobInfo.QuicktimeProxy)
+QTargs.Gamma = tonumber(jobInfo.QuicktimeGamma)
+QTargs.ExpCompensation = tonumber(jobInfo.QuicktimeExpCompensation)
+
+QTargs.Codec = jobInfo.QuicktimeCodec
+QTargs.CurveCorrect = jobInfo.QuicktimeCurveCorrect
+QTargs.ProjectTitle = jobInfo.QuicktimeProjectTitle
+QTargs.ArtistName = jobInfo.QuicktimeArtistName
+QTargs.Comment = jobInfo.QuicktimeComment
+QTargs.Department = jobInfo.QuicktimeDepartment
+
+dfAttr = df:GetAttrs()
+
+-- if a version is being enforced, make sure this is the correct version of fusion
+if( QTargs.Version ~= "" ) then
+	print( "Enforcing Fusion version " .. QTargs.Version )
+	if( isVersionValid( dfAttr.FUSIONS_Version, QTargs.Version ) == false ) then
+		print( "Fusion versions are different" )
+		print( "Installed Fusion version = " .. dfAttr.FUSIONS_Version )
+		print( "SCRIPT ERROR: Fusion Version mismatch, got " .. dfAttr.FUSIONS_Version .. ", wanted " .. QTargs.Version )
+		io.flush()
+		wait(5)
+		do return end
+	end
+end
+
+print( "Rendering with Fusion version: ", dfAttr.FUSIONS_Version )
+io.flush()
+
+if QTargs.MissingFrames == 0 then
+	print( "Missing frame strategy: Fail" )
+elseif QTargs.MissingFrames == 1 then
+	print( "Missing frame strategy: Hold Previous" )
+elseif QTargs.MissingFrames == 2 then
+	print( "Missing frame strategy: Output Black" )
+elseif QTargs.MissingFrames == 3 then
+	print( "Missing frame strategy: Wait" )
+else
+	print( "SCRIPT ERROR: Missing frame strategy: Unknown (" .. QTargs.MissingFrames .. ")" )
+	io.flush()
+	os.exit(1)
+end
+
+if QTargs.Codec == "" then
+	print( "SCRIPT ERROR: Missing codec, please select which codec to use" )
+	io.flush()
+	os.exit(1)
+else
+	print( "Using codec: (" .. QTargs.Codec .. ")" )
+end
+
+print( "Writing Quicktime to " .. QTargs.SaverOutput )
+
+-- If we're using a template, then load it up, otherwise we need to set one up ourselves.
+if string.len( QTargs.Template ) > 0 then
+
+	print( "Using template " .. QTargs.Template )
+	
+	comp = df:LoadComp( QTargs.Template, true )
+	if not comp then
+		print( "SCRIPT ERROR: Failed to load template comp \"" .. QTargs.Template .. "\".  The file may not exist, or might be locked." );
+		io.flush()
+		os.exit(1)
+	end
+	
+	SetActiveComp(comp)
+
+	 -- lock comp
+	comp:Lock()
+	
+	TemplateInfo = analyze_template( comp )
+	if TemplateInfo == "NOT A TEMPLATE" then
+		print("SCRIPT ERROR: The template comp selected cannot be used with the quicktime generator")
+		io.flush()
+		os.exit(1)
+	end
+	
+	--set some parameters for global ranges
+	offset = QTargs.EndFrame - QTargs.StartFrame
+	comp:SetAttrs({COMPN_GlobalStart = QTargs.FrameOverride, COMPN_GlobalEnd = QTargs.FrameOverride + offset, COMPN_RenderStartTime = QTargs.FrameOverride, COMPN_RenderEndTime = QTargs.FrameOverride + offset})
+	
+	SeqLoaders = {}
+	BGLoaders = {}
+	
+	-- now update the template stuff
+	for loaderNumber=1, table.getn(TemplateInfo.LoadersToUse) do
+		-- update the loader with the Input Images filename
+		TemplateInfo.LoadersToUse[loaderNumber].Clip[1] = QTargs.InputImages
+		
+		if TemplateInfo.LoadersToUse[loaderNumber].Clip[1] ~= QTargs.InputImages then
+			print( "Problem with loader " .. TemplateInfo.LoadersToUse[loaderNumber]:GetAttrs().TOOLS_Name )
+			print( "The input path of the loader is " .. TemplateInfo.LoadersToUse[loaderNumber].Clip[1] )
+			print( "SCRIPT ERROR: Failed to set the loader input to the desired value, " .. QTargs.InputImages )
+			io.flush();
+			os.exit(1)
+		end
+		
+		-- set the missing frames option
+		TemplateInfo.LoadersToUse[loaderNumber].MissingFrames[0] = QTargs.MissingFrames
+		
+		-- make sure the start frame matches up with the input sequence:
+		startOffset = TemplateInfo.LoadersToUse[loaderNumber]:GetAttrs().TOOLIT_Clip_StartFrame[1]
+		TemplateInfo.LoadersToUse[loaderNumber].ClipTimeStart = QTargs.StartFrame - startOffset
+		
+		-- keep track of original sequence loaders for moving clip
+		SeqLoaders[loaderNumber] = TemplateInfo.LoadersToUse[loaderNumber]
+		
+		-- get the dimensions of the clip
+		clipHeight = TemplateInfo.LoadersToUse[loaderNumber]:GetAttrs().TOOLIT_Clip_Height[1]
+		clipWidth = TemplateInfo.LoadersToUse[loaderNumber]:GetAttrs().TOOLIT_Clip_Width[1]
+		
+		-- get the original output connections for this tool
+		outputConnections = TemplateInfo.LoadersToUse[loaderNumber].Output:GetConnectedInputs()
+		
+		-- add a background plate loader if necessary
+		if string.len( QTargs.BackgroundPlate ) > 0 then
+			BGLoaders[loaderNumber] = Loader({Clip = QTargs.BackgroundPlate})
+			
+			-- make the background loader output black on missing frames
+			BGLoaders[loaderNumber].MissingFrames[0] = 2
+			
+			-- make sure the start frame matches up with the input sequence:
+			startOffset = BGLoaders[loaderNumber]:GetAttrs().TOOLIT_Clip_StartFrame[1]
+			BGLoaders[loaderNumber].ClipTimeStart = QTargs.StartFrame - startOffset
+			
+			-- make sure the background plate has the same size as the sequence we're making the quicktime for
+			bgHeight = BGLoaders[loaderNumber]:GetAttrs().TOOLIT_Clip_Height[1]
+			bgWidth = BGLoaders[loaderNumber]:GetAttrs().TOOLIT_Clip_Width[1]
+			if bgHeight ~= clipHeight or bgWidth ~= clipWidth then
+				BGLoaders[loaderNumber] = BetterResize({Input = BGLoaders[loaderNumber], Width = clipWidth, Height = clipHeight})
+			end
+			
+			TemplateInfo.LoadersToUse[loaderNumber] = Merge({Background = BGLoaders[loaderNumber], Foreground = TemplateInfo.LoadersToUse[loaderNumber]})
+		end
+		
+		-- if no brightness contrast tool present, add one to loader
+		if table.getn(TemplateInfo.BCtools) <= 0 then
+			TemplateInfo.LoadersToUse[loaderNumber] = BrightnessContrast({Input = TemplateInfo.LoadersToUse[loaderNumber], Gamma = QTargs.Gamma, Gain = 2^(QTargs.ExpCompensation)})
+		end
+
+		-- reconnect the output connections
+		for i = 1, table.getn(outputConnections) do
+			outputConnections[i]:ConnectTo( TemplateInfo.LoadersToUse[loaderNumber].Output )
+		end
+		
+	end
+
+	-- check textplus tools    
+	varstorage = parseFilename(QTargs.SaverOutput)
+	if TemplateInfo.TextShot then
+		TemplateInfo.TextShot.StyledText = varstorage.Name
+	end
+	
+	if TemplateInfo.TextDate then
+		TemplateInfo.TextDate.StyledText = QTargs.Date
+	end
+	
+	if TemplateInfo.TextComments then
+		TemplateInfo.TextComments.StyledText = QTargs.Comment
+	end
+	
+	if TemplateInfo.TextGamma then
+		TemplateInfo.TextGamma.StyledText = "Gamma: " .. QTargs.Gamma
+	end
+	
+	if TemplateInfo.TextArtist then
+		TemplateInfo.TextArtist.StyledText = QTargs.ArtistName
+	end
+	
+	if TemplateInfo.TextDept then
+		TemplateInfo.TextDept.StyledText = QTargs.Department
+	end
+
+	if TemplateInfo.TextExpComp then
+		if string.sub(QTargs.ExpCompensation,1,1) ~= "+" and string.sub(QTargs.ExpCompensation,1,1) ~= "-" then
+			QTargs.ExpCompensation = "+" .. QTargs.ExpCompensation
+		end
+		
+		TemplateInfo.TextExpComp.StyledText = "Exposure Comp: " .. QTargs.ExpCompensation
+	end
+	
+	-- brightness contrast (if no bc tools present, add one)
+	if table.getn(TemplateInfo.BCtools) > 0 then
+		for bcToolNumber=1, table.getn(TemplateInfo.BCtools) do
+			print( "Adjusting tool '" .. TemplateInfo.BCtools[bcToolNumber]:GetAttrs().TOOLS_Name .. "': gamma set to " .. QTargs.Gamma .. " and gain set to " .. tostring(2^(QTargs.ExpCompensation)) )
+			io.flush()
+			TemplateInfo.BCtools[bcToolNumber].Gamma = QTargs.Gamma
+			TemplateInfo.BCtools[bcToolNumber].Gain = 2^(QTargs.ExpCompensation)
+		end
+	end
+	
+	-- curve correct
+	if table.getn(TemplateInfo.CCvtools) > 0 then
+		for ccvToolNumber=1, table.getn(TemplateInfo.CCvtools) do
+			if QTargs.CurveCorrect == "true" then
+				TemplateInfo.CCvtools[ccvToolNumber].Blend[0] = 1
+			else
+				TemplateInfo.CCvtools[ccvToolNumber].Blend[0] = 0
+			end
+		end
+	end
+			
+	-- now set the coded and quality bits:
+	for saverToolNumber=1, table.getn(TemplateInfo.SaverTools) do
+		TemplateInfo.SaverTools[saverToolNumber].Clip[1] = QTargs.SaverOutput
+		
+		-- Double check that the saver output got set correctly
+		if TemplateInfo.SaverTools[saverToolNumber].Clip[1] ~= QTargs.SaverOutput then
+			print( "Problem with saver " .. TemplateInfo.SaverTools[saverToolNumber]:GetAttrs().TOOLS_Name )
+			print( "The output path of the saver is " .. TemplateInfo.SaverTools[saverToolNumber].Clip[1] )
+			print( "SCRIPT ERROR: Failed to set the saver output to the desired value, " .. QTargs.SaverOutput )
+			io.flush();
+			os.exit(1)
+		end
+		
+		TemplateInfo.SaverTools[saverToolNumber].OutputFormat[0] = "QuickTimeMovies"
+		
+		TemplateInfo.SaverTools[saverToolNumber].QuickTimeMovies.Compression[0] = QTargs.Codec
+		TemplateInfo.SaverTools[saverToolNumber].QuickTimeMovies.Quality[0] = QTargs.Quality
+		TemplateInfo.SaverTools[saverToolNumber].QuickTimeMovies.FrameRateFps[0] = QTargs.FrameRate
+	end
+	
+	-- move clip
+	for loaderNumber=1,table.getn(TemplateInfo.LoadersToUse) do
+		MoveClip(SeqLoaders[loaderNumber], 0, QTargs.FrameOverride)
+	end
+
+else
+	-- create new comp, and lock it
+	comp = df:NewComp()
+	SetActiveComp(comp)
+	comp:Lock()
+   
+	-- Set the render frame range
+	offset = QTargs.EndFrame - QTargs.StartFrame
+	comp:SetAttrs({COMPN_GlobalStart = QTargs.FrameOverride, COMPN_GlobalEnd = QTargs.FrameOverride + offset, COMPN_RenderStartTime = QTargs.FrameOverride, COMPN_RenderEndTime = QTargs.FrameOverride + offset})
+		
+	-- create the loader with the Input Images filename
+	seqLoader = Loader({Clip = QTargs.InputImages})
+	
+	-- set the missing frames option
+	seqLoader.MissingFrames[0] = QTargs.MissingFrames
+	
+	-- make sure the start frame matches up with the input sequence:   
+	startOffset = seqLoader:GetAttrs().TOOLIT_Clip_StartFrame[1]
+	seqLoader.ClipTimeStart = QTargs.StartFrame - startOffset
+	
+	-- get the dimensions of the clip
+	clipHeight = seqLoader:GetAttrs().TOOLIT_Clip_Height[1]
+	clipWidth = seqLoader:GetAttrs().TOOLIT_Clip_Width[1]
+	
+	currentTool = seqLoader
+	
+	bgLoader = nil
+	if string.len( QTargs.BackgroundPlate ) > 0 then
+		bgLoader = Loader({Clip = QTargs.BackgroundPlate})
+		
+		-- Make the background loader output black on missing frames
+		bgLoader.MissingFrames[0] = 2
+		
+		-- make sure the start frame matches up with the input sequence:
+		startOffset = bgLoader:GetAttrs().TOOLIT_Clip_StartFrame[1]
+		bgLoader.ClipTimeStart = QTargs.StartFrame - startOffset
+		
+		-- Make sure the background plate has the same size as the sequence we're making the quicktime for
+		bgHeight = bgLoader:GetAttrs().TOOLIT_Clip_Height[1]
+		bgWidth = bgLoader:GetAttrs().TOOLIT_Clip_Width[1]
+		if bgHeight ~= clipHeight or bgWidth ~= clipWidth then
+			bgLoader = BetterResize({Input = bgLoader, Width = clipWidth, Height = clipHeight})
+		end
+		
+		currentTool = Merge({Background = bgLoader, Foreground = currentTool})
+	end
+	
+	print("Gamma = " .. QTargs.Gamma)
+	print("Gain = " .. 2^(QTargs.ExpCompensation))
+	currentTool = BrightnessContrast({Input = currentTool, Gamma = QTargs.Gamma, Gain = 2^(QTargs.ExpCompensation)})
+	
+	-- create a text tool to do the frame numbers - this now caters for proxy size
+	txtFrameCount = TextPlus({Height = clipHeight, Width = clipWidth, HorizontalJustification = 0, VerticalJustification = 3, Size = (24/clipHeight) * QTargs.Proxy})
+	txtFrameCount.Center[0] = {(16 * QTargs.Proxy)/clipWidth, 1 - (24 * QTargs.Proxy)/clipHeight}
+	tmcd = TimeCode({Hrs=false, Mins=false, Secs=false})
+	txtFrameCount.StyledText = tmcd
+
+	-- Merge the text over top
+	currentTool = Merge({Background = currentTool, Foreground = txtFrameCount, Blend = 0.8})
+
+	-- create a node for information about clip:
+	txtInfo = TextPlus({Height = clipHeight, Width = clipWidth, HorizontalJustification = 2, VerticalJustification = 3, Size = (12/clipHeight) * QTargs.Proxy})
+	txtInfo.Center[0] = {1 - ((16/clipWidth) * QTargs.Proxy), 1 - ((12*QTargs.Proxy)+28)/clipHeight}
+	-- ignore certain information if it is blank
+	textToolText = QTargs.ProjectTitle
+	if string.len(QTargs.Comment) > 0 then
+		textToolText = textToolText .. "\n" .. QTargs.Comment
+	end
+	if string.len(QTargs.ArtistName) > 0 then
+		textToolText = textToolText .. "\n" .. QTargs.ArtistName
+	end
+	if string.len(QTargs.Department) > 0 then
+		textToolText = textToolText .. "\n" .. QTargs.Department
+	end
+	textToolText = textToolText .. "\n" .. QTargs.Date .. "\nFrames Submitted: " .. tostring(QTargs.StartFrame) .. " to " .. tostring(QTargs.EndFrame)
+	txtInfo.StyledText = textToolText
+	
+	-- create a merge and connect the inputs:
+	currentTool = Merge({Background = currentTool, Foreground = txtInfo, Blend = 0.8})
+	currentTool.Blend = BezierSpline({})
+	currentTool.Blend[QTargs.FrameOverride] = 1
+	currentTool.Blend[QTargs.FrameOverride + 1] = 0
+	
+	-- make a saver, set some params, connect the most recent merge
+	saver = Saver({ Input = currentTool, Clip = QTargs.SaverOutput})
+	saver.OutputFormat[0] = "QuickTimeMovies"
+	
+	-- set saver attributes
+	saver.QuickTimeMovies.Compression[0] = QTargs.Codec
+	saver.QuickTimeMovies.Quality[0] = QTargs.Quality
+	saver.QuickTimeMovies.FrameRateFps[0] = QTargs.FrameRate
+	
+	-- move the clip
+	MoveClip(seqLoader, 0, QTargs.FrameOverride)
+end
+
+-- HACK: The renders are sometimes flickery.  Trying out a comp save than load cycle to see if maybe
+--       that will fix it.
+--print( "Saving and loading the modified comp to workaround potential problems." )
+--comp:Save( "c:\\Deadline\\temp\\qtgen.comp" )
+--comp:Close()
+--comp = df:LoadComp( "c:\\Deadline\\temp\\qtgen.comp" )
+
+--if not comp then
+--	print( "SCRIPT ERROR: Save/Load flicker workaround failed!" )
+--	io.flush()
+--	os.exit(1)
+--end
+
+-- HACK: The renders are sometimes flickery.  Maybe rendering with the comp unlocked will help.
+--comp:Unlock()
+
+if( QTargs.FrameOverride ~= QTargs.StartFrame ) then
+	print( "Overriding start frame to be " .. QTargs.FrameOverride )
+end
+
+print( "Rendering frames " .. QTargs.StartFrame .. " to " .. QTargs.EndFrame )
+if QTargs.Proxy ~= 1 then
+	print( "Rendering with a proxy setting of " .. QTargs.Proxy );
+end
+
+if( string.lower(QTargs.ShowProgress) == "true" ) then
+	print( "Showing progress during rendering." )
+else
+	print( "Suppressing progress during rendering." )
+end
+
+-- now do a render, waiting for it to complete
+print( "Starting render..." )
+io.flush()
+
+result = true
+
+-- this sets start, end, proxy: high on and step of one.
+
+si = comp:GetConsoleHistory().Total
+
+offset = QTargs.EndFrame - QTargs.StartFrame
+
+-- Render the frames
+if( string.lower(QTargs.ShowProgress) ~= "true" ) then
+	result = comp:Render(true, QTargs.FrameOverride, QTargs.FrameOverride + offset, 1, QTargs.Proxy, true)
+	print( "Render finished" )
+else
+	comp:Render(false, QTargs.FrameOverride, QTargs.FrameOverride + offset, 1, QTargs.Proxy, true)
+	count_frame = 0
+	while comp:GetAttrs().COMPB_Rendering do
+		wait(0.1) -- check every 1/10th sec.
+		test_frame = comp:GetAttrs().COMPN_LastFrameRendered
+		if test_frame > count_frame then
+			progress = math.floor((test_frame * 100) / (QTargs.FrameOverride + offset))
+			print( "Progress: " .. progress .. " %" )
+			count_frame = test_frame
+		end
+		
+		se = comp:GetConsoleHistory().Total
+		messages = comp:GetConsoleHistory(si, se)
+		si = se
+
+		for i = 1, table.getn(messages) do
+		  print(messages[i].Text)
+		end
+		
+		io.flush()
+	end
+	
+	if( comp:GetAttrs().COMPN_LastFrameRendered ~= (QTargs.FrameOverride + offset) ) then
+		print( "Rendering failed after frame " .. comp:GetAttrs().COMPN_LastFrameRendered )
+		result = false
+	else
+		print( "Render finished" )
+	end
+end
+	
+se = comp:GetConsoleHistory().Total
+messages = comp:GetConsoleHistory(si, se)
+
+for i = 1, table.getn(messages) do
+	print(messages[i].Text)
+end
+
+if( result ) then
+	print( "Render succeeded" )
+	io.flush()
+end
+
+comp:Close()
+comp = nil
+
+-- Garbage collect
+if( df.CacheManager ~= nil ) then
+	df.CacheManager:Purge()
+end
+
+df = nil
+collectgarbage()
+io.flush()
+
+if( not result ) then
+	if isScriptJob then
+		print( "SCRIPT ERROR: The Script job reported that the render failed. Scroll down to the bottom of the log below for more details." )
+	else
+		print( "SCRIPT ERROR: Fusion reported that the render failed. Scroll down to the bottom of the log below for more details." )
+	end
+	io.flush()
+	wait(5)
+	do return end
+end
+
+print( "CreateQucktime script complete" )
+io.flush()
+wait(2)
+os.exit(17)

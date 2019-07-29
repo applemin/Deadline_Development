@@ -1,0 +1,122 @@
+proc string deadlineMapIndividualFile( string $origFile, int $checkExistence )
+{
+	if( $origFile == "" )
+	{
+		return $origFile;
+	}
+	
+	string $mappedFile = `dirmap -cd $origFile`;
+	if( $mappedFile != $origFile && $checkExistence )
+	{
+		if( catchQuiet(` python( "import maya.app.general.fileTexturePathResolver" )` ) )
+		{	
+			print( "Unable to Import FileTexturePathResolver ignoring file existence check for pathmapping.\n" );
+			return $mappedFile;
+		}
+		
+		string $resolvedFiles[] = `python( "maya.app.general.fileTexturePathResolver.findAllFilesForPattern('" + $mappedFile + "', None)" )`;
+		if( size( $resolvedFiles ) == 0 )
+		{
+			print( "Failed to Pathmap " + $origFile+ " no files exist that match the following mapped filename " + $mappedFile + "\n" );
+			$mappedFile = $origFile;
+		}
+	}
+	
+	return $mappedFile;
+}
+
+//this function is used to remap all file paths of certain node type that include tokens. It is currently being used to fix an issue with the dirmap command.
+global proc remapNodeFilePathsWithTokens( string $nodeType, string $pathAttr, int $checkExistence )
+{
+	string $fileNodes[] = `ls -type $nodeType`;
+	
+	for( $fileNode in $fileNodes )
+	{
+		string $fileAttr = $fileNode + "." + $pathAttr;
+		string $curFile = `getAttr $fileAttr`;
+		string $mappedFile = `deadlineMapIndividualFile $curFile $checkExistence`;
+		if( $mappedFile != $curFile )
+		{
+			print( "Changing "+$fileAttr+ " from " + $curFile + " to " + $mappedFile+"\n" );
+			setAttr -type "string" $fileAttr $mappedFile;
+		}
+	}
+}
+
+global proc mapOpenColorIOFile( int $enable )
+{
+	string $origConfigPath = "";
+
+	// Ensure that the colorManagementPrefs command exists, last confirmed version is 2015 since docs aren't available before then
+	if( catchQuiet( $origConfigPath = `colorManagementPrefs -q -configFilePath` ) )
+	{
+		return;
+	}
+	
+	string $mappedConfigPath = `deadlineMapIndividualFile $origConfigPath false`;
+	if( $mappedConfigPath != $origConfigPath )
+	{
+		print( "Changing OCIO Config File from " + $origConfigPath + " to " + $mappedConfigPath+"\n" );
+		colorManagementPrefs -e -configFilePath $mappedConfigPath;
+		colorManagementPrefs -e -cmConfigFileEnabled $enable;
+	}
+
+}
+
+proc mapXgenAttributes(string $palette, string $description, string $object, string $deadlineMappings[] ) 
+{
+
+	string $attributes[] = python("xg.attrs( \"" + $palette + "\", \"" + $description + "\", \"" + $object + "\" )");
+
+	 for ($attribute in $attributes)
+	{
+		string $attrVal = python("xg.getAttr( \"" + $attribute + "\",\"" + $palette + "\", \"" + $description + "\", \"" + $object + "\" )");
+		$attrVal = substituteAllString($attrVal, "\\", "/");
+		string $newAttrVal = $attrVal;
+		for( $i = 0; $i < size($deadlineMappings); $i += 2 )
+		{
+			 $newAttrVal = substituteAllString($newAttrVal, $deadlineMappings[ $i ], $deadlineMappings[ $i + 1 ] );
+		}
+
+		if ( $newAttrVal != $attrVal )
+		{
+			string $escapedNewAttrVal = substituteAllString($newAttrVal, "\"", "\\\"");
+
+			string $command = "xg.setAttr( \"" + $attribute + "\",\"" + $escapedNewAttrVal + "\",\"" + $palette + "\", \"" + $description + "\", \"" + $object + "\" )";
+
+			python($command);
+			print ( "Changing '"+$attrVal + "' To '"+$newAttrVal + "'\n" );
+		}
+	}
+}
+
+global proc mapXGen( string $deadlineMappings[] ) 
+{
+	catchQuiet ( python("import xgenm as xg") );
+	string $palettes[];
+
+	clear $palettes;
+	catchQuiet ( $palettes = python("xg.palettes()") );
+	if ( `size $palettes` == 0 )
+		return;
+
+	string $descriptions[];
+	string $objects[];
+	for ( $palette in $palettes )
+	{
+		mapXgenAttributes($palette, "", "", $deadlineMappings);
+		clear $descriptions;
+		$descriptions = python("xg.descriptions( \"" + $palette + "\" )");
+		for ( $description in $descriptions )
+		{
+			mapXgenAttributes($palette, $description, "", $deadlineMappings);
+			clear $objects;
+			$objects = python("xg.objects( \"" + $palette + "\", \"" + $description + "\" )");
+			$objects = stringArrayCatenate( $objects, `python("xg.fxModules( \"" + $palette + "\", \"" + $description + "\" )")` );
+			for ( $object in $objects )
+			{
+				mapXgenAttributes($palette, $description, $object, $deadlineMappings);
+			}
+		}
+	}
+}

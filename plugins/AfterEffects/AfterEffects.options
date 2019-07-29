@@ -1,0 +1,186 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+CategoryOrder=0
+Index=0
+Description=The scene filename as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[Version]
+Type=label
+Label=After Effects Version
+Category=After Effects
+CategoryOrder=10
+Index=0
+Description=The version of After Effects to use to render.
+Required=false
+DisableIfBlank=true
+
+[SubmittedFromVersion]
+Type=label
+Label=Submitted Version Of After Effects
+Category=After Effects
+CategoryOrder=10
+Index=10
+Description=Submitted from Version Of After Effects.
+Required=false
+DisableIfBlank=true
+
+[Comp]
+Type=string
+Label=Comp To Render
+Category=After Effects
+CategoryOrder=10
+Index=20
+Description=The name of the comp to render.
+Required=true
+DisableIfBlank=false
+Default=
+
+[OverrideFailOnExistingAEProcess]
+Type=boolean
+Label=Override Fail On Existing Process
+Category=After Effects
+CategoryOrder=10
+Index=30
+Description=Override Fail On Existing AE Process Setting.
+Required=false
+DisableIfBlank=true
+
+[FailOnExistingAEProcess]
+Type=boolean
+Label=Fail On Existing Process
+Category=After Effects
+CategoryOrder=10
+Index=40
+Description=Fail On Existing AE Process Override Value.
+Required=false
+DisableIfBlank=true
+
+[MultiProcess]
+Type=boolean
+Label=Use Multi-Process Rendering
+Category=After Effects
+CategoryOrder=10
+Index=50
+Description=Enable to use multiple processes to render multiple frames simultaneously (After Effects CS3 and later).
+Required=false
+DisableIfBlank=true
+
+[IgnoreMissingLayerDependenciesErrors]
+Type=boolean
+Label=Ignore Missing Layer Dependencies
+Category=After Effects
+CategoryOrder=10
+Index=60
+Description=If this option is set to False, the render will fail if After Effects reports missing layer dependencies.
+Required=false
+DisableIfBlank=true
+
+[IgnoreMissingEffectReferencesErrors]
+Type=boolean
+Label=Ignore Missing Effect References
+Category=After Effects
+CategoryOrder=10
+Index=70
+Description=If this option is set to False, the render will fail if After Effects reports missing effect references.
+Required=false
+DisableIfBlank=true
+
+[ContinueOnMissingFootage]
+Type=boolean
+Label=Continue On Missing Footage
+Category=After Effects
+CategoryOrder=10
+Index=80
+Description=Do not stop rendering on missing footage. Log and render with placeholder color bars (After Effects CS4 and later).
+Required=false
+DisableIfBlank=true
+
+[FailOnWarnings]
+Type=boolean
+Label=Fail On Warning Messages
+Category=After Effects
+CategoryOrder=10
+Index=90
+Description=If this option is set to True, the render will fail if After Effects prints out any warning messages.
+Required=false
+DisableIfBlank=true
+
+[Output]
+Type=filenameSave
+Label=Output Path
+Category=Output
+CategoryOrder=20
+Index=0
+Description=The output filename path.
+Required=false
+DisableIfBlank=true
+
+[LocalRendering]
+Type=boolean
+Label=Enable Local Rendering
+Category=Output
+CategoryOrder=20
+Index=10
+Description=If this option is set to true, the Slaves will render locally, and then copy the images to the network output directory on completion.
+Required=false
+DisableIfBlank=true
+
+[DeleteFilesUnderMinSize]
+Type=boolean
+Label=Delete Files Under Minimum File Size
+Category=Output File Checking
+CategoryOrder=30
+Index=0
+Description=If enabled and the output file size is less than the minimum file size (kb), then the file will be deleted.
+Required=false
+DisableIfBlank=true
+
+[MinFileSize]
+Type=integer
+Minimum=0
+Maximum=100000
+Label=Minimum File Size (KB)
+Category=Output File Checking
+CategoryOrder=30
+Index=10
+Description=If the output file size is less then this value in kilobytes (KB), Deadline will fail the task and requeue it. Set to 0 to disable this feature. Note that this feature is not supported if using Multi-Machine Rendering.
+Required=false
+DisableIfBlank=true
+
+[MemoryManagement]
+Type=boolean
+Label=Enable Memory Management
+Category=Memory Management
+CategoryOrder=40
+Index=0
+Description=If memory management should be enabled.
+Required=false
+DisableIfBlank=true
+
+[ImageCachePercentage]
+Type=integer
+Minimum=20
+Maximum=100
+Label=Image Cache %
+Category=Memory Management
+CategoryOrder=40
+Index=10
+Description=The maximum percentage of memory used to cache already rendered images/footage.
+Required=false
+DisableIfBlank=true
+
+[MaxMemoryPercentage]
+Type=integer
+Minimum=20
+Maximum=100
+Label=Max Memory %
+Category=Memory Management
+CategoryOrder=40
+Index=20
+Description=The total percentage of memory that can be used by After Effects.
+Required=false
+DisableIfBlank=true

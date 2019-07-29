@@ -1,0 +1,134 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[Version]
+Type=label
+Label=Version
+Category=SketchUp Version
+Description=The version of SketchUp to use for exporting
+Required=false
+DisableIfBlank=true
+Default=
+
+[ExportType]
+Type=string
+Label=Export Type
+Category=Render Options
+Index=0
+Description=The type of export
+Required=true
+DisableIfBlank=true
+Default=
+
+[ExportDirectory]
+Type=string
+Label=Export Directory
+Category=Render Options
+Index=1
+Description=Choose which output directory to export to
+Required=true
+DisableIfBlank=true
+Default=
+
+[ExportName]
+Type=string
+Label=Export File Prefix
+Category=Render Options
+Index=2
+Description=The output file prefix (if blank, uses scene file name)
+Required=false
+DisableIfBlank=true
+Default=
+
+[ExportFormat]
+Type=string
+Label=Format
+Category=Render Options
+Index=3
+Description=The format of the exported file
+Required=true
+DisableIfBlank=true
+Default=
+
+[Transparent]
+Type=boolean
+Label=Transparent
+Category=Render Options
+Index=5
+Description=Determines whether the image is transparent or not
+Required=false
+DisableIfBlank=true
+
+[CompressionRate]
+Type=float
+Minimum=0
+Maximum=1
+Label=Compression
+Category=Render Options
+Index=6
+Description=The compression rate for a jpg, between 0.0 and 1.0 (closer to 0 for smaller size, closer to 1 for higher quality )
+Required=false
+DisableIfBlank=true
+
+[SceneName]
+Type=string
+Label=Scene/Page Name
+Category=Render Options
+Index=7
+Description=The name of the Scene/Page to export. If blank, uses currently selected scene.
+Required=false
+DisableIfBlank=true
+
+[FrameRate]
+Type=float
+Minimum=0
+Label=Frame rate
+Category=Render Options
+Index=8
+Description=The frame rate of the image sequence (in frames per second)
+Required=False
+DisableIfBlank=true
+
+[AntiAlias]
+Type=boolean
+Label=Anti-alias
+Category=Render Options
+Index=9
+Description=Choose whether anti-aliasing is used for the image
+Required=false
+DisableIfBlank=true
+
+[UseVray]
+Type=boolean
+Label=Use VRay
+Category=Render Options
+Index=10
+Description=If this option is enabled, SketchUp uses VRay to render the sceneFile.
+Required=false
+DisableIfBlank=true
+
+[Width]
+Type=integer
+Minimum=0
+Label=Image Width
+Category=Output Resolution
+Index=0
+Description=The width of the image in pixels (specify 0 to use the default width)
+Required=false
+DisableIfBlank=true
+
+[Height]
+Type=integer
+Minimum=0
+Label=Image Height
+Category=Output Resolution
+Index=1
+Description=The height of the image in pixels (specify 0 to use the default height)
+Required=false
+DisableIfBlank=true

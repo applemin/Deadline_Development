@@ -1,0 +1,64 @@
+[JobMode]
+Type=label
+Label=General Naiad Options
+Category=Job Mode
+CategoryOrder=0
+Index=0
+Description=The type of Naiad job
+Required=false
+DisableIfBlank=true
+
+[SceneFile]
+Type=filename
+Label=General Naiad Options
+Category=Scene File
+CategoryOrder=0
+Index=1
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+
+[Threads]
+Type=integer
+Minimum=0
+Maximum=1024
+Label=Threads
+Category=Simulation Job Options
+CategoryOrder=1
+Index=0
+Description=The number of threads to use (specify 0 to use the default)
+Required=false
+DisableIfBlank=true
+
+[Verbose]
+Type=boolean
+Label=Enable Verbose Logging
+Category=Simulation Job Options
+CategoryOrder=1
+Index=1
+Description=If checked, frames will be split into two using a step of 0.5
+Required=false
+DisableIfBlank=true
+
+
+
+[EmpBodyName]
+Type=label
+Label=EMP Body Name
+Category=Emp2Prt Job Options
+CategoryOrder=2
+Index=0
+Description=The EMP body name
+Required=false
+DisableIfBlank=true
+
+[EmpFileName]
+Type=label
+Label=EMP Body File Name
+Category=Emp2Prt Job Options
+CategoryOrder=2
+Index=1
+Description=The EMP body file name
+Required=false
+DisableIfBlank=true

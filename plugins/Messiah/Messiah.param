@@ -1,0 +1,25 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Messiah Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Messiah5_HostLibrary]
+Type=multilinemultifilename
+Label=Messiah Host Library
+Category=Messiah Settings
+CategoryOrder=0
+Default=C:\Program Files\pmG\messiahStudio5_64Bit\messiah64\messiahHOST.dll;C:\Program Files (x86)\pmG\messiahStudio5\messiah\messiahHOST.dll
+Description=The path to the messiahHOST.dll library. Enter alternative paths on separate lines.

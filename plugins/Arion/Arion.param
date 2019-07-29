@@ -1,0 +1,25 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Arion Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Arion_RenderExecutable]
+Type=multilinemultifilename
+Label=Arion Engine Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\RandomControl\Arion 2\apps\renderwarrior.exe
+Description=The path to the Arion executable file used for rendering. Enter alternative paths on separate lines.

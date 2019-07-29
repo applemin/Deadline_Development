@@ -1,0 +1,25 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Vrimg2Exr Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Vrimg2Exr_RenderExecutable]
+Label=Vrimg2Exr Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Default=
+Description=The path to the vrimg2exr.exe executable file used for rendering. Enter alternative paths on separate lines.

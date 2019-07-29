@@ -1,0 +1,71 @@
+[Threads]
+Type=integer
+Minimum=0
+Maximum=16
+Label=Threads
+Category=Mental Ray Options
+Index=0
+Description=The number of threads to use for rendering (specify 0 to use the optimal number of threads)
+Required=false
+DisableIfBlank=true
+
+[Verbose]
+Type=integer
+Minimum=0
+Maximum=7
+Label=Verbosity
+Category=Mental Ray Options
+Index=1
+Description=The verbosity level
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build To Force
+Category=Mental Ray Options
+Index=2
+Description=The build of Mental Ray to force
+Required=false
+DisableIfBlank=true
+
+[StartFrameOffset]
+Type=integer
+Minimum=-100000
+Maximum=100000
+Label=Input MI File Start Frame
+Category=Mental Ray Options
+Index=3
+Description=This should be the first frame in the input MI file being rendered, as it is used to offset the frame range being passed to the mental ray renderer
+Required=false
+DisableIfBlank=true
+
+[OutputPath]
+Type=folder
+Label=Output Path
+Category=Mental Ray Options
+Index=4
+Description=The directory in which output will be sent (must be an existing directory)
+Required=true
+DisableIfBlank=false
+DefaultValue=
+
+[LocalRendering]
+Type=boolean
+Label=Enable Local Rendering
+Category=Mental Ray Options
+Index=5
+Description=If this option is set to true, the slaves will render locally, and then copy the images to the network output directory on completion.
+Required=false
+DisableIfBlank=true
+
+[CommandLineOptions]
+Type=string
+Label=Additional Arguments
+Category=Command Line
+Index=1
+Description=Additional command line arguments that are sent to Mental Ray
+Required=false
+DisableIfBlank=false
+DefaultValue=

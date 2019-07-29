@@ -1,0 +1,89 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Autodesk Composite Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Composite2010RenderExecutable]
+Label=Composite 2010 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=2
+Type=multilinemultifilename
+Default=C:\Program Files\Autodesk\Autodesk Toxik 2010\program\txrender.exe;C:\Program Files (x86)\Autodesk\Autodesk Toxik 2010\program\txrender.exe
+Description=The path to the txrender.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[Composite2011RenderExecutable]
+Label=Composite 2011 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=3
+Type=multilinemultifilename
+Default=C:\Program Files\Autodesk\Composite 2011\program\txrender.exe;C:\Program Files (x86)\Autodesk\Composite 2011\program\txrender.exe
+Description=The path to the txrender.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[Composite2012RenderExecutable]
+Label=Composite 2012 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=4
+Type=multilinemultifilename
+Default=C:\Program Files\Autodesk\Composite 2012\program\txrender.exe;C:\Program Files (x86)\Autodesk\Composite 2012\program\txrender.exe
+Description=The path to the txrender.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[Composite2013RenderExecutable]
+Label=Composite 2013 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=5
+Type=multilinemultifilename
+Default=C:\Program Files\Autodesk\Composite 2013\program\txrender.exe;C:\Program Files (x86)\Autodesk\Composite 2013\program\txrender.exe
+Description=The path to the txrender.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[Composite2014RenderExecutable]
+Label=Composite 2014 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=6
+Type=multilinemultifilename
+Default=C:\Program Files\Autodesk\Composite 2014\program\txrender.exe;C:\Program Files (x86)\Autodesk\Composite 2014\program\txrender.exe
+Description=The path to the txrender.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[Composite2015RenderExecutable]
+Label=Composite 2015 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=7
+Type=multilinemultifilename
+Default=C:\Program Files\Autodesk\Composite 2015\program\txrender.exe;C:\Program Files (x86)\Autodesk\Composite 2015\program\txrender.exe
+Description=The path to the txrender.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[Composite2016RenderExecutable]
+Label=Composite 2016 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=8
+Type=multilinemultifilename
+Default=C:\Program Files\Autodesk\Composite 2016\program\txrender.exe;C:\Program Files (x86)\Autodesk\Composite 2016\program\txrender.exe
+Description=The path to the txrender.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[Composite2017RenderExecutable]
+Label=Composite 2017 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=9
+Type=multilinemultifilename
+Default=C:\Program Files\Autodesk\Composite 2017\program\txrender.exe;C:\Program Files (x86)\Autodesk\Composite 2017\program\txrender.exe
+Description=The path to the txrender.exe executable file used for rendering. Enter alternative paths on separate lines.

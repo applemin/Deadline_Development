@@ -1,0 +1,35 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Ply2Vrmesh Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Ply2Vrmesh_RenderExecutable_2]
+Label=Ply2Vrmesh 2 Executable
+Category=Render Executables
+CategoryOrder=0
+Index=0
+Type=multilinemultifilename
+Default=
+Description=The path to the ply2vrmesh.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[Ply2Vrmesh_RenderExecutable_3]
+Label=Ply2Vrmesh 3 Executable
+Category=Render Executables
+CategoryOrder=0
+Index=1
+Type=multilinemultifilename
+Default=
+Description=The path to the ply2vrmesh.exe executable file used for rendering. Enter alternative paths on separate lines.

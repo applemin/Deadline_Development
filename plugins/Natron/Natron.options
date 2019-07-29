@@ -1,0 +1,41 @@
+[Version]
+Type=Label
+Label=Version
+Category=Application Info
+CategoryOrder=0
+CategoryIndex=0
+Description=The version of Natron to render with.
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build Of Natron To Force
+Category=Application Info
+CategoryOrder=0
+CategoryIndex=1
+Description=You can force 32 or 64 bit processing with this option.
+Required=true
+Default=None
+DisableIfBlank=false
+
+[ProjectFile]
+Type=Filename
+Label=Project Filename
+Category=Project File
+CategoryOrder=1
+CategoryIndex=0
+Description=The project filename as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[WriterNodeName]
+Type=String
+Label=Writer Node Name
+Category=Custom Writer Node
+CategoryOrder=2
+CategoryIndex=0
+Description=The renderer will only try to render with the write node name following this argument. If no such node exists in the project file, the process will abort.
+Required=false
+DisableIfBlank=true

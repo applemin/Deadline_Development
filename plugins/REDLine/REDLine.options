@@ -1,0 +1,2354 @@
+[SceneFile]
+Type=filename
+Label=Scene File
+Category=File Settings
+CategoryOrder=0
+Index=0
+Description=The R3D file as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[LeftEyeFile]
+Type=filename
+Label=Left Eye File
+Category=File Settings
+CategoryOrder=0
+Index=1
+Description=The R3D Left Eye file as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[RightEyeFile]
+Type=filename
+Label=Right Eye File
+Category=File Settings
+CategoryOrder=0
+Index=2
+Description=The R3D Right Eye file as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[OutputFolder]
+Type=folder
+Label=Output Folder
+Category=File Settings
+CategoryOrder=0
+Index=3
+Description=The output folder.
+Required=false
+DisableIfBlank=true
+
+[OutputBaseName]
+Type=string
+Label=Output Filename
+Category=File Settings
+CategoryOrder=0
+Index=4
+Description=The base output filename.
+Required=false
+DisableIfBlank=true
+
+[AudioFile]
+Type=filename
+Label=Audio File
+Category=File Settings
+CategoryOrder=0
+Index=5
+Description=The audio filename as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[OutputFormat]
+Type=enum
+Label=Output Format
+Category=Format Settings
+CategoryOrder=1
+Index=0
+Description=The output format.
+Required=false
+DisableIfBlank=true
+
+[OutputPadding]
+Type=integer
+Minimum=1
+Maximum=10
+Label=Output Padding
+Category=Format Settings
+CategoryOrder=1
+Index=1
+Description=Output padding size.
+Required=false
+DisableIfBlank=true
+
+[Resolution]
+Type=enum
+Label=Resolution
+Category=Format Settings
+CategoryOrder=1
+Index=2
+Description=The render resolution.
+Required=false
+DisableIfBlank=true
+
+[ColorSciVersion]
+Type=enum
+Label=Color Science Version
+Category=Format Settings
+CategoryOrder=1
+Index=3
+Description=The color science version.
+Required=false
+DisableIfBlank=true
+
+[MakeSubfolder]
+Type=boolean
+Label=Make Output Subfolder
+Category=Format Settings
+CategoryOrder=1
+Index=4
+Description=Make a subdirectory for each output.
+Required=false
+DisableIfBlank=true
+
+[Renumber]
+Type=string
+Label=Renumber Start Frame
+Category=Frame Settings
+CategoryOrder=2
+Index=0
+Description=The new start frame number.
+Required=false
+DisableIfBlank=true
+
+[ExportPreset]
+Type=string
+Label=Export Preset Name
+Category=Misc Settings
+CategoryOrder=3
+Index=0
+Description=Optionally, load settings from an export preset: [default = none].
+Required=false
+DisableIfBlank=true
+
+[PresetFile]
+Type=filename
+Label=Export Preset File
+Category=Misc Settings
+CategoryOrder=3
+Index=1
+Description=Optionally, the xml file to load export presets from: [default = /Users/$USER/Library/Application Support/Red/RedCineX/Presets/UserExportPresets.xml].
+Required=false
+DisableIfBlank=true
+
+[3DMode]
+Type=Enum
+Label=3D Mode
+Category=Misc Settings
+CategoryOrder=3
+Index=2
+Description=Type of 3D mode.
+Required=false
+DisableIfBlank=true
+
+[OverrideAdvLutRender]
+Type=boolean
+Label=Override Adv Lut Render
+Category=Misc Settings
+CategoryOrder=3
+Index=3
+Description=Override the Adv Lut Render.
+Required=false
+DisableIfBlank=true
+
+[AdvLutRender]
+Type=Enum
+Label=Adv Lut Render
+Category=Misc Settings
+CategoryOrder=3
+Index=4
+Description=The Advanced Render LUT to use.
+Required=false
+DisableIfBlank=true
+
+[NoRender]
+Type=boolean
+Label=No Render
+Category=Misc Settings
+CategoryOrder=3
+Index=5
+Description=Forces redline to abort before any rendering occurs.
+Required=false
+DisableIfBlank=true
+
+[NoAudio]
+Type=boolean
+Label=No Audio
+Category=Misc Settings
+CategoryOrder=3
+Index=6
+Description=Disable all audio output.
+Required=false
+DisableIfBlank=true
+
+[3DOffset]
+Type=integer
+Label=3D Offset
+Minimum=0
+Maximum=1000
+Increment=1
+Category=Misc Settings
+CategoryOrder=3
+Index=7
+Description=Offset in frames of the left eye from the right (or right eye from the left if negative) [default = 0].
+Required=false
+DisableIfBlank=true
+
+[RSXFile]
+Type=boolean
+Label=Load RSX File
+Category=Metadata Settings
+CategoryOrder=4
+Index=0
+Description=The RSX file to load as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[UseRSX]
+Type=enum
+Label=Use RSX Defaults For
+Category=Metadata Settings
+CategoryOrder=4
+Index=1
+Description=Use RSX defaults (if both Use Metadata and Load RSX File are used, RSX takes priority).
+Required=false
+DisableIfBlank=true
+
+[RMDFile]
+Type=filename
+Label=Load RMD File
+Category=Metadata Settings
+CategoryOrder=4
+Index=2
+Description=The RMD file to load as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[UseRMD]
+Type=enum
+Label=Use RMD Defaults For
+Category=Metadata Settings
+CategoryOrder=4
+Index=3
+Description=Use RMD defaults (if both Use Metadata and Load RMD File are used, RMD takes priority).
+Required=false
+DisableIfBlank=true
+
+[UseMeta]
+Type=boolean
+Label=Use Metadata In R3D File
+Category=Metadata Settings
+CategoryOrder=4
+Index=4
+Description=Use look metadata in R3D as defaults (overridden for each value explicitly set).
+Required=false
+DisableIfBlank=true
+
+[MetaIgnoreFrameGuide]
+Type=boolean
+Label=Ignore Frame Guides
+Category=Metadata Settings
+CategoryOrder=4
+Index=5
+Description=Use in conjunction with Use Metadata checkbox. Ignores frame guides.
+Required=false
+DisableIfBlank=true
+
+[OverridePrintMeta]
+Type=boolean
+Label=Override Print Meta
+Category=Print Meta Settings
+CategoryOrder=5
+Index=0
+Description=Override Print Meta.
+Required=false
+DisableIfBlank=true
+
+[PrintMeta]
+Type=enum
+Label=Print Meta
+Category=Print Meta Settings
+CategoryOrder=5
+Index=1
+Description=Print Meta Options ["header","normal","csv","header+csv","3D rig","per-frame lens+acc+gyro"].
+Required=false
+DisableIfBlank=true
+
+[ALEFile]
+Type=filename
+Label=ALE File
+Category=Print Meta Settings
+CategoryOrder=5
+Index=2
+Description=Save an ALE file with the given filename [ALE File (*)].
+Required=false
+DisableIfBlank=true
+
+[OverrideReelID]
+Type=boolean
+Label=Override Reel ID
+Category=Print Meta Settings
+CategoryOrder=5
+Index=3
+Description=Override Reel ID file naming convention.
+Required=false
+DisableIfBlank=true
+
+[ReelID]
+Type=enum
+Label=Reel ID
+Category=Print Meta Settings
+CategoryOrder=5
+Index=4
+Description=Reel ID ["full name","FCP 8 Character"].
+Required=false
+DisableIfBlank=true
+
+[OverrideClipFrameRate]
+Type=boolean
+Label=Override Clip Frame Rate
+Category=Print Meta Settings
+CategoryOrder=5
+Index=5
+Description=Override Clip Frame Rate.
+Required=false
+DisableIfBlank=true
+
+[ClipFrameRate]
+Type=enum
+Label=Clip Frame Rate
+Category=Print Meta Settings
+CategoryOrder=5
+Index=6
+Description=Clip Frame Rate ["23.976fps","24fps","25fps","29.97fps","30fps","47.952fps","48fps","50fps","59.94fps","60fps","71.928fps","72fps"].
+Required=false
+DisableIfBlank=true
+
+[Crop]
+Type=boolean
+Label=Crop
+Category=Crop Settings
+CategoryOrder=6
+Index=0
+Description=If cropping should be performed.
+Required=false
+DisableIfBlank=true
+
+[CropWidth]
+Type=string
+Label=Width
+Category=Crop Settings
+CategoryOrder=6
+Index=1
+Description=The crop width.
+Required=false
+DisableIfBlank=true
+
+[CropHeight]
+Type=string
+Label=Height
+Category=Crop Settings
+CategoryOrder=6
+Index=2
+Description=The crop height.
+Required=false
+DisableIfBlank=true
+
+[CropOriginX]
+Type=string
+Label=Origin X
+Category=Crop Settings
+CategoryOrder=6
+Index=3
+Description=The crop X origin.
+Required=false
+DisableIfBlank=true
+
+[CropOriginY]
+Type=string
+Label=Origin Y
+Category=Crop Settings
+CategoryOrder=6
+Index=4
+Description=The crop Y origin.
+Required=false
+DisableIfBlank=true
+
+[Scale]
+Type=boolean
+Label=Scale
+Category=Scale Options
+CategoryOrder=7
+Index=0
+Description=If scaling should be performed.
+Required=false
+DisableIfBlank=true
+
+[ScaleWidth]
+Type=string
+Label=Width
+Category=Scale Options
+CategoryOrder=7
+Index=1
+Description=The crop width.
+Required=false
+DisableIfBlank=true
+
+[ScaleHeight]
+Type=string
+Label=Height
+Category=Scale Options
+CategoryOrder=7
+Index=2
+Description=The crop height.
+Required=false
+DisableIfBlank=true
+
+[ScaleFit]
+Type=enum
+Label=Fit/Stretch
+Category=Scale Options
+CategoryOrder=7
+Index=3
+Description=Fit source to destination.
+Required=false
+DisableIfBlank=true
+
+[ScaleFilter]
+Type=enum
+Label=Resample Filter
+Category=Scale Options
+CategoryOrder=7
+Index=4
+Description=Resample filter.
+Required=false
+DisableIfBlank=true
+
+[OverrideForceFlipHorizontal]
+Type=boolean
+Label=Override Flip H
+Category=Scale Options
+CategoryOrder=7
+Index=5
+Description=Override Force Flip Horizontal.
+Required=false
+DisableIfBlank=true
+
+[ForceFlipHorizontal]
+Type=boolean
+Label=Force Flip Horizontal
+Category=Scale Options
+CategoryOrder=7
+Index=6
+Description=0 = Disables any horizontal flip setting in metadata, 1 = Forces the image to be flipped horizontally.
+Required=false
+DisableIfBlank=true
+
+[OverrideForceFlipVertical]
+Type=boolean
+Label=Override Flip V
+Category=Scale Options
+CategoryOrder=7
+Index=7
+Description=Override Force Flip Vertical.
+Required=false
+DisableIfBlank=true
+
+[ForceFlipVertical]
+Type=boolean
+Label=Force Flip Vertical
+Category=Scale Options
+CategoryOrder=7
+Index=8
+Description=0 = Disables any vertical flip setting in metadata, 1 = Forces the image to be flipped vertically.
+Required=false
+DisableIfBlank=true
+
+[OverrideRotate]
+Type=boolean
+Label=Override Rotate
+Category=Scale Options
+CategoryOrder=7
+Index=9
+Description=Override Rotate.
+Required=false
+DisableIfBlank=true
+
+[Rotate]
+Type=enum
+Label=Rotate
+Category=Scale Options
+CategoryOrder=7
+Index=10
+Description=Rotates the image only 0.0, -90.0 and 90.0 degrees are currently accepted.
+Required=false
+DisableIfBlank=true
+
+[OverridePreventNegativePixels]
+Type=boolean
+Label=Override Neg Pixels
+Category=Scale Options
+CategoryOrder=7
+Index=11
+Description=Override Prevent Negative Pixels.
+Required=false
+DisableIfBlank=true
+
+[PreventNegativePixels]
+Type=boolean
+Label=Prevent Negative Pixels
+Category=Scale Options
+CategoryOrder=7
+Index=12
+Description=Prevents the scaler from generating negative pixel values. 0=off 1=on [default = 1].
+Required=false
+DisableIfBlank=true
+
+[QTCodec]
+Type=enum
+Label=Codec
+Category=Quicktime Transcode Settings
+CategoryOrder=8
+Index=0
+Description=QT codec to output.
+Required=false
+DisableIfBlank=true
+
+[QTClobber]
+Type=boolean
+Label=Clobber Existing QT File
+Category=Quicktime Transcode Settings
+CategoryOrder=8
+Index=1
+Description=Clobber an existing QT file.
+Required=false
+DisableIfBlank=true
+
+[Burn]
+Type=boolean
+Label=Burn In
+Category=Burn-In Settings
+CategoryOrder=9
+Index=0
+Description=Turn on burn in.
+Required=false
+DisableIfBlank=true
+
+[BurnFrames]
+Type=enum
+Label=Frames
+Category=Burn-In Settings
+CategoryOrder=9
+Index=1
+Description=Do burn in for the specified frames ["All","First","First & Last","Last","Count"].
+Required=false
+DisableIfBlank=true
+
+[BurnFramesCount]
+Type=integer
+Label=Frames Count
+Minimum=1
+Maximum=100000
+Increment=1
+Category=Burn-In Settings
+CategoryOrder=9
+Index=2
+Description=Number of frames to burn in [default = 1].
+Required=false
+DisableIfBlank=true
+
+[BurnFont]
+Type=enum
+Label=Burn Font
+Category=Burn-In Settings
+CategoryOrder=9
+Index=3
+Description=The burn in font.
+Required=false
+DisableIfBlank=true
+
+[BurnSize]
+Type=float
+Minimum=0.000000
+Maximum=100.000000
+Label=Burn Text Height %
+Category=Burn-In Settings
+CategoryOrder=9
+Index=4
+Description=Height of text in percent of output height.
+Required=false
+DisableIfBlank=true
+
+[BurnBase]
+Type=float
+Minimum=0.000000
+Maximum=100.000000
+Label=Burn Text Origin Y %
+Category=Burn-In Settings
+CategoryOrder=9
+Index=5
+Description=Burn in Y location in percent of output height.
+Required=false
+DisableIfBlank=true
+
+[BurnLowerLeft]
+Type=enum
+Label=Burn Lower Left
+Category=Burn-In Settings
+CategoryOrder=9
+Index=6
+Description=Text to burn in lower left corner.
+Required=false
+DisableIfBlank=true
+
+[BurnLowerRight]
+Type=enum
+Label=Burn Lower Right
+Category=Burn-In Settings
+CategoryOrder=9
+Index=7
+Description=Text to burn in lower right corner.
+Required=false
+DisableIfBlank=true
+
+[BurnUpperLeft]
+Type=enum
+Label=Burn Upper Left
+Category=Burn-In Settings
+CategoryOrder=9
+Index=8
+Description=Text to burn in upper left corner.
+Required=false
+DisableIfBlank=true
+
+[BurnUpperRight]
+Type=enum
+Label=Burn Upper Right
+Category=Burn-In Settings
+CategoryOrder=9
+Index=9
+Description=Text to burn in upper right corner.
+Required=false
+DisableIfBlank=true
+
+[BurnTextR]
+Type=float
+Minimum=0.000000
+Maximum=1.000000
+Label=Burn Text Red
+Category=Burn-In Settings
+CategoryOrder=9
+Index=10
+Description=Text red channel.
+Required=false
+DisableIfBlank=true
+
+[BurnTextG]
+Type=float
+Minimum=0.000000
+Maximum=1.000000
+Label=Burn Text Green
+Category=Burn-In Settings
+CategoryOrder=9
+Index=11
+Description=Text green channel.
+Required=false
+DisableIfBlank=true
+
+[BurnTextB]
+Type=float
+Minimum=0.000000
+Maximum=1.000000
+Label=Burn Text Blue
+Category=Burn-In Settings
+CategoryOrder=9
+Index=12
+Description=Text blue channel.
+Required=false
+DisableIfBlank=true
+
+[BurnTextA]
+Type=float
+Minimum=0.000000
+Maximum=1.000000
+Label=Burn Text Alpha
+Category=Burn-In Settings
+CategoryOrder=9
+Index=13
+Description=Text alpha channel.
+Required=false
+DisableIfBlank=true
+
+[BurnBackgroundR]
+Type=float
+Minimum=0.000000
+Maximum=1.000000
+Label=Burn Background Red
+Category=Burn-In Settings
+CategoryOrder=9
+Index=14
+Description=Background red channel.
+Required=false
+DisableIfBlank=true
+
+[BurnBackgroundG]
+Type=float
+Minimum=0.000000
+Maximum=1.000000
+Label=Burn Background Green
+Category=Burn-In Settings
+CategoryOrder=9
+Index=15
+Description=Background green channel.
+Required=false
+DisableIfBlank=true
+
+[BurnBackgroundB]
+Type=float
+Minimum=0.000000
+Maximum=1.000000
+Label=Burn Background Blue
+Category=Burn-In Settings
+CategoryOrder=9
+Index=16
+Description=Background blue channel.
+Required=false
+DisableIfBlank=true
+
+[BurnBackgroundA]
+Type=float
+Minimum=0.000000
+Maximum=1.000000
+Label=Burn Background Alpha
+Category=Burn-In Settings
+CategoryOrder=9
+Index=17
+Description=Background alpha channel.
+Required=false
+DisableIfBlank=true
+
+[OverrideWatermark]
+Type=boolean
+Label=Override Watermark
+Category=Watermark Settings
+CategoryOrder=10
+Index=0
+Description=Turn on watermarking.
+Required=false
+DisableIfBlank=true
+
+[WatermarkFont]
+Type=enum
+Label=Font
+Category=Watermark Settings
+CategoryOrder=10
+Index=1
+Description=The watermark font to use ["Letter Gothic","Andale Mono","OCRA","DejaVu Sans Mono"].
+Required=false
+DisableIfBlank=true
+
+[WatermarkText]
+Type=string
+Label=Text
+Category=Watermark Settings
+CategoryOrder=10
+Index=2
+Description=Enter the text to be displayed in the watermark.
+Required=false
+DisableIfBlank=true
+
+[WatermarkSz]
+Type=float
+Label=Size %
+Category=Watermark Settings
+CategoryOrder=10
+Index=3
+Minimum=0.0
+Maximum=100.0
+Increment=1.0
+Description=Height of text in percent of output height [default = 5].
+Required=false
+DisableIfBlank=true
+
+[WatermarkBase]
+Type=float
+Label=Base %
+Category=Watermark Settings
+CategoryOrder=10
+Index=4
+Minimum=0.0
+Maximum=100.0
+Increment=1.0
+Description=Watermark Y location in percent of height [default = 20].
+Required=false
+DisableIfBlank=true
+
+[WatermarkTxtR]
+Type=float
+Label=Text R
+Category=Watermark Settings
+CategoryOrder=10
+Index=5
+Minimum=0.0
+Maximum=1.0
+Increment=0.1
+Description=Text red channel (0-1.0) [default = 1.0].
+Required=false
+DisableIfBlank=true
+
+[WatermarkTxtG]
+Type=float
+Label=Text G
+Category=Watermark Settings
+CategoryOrder=10
+Index=6
+Minimum=0.0
+Maximum=1.0
+Increment=0.1
+Description=Text green channel (0-1.0) [default = 1.0].
+Required=false
+DisableIfBlank=true
+
+[WatermarkTxtB]
+Type=float
+Label=Text B
+Category=Watermark Settings
+CategoryOrder=10
+Index=7
+Minimum=0.0
+Maximum=1.0
+Increment=0.1
+Description=Text blue channel (0-1.0) [default = 1.0].
+Required=false
+DisableIfBlank=true
+
+[WatermarkTxtA]
+Type=float
+Label=Text Alpha
+Category=Watermark Settings
+CategoryOrder=10
+Index=8
+Minimum=0.0
+Maximum=1.0
+Increment=0.1
+Description=Text alpha channel (0-1.0) [default = 0.8].
+Required=false
+DisableIfBlank=true
+
+[OverrideColorSpace]
+Type=boolean
+Label=Override Color Space
+Category=Color/Gamma Space Settings
+CategoryOrder=11
+Index=0
+Description=Override color space.
+Required=false
+DisableIfBlank=true
+
+[ColorSpace]
+Type=enum
+Label=Color Space
+Category=Color/Gamma Space Settings
+CategoryOrder=11
+Index=1
+Description=Color space.
+Required=false
+DisableIfBlank=true
+
+[OverrideGammaCurve]
+Type=boolean
+Label=Override LUT/Gamma Curve
+Category=Color/Gamma Space Settings
+CategoryOrder=11
+Index=2
+Description=Override gamma curve.
+Required=false
+DisableIfBlank=true
+
+[GammaCurve]
+Type=enum
+Label=LUT/Gamma Curve
+Category=Color/Gamma Space Settings
+CategoryOrder=11
+Index=3
+Description=Gamma curve.
+Required=false
+DisableIfBlank=true
+
+[OverrideNoiseReduction]
+Type=boolean
+Label=Override Chroma Denoise
+Category=Color/Gamma Space Settings
+CategoryOrder=11
+Index=4
+Description=Override noise reduction.
+Required=false
+DisableIfBlank=true
+
+[NoiseReduction]
+Type=enum
+Label=Chroma Denoise
+Category=Color/Gamma Space Settings
+CategoryOrder=11
+Index=5
+Description=Noise Reduction.
+Required=false
+DisableIfBlank=true
+
+[OverrideDetail]
+Type=boolean
+Label=Override Debayer Detail
+Category=Color/Gamma Space Settings
+CategoryOrder=11
+Index=6
+Description=Override detail.
+Required=false
+DisableIfBlank=true
+
+[Detail]
+Type=enum
+Label=Debayer Detail
+Category=Color/Gamma Space Settings
+CategoryOrder=11
+Index=7
+Description=Detail.
+Required=false
+DisableIfBlank=true
+
+[OverrideOLPFCompensation]
+Type=boolean
+Label=Override OLPF Compensation
+Category=Color/Gamma Space Settings
+CategoryOrder=11
+Index=8
+Description=Override OLPF compensation.
+Required=false
+DisableIfBlank=true
+
+[OLPFCompensation]
+Type=enum
+Label=OLPF Compensation
+Category=Color/Gamma Space Settings
+CategoryOrder=11
+Index=9
+Description=OLPF compensation.
+Required=false
+DisableIfBlank=true
+
+[OverrideSMPTEColorRange]
+Type=boolean
+Label=Override SMPTE Color Range
+Category=Color/Gamma Space Settings
+CategoryOrder=11
+Index=10
+Description=Override the SMPTE color range.
+Required=false
+DisableIfBlank=true
+
+[SMPTEColorRange]
+Type=enum
+Label=SMPTE Color Range
+Category=Color/Gamma Space Settings
+CategoryOrder=11
+Index=11
+Description=Set the SMPTE color range.
+Required=false
+DisableIfBlank=true
+
+[OverrideISO]
+Type=boolean
+Label=Override ISO
+Category=Color Settings
+CategoryOrder=12
+Index=0
+Description=Override ISO.
+Required=false
+DisableIfBlank=true
+
+[ISO]
+Type=integer
+Minimum=100
+Maximum=2000
+Increment=10
+Label=ISO
+Category=Color Settings
+CategoryOrder=12
+Index=1
+Description=ISO.
+Required=false
+DisableIfBlank=true
+
+[OverrideFlut]
+Type=boolean
+Label=Override Flut
+Category=Color Settings
+CategoryOrder=12
+Index=2
+Description=Override Flut.
+Required=false
+DisableIfBlank=true
+
+[Flut]
+Type=float
+Minimum=-8.0
+Maximum=8.0
+Increment=0.1
+Label=Flut
+Category=Color Settings
+CategoryOrder=12
+Index=3
+Description=Flut.
+Required=false
+DisableIfBlank=true
+
+[OverrideShadow]
+Type=boolean
+Label=Override Shadow
+Category=Color Settings
+CategoryOrder=12
+Index=4
+Description=Override Shadow.
+Required=false
+DisableIfBlank=true
+
+[Shadow]
+Type=float
+Minimum=-2.0
+Maximum=2.0
+Increment=0.1
+Label=Shadow
+Category=Color Settings
+CategoryOrder=12
+Index=5
+Description=Shadow.
+Required=false
+DisableIfBlank=true
+
+[OverrideKelvin]
+Type=boolean
+Label=Override Kelvin
+Category=Color Settings
+CategoryOrder=12
+Index=6
+Description=Override Kelvin.
+Required=false
+DisableIfBlank=true
+
+[Kelvin]
+Type=integer
+Minimum=1700
+Maximum=50000
+Increment=100
+Label=Kelvin
+Category=Color Settings
+CategoryOrder=12
+Index=7
+Description=Kelvin.
+Required=false
+DisableIfBlank=true
+
+[OverrideTint]
+Type=boolean
+Label=Override Tint
+Category=Color Settings
+CategoryOrder=12
+Index=8
+Description=Override tint.
+Required=false
+DisableIfBlank=true
+
+[Tint]
+Type=float
+Minimum=-100.000000
+Maximum=100.000000
+Increment=1.0
+Label=Tint
+Category=Color Settings
+CategoryOrder=12
+Index=9
+Description=Tint.
+Required=false
+DisableIfBlank=true
+
+[OverrideExposure]
+Type=boolean
+Label=Override Exposure
+Category=Color Settings
+CategoryOrder=12
+Index=10
+Description=Override exposure.
+Required=false
+DisableIfBlank=true
+
+[Exposure]
+Type=float
+Minimum=-12.000000
+Maximum=12.000000
+Increment=1.0
+Label=Exposure
+Category=Color Settings
+CategoryOrder=12
+Index=11
+Description=Exposure.
+Required=false
+DisableIfBlank=true
+
+[OverrideSaturation]
+Type=boolean
+Label=Override Saturation
+Category=Color Settings
+CategoryOrder=12
+Index=12
+Description=Override saturation.
+Required=false
+DisableIfBlank=true
+
+[Saturation]
+Type=float
+Minimum=-0.000000
+Maximum=2.000000
+Increment=0.1
+Label=Saturation
+Category=Color Settings
+CategoryOrder=12
+Index=13
+Description=Saturation.
+Required=false
+DisableIfBlank=true
+
+[OverrideContrast]
+Type=boolean
+Label=Override Contrast
+Category=Color Settings
+CategoryOrder=12
+Index=14
+Description=Override contrast.
+Required=false
+DisableIfBlank=true
+
+[Contrast]
+Type=float
+Minimum=-1.000000
+Maximum=1.000000
+Increment=0.1
+Label=Contrast
+Category=Color Settings
+CategoryOrder=12
+Index=15
+Description=Contrast.
+Required=false
+DisableIfBlank=true
+
+[OverrideBrightness]
+Type=boolean
+Label=Override Brightness
+Category=Color Settings
+CategoryOrder=12
+Index=16
+Description=Override brightness.
+Required=false
+DisableIfBlank=true
+
+[Brightness]
+Type=float
+Minimum=-10.000000
+Maximum=50.000000
+Increment=1.0
+Label=Brightness
+Category=Color Settings
+CategoryOrder=12
+Index=17
+Description=Brightness.
+Required=false
+DisableIfBlank=true
+
+[OverrideRed]
+Type=boolean
+Label=Override Red
+Category=Color Settings
+CategoryOrder=12
+Index=18
+Description=Override red.
+Required=false
+DisableIfBlank=true
+
+[Red]
+Type=float
+Minimum=0.000000
+Maximum=4.000000
+Increment=0.1
+Label=Red
+Category=Color Settings
+CategoryOrder=12
+Index=19
+Description=Red.
+Required=false
+DisableIfBlank=true
+
+[OverrideGreen]
+Type=boolean
+Label=Override Green
+Category=Color Settings
+CategoryOrder=12
+Index=20
+Description=Override green.
+Required=false
+DisableIfBlank=true
+
+[Green]
+Type=float
+Minimum=0.000000
+Maximum=4.000000
+Increment=0.1
+Label=Green
+Category=Color Settings
+CategoryOrder=12
+Index=21
+Description=Green.
+Required=false
+DisableIfBlank=true
+
+[OverrideBlue]
+Type=boolean
+Label=Override Blue
+Category=Color Settings
+CategoryOrder=12
+Index=22
+Description=Override blue.
+Required=false
+DisableIfBlank=true
+
+[Blue]
+Type=float
+Minimum=0.000000
+Maximum=4.000000
+Increment=0.1
+Label=Blue
+Category=Color Settings
+CategoryOrder=12
+Index=23
+Description=Blue.
+Required=false
+DisableIfBlank=true
+
+[OverrideDRX]
+Type=boolean
+Label=Override DRX
+Category=Color Settings
+CategoryOrder=12
+Index=24
+Description=Override Dynamic Range eXtender.
+Required=false
+DisableIfBlank=true
+
+[DRX]
+Type=float
+Minimum=0.000000
+Maximum=1.000000
+Increment=0.1
+Label=DRX
+Category=Color Settings
+CategoryOrder=12
+Index=25
+Description=DRX (Dynamic Range eXtender).
+Required=false
+DisableIfBlank=true
+
+[OverrideDEB]
+Type=boolean
+Label=Override DRX
+Category=Color Settings
+CategoryOrder=12
+Index=26
+Description=Override Dragon Enhanced Blacks.
+Required=false
+DisableIfBlank=true
+
+[DEB]
+Type=enum
+Label=DEB
+Category=Color Settings
+CategoryOrder=12
+Index=27
+Description=DEB (Dragon Enhanced Blacks).
+Required=false
+DisableIfBlank=true
+
+
+
+
+
+
+
+
+
+
+[OverrideRedLift]
+Type=boolean
+Label=Override Red Lift
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=0
+Description=Override Red Lift.
+Required=false
+DisableIfBlank=true
+
+[RedLift]
+Type=float
+Label=Red Lift
+Minimum=-1.0
+Maximum=1.0
+Increment=0.1
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=1
+Description=Red Lift.
+Required=false
+DisableIfBlank=true
+
+[OverrideGreenLift]
+Type=boolean
+Label=Override Green Lift
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=2
+Description=Override Green Lift.
+Required=false
+DisableIfBlank=true
+
+[GreenLift]
+Type=float
+Label=Green Lift
+Minimum=-1.0
+Maximum=1.0
+Increment=0.1
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=3
+Description=Green Lift.
+Required=false
+DisableIfBlank=true
+
+[OverrideBlueLift]
+Type=boolean
+Label=Override Blue Lift
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=4
+Description=Override Blue Lift.
+Required=false
+DisableIfBlank=true
+
+[BlueLift]
+Type=float
+Label=Blue Lift
+Minimum=-1.0
+Maximum=1.0
+Increment=0.1
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=5
+Description=Blue Lift.
+Required=false
+DisableIfBlank=true
+
+[OverrideRedGamma]
+Type=boolean
+Label=Override Red Gamma
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=6
+Description=Override Red Gamma.
+Required=false
+DisableIfBlank=true
+
+[RedGamma]
+Type=float
+Label=Red Gamma
+Minimum=0.0
+Maximum=4.0
+Increment=0.1
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=7
+Description=Red Gamma.
+Required=false
+DisableIfBlank=true
+
+[OverrideGreenGamma]
+Type=boolean
+Label=Override Green Gamma
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=8
+Description=Override Green Gamma.
+Required=false
+DisableIfBlank=true
+
+[GreenGamma]
+Type=float
+Label=Green Gamma
+Minimum=0.0
+Maximum=4.0
+Increment=0.1
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=9
+Description=Green Gamma.
+Required=false
+DisableIfBlank=true
+
+[OverrideBlueGamma]
+Type=boolean
+Label=Override Blue Gamma
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=10
+Description=Override Blue Gamma.
+Required=false
+DisableIfBlank=true
+
+[BlueGamma]
+Type=float
+Label=Blue Gamma
+Minimum=0.0
+Maximum=4.0
+Increment=0.1
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=11
+Description=Blue Gamma.
+Required=false
+DisableIfBlank=true
+
+[OverrideRedGain]
+Type=boolean
+Label=Override Red Gain
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=12
+Description=Override Red Gain.
+Required=false
+DisableIfBlank=true
+
+[RedGain]
+Type=float
+Label=Red Gain
+Minimum=0.0
+Maximum=2.0
+Increment=0.1
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=13
+Description=Red Gain.
+Required=false
+DisableIfBlank=true
+
+[OverrideGreenGain]
+Type=boolean
+Label=Override Green Gain
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=14
+Description=Override Green Gain.
+Required=false
+DisableIfBlank=true
+
+[GreenGain]
+Type=float
+Label=Green Gain
+Minimum=0.0
+Maximum=2.0
+Increment=0.1
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=15
+Description=Green Gain.
+Required=false
+DisableIfBlank=true
+
+[OverrideBlueGain]
+Type=boolean
+Label=Override Blue Gain
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=16
+Description=Override Blue Gain.
+Required=false
+DisableIfBlank=true
+
+[BlueGain]
+Type=float
+Label=Blue Gain
+Minimum=0.0
+Maximum=2.0
+Increment=0.1
+Category=Lift Gamma Gain Settings
+CategoryOrder=13
+Index=17
+Description=Blue Gain.
+Required=false
+DisableIfBlank=true
+
+[OverridePdBlack]
+Type=boolean
+Label=Override Print Density Black
+Category=Print Density Settings
+CategoryOrder=14
+Index=0
+Description=Override Print Density Black.
+Required=false
+DisableIfBlank=true
+
+[PdBlack]
+Type=integer
+Label=PD Black
+Minimum=0
+Maximum=511
+Increment=1
+Category=Print Density Settings
+CategoryOrder=14
+Index=1
+Description=PD Black.
+Required=false
+DisableIfBlank=true
+
+[OverridePdWhite]
+Type=boolean
+Label=Override Print Density White
+Category=Print Density Settings
+CategoryOrder=14
+Index=2
+Description=Override Print Density White.
+Required=false
+DisableIfBlank=true
+
+[PdWhite]
+Type=integer
+Label=PD White
+Minimum=512
+Maximum=1023
+Increment=1
+Category=Print Density Settings
+CategoryOrder=14
+Index=3
+Description=PD White.
+Required=false
+DisableIfBlank=true
+
+[OverridePdGamma]
+Type=boolean
+Label=Override Print Density Gamma
+Category=Print Density Settings
+CategoryOrder=14
+Index=4
+Description=Override Print Density Gamma.
+Required=false
+DisableIfBlank=true
+
+[PdGamma]
+Type=float
+Label=PD Gamma
+Minimum=0.0
+Maximum=2.0
+Increment=0.1
+Category=Print Density Settings
+CategoryOrder=14
+Index=5
+Description=PD Gamma.
+Required=false
+DisableIfBlank=true
+
+[OverrideBlack]
+Type=boolean
+Label=Override Black Curve
+Category=Curve Settings
+CategoryOrder=15
+Index=0
+Description=Override Black Curve.
+Required=false
+DisableIfBlank=true
+
+[Black]
+Type=integer
+Label=Black Curve
+Minimum=0
+Maximum=100
+Increment=1
+Category=Curve Settings
+CategoryOrder=15
+Index=1
+Description=Black Curve.
+Required=false
+DisableIfBlank=true
+
+[OverrideWhite]
+Type=boolean
+Label=Override White Curve
+Category=Curve Settings
+CategoryOrder=15
+Index=2
+Description=Override White Curve.
+Required=false
+DisableIfBlank=true
+
+[White]
+Type=integer
+Label=White Curve
+Minimum=0
+Maximum=100
+Increment=1
+Category=Curve Settings
+CategoryOrder=15
+Index=3
+Description=White Curve.
+Required=false
+DisableIfBlank=true
+
+[OverrideLumaCurve]
+Type=boolean
+Label=Override Luma Curve
+Category=Curve Point Settings
+CategoryOrder=16
+Index=0
+Description=Override Luma Curve.
+Required=false
+DisableIfBlank=true
+
+[LumaCurve]
+Type=string
+Label=Luma Curve
+Category=Curve Point Settings
+CategoryOrder=16
+Index=1
+Description=Override Luma Curve. Enter 10 integer values separated by colon character.
+Required=false
+DisableIfBlank=true
+
+[OverrideRedCurve]
+Type=boolean
+Label=Override Red Curve
+Category=Curve Point Settings
+CategoryOrder=16
+Index=2
+Description=Override Red Curve.
+Required=false
+DisableIfBlank=true
+
+[RedCurve]
+Type=string
+Label=Red Curve
+Category=Curve Point Settings
+CategoryOrder=16
+Index=3
+Description=Override Red Curve. Enter 10 integer values separated by colon character.
+Required=false
+DisableIfBlank=true
+
+[OverrideGreenCurve]
+Type=boolean
+Label=Override Green Curve
+Category=Curve Point Settings
+CategoryOrder=16
+Index=4
+Description=Override Green Curve.
+Required=false
+DisableIfBlank=true
+
+[GreenCurve]
+Type=string
+Label=Green Curve
+Category=Curve Point Settings
+CategoryOrder=16
+Index=5
+Description=Override Green Curve. Enter 10 integer values separated by colon character.
+Required=false
+DisableIfBlank=true
+
+[OverrideBlueCurve]
+Type=boolean
+Label=Override Blue Curve
+Category=Curve Point Settings
+CategoryOrder=16
+Index=6
+Description=Override Blue Curve.
+Required=false
+DisableIfBlank=true
+
+[BlueCurve]
+Type=string
+Label=Blue Curve
+Category=Curve Point Settings
+CategoryOrder=16
+Index=7
+Description=Override Blue Curve. Enter 10 integer values separated by colon character.
+Required=false
+DisableIfBlank=true
+
+[OverrideHdrMode]
+Type=boolean
+Label=Override HDR Mode
+Category=HDR Settings
+CategoryOrder=17
+Index=0
+Description=Override the HDR mode.
+Required=false
+DisableIfBlank=true
+
+[HdrMode]
+Type=enum
+Label=HDR Mode
+Category=HDR Settings
+CategoryOrder=17
+Index=1
+Description=HDR Mode ["A Frame","X Frame","Simple Blend","Magic Motion"].
+Required=false
+DisableIfBlank=true
+
+[HdrBias]
+Type=float
+Label=HDR Bias
+Minimum=-1.0
+Maximum=1.0
+Increment=0.1
+Category=HDR Settings
+CategoryOrder=17
+Index=2
+Description=HDR Bias (for Simple Blend and Magic Motion modes only) [default=0.0, range = -1.0 to 1.0].
+Required=false
+DisableIfBlank=true
+
+[OverrideDpxByteOrder]
+Type=boolean
+Label=Override DPX Byte Order
+Category=DPX Settings
+CategoryOrder=18
+Index=0
+Description=Override DPX Byte Order.
+Required=false
+DisableIfBlank=true
+
+[DpxByteOrder]
+Type=enum
+Label=Byte Order
+Category=DPX Settings
+CategoryOrder=18
+Index=1
+Description=DPX Byte Order.
+Required=false
+DisableIfBlank=true
+
+[OverrideDpxBitDepth]
+Type=boolean
+Label=Override DPX Bit Depth
+Category=DPX Settings
+CategoryOrder=18
+Index=2
+Description=Override DPX Bit Depth.
+Required=false
+DisableIfBlank=true
+
+[DpxBitDepth]
+Type=enum
+Label=Bit Depth
+Category=DPX Settings
+CategoryOrder=18
+Index=3
+Description=DPX Bit Depth.
+Required=false
+DisableIfBlank=true
+
+[OverrideDpxMaxWriters]
+Type=boolean
+Label=Override DPX Max Simultaneous Writers
+Category=DPX Settings
+CategoryOrder=18
+Index=4
+Description=Override DPX Max Simultaneous Writers.
+Required=false
+DisableIfBlank=true
+
+[DpxMaxWriters]
+Type=integer
+Label=Max Writers
+Minimum=1
+Maximum=64
+Increment=1
+Category=DPX Settings
+CategoryOrder=18
+Index=5
+Description=DPX Max Writers
+Required=false
+DisableIfBlank=true
+
+[OverrideExrCompression]
+Type=boolean
+Label=Override EXR compression
+Category=OpenEXR Settings
+CategoryOrder=19
+Index=0
+Description=Override EXR compression.
+Required=false
+DisableIfBlank=true
+
+[ExrCompression]
+Type=enum
+Label=Compression
+Category=OpenEXR Settings
+CategoryOrder=19
+Index=1
+Description=EXR compression ["NONE","RLE","ZIPS","ZIP","PIZ","PXR24","B44","B44A","DWAA","DWAB"].
+Required=false
+DisableIfBlank=true
+
+[ExrDWACompression]
+Type=integer
+Label=DWAA Compression
+Minimum=25
+Maximum=100
+Increment=1
+Category=OpenEXR Settings
+CategoryOrder=19
+Index=2
+Description=OpenEXR DWA Compression Level [default = 45, range 25 - 100].
+Required=false
+DisableIfBlank=true
+
+[OverrideExrMultiView]
+Type=boolean
+Label=Override EXR Multi View
+Category=OpenEXR Settings
+CategoryOrder=19
+Index=3
+Description=Override OpenEXR MultiView: Dual Channel=1, Single Channel=0 [default=0].
+Required=false
+DisableIfBlank=true
+
+[ExrMultiView]
+Type=enum
+Label=EXR Multi View
+Category=OpenEXR Settings
+CategoryOrder=19
+Index=4
+Description=OpenEXR MultiView: Dual Channel=1, Single Channel=0 [default=0].
+Required=false
+DisableIfBlank=true
+
+[OverrideExrWriters]
+Type=boolean
+Label=Override EXR Writers
+Category=OpenEXR Settings
+CategoryOrder=19
+Index=5
+Description=Override OpenEXR Max Simultaneous Writers [default = 10, range = 1 - 64].
+Required=false
+DisableIfBlank=true
+
+[ExrWriters]
+Type=integer
+Label=EXR Writers
+Minimum=1
+Maximum=64
+Increment=1
+Category=OpenEXR Settings
+CategoryOrder=19
+Index=6
+Description=OpenEXR Max Simultaneous Writers [default = 10, range = 1 - 64].
+Required=false
+DisableIfBlank=true
+
+[OverrideExrACES]
+Type=boolean
+Label=Override EXR ACES
+Category=OpenEXR Settings
+CategoryOrder=19
+Index=7
+Description=Override OpenEXR ACES: On=1, Off=0 [default=0].
+Required=false
+DisableIfBlank=true
+
+[ExrACES]
+Type=enum
+Label=EXR ACES
+Category=OpenEXR Settings
+CategoryOrder=19
+Index=8
+Description=OpenEXR ACES: On=1, Off=0 [default=0].
+Required=false
+DisableIfBlank=true
+
+[OverrideExrSoftClamp]
+Type=boolean
+Label=Override Soft Clamp
+Category=OpenEXR Settings
+CategoryOrder=19
+Index=9
+Description=Override OpenEXR Soft Clamp: On=1, Off=0 [default=0].
+Required=false
+DisableIfBlank=true
+
+[ExrSoftClamp]
+Type=enum
+Label=Soft Clamp
+Category=OpenEXR Settings
+CategoryOrder=19
+Index=10
+Description=OpenEXR Soft Clamp: On=1, Off=0 [default=0].
+Required=false
+DisableIfBlank=true
+
+[TrimRmdSidecar]
+Type=boolean
+Label=Include RMD Sidecar
+Category=R3D Trim Settings
+CategoryOrder=20
+Index=0
+Description=Include RMD Sidecar.
+Required=false
+DisableIfBlank=true
+
+[TrimQtWrappers]
+Type=boolean
+Label=Include QT Wrappers
+Category=R3D Trim Settings
+CategoryOrder=20
+Index=1
+Description=Include QT Wrappers.
+Required=false
+DisableIfBlank=true
+
+[OverrideTrimFcpXml]
+Type=boolean
+Label=Override Include FCP XML
+Category=R3D Trim Settings
+CategoryOrder=20
+Index=2
+Description=Override Include FCP XML.
+Required=false
+DisableIfBlank=true
+
+[TrimFcpXml]
+Type=enum
+Label=Include FCP XML
+Category=R3D Trim Settings
+CategoryOrder=20
+Index=3
+Description=Include FCP XML ["No FCP XML","Full","Half","Quarter","Eighth"].
+Required=false
+DisableIfBlank=true
+
+[TrimAudio]
+Type=boolean
+Label=Include Audio
+Category=R3D Trim Settings
+CategoryOrder=20
+Index=4
+Description=Include Audio in R3D Trim.
+Required=false
+DisableIfBlank=true
+
+[OverrideTrimChangeFrameRate]
+Type=boolean
+Label=Override Clip Framerate
+Category=R3D Trim Settings
+CategoryOrder=20
+Index=5
+Description=Override Change Clip Framerate.
+Required=false
+DisableIfBlank=true
+
+[TrimChangeFrameRate]
+Type=enum
+Label=Change Clip Framerate
+Category=R3D Trim Settings
+CategoryOrder=20
+Index=6
+Description=Change Clip Framerate ["23.976fps","24fps","25fps","29.97fps","30fps","47.952fps","48fps","50fps","59.94fps","60fps","71.928fps","72fps"].
+Required=false
+DisableIfBlank=true
+
+[OverrideTrimChangeOLPF]
+Type=boolean
+Label=Override Clip's OLPF
+Category=R3D Trim Settings
+CategoryOrder=20
+Index=7
+Description=Override Clip's OLPF.
+Required=false
+DisableIfBlank=true
+
+[TrimChangeOLPF]
+Type=integer
+Label=Clip's OLPF
+Minimum=1
+Maximum=1000
+Increment=1
+Category=R3D Trim Settings
+CategoryOrder=20
+Index=8
+Description=Change the clip's OLPF.  Use --olpfLookup to get available OLPF IDs for a clip.
+Required=false
+DisableIfBlank=true
+
+[OverrideDnxCodec]
+Type=boolean
+Label=Override DNX Codec
+Category=Avid DNX Settings
+CategoryOrder=21
+Index=0
+Description=Override DNX Codec.
+Required=false
+DisableIfBlank=true
+
+[DnxCodec]
+Type=enum
+Label=DNX Codec
+Category=Avid DNX Settings
+CategoryOrder=21
+Index=1
+Description=Avid DNX Codec to output [default = DNxHR HQ].
+Required=false
+DisableIfBlank=true
+
+[OverrideDnxFrameRate]
+Type=boolean
+Label=Override DNX Framerate
+Category=Avid DNX Settings
+CategoryOrder=21
+Index=2
+Description=Override DNX Framerate
+Required=false
+DisableIfBlank=true
+
+[DnxFrameRate]
+Type=enum
+Label=Media Framerate
+Category=Avid DNX Settings
+CategoryOrder=21
+Index=3
+Description=Avid Media Framerate [default = 23.98].
+Required=false
+DisableIfBlank=true
+
+[OverrideRrContentTitle]
+Type=boolean
+Label=Override Content Title
+Category=REDray Settings
+CategoryOrder=22
+Index=0
+Description=Override Content Title.
+Required=false
+DisableIfBlank=true
+
+[RrContentTitle]
+Type=string
+Label=Content Title
+Category=REDray Settings
+CategoryOrder=22
+Index=1
+Description=Content Title.
+Required=false
+DisableIfBlank=true
+
+[OverrideRrPosterFrame]
+Type=boolean
+Label=Override Poster Frame
+Category=REDray Settings
+CategoryOrder=22
+Index=2
+Description=Override Poster Frame.
+Required=false
+DisableIfBlank=true
+
+[RrPosterFrame]
+Type=integer
+Label=Poster Frame
+Minimum=1
+Maximum=10000
+Increment=1
+Category=REDray Settings
+CategoryOrder=22
+Index=3
+Description=Poster Frame.
+Required=false
+DisableIfBlank=true
+
+[NoRocket]
+Type=boolean
+Label=Disable Rocket
+Category=Rocket Settings
+CategoryOrder=23
+Index=0
+Description=Turn rocket support off even if it's available.
+Required=false
+DisableIfBlank=true
+
+[SingleRocket]
+Type=boolean
+Label=Single Rocket
+Category=Rocket Settings
+CategoryOrder=23
+Index=1
+Description=Limit REDline to a maximum of one Rocket.
+Required=false
+DisableIfBlank=true
+
+[ForceRocket]
+Type=boolean
+Label=Force Rocket
+Category=Rocket Settings
+CategoryOrder=23
+Index=2
+Description=Forces the use of Red Rocket. If NO rockets are available the export will abort.
+Required=false
+DisableIfBlank=true
+
+[OverrideUseRocket]
+Type=boolean
+Label=Override Rocket Devices
+Category=Rocket Settings
+CategoryOrder=23
+Index=3
+Description=Override Rocket Devices.
+Required=false
+DisableIfBlank=true
+
+[UseRocket]
+Type=string
+Label=Specify Rocket Devices
+Category=Rocket Settings
+CategoryOrder=23
+Index=4
+Description=Choose which Rocket(s) to use (for example: 0,2). Comma separated string.
+Required=false
+DisableIfBlank=true
+
+[OverrideGpuPlatform]
+Type=boolean
+Label=Override GPU Platform
+Category=Graph Processing/OpenCL/CUDA Settings
+CategoryOrder=24
+Index=0
+Description=Override if GPU should be enabled.
+Required=false
+DisableIfBlank=true
+
+[GpuPlatform]
+Type=enum
+Label=GPU Platform
+Category=Graph Processing/OpenCL/CUDA Settings
+CategoryOrder=24
+Index=1
+Description=GPU Platform to be used ["No GPU","OpenCL","CUDA"].
+Required=false
+DisableIfBlank=true
+
+[GPUsSelectDevices]
+Type=string
+Label=Specific GPUs (Optional)
+Category=Graph Processing/OpenCL/CUDA Settings
+CategoryOrder=24
+Index=2
+Description=Optionally, specify which GPU devices to use by device index. Comma separated string such as 0 or 0,1 or 0,1,2.
+Required=false
+DisableIfBlank=true
+
+[OverrideDecodeThreads]
+Type=boolean
+Label=Override Decode Threads
+Category=Graph Processing/OpenCL/CUDA Settings
+CategoryOrder=24
+Index=3
+Description=Override the number of simultaneous decompression threads (Default 7).
+Required=false
+DisableIfBlank=true
+
+[DecodeThreads]
+Type=integer
+Label=Decode Threads
+Minimum=0
+Maximum=10
+Increment=1
+Category=Graph Processing/OpenCL/CUDA Settings
+CategoryOrder=24
+Index=4
+Description=Number of simultaneous decompression threads (Default 7).
+Required=false
+DisableIfBlank=true
+
+[OverrideNumGraphs]
+Type=boolean
+Label=Override Num Graphs
+Category=Graph Processing/OpenCL/CUDA Settings
+CategoryOrder=24
+Index=5
+Description=Override number of simultaneous graphs to process.
+Required=false
+DisableIfBlank=true
+
+[NumGraphs]
+Type=integer
+Label=Num Graphs
+Minimum=0
+Maximum=10
+Increment=1
+Category=Graph Processing/OpenCL/CUDA Settings
+CategoryOrder=24
+Index=6
+Description=Number of simultaneous graphs to process.
+Required=false
+DisableIfBlank=true
+
+[OverrideNumOclStreams]
+Type=boolean
+Label=Override GPU proc streams
+Category=Graph Processing/OpenCL/CUDA Settings
+CategoryOrder=24
+Index=7
+Description=Override number of GPU processing streams.
+Required=false
+DisableIfBlank=true
+
+[NumOclStreams]
+Type=integer
+Label=Num of GPU proc streams
+Minimum=0
+Maximum=10
+Increment=1
+Category=Graph Processing/OpenCL/CUDA Settings
+CategoryOrder=24
+Index=8
+Description=Number of GPU processing streams.
+Required=false
+DisableIfBlank=true
+
+[EnableADD]
+Type=boolean
+Label=Enable A.D.D.
+Category=Advanced Dragon Debayer (A.D.D) Settings
+CategoryOrder=25
+Index=0
+Description=Enable A.D.D.
+Required=false
+DisableIfBlank=true
+
+[OverrideADDUsmAmount]
+Type=boolean
+Label=Override Unsharp Mask Amount
+Category=Advanced Dragon Debayer (A.D.D) Settings
+CategoryOrder=25
+Index=1
+Description=Override A.D.D. Unsharp Mask Amount.
+Required=false
+DisableIfBlank=true
+
+[ADDUsmAmount]
+Type=float
+Label=Unsharp Mask Amount
+Minimum=0.0
+Maximum=1000.0
+Increment=1.0
+Category=Advanced Dragon Debayer (A.D.D) Settings
+CategoryOrder=25
+Index=2
+Description=A.D.D. Unsharp Mask Amount. (Default: 200).
+Required=false
+DisableIfBlank=true
+
+[OverrideADDUsmRadius]
+Type=boolean
+Label=Override Unsharp Mask Radius
+Category=Advanced Dragon Debayer (A.D.D) Settings
+CategoryOrder=25
+Index=3
+Description=Override A.D.D. Unsharp Mask Radius.
+Required=false
+DisableIfBlank=true
+
+[ADDUsmRadius]
+Type=float
+Label=Unsharp Mask Radius
+Minimum=0.0
+Maximum=100.0
+Increment=0.1
+Category=Advanced Dragon Debayer (A.D.D) Settings
+CategoryOrder=25
+Index=4
+Description=A.D.D. Unsharp Mask Radius. (Default: 0.6).
+Required=false
+DisableIfBlank=true
+
+[OverrideADDUsmThreshold]
+Type=boolean
+Label=Override Unsharp Mask Threshold
+Category=Advanced Dragon Debayer (A.D.D) Settings
+CategoryOrder=25
+Index=5
+Description=Override Unsharp Mask Threshold.
+Required=false
+DisableIfBlank=true
+
+[ADDUsmThreshold]
+Type=float
+Label=Unsharp Mask Threshold
+Minimum=0.0
+Maximum=100.0
+Increment=0.1
+Category=Advanced Dragon Debayer (A.D.D) Settings
+CategoryOrder=25
+Index=6
+Description=A.D.D. Unsharp Mask Threshold. (Default: 1.0).
+Required=false
+DisableIfBlank=true
+
+[ADDUsmDisable]
+Type=boolean
+Label=Disable Unsharp Mask for A.D.D.
+Category=Advanced Dragon Debayer (A.D.D) Settings
+CategoryOrder=25
+Index=7
+Description=Disable Unsharp Mask for A.D.D. Processing.
+Required=false
+DisableIfBlank=true
+
+[LutFile]
+Type=filename
+Label=LUT File
+Category=3D LUT Settings
+CategoryOrder=26
+Index=0
+Description=Load a 3D LUT from file [3DL File (*.3dl);;CUBE File (*.cube);;All Files (*)].
+Required=false
+DisableIfBlank=true
+
+[OverrideLutEdgeLength]
+Type=boolean
+Label=Override Edge length of LUT File
+Category=3D LUT Settings
+CategoryOrder=26
+Index=1
+Description=Override Edge length of the 3D LUT.
+Required=false
+DisableIfBlank=true
+
+[LutEdgeLength]
+Type=integer
+Label=Edge length of LUT File
+Minimum=1
+Maximum=100
+Increment=1
+Category=3D LUT Settings
+CategoryOrder=26
+Index=2
+Description=Edge length of the 3D LUT.
+Required=false
+DisableIfBlank=true

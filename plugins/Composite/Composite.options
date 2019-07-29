@@ -1,0 +1,16 @@
+[Version]
+Type=label
+Label=Composite Version
+Category=Composite Version
+Description=The version of Composite to use for rendering
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Composite Build To Force
+Category=Composite Version
+Description=The build of Composite to force
+Required=false
+DisableIfBlank=true

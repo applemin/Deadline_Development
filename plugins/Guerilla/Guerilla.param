@@ -1,0 +1,25 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Guerilla Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Guerilla_Executable]
+Type=multilinemultifilename
+Label=Guerilla Lua Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Guerilla Render\lua.exe;/usr/local/guerilla/lua
+Description=The path to the Guerilla lua executable used for rendering.

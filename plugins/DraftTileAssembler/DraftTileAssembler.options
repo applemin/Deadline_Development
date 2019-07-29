@@ -1,0 +1,26 @@
+[ErrorOnMissing]
+Type=boolean
+Category=Options
+Index=0
+Label=Error on Missing Tiles
+Required=false
+DisableIfBlank=true
+Description=If enabled, the Draft Tile Assembler will raise an error if any tiles are missing.
+
+[CleanupTiles]
+Type=boolean
+Category=Options
+Index=0
+Label=Cleanup Tiles
+Required=false
+DisableIfBlank=true
+Description=If enabled, the Draft Tile Assembler will cleanup all tiles after assembly.
+
+[ErrorOnMissingBackground]
+Type=boolean
+Category=Options
+Index=0
+Label=Error on Missing Background
+Required=false
+DisableIfBlank=true
+Description=If enabled, the Draft Tile Assembler will raise an error if the specified background cannot be accessed.

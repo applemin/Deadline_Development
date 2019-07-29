@@ -1,0 +1,65 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[LW_Version]
+Type=label
+Label=Version
+Category=Lightwave Info
+Index=0
+Description=The version of Lightwave to render with
+Required=false
+DisableIfBlank=true
+
+[LW_Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Lightwave Build To Force
+Category=Lightwave Info
+Index=1
+Description=The build of Lightwave to force
+Required=false
+DisableIfBlank=true
+
+[UseScreamerNet]
+Type=boolean
+Label=Use ScreamerNet Rendering
+Category=Lightwave Info
+Index=2
+Description=Whether or not to render using ScreamerNet (this keeps the scene in loaded in memory between frames)
+Required=false
+DisableIfBlank=true
+
+[UseFPrime]
+Type=boolean
+Label=Use FPrime Renderer
+Category=Lightwave Info
+Index=3
+Description=Whether or not to render using FPrime (uses the FPrime render executable in the plugin configuration)
+Required=false
+DisableIfBlank=true
+
+[ContentDir]
+Type=folder
+Label=Content Directory
+Category=Lightwave Directories
+Index=0
+Description=The path to the Lightwave content directory
+Required=true
+DisableIfBlank=false
+DefaultValue=
+
+[ConfigDir]
+Type=folder
+Label=Config Directory
+Category=Lightwave Directories
+Index=1
+Description=The path to the Lightwave config directory
+Required=true
+DisableIfBlank=false
+DefaultValue=

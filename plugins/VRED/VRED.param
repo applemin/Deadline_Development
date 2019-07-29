@@ -1,0 +1,98 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=VRED Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[RenderExecutable7_0]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=0
+Label=VRED 2015 Render Executable
+Default=C:\Program Files\Autodesk\VREDPro-7.05\Bin\WIN64\VREDPro.exe;/opt/Autodesk/VREDCluster-7.05/bin/VREDServerNode
+Description=The path to the VRED 2015 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable8_0]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=1
+Label=VRED 2016 Render Executable
+Default=C:\Program Files\Autodesk\VREDPro-8.04\Bin\WIN64\VREDPro.exe;/opt/Autodesk/VREDCluster-8.04/bin/VREDServerNode;/Applications/Autodesk/VREDPro-2016/VREDPro-2016.app/Contents/vred/bin/MAC/VREDServerNode
+Description=The path to the VRED 2016 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable9_0]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=2
+Label=VRED 2017 Render Executable
+Default=C:\Program Files\Autodesk\VREDPro-9.02\Bin\WIN64\VREDPro.exe;/opt/Autodesk/VREDCluster-9.02/bin/VREDServerNode;/Applications/Autodesk/VREDPro-2017/VREDPro-2017.0.2-Update.app/Contents/VREDPro-9.02/bin/MAC/VREDServerNode
+Description=The path to the VRED 2017 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable9_1]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=3
+Label=VRED 2017.1 Render Executable
+Default=C:\Program Files\Autodesk\VREDPro-9.1\Bin\WIN64\VREDPro.exe;/opt/Autodesk/VREDCluster-9.1/bin/VREDServerNode;/Applications/Autodesk/VREDPro-2017/VREDPro-2017.1-Update.app/Contents/VREDPro-9.1/bin/MAC/VREDServerNode
+Description=The path to the VRED 2017.1 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable9_2]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=4
+Label=VRED 2017.2 Render Executable
+Default=C:\Program Files\Autodesk\VREDPro-9.2\Bin\WIN64\VREDPro.exe;/opt/Autodesk/VREDCluster-9.2/bin/VREDServerNode;/Applications/Autodesk/VREDPro-2017/VREDPro-2017.2-Update.app/Contents/VREDPro-9.2/bin/MAC/VREDServerNode
+Description=The path to the VRED 2017.2 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable10_0]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=5
+Label=VRED 2018 Render Executable
+Default=C:\Program Files\Autodesk\VREDPro-10.01\Bin\WIN64\VREDPro.exe;/opt/Autodesk/VREDCluster-10.01/bin/VREDServerNode;/Applications/Autodesk/VREDPro-2018/VREDPro-2018.app/Contents/VREDPro-10.01/bin/MAC/VREDServerNode
+Description=The path to the VRED 2018 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable10_1]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=6
+Label=VRED 2018.1 Render Executable
+Default=C:\Program Files\Autodesk\VREDPro-10.1\Bin\WIN64\VREDPro.exe;/opt/Autodesk/VREDCluster-10.1/bin/VREDServerNode;/Applications/Autodesk/VREDPro-2018/VREDPro-2018.1-Update.app/Contents/VREDPro-10.1/bin/MAC/VREDServerNode
+Description=The path to the VRED 2018.1 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable10_2]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=7
+Label=VRED 2018.2 Render Executable
+Default=C:\Program Files\Autodesk\VREDPro-10.2\Bin\WIN64\VREDPro.exe;/opt/Autodesk/VREDCluster-10.2/bin/VREDServerNode;/Applications/Autodesk/VREDPro-2018/VREDPro-2018.2-Update.app/Contents/VREDPro-10.2/bin/MAC/VREDServerNode
+Description=The path to the VRED 2018.2 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable11_0]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=8
+Label=VRED 2019 Render Executable
+Default=C:\Program Files\Autodesk\VREDPro-11.0\Bin\WIN64\VREDPro.exe;/opt/Autodesk/VREDCluster-11.0/bin/VREDServerNode;/Applications/Autodesk/VREDPro-2019/VREDPro-2019.app/Contents/VREDPro-11.0/bin/MAC/VREDServerNode
+Description=The path to the VRED 2019 executable file used for rendering. Enter alternative paths on separate lines.

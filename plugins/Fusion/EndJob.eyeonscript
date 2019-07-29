@@ -1,0 +1,4 @@
+df = Fusion("127.0.0.1")
+if df ~= nil then
+	df:Quit()
+end

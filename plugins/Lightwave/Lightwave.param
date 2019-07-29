@@ -1,0 +1,108 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Lightwave Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[LW8_RenderExecutable]
+Type=multilinemultifilename
+Label=Lightwave 8 Render Executable
+Category=Lightwave Executables
+CategoryOrder=0
+Index=1
+Default=C:\Program Files\Lightwave [8]\Programs\lwsn.exe;C:\Program Files (x86)\Lightwave [8]\Programs\lwsn.exe;/Applications/Lightwave [8]/programs/LWSN cmdLine
+Description=The path to the Lightwave 8 lwsn.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[LW9_RenderExecutable]
+Type=multilinemultifilename
+Label=Lightwave 9 Render Executable
+Category=Lightwave Executables
+CategoryOrder=0
+Index=2
+Default=C:\Program Files\NewTek\LightWave 3D 9\Programs\lwsn.exe;C:\Program Files (x86)\NewTek\LightWave 3D 9\Programs\lwsn.exe;/Applications/LightWave3D 9/ScreamerNet;/Applications/NewTek/LightWave 3D 9/programs/LWSN cmdLine
+Description=The path to the Lightwave 9 lwsn.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[LW10_RenderExecutable]
+Type=multilinemultifilename
+Label=Lightwave 10 Render Executable
+Category=Lightwave Executables
+CategoryOrder=0
+Index=3
+Default=C:\Program Files\NewTek\LightWave10.0\bin\lwsn.exe;C:\Program Files (x86)\NewTek\LightWave10.0\bin\lwsn.exe;/Applications/NewTek/LightWave3D10.0/bin/lwsn
+Description=The path to the Lightwave 10 lwsn.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[LW11_RenderExecutable]
+Type=multilinemultifilename
+Label=Lightwave 11 Render Executable
+Category=Lightwave Executables
+CategoryOrder=0
+Index=4
+Default=C:\Program Files\NewTek\LightWave11.0\bin\lwsn.exe;C:\Program Files (x86)\NewTek\LightWave11.0\bin\lwsn.exe;/Applications/NewTek/LightWave3D11.0/bin/lwsn
+Description=The path to the Lightwave 11 lwsn.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[LW2015_RenderExecutable]
+Type=multilinemultifilename
+Label=Lightwave 2015 Render Executable
+Category=Lightwave Executables
+CategoryOrder=0
+Index=5
+Default=C:\Program Files\NewTek\LightWave_2015.0\bin\lwsn.exe;C:\Program Files (x86)\NewTek\LightWave_2015.0\bin\lwsn.exe;/Applications/NewTek/LightWave3D_2015.0/bin/lwsn
+Description=The path to the Lightwave 2015 lwsn.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[LW2018_RenderExecutable]
+Type=multilinemultifilename
+Label=Lightwave 2018 Render Executable
+Category=Lightwave Executables
+CategoryOrder=0
+Index=6
+Default=C:\Program Files\NewTek\LightWave_2018.0\bin\lwsn.exe;/Applications/NewTek/LightWave3D_2018.0/bin/lwsn
+Description=The path to the Lightwave 2018 lwsn.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[LW2019_RenderExecutable]
+Type=multilinemultifilename
+Label=Lightwave 2019 Render Executable
+Category=Lightwave Executables
+CategoryOrder=0
+Index=7
+Default=C:\Program Files\NewTek\LightWave_2019.0\bin\lwsn.exe;/Applications/NewTek/LightWave3D_2019.0/bin/lwsn
+Description=The path to the Lightwave 2019 lwsn.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[FPrime_RenderExecutable]
+Type=multilinemultifilename
+Label=FPrime Render Executable
+Category=FPrime Executables
+CategoryOrder=1
+Index=4
+Default=C:\Program Files\FPrime\wsn.exe;C:\Program Files (x86)\FPrime\wsn.exe
+Description=The path to the FPrime wsn.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[FPrime_LocalConfig]
+Type=boolean
+Label=FPrime Use Local Config
+Category=FPrime Executables
+CategoryOrder=1
+Index=5
+Default=False
+Description=If enabled, Deadline will copy the contents of the Config folder to a local temp folder, and tell FPrime to use the local Config instead of the network one.
+
+
+[EnablePathMapping]
+Type=boolean
+Category=Path Mapping (For Mixed Farms)
+CategoryOrder=2
+CategoryIndex=0
+Label=Enable Path Mapping
+Default=true
+Description=If enabled, a temporary Lightwave file will be created locally on the slave for rendering because Deadline does the path mapping directly in the Lightwave file. This feature can be turned off if there are no Path Mapping entries defined in the Repository Options.

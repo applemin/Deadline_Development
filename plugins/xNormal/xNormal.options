@@ -1,0 +1,9 @@
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build To Force
+Category=Rendering Options
+Index=0
+Description=The build of Blender to force.
+Required=false
+DisableIfBlank=true

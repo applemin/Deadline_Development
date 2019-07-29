@@ -1,0 +1,7 @@
+jpg: jpeg
+exr: zips, zip, piz, pxr24, b44, b44a, dwaa, dwab, rle, none
+png: zip
+tga: none, rle
+tif: none, lzw, zip, jpeg, rle
+mov: mjpeg, mpeg4, h264, dnxhd, rawvideo, vp8
+mxf: dnxhd

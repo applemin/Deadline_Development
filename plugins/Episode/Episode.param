@@ -1,0 +1,65 @@
+[About]
+Type=Label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Telestream Episode Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=Label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[Episode_InterpreterExecutable]
+Type=MultiLineMultiFilename
+Label=CLI Interpreter Executable
+Category=CLI Interpreter Executables
+CategoryIndex=0
+CategoryOrder=0
+Default=C:\Program Files\Telestream\Episode 7\bin\episodectl.exe;/Applications/Episode.app/Contents/Resources/engine/bin/episodectl
+Description=The path to Telestream's Episode Command Line Interface executable.
+
+[StartEpisodeProcesses]
+Type=Boolean
+Label=Force Start Episode Processes
+Category=General Options
+CategoryOrder=1
+CategoryIndex=0
+Default=false
+Description=Enable to force start the required background Episode processes for encoding to take place.
+
+[EpisodeRequiredProcesses]
+Type=MultiLineString
+Label=Episode Processes List
+Category=General Options
+CategoryOrder=1
+CategoryIndex=1
+Default=EpisodeClientProxy;EpisodeAssistant;EpisodeIOServer;EpisodeXMLRPCServer;EpisodeNode;EpisodeJSONRPCServer
+Description=When 'Force Start Episode Processes' is enabled, this is the list of Episode process names to start.
+
+[TimeToInitialize]
+Type=integer
+Label=Max Time To Wait for Initialization
+Category=General Options
+CategoryOrder=1
+CategoryIndex=2
+Default=5
+Minimum=5
+Maximum=120
+Increment=1
+Description=Max time to wait for initialization of background Episode processes in seconds. (Default: 5 seconds).
+
+[DemoVersion]
+Type=Boolean
+Label=Demo Version of Episode
+Category=General Options
+CategoryOrder=1
+CategoryIndex=3
+Default=false
+Description=Enable if you are using a demo version of Episode, which will cause a watermark to be burned onto all Episode jobs.

@@ -1,0 +1,39 @@
+[CommandLineOptions]
+Type=string
+Label=Additional Arguments
+Category=Command Line Options
+Description=Additional command line arguments that are sent to the Mantra renderer.
+Required=false
+DisableIfBlank=false
+DefaultValue=
+
+[OutputFile]
+Type=filename
+Label=Output File
+Category=Output Options
+Index=1
+Description=The output file. If blank, the output defined in the IFD file is used.
+Required=false
+DisableIfBlank=false
+DefaultValue=
+
+[Threads]
+Type=integer
+Minimum=0
+Maximum=16
+Label=Threads
+Category=Render Options
+Index=1
+Description=The number of threads to use. Specify 0 to use the maximum number of threads.
+Required=false
+DisableIfBlank=false
+DefaultValue=0
+
+[Version]
+Type=label
+Label=Version
+Category=Render Options
+Index=0
+Description=The version of Mantra to be rendered with.
+Required=false
+DisableIfBlank=true

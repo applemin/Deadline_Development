@@ -1,0 +1,35 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Autopano Video Plugin for Deadline
+Description=Not configurable.
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable.
+
+[AutopanoVideo_Executable2]
+Type=multilinemultifilename
+Label=Autopano Video 2 Render Executable
+Category=Autopano Video Options
+CategoryOrder=0
+CategoryIndex=0
+Default=C:\Program Files\Kolor\Autopano Video Pro 2.6\AutopanoVideoPro_x64.exe;C:\Program Files (x86)\Kolor\Autopano Video Pro 2.6\AutopanoVideoPro_win32.exe;/Applications/Autopano Video Pro 2.6.app/Contents/MacOS/AutopanoVideoPro
+Description=The path to the Autopano Video 2 executable used for rendering. Enter alternative paths on separate lines.
+
+[AutopanoVideo_Executable3]
+Type=multilinemultifilename
+Label=Autopano Video 3 Render Executable
+Category=Autopano Video Options
+CategoryOrder=0
+CategoryIndex=1
+Default=C:\Program Files\Kolor\Autopano Video 3.0\AutopanoVideoPro_x64.exe;C:\Program Files\Kolor\Autopano Video 3.0\AutopanoVideoPro_win32.exe;/Applications/Autopano Video 3.0.app/Contents/MacOS/AutopanoVideoPro
+Description=The path to the Autopano Video 3 executable used for rendering. Enter alternative paths on separate lines.

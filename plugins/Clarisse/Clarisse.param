@@ -1,0 +1,92 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Clarisse Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Clarisse_RenderExecutable_1]
+Type=multilinemultifilename
+Label=CRender Version 1 Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Isotropix\Clarisse iFX 1.6 SP5\Clarisse\crender.exe;/Applications/Isotropix/Clarisse iFX 1.6 SP5/clarisse/Contents/MacOS/crender;/opt/Isotropix/clarisse/crender
+Description=The path to the crender executable file used for rendering. Enter alternative paths on separate lines.
+
+[Clarisse_RenderExecutable_2]
+Type=multilinemultifilename
+Label=CRender Version 2 Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Isotropix\Clarisse iFX 2.0 SP4\Clarisse\crender.exe;/Applications/Isotropix/Clarisse iFX 2.0 SP4/clarisse/Contents/MacOS/crender;/opt/Isotropix/clarisse/crender
+Description=The path to the crender executable file used for rendering. Enter alternative paths on separate lines.
+
+[Clarisse_RenderExecutable_3]
+Type=multilinemultifilename
+Label=CRender Version 3 Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Isotropix\Clarisse iFX 3.0\Clarisse\crender.exe;/Applications/Isotropix/Clarisse iFX 3.0/clarisse/Contents/MacOS/crender;/opt/Isotropix/clarisse/crender
+Description=The path to the crender executable file used for rendering. Enter alternative paths on separate lines.
+
+[CNode_RenderExecutable_1]
+Type=multilinemultifilename
+Label=CNode Version 1 Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Isotropix\Clarisse iFX 1.6 SP5\Clarisse\cnode.exe;/Applications/Isotropix/Clarisse iFX 1.6 SP5/clarisse/Contents/MacOS/cnode;/opt/Isotropix/clarisse/cnode
+Description=The path to the CNode executable file used for rendering. Enter alternative paths on separate lines.
+
+[CNode_RenderExecutable_2]
+Type=multilinemultifilename
+Label=CNode Version 2 Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Isotropix\Clarisse iFX 2.0 SP4\Clarisse\cnode.exe;/Applications/Isotropix/Clarisse iFX 2.0 SP4/clarisse/Contents/MacOS/cnode;/opt/Isotropix/clarisse/cnode
+Description=The path to the CNode executable file used for rendering. Enter alternative paths on separate lines.
+
+[CNode_RenderExecutable_3]
+Type=multilinemultifilename
+Label=CNode Version 3 Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Isotropix\Clarisse iFX 3.0\Clarisse\cnode.exe;/Applications/Isotropix/Clarisse iFX 3.0/clarisse/Contents/MacOS/cnode;/opt/Isotropix/clarisse/cnode
+Description=The path to the CNode executable file used for rendering. Enter alternative paths on separate lines.
+
+[ConfigFile]
+Type=filename
+Label=Global Config File
+Category=Configuration Options
+CategoryOrder=1
+Index=0
+Default=
+Description=A global configuration file to be used for rendering. If left blank, the Clarisse.cfg file in the user home directory will be used instead.
+
+[ModulePaths]
+Type=MultiLineMultiFolder
+Label=Module Paths
+Category=Configuration Options
+CategoryOrder=1
+Index=1
+Default=
+Description=Additional paths to search for modules (one path per line).
+
+[SearchPaths]
+Type=MultiLineMultiFolder
+Label=Search Paths
+Category=Configuration Options
+CategoryOrder=1
+Index=2
+Default=
+Description=Additional paths to search for includes (one path per line).

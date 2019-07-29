@@ -1,0 +1,72 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=LuxSlave Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[Luxconsole_ConsoleExecutable]
+Type=multilinemultifilename
+Label=Luxconsole Executable
+Category=Console Executables
+CategoryOrder=0
+Default=C:\Program Files\Luxrender\luxconsole.exe;C:\Program Files (x86)\Luxrender\luxconsole.exe;/usr/local/Luxrender/bin/luxconsole-gcc;/Applications/Luxrender/luxconsole;/Applications/LuxRender/LuxRender.app/Contents/MacOS/luxconsole
+Description=The path to the luxconsole executable file used for rendering. Enter alternative paths on separate lines.
+
+[ServerWriteFlm]
+Category=Luxconsole Slave Options
+Label=Write film to disk before transmitting
+CategoryOrder=1
+CategoryIndex=0
+Type=Boolean
+Description=Write film to disk before transmitting.
+Default=False
+
+[CacheDir]
+Type=Folder
+Category=Luxconsole Slave Options
+Label=Specify the cache directory to use
+CategoryOrder=1
+CategoryIndex=1
+Description=Specify the local cache directory to use instead of the default: local user's temp directory.
+Default=
+
+[ExistingSlaveProcess]
+Category=Slave Process Handling
+Label=Handle Existing Slave Process
+CategoryOrder=2
+CategoryIndex=0
+Type=enum
+Items=Do Nothing;Fail On Existing Process;Kill On Existing Process
+Description=Either Do Nothing, FAIL on existing Slave process or KILL the existing Slave process if already running.
+Default=Fail On Existing Process
+
+[SlaveAutoClose]
+Category=Slave Session Timeout
+Label=Slave Session Auto Timeout Enable
+CategoryOrder=3
+CategoryIndex=0
+Type=Boolean
+Description=Enable to force Slave Session to be marked as complete after a Slave Session closes on a Deadline slave.
+Default=False
+
+[SlaveCloseTimeout]
+Category=Slave Session Timeout
+Label=Slave Session Auto Timeout (Seconds)
+Minimum=10
+CategoryOrder=3
+CategoryIndex=1
+Type=Integer
+Description=Slave Session minimum timeout before last closed Slave Session is marked as complete on Deadline slave (seconds).
+Default=30

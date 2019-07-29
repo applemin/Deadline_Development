@@ -1,0 +1,106 @@
+[Threads]
+Type=integer
+Minimum=0
+Maximum=128
+Label=Threads
+Category=Arnold Options
+CategoryOrder=0
+Index=0
+Description=The number of threads to use for rendering (specify 0 to use the optimal number of threads)
+Required=false
+DisableIfBlank=true
+
+[Verbose]
+Type=integer
+Minimum=0
+Maximum=6
+Label=Verbosity
+Category=Arnold Options
+CategoryOrder=0
+Index=1
+Description=The verbosity level. Note that this needs to be at level 1 or higher for Deadline to catch errors.
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build To Force
+Category=Arnold Options
+CategoryOrder=0
+Index=2
+Description=The build of Arnold to force
+Required=false
+DisableIfBlank=true
+
+[DisableFrameInterpretation]
+Type=boolean
+Label=Disable Frame Interpretation
+Category=Input
+CategoryOrder=1
+Index=1
+Description=If enabled, Deadline won't try to interpret if there's frame padding in the input file, allowing version numbers in the input file.
+Required=false
+DefaultValue=
+
+[OutputFile]
+Type=filenamesave
+Label=Output File
+Category=Output
+Index=1
+CategoryOrder=2
+Description=The output filename
+Required=false
+DisableIfBlank=false
+DefaultValue=
+
+[LocalRendering]
+Type=boolean
+Label=Enable Local Rendering
+Category=Output
+Index=1
+Description=If this option is set to true, the slaves will render locally, and then copy the images to the network output directory on completion.
+Required=false
+DisableIfBlank=true
+
+[CommandLineOptions]
+Type=string
+Label=Additional Arguments
+Category=Command Line
+CategoryOrder=3
+Index=1
+Description=Additional command line arguments that are sent to Arnold
+Required=false
+DisableIfBlank=false
+DefaultValue=
+
+[PluginFolder1]
+Type=folder
+Label=Plugin Folder 1
+Category=Additional Plugin Folders
+CategoryOrder=4
+Index=0
+Description=An additional search path for plugin libraries (optional)
+Required=false
+DisableIfBlank=false
+DefaultValue=
+
+[PluginFolder2]
+Type=folder
+Label=Plugin Folder 2
+Category=Additional Plugin Folders
+Index=1
+Description=An additional search path for plugin libraries (optional)
+Required=false
+DisableIfBlank=false
+DefaultValue=
+
+[PluginFolder3]
+Type=folder
+Label=Plugin Folder 3
+Category=Additional Plugin Folders
+Index=2
+Description=An additional search path for plugin libraries (optional)
+Required=false
+DisableIfBlank=false
+DefaultValue=

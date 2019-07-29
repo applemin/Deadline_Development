@@ -1,0 +1,176 @@
+[InputPath]
+Type=filename
+Default=""
+Label=Input Filename
+Description=Specify the input .vrimg or .exr file; can contain wildcards, f.e. "sequence_????.exr" to denoise a sequence of frames.
+Category=General
+CategoryOrder=1
+Index=0
+Required=false
+DisableIfBlank=false
+
+[DenoiseMode]
+Type=enum
+Values=Strong;Default;Mild
+Label=Denoise Mode
+Category=General
+CategoryOrder=1
+Index=1
+Description=Set one of three predefined presets for radius/threshold/noise level multiplier.
+Required=false
+DisableIfBlank=false
+
+[Boost]
+Type=integer
+Default=0
+Label=Boost Preset
+Category=General
+CategoryOrder=1
+Index=2
+Description=Boost the effect of the selected preset. (default is 0 - no boost)
+Required=false
+DisableIfBlank=false
+
+[SkipExisting]
+Type=boolean
+Default=false
+Label=Skip Existing Frames
+Category=General
+CategoryOrder=1
+Index=3
+Description=Skip input images if the corresponding output image already exists.
+Required=false
+DisableIfBlank=false
+
+[DenoiseElements]
+Type=boolean
+Default=false
+Label=Denoise Render Elements
+Category=General
+CategoryOrder=1
+Index=4
+Description=If True then, the render elements are denoised separately and then composited together.
+Required=false
+DisableIfBlank=false
+
+[UseGPU]
+Type=boolean
+Default=false
+Label=Render Using GPU
+Category=General
+CategoryOrder=1
+Index=5
+Description=If True then, attempt to use the best OpenCL, fall back to CPU if unsuccessful.
+Required=false
+DisableIfBlank=false
+
+[OverrideThreshold]
+Type=boolean
+Default=false
+Label=Override Threshold
+Category=General
+CategoryOrder=1
+Index=6
+Description=Override the threshold for denoising.  This is required if your input image does not contain a noise level render element.
+Required=false
+DisableIfBlank=false
+
+[Threshold]
+Type=float
+Default=0.001
+Label=Threshold
+Category=General
+CategoryOrder=1
+Index=7
+Description=Specifies threshold for denoising when noise levels render element is missing. Typically equal to the noise threshold for AA in V-Ray. (default is 0.001 and the denoiser relies on the noise level render element)
+Minimum=0.0
+Maximum=100000.00
+DecimalPlaces=10
+Required=false
+DisableIfBlank=false
+
+[OverrideStrength]
+Type=boolean
+Default=false
+Label=Override Threshold
+Category=General
+CategoryOrder=1
+Index=8
+Description=Override the Denoiser Strength.
+Required=false
+DisableIfBlank=false
+
+[Strength]
+Type=float
+Default=1.0
+Label=Threshold
+Category=General
+CategoryOrder=1
+Index=9
+Description=The main denoiser control. Larger values remove noise more aggressively but may blur the image too much.
+Minimum=0.0
+Maximum=100000.00
+DecimalPlaces=2
+Required=false
+DisableIfBlank=false
+
+[OverrideRadius]
+Type=boolean
+Default=false
+Label=Override Pixel Radius
+Category=General
+CategoryOrder=1
+Index=10
+Description=Override the Pixel Radius.
+Required=false
+DisableIfBlank=false
+
+[PixelRadius]
+Type=integer
+Default=10
+Label=Threshold
+Category=General
+CategoryOrder=1
+Index=11
+Description=Specifies pixel radius for denoising. Larger values slow down the denoiser, but may produce smoother results.
+Minimum=0
+Maximum=100000
+Required=false
+DisableIfBlank=false
+
+[AdjustRadius]
+Type=boolean
+Default=false
+Label=Automatically Adjust Pixel Radius
+Category=General
+CategoryOrder=1
+Index=12
+Description=Automatically adjust the denoising radius based on the noise level render element. Setting this to True may slow down the denoiser quite a bit for more noisy images.
+Required=false
+DisableIfBlank=false
+
+[FrameBlend]
+Type=integer
+Default=1
+Label=Threshold
+Category=General
+CategoryOrder=1
+Index=13
+Description=Use N adjacent frames when denoising animations. This reduces flickering between adjacent animation frames.
+Minimum=0
+Maximum=100000
+Required=false
+DisableIfBlank=false
+
+[RenderStrips]
+Type=integer
+Default=-1
+Label=Render Strips
+Category=General
+CategoryOrder=1
+Index=13
+Description=Force image split in N strips. (default is -1 - use split count heuristic)
+Minimum=-1
+Maximum=100000
+Required=false
+DisableIfBlank=false

@@ -1,0 +1,80 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=RealFlow Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[RF4_RenderExecutable]
+Type=multilinemultifilename
+Label=RealFlow 4 Render Executable
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=1
+Default=C:\program files\next limit\RealFlow4\realflownode.exe;C:\program files (x86)\next limit\RealFlow4\realflownode.exe;/Applications/realflow.app/Contents/MacOS/realflownode;/usr/local/realflow/bin/realflownode
+Description=The path to the realflownode.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[RF5_RenderExecutable]
+Type=multilinemultifilename
+Label=RealFlow 5 Render Executable
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=2
+Default=C:\program files\next limit\RealFlow 5\realflownode.exe;C:\program files (x86)\next limit\RealFlow 5\realflownode.exe;/Applications/realflow.app/Contents/MacOS/realflownode;/usr/local/realflow/bin/realflownode
+Description=The path to the realflownode.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[RF2012_RenderExecutable]
+Type=multilinemultifilename
+Label=RealFlow 2012 Render Executable
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=3
+Default=C:\program files\next limit\RealFlow 2012\realflownode.exe;C:\program files (x86)\next limit\RealFlow 2012\realflownode.exe;/Applications/realflow.app/Contents/MacOS/realflownode;/usr/local/realflow/bin/realflownode
+Description=The path to the realflownode.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[RF2013_RenderExecutable]
+Type=multilinemultifilename
+Label=RealFlow 2013 Render Executable
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=4
+Default=C:\program files\next limit\RealFlow 2013\realflownode.exe;C:\program files (x86)\next limit\RealFlow 2013\realflownode.exe;/Applications/realflow.app/Contents/MacOS/realflownode;/usr/local/realflow/bin/realflownode
+Description=The path to the realflownode.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[RF2014_RenderExecutable]
+Type=multilinemultifilename
+Label=RealFlow 2014 Render Executable
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=5
+Default=C:\program files\next limit\RealFlow 2014\realflownode.exe;C:\program files (x86)\next limit\RealFlow 2014\realflownode.exe;/Applications/realflow.app/Contents/MacOS/realflownode;/usr/local/realflow/bin/realflownode
+Description=The path to the realflownode.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[RF2015_RenderExecutable]
+Type=multilinemultifilename
+Label=RealFlow 2015 Render Executable
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=6
+Default=C:\program files\next limit\RealFlow 2015\realflownode.exe;C:\program files (x86)\next limit\RealFlow 2015\realflownode.exe;/Applications/realflow.app/Contents/MacOS/realflownode;/usr/local/realflow/bin/realflownode
+Description=The path to the realflownode.exe executable file used for rendering. Enter alternative paths on separate lines.
+
+[RF10_RenderExecutable]
+Type=multilinemultifilename
+Label=RealFlow 10 Render Executable
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=7
+Default=C:\program files\next limit\RealFlow 10\realflownode.exe;C:\program files (x86)\next limit\RealFlow 10\realflownode.exe;/Applications/realflow.app/Contents/MacOS/realflownode;/usr/local/realflow/bin/realflownode
+Description=The path to the realflownode.exe executable file used for rendering. Enter alternative paths on separate lines.

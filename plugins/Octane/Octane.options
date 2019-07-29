@@ -1,0 +1,93 @@
+[SceneFile]
+Type=filename
+Label=Scene File
+Category=Octane Options
+Index=0
+Description=The scene filename as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[Version]
+Type=label
+Label=Version
+Category=Octane Options
+Index=1
+Description=The version of Octane to use to render.
+Required=false
+DisableIfBlank=true
+
+[OutputFolder]
+Type=folder
+Label=Output Folder
+Category=Octane Options
+Index=2
+Description=The output folder.
+Required=false
+DisableIfBlank=false
+
+[FramePerFileMode]
+Type=boolean
+Label=Enable "Single Frame per OCS File" Mode
+Category=Octane Options
+Index=3
+Description=Enable this mode if you have an animation with one frame per OCS file. Select just one file from the sequence.
+Required=false
+DisableIfBlank=true
+
+[FilenameTemplate]
+Type=string
+Label=Filename Template
+Category=Octane Options
+Index=4
+Description=Template parameters: %i render target index, %n render target node name, %e file extension, %t timestamp, %f frame number, %F frame number prefixed with 0s, %s sub frame number, %p render pass name
+Required=false
+DisableIfBlank=false
+DefaultValue=
+
+[FileFormat]
+Type=enum
+Values=png8;png16;exr;exrtonemapped
+Label=File Format
+Category=Octane Options
+Index=5
+Description=Choose the output file format in the drop-down list.
+Required=false
+DisableIfBlank=false
+
+[OverrideSampling]
+Type=Integer
+Label=Override Sampling Level
+Category=Octane Options
+Index=6
+Description=Specify a value greater than 0 to override the sampling level used for rendering.
+Required=false
+DisableIfBlank=false
+DefaultValue=0
+
+[RenderTargetOCS]
+Type=enum
+Label=Render Target
+Category=Octane Options
+Index=7
+Description=Choose which render target to use in the drop-down list.
+Required=false
+DisableIfBlank=true
+
+[RenderTargetORBX]
+Type=string
+Label=Render Target
+Category=Octane Options
+Index=8
+Description=Specify which render target to use.
+Required=false
+DisableIfBlank=true
+
+[AdditionalArgs]
+Type=string
+Label=Additional Arguments
+Category=Octane Options
+Index=9
+Description=Additional command line arguments that are sent to Octane.
+Required=false
+DisableIfBlank=false
+DefaultValue=

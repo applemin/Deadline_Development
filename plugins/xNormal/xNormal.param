@@ -1,0 +1,25 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=xNormal Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[xNormal_RenderExecutable]
+Type=multilinemultifilename
+Label=xNormal Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Program Files\Santiago Orgaz\xNormal\3.17.5\x64\xNormal.exe;C:\Program Files\Santiago Orgaz\xNormal\3.17.5\x86\xNormal.exe
+Description=The path to the xNormal executable file used for rendering. Enter alternative paths on separate lines.

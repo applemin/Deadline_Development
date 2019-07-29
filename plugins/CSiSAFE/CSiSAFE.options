@@ -1,0 +1,145 @@
+[Version]
+Type=enum
+Values=12;2014
+Label=Version of CSi SAFE To Use
+Category=File Options
+CategoryOrder=0
+Index=0
+Description=The version of CSi SAFE to process with.
+Required=true
+Default=2014
+DisableIfBlank=false
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build Of CSi SAFE To Force
+Category=File Options
+CategoryOrder=0
+Index=1
+Description=You can force 32 or 64 bit processing with this option.
+Required=true
+Default=None
+DisableIfBlank=false
+
+[OverrideOutputDirectory]
+Type=Folder
+Label=Override Output Directory
+Category=File Options
+CategoryOrder=0
+Index=2
+Description=Override the output path of the data file. This is optional, and can be left blank.
+Required=false
+DisableIfBlank=false
+
+[RunMethod]
+Type=enum
+Label=Run Method
+Category=Analysis/Design/Detailing Option
+CategoryOrder=1
+Index=0
+Description=Choose a run combination option.
+Required=false
+DisableIfBlank=false
+
+[ProcessMethod]
+Type=enum
+Label=Process Method
+Category=Process/Solver Options
+CategoryOrder=2
+Index=0
+Description=Choose to execute inside of the existing SAFE application process or as a separate process.
+Required=false
+DisableIfBlank=false
+
+[SolverMethod]
+Type=enum
+Label=Solver Method
+Category=Process/Solver Options
+CategoryOrder=2
+Index=1
+Description=Select the Solver to perform the analysis on the data file.
+Required=false
+DisableIfBlank=false
+
+[Always32bit]
+Type=boolean
+Label=Force 32bit Process
+Category=Process/Solver Options
+CategoryOrder=2
+Index=2
+Description=Force analysis to be calculated in 32 bit even when the computer is 64 bit.
+Required=false
+DisableIfBlank=false
+
+[CreateReport]
+Type=boolean
+Label=Create Report
+Category=Report Option
+CategoryOrder=3
+Index=0
+Description=Create a report based on the current report settings in the model file.
+Required=false
+DisableIfBlank=false
+
+[FileExportOption]
+Type=enum
+Label=File Export
+Category=Export Options
+CategoryOrder=4
+Index=0
+Description=File export a Microsoft Access, Microsoft Excel, or text file.
+Required=false
+DisableIfBlank=false
+
+[DBNamedSet]
+Type=string
+Label=DB Named Set
+Category=Export Options
+CategoryOrder=4
+Index=1
+Description=The name of the database tables named set that defines the tables to be exported. This parameter is required.
+Required=false
+DisableIfBlank=false
+
+[DBGroupSet]
+Type=string
+Label=DB Group Set
+Category=Export Options
+CategoryOrder=4
+Index=2
+Description=The specified group sets the selection for the exported tables. This parameter is optional. If it is not specified, the group ALL is assumed.
+Required=false
+DisableIfBlank=false
+
+[DeletionOption]
+Type=enum
+Label=Temp File Deletion
+Category=Deletion Option
+CategoryOrder=5
+Index=0
+Description=Choose a deletion option to cleanup the analysis/output files if required.
+Required=false
+DisableIfBlank=false
+
+[IncludeDataFile]
+Type=boolean
+Label=Include Data File
+Category=Extra Options
+CategoryOrder=6
+Index=0
+Description=If enabled, the output zip file will contain the data file OR if outputting to a directory path, the data file will be included.
+Required=true
+Default=true
+DisableIfBlank=false
+
+[CompressOutput]
+Type=boolean
+Label=Compress (ZIP) Output
+Category=Extra Options
+CategoryOrder=6
+Index=1
+Description=Automatically compress the output to a single zip file.
+Required=true
+Default=true
+DisableIfBlank=false

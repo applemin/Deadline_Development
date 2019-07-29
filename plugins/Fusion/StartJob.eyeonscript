@@ -1,0 +1,104 @@
+---------------------------------------------------------------------------------
+-- Check proper usage.
+---------------------------------------------------------------------------------
+
+if( arg[2] == nil ) then
+	print( "StartJob.eyeonscript flowFile timeOut" )
+	print( "SCRIPT ERROR: Invalid arguments to StartJob.eyeonscript" )
+	io.flush()
+	wait(5)
+	do return end
+end
+
+local function iswindows()
+	return (package.config:sub(1,1) == "\\")
+end
+
+---------------------------------------------------------------------------------
+-- Connect to Fusion.
+---------------------------------------------------------------------------------
+
+print( "Connecting to Fusion..." )
+io.flush()
+
+df = Fusion("127.0.0.1")
+timeout = tonumber(arg[2])
+while( df == nil and timeout > 0 ) do
+	wait(1)
+	timeout = timeout - 1
+	print( "Connection timeout in " .. timeout .. " seconds" )
+	io.flush()
+	df = Fusion("127.0.0.1")
+end
+isRenderNode = df:GetAttrs("FUSIONB_IsRenderNode")
+
+if( df == nil ) then
+	print( "SCRIPT ERROR: eyeonScript failed to make a connection in StartJob.eyeonscript - check that eyeonscript options are set to no login required" )
+	io.flush()
+	wait(5)
+	do return end
+else
+	if isRenderNode == false then
+		while( df.CurrentComp == nil and timeout > 0 ) do
+			wait(1)
+			timeout = timeout - 1
+			print( "Connection timeout in " .. timeout .. " seconds" )
+			io.flush()
+		end
+		if ( df.CurrentComp == nil  ) then
+			print( "SCRIPT ERROR: eyeonScript made a connection in StartJon.eyeonscript but fusion failed to get a license and finish setup in time" )
+			io.flush()
+			wait(5)
+			do return end
+		end
+	end
+end
+
+print( "Connected to Fusion" )
+io.flush()
+
+-- Unload any default flows, etc
+print( "Getting comp list." )
+io.flush()
+fl = df:GetCompList()
+for i=1, table.getn(fl) do
+	print( "STARTJOB: Closing comp " .. i )
+	io.flush()
+	fl[i]:Close()
+end
+
+
+-- Load the comp we want to render
+print( "Loading comp " .. arg[1] )
+io.flush()
+comp = df:LoadComp( arg[1], true )
+
+comp = nil
+while( comp == nil and timeout > 0 ) do
+	wait(1)
+	timeout = timeout - 1
+	print( "Connection timeout in " .. timeout .. " seconds" )
+	io.flush()
+	
+	comp = df:LoadComp( arg[1], true )
+end
+
+-- If the flow failed to load return an error
+if( comp == nil ) then
+	print( "SCRIPT ERROR: Fusion failed to load the comp '" .. arg[1] .. "'. This could be due to a missing or incompatible plugin." )
+	io.flush()
+	wait(5)
+	do return end
+end
+
+print( "Finished Loading Comp" )
+
+print( "Locking the comp." )
+io.flush()
+
+comp:Lock()
+
+print("Start job complete.")
+io.flush()
+wait(2)
+os.exit(17)

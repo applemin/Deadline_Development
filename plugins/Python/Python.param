@@ -1,0 +1,143 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Python Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Python_Executable_2_3]
+Type=multilinemultifilename
+Label=Python 2.3 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=0
+Default=C:\Python23\python.exe;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[Python_Executable_2_4]
+Type=multilinemultifilename
+Label=Python 2.4 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=1
+Default=C:\Python24\python.exe;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[Python_Executable_2_5]
+Type=multilinemultifilename
+Label=Python 2.5 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=2
+Default=C:\Python25\python.exe;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[Python_Executable_2_6]
+Type=multilinemultifilename
+Label=Python 2.6 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=3
+Default=C:\Python26\python.exe;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[Python_Executable_2_7]
+Type=multilinemultifilename
+Label=Python 2.7 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=4
+Default=C:\Python27\python.exe;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[Python_Executable_3_0]
+Type=multilinemultifilename
+Label=Python 3.0 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=5
+Default=C:\Python30\python.exe;/usr/bin/python3;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[Python_Executable_3_1]
+Type=multilinemultifilename
+Label=Python 3.1 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=6
+Default=C:\Python31\python.exe;/usr/bin/python3;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[Python_Executable_3_2]
+Type=multilinemultifilename
+Label=Python 3.2 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=7
+Default=C:\Python32\python.exe;/usr/bin/python3;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[Python_Executable_3_3]
+Type=multilinemultifilename
+Label=Python 3.3 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=8
+Default=C:\Python33\python.exe;/usr/bin/python3;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[Python_Executable_3_4]
+Type=multilinemultifilename
+Label=Python 3.4 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=9
+Default=C:\Python34\python.exe;/usr/bin/python;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[Python_Executable_3_5]
+Type=multilinemultifilename
+Label=Python 3.5 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=10
+Default=C:\Python35\python.exe;/usr/bin/python3;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[Python_Executable_3_6]
+Type=multilinemultifilename
+Label=Python 3.6 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=11
+Default=C:\Python36\python.exe;/usr/bin/python3;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[Python_Executable_3_7]
+Type=multilinemultifilename
+Label=Python 3.7 Executable
+Category=Python Executables
+CategoryOrder=0
+Index=12
+Default=C:\Python37\python.exe;/usr/bin/python3;/usr/bin/python
+Description=The path to the Python executable. Enter alternative paths on separate lines.
+
+[PythonSearchPaths]
+Type=MultiLineMultiFolder
+Label=Additional Python Search Paths
+Category=Configuration
+Index=0
+CategoryOrder=1
+Default=
+Description=The list of paths to append to the PYTHONPATH environment variable.  This allows the Python job to find custom modules in non-standard locations.

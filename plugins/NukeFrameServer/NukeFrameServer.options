@@ -1,0 +1,67 @@
+[Version]
+Type=label
+Label=Version
+Category=Version Info
+CategoryOrder=0
+Index=0
+Description=The version of Nuke to render with.
+Required=false
+DisableIfBlank=true
+
+[FrameRenderHost]
+Type=String
+Label=Master Host Name/IP Address
+Category=Frame Server Info
+CategoryOrder=1
+Index=0
+Description=The host name or IP address of the master machine.
+Required=true
+Default=localhost
+
+[FrameRenderPort]
+Type=integer
+Minimum=1024
+Maximum=65536
+Label=Master Port Number
+Category=Frame Server Info
+CategoryOrder=1
+Index=1
+Description=The port number of the master machine.
+Required=true
+Default=5560
+
+[FrameRenderWorkers]
+Type=integer
+Minimum=1
+Maximum=256
+Label=Number of Workers
+Category=Frame Server Info
+CategoryOrder=1
+Index=2
+Description=The number of workers to start on each machine.
+Required=true
+Default=1
+
+[FrameRenderWorkerThreads]
+Type=integer
+Minimum=1
+Maximum=256
+Label=Number of threads per worker
+Category=Frame Server Info
+CategoryOrder=1
+Index=3
+Description=The number of threads to start for each worker.
+Required=false
+DisableIfBlank=true
+
+[FrameRenderWorkerMem]
+Type=integer
+Minimum=256
+Maximum=32768
+Label=Worker Memory
+Category=Frame Server Info
+CategoryOrder=1
+Index=4
+Description=The amount of memory to allocate for each worker.
+Required=false
+DisableIfBlank=true

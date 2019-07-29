@@ -1,0 +1,25 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Shake Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Shake_RenderExecutable]
+Type=multilinemultifilename
+Label=Shake Executable
+Category=Render Executables
+CategoryOrder=0
+Default=C:\Apple\shake.exe;/Applications/Shake/shake.app/Contents/MacOS/shkqtv
+Description=The path to the Shake executable file used for rendering. Enter alternative paths on separate lines.

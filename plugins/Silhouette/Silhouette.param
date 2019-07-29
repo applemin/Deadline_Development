@@ -1,0 +1,44 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Silhouette Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Silhouette_RenderExecutable_5]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+Index=0
+Label=Silhouette 5 Executable
+Description=The path to the Silhouette executable file used for rendering. Enter alternative paths on separate lines.
+Default=C:\Program Files\SilhouetteFX\Silhouette v5.2\sfxcmd.exe;/Applications/SilhouetteFX/Silhouette v5.2/sfxcmd;/opt/SilhouetteFX/silhouette5/sfxcmd
+
+[Silhouette_RenderExecutable_6]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+Index=1
+Label=Silhouette 6 Executable
+Description=The path to the Silhouette executable file used for rendering. Enter alternative paths on separate lines.
+Default=C:\Program Files\SilhouetteFX\Silhouette v6\sfxcmd.exe;/Applications/SilhouetteFX/Silhouette v6/sfxcmd;/opt/SilhouetteFX/silhouette6/sfxcmd
+
+[EnablePathMapping]
+Type=boolean
+Category=Path Mapping (For Mixed Farms)
+CategoryOrder=1
+CategoryIndex=0
+Label=Enable Path Mapping
+Default=true
+Description=If enabled, a temporary Silhouette file will be created locally on the Slave for rendering because Deadline does the path mapping directly in the Silhouette file. This feature can be turned off if there are no Path Mapping entries defined in the Repository Options.

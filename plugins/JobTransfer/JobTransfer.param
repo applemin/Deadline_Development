@@ -1,0 +1,25 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Job Transfer Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[NotificationEmail]
+Type=String
+Label=Notification Email(s)
+Category=Notification Options
+CategoryOrder=0
+Default=
+Description=The email(s) where successful job transfer reports will be sent, so sys admins can keep track of all successfully transferred jobs. Leave blank to disable this feature. Use commas for multiple emails.

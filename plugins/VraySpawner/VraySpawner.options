@@ -1,0 +1,20 @@
+[Version]
+Type=label
+Label=Application/Version
+Category=DBR Options
+Index=0
+Description=Application and Version to run.
+Required=false
+DisableIfBlank=true
+
+[PortNumber]
+Type=Integer
+Minimum=1024
+Maximum=65535
+Increment=1
+Label=Port Number
+Category=DBR Options
+Index=1
+Description=Port Number to use.
+Required=false
+DisableIfBlank=true

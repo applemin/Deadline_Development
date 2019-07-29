@@ -1,0 +1,354 @@
+[Version]
+Type=label
+Label=Version
+Category=Softimage Info
+CategoryOrder=0
+Index=0
+Description=The version of Softimage to use when rendering.
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Softimage Build To Force
+Category=Softimage Info
+CategoryOrder=0
+Index=1
+Description=The build of Softimage to force.
+Required=false
+DisableIfBlank=false
+Default=None
+
+[Renderer]
+Type=label
+Label=Renderer
+Category=Softimage Info
+CategoryOrder=0
+Index=2
+Description=Renderer being used.
+Required=false
+DisableIfBlank=true
+
+[SkipBatchLicense]
+Type=boolean
+Label=Skip Batch Licensing Check
+Category=Softimage Info
+CategoryOrder=0
+Index=3
+Description=Skip the batch license check (non-MentalRay renders only).
+Required=false
+DisableIfBlank=true
+
+[Threads]
+Type=integer
+Minimum=0
+Maximum=16
+Label=Threads
+Category=Softimage Info
+CategoryOrder=0
+Index=4
+Description=The maximum number of CPU intensive threads to use (specify 0 to use the default).
+Required=false
+DisableIfBlank=true
+
+[Workgroup]
+Type=multilinemultifolder
+Label=Softimage Workgroup To Use
+Category=Softimage Info
+CategoryOrder=0
+Index=5
+Description=If you want Deadline to switch the Softimage workgroup before rendering, specify the path to the workgroup here.
+Required=false
+DisableIfBlank=false
+Default=
+
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+CategoryOrder=1
+Index=0
+Description=The scene filename as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[RedshiftGPUsPerTask]
+Type=integer
+Minimum=0
+Maximum=16
+Label=GPUs Per Task
+Category=Redshift Options
+Index=0
+Description=The number of GPUs to use per task. If set to 0, the default number of GPUs will be used.
+Required=false
+DisableIfBlank=true
+
+[RedshiftGPUsSelectDevices]
+Type=string
+Label=Select GPU Devices
+Category=Redshift Options
+Index=1
+Description=A comma separated list of the GPU devices to use specified by device Id. 'GPUs Per Task' will be ignored.
+Required=false
+DisableIfBlank=true
+
+[Pass]
+Type=string
+Label=Passes To Render
+Category=Passes
+CategoryOrder=2
+Description=Specify the pass(es) that will be rendered.
+Required=false
+DisableIfBlank=true
+
+[Width]
+Type=integer
+Minimum=1
+Label=Image Width
+Category=Resolution
+CategoryOrder=3
+Index=0
+Description=The width of the image in pixels.
+Required=false
+DisableIfBlank=true
+
+[Height]
+Type=integer
+Minimum=1
+Label=Image Height
+Category=Resolution
+CategoryOrder=3
+Index=1
+Description=The height of the image in pixels.
+Required=false
+DisableIfBlank=true
+
+[MotionBlur]
+Type=boolean
+Label=Motion Blur Enabled
+Category=Motion Blur
+CategoryOrder=4
+Index=0
+Description=Enable/Disable motion blur.
+Required=false
+DisableIfBlank=true
+
+[ShutterOpen]
+Type=float
+Minimum=0
+Maximum=1
+Label=Shutter Open
+Category=Motion Blur
+CategoryOrder=4
+Index=1
+Description=The shutter open value.
+Required=false
+DisableIfBlank=true
+
+[ShutterClose]
+Type=float
+Minimum=0
+Maximum=1
+Label=Shutter Close
+Category=Motion Blur
+CategoryOrder=4
+Index=2
+Description=The shutter close value.
+Required=false
+DisableIfBlank=true
+
+[MotionSteps]
+Type=integer
+Minimum=1
+Maximum=15
+Label=Interpolation Steps
+Category=Motion Blur
+CategoryOrder=4
+Index=3
+Description=The number of interpolation steps to use.
+Required=false
+DisableIfBlank=true
+
+[SkipFrames]
+Type=boolean
+Label=Skip Existing Frames
+Category=Output
+CategoryOrder=5
+Index=0
+Description=Whether or not to skip over existing frames.
+Required=false
+DisableIfBlank=true
+
+[FilePath]
+Type=folder
+Label=Output File Path
+Category=Output
+CategoryOrder=5
+Index=1
+Description=The output filename directory (note that this forces Softimage to append the pass name to the end of the filename).
+Required=false
+DisableIfBlank=true
+
+[FilePrefix]
+Type=string
+Label=Output File Prefix
+Category=Output
+CategoryOrder=5
+Index=2
+Description=The output filename prefix (note that this forces Softimage to append the pass name to the end of the filename).
+Required=false
+DisableIfBlank=true
+
+[LocalRendering]
+Type=boolean
+Label=Enable Local Rendering
+Category=Output
+CategoryOrder=5
+Index=3
+Description=If this option is set to true, the slaves will render locally, and then copy the images to the network output directory on completion.
+Required=false
+DisableIfBlank=true
+
+[ChannelRGB]
+Type=boolean
+Label=RGBA
+Category=Output Channels
+CategoryOrder=6
+Index=0
+Description=Render the RGBA channel.
+Required=false
+DisableIfBlank=true
+
+[ChannelZDepth]
+Type=boolean
+Label=Z (Depth)
+Category=Output Channels
+CategoryOrder=6
+Index=1
+Description=Render the Z-Depth channel.
+Required=false
+DisableIfBlank=true
+
+[ChannelMotionVector]
+Type=boolean
+Label=Motion Vector
+Category=Output Channels
+CategoryOrder=6
+Index=2
+Description=Render the Motion Vector channel.
+Required=false
+DisableIfBlank=true
+
+[ChannelTags]
+Type=boolean
+Label=Tags
+Category=Output Channels
+CategoryOrder=6
+Index=3
+Description=Render the Tags channel.
+Required=false
+DisableIfBlank=true
+
+[ChannelNormals]
+Type=boolean
+Label=Normals
+Category=Output Channels
+CategoryOrder=6
+Index=4
+Description=Render the Normals channel.
+Required=false
+DisableIfBlank=true
+
+[SampleMin]
+Type=integer
+Label=Minimum Sample Level
+Category=Antialiasing
+CategoryOrder=7
+Index=0
+Description=The anti-aliasing minimum sample level.
+Required=false
+DisableIfBlank=true
+
+[SampleMax]
+Type=integer
+Label=Maximum Sample Level
+Category=Antialiasing
+CategoryOrder=7
+Index=1
+Description=The anti-aliasing maximum sample level.
+Required=false
+DisableIfBlank=true
+
+[SampleJitter]
+Type=boolean
+Label=Enable Sampling Jitter
+Category=Antialiasing
+CategoryOrder=7
+Index=2
+Description=Whether or not to enable Sample jittering.
+Required=false
+DisableIfBlank=true
+
+[Filter]
+Type=enum
+Values=box;triangle;gauss;mitchell;lanczos
+Label=Filtering Type
+Category=Antialiasing
+CategoryOrder=7
+Index=3
+Description=The antialiasing filter type.
+Required=false
+DisableIfBlank=true
+
+[FilterSizeX]
+Type=integer
+Label=Filter Size X
+Category=Antialiasing
+CategoryOrder=7
+Index=4
+Description=The antialiasing filter X size.
+Required=false
+DisableIfBlank=true
+
+[FilterSizeY]
+Type=integer
+Label=Filter Size Y
+Category=Antialiasing
+CategoryOrder=7
+Index=5
+Description=The antialiasing filter Y size.
+Required=false
+DisableIfBlank=true
+
+[FxTreeOutputNode]
+Type=string
+Label=FxTree Output Node
+Category=FxTree Options
+CategoryOrder=8
+Index=0
+Description=The FxTree Output Node to render (should have the format FxTree.FileOutput).
+Required=false
+DisableIfBlank=true
+
+[FxTreeFrameOffset]
+Type=integer
+Minimum=-100000
+Maximum=100000
+Label=Frame Offset
+Category=FxTree Options
+CategoryOrder=8
+Index=1
+Description=The frame offset for the FxTree render.
+Required=false
+DisableIfBlank=true
+
+[FxTreeOutputFile]
+Type=filenamesave
+Label=Output Filename
+Category=FxTree Options
+CategoryOrder=8
+Index=2
+Description=The output filename for the FxTree render.
+Required=false
+DisableIfBlank=true

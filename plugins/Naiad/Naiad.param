@@ -1,0 +1,33 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Naiad Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Simulation_Executable]
+Type=filename
+Label=Simulation Executable
+Category=Naiad Executables
+Index=0
+Default=/usr/exoticmatter/naiad-0.5.6.x86_64/clients/naiad-cmd/bin/naiad
+Description=The path to the command line client executable file used for simulation. Enter alternative paths on separate lines.
+
+[Emp2Prt_Executable]
+Type=filename
+Label=Emp to Prt Executable
+Category=Naiad Executables
+Index=1
+Default=/usr/exoticmatter/naiad-0.5.6.x86_64/buddies/krakatoa/bin/emp2prt
+Description=The path to the emp2prt executable file used for emp conversion. Enter alternative paths on separate lines.

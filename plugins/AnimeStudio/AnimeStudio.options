@@ -1,0 +1,206 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+
+[Version]
+Type=label
+Label=Anime Studio/Moho Version
+Category=Version Info
+Index=0
+Description=The version of Anime Studio to use to render
+Required=false
+DisableIfBlank=true
+
+
+[OutputFile]
+Type=filenameSave
+Label=Output File
+Category=Output Options
+Index=0
+Description=The output filename path
+Required=false
+DisableIfBlank=true
+
+[OutputFormat]
+Type=enumeration
+Items=JPEG;BMP;TGA;PNG;PSD;MP4 (H.264-AAC);iPhone Movie (480x320);iPhone 4 Movie (960x640);iPhone 5 Movie (1136x640);iPad Movie (1024x768);iPad HD Movie (1280x1024);AVI Movie;AVI Movie (DV) (720x480);AVI Movie (Uncompressed);QT;SWF
+Label=Output Format
+Category=Output Options
+Index=1
+Description=The output format
+Required=false
+DisableIfBlank=true
+
+[AddFormatSuffix]
+Type=boolean
+Label=Add Format Suffix
+Category=Output Options
+Index=2
+Description=Append the format name to the file name of the output path. 
+Required=false
+DisableIfBlank=true
+
+[LayerComp]
+Type=enumeration
+Label=Layer Comp
+Category=Output Options
+Index=3
+Description=Render a specific layer comp, or select All to render all layer comps to separate files.
+Required=false
+DisableIfBlank=true
+
+[AddLayerCompSuffix]
+Type=boolean
+Label=Add Layer Comp Suffix
+Category=Output Options
+Index=4
+Description=Append the layer comp name to the file name of the output path. 
+Required=false
+DisableIfBlank=true
+
+[CreateFolderForLayerComps]
+Type=boolean
+Label=Create Folder For Layer Comps
+Category=Output Options
+Index=5
+Description=Render layer comps in subfolders of the output folder, where each subfolder's name is the layer comp name. 
+Required=false
+DisableIfBlank=true
+
+[Antialised]
+Type=boolean
+Label=Antialiased Edges
+Category=Rendering Options
+Index=0
+Description=Normally, Anime Studio renders your shapes with smoothed edges. Uncheck this box to turn this feature off.
+Required=false
+DisableIfBlank=true
+
+[ShapeEffects]
+Type=boolean
+Label=Apply Shape Effects
+Category=Rendering Options
+Index=1
+Description=If this box is unchecked, Anime Studio will skip shape effects like shading, texture fills, and gradients.
+Required=false
+DisableIfBlank=true
+
+[LayerEffects]
+Type=boolean
+Label=Apply Layer Effects
+Category=Rendering Options
+Index=2
+Description=If this box is unchecked, Anime Studio will skip layer effects like layer shadows and layer transparency.
+Required=false
+DisableIfBlank=true
+
+[HalfSize]
+Type=boolean
+Label=Render At Half Dimensions
+Category=Rendering Options
+Index=3
+Description=Check this box to render a smaller version of your movie. This makes rendering faster if you just want a quick preview, and is useful for making smaller movies for the web.
+Required=false
+DisableIfBlank=true
+
+[HalfFrameRate]
+Type=boolean
+Label=Render At Half Frame Rate
+Category=Rendering Options
+Index=4
+Description=Check this box to skip every other frame in the animation. This makes rendering faster, and results in smaller movie files.
+Required=false
+DisableIfBlank=true
+
+[ReducedParticles]
+Type=boolean
+Label=Reduced Particles
+Category=Rendering Options
+Index=5
+Description=Some particle effects require hundreds of particles to achieve their effect. Check this box to render fewer particles. The effect may not look as good, but will render much faster if all you need is a preview.
+Required=false
+DisableIfBlank=true
+
+[ExtraSmooth]
+Type=boolean
+Label=Extra-smooth Images
+Category=Rendering Options
+Index=6
+Description=Renders image layers with a higher quality level. Exporting takes longer with this option on.
+Required=false
+DisableIfBlank=true
+
+[NtscSafeColors]
+Type=boolean
+Label=Use NTSC-safe Colors
+Category=Rendering Options
+Index=7
+Description=Automatically limits colors to be NTSC safe. This is only an approximation - you should still do some testing to make sure your animation looks good on a TV monitor.
+Required=false
+DisableIfBlank=true
+
+[NoPremultiplyAlpha]
+Type=boolean
+Label=Premultiply Alpha Channel
+Category=Rendering Options
+Index=8
+Description=Useful if you plan to composite your Anime Studio animation with other elements in a video editing program.
+Required=false
+DisableIfBlank=true
+
+
+[VariableLineWidths]
+Type=boolean
+Label=Variable Line Widths
+Category=SWF Options
+Index=0
+Description=Exports variable line widths to SWF.
+Required=false
+DisableIfBlank=true
+
+
+[VideoCodec]
+Type=string
+Label=Video Codec (Optional)
+Category=QT Options
+Index=0
+Description=The video codec (leave blank to not specify one).
+Required=false
+DisableIfBlank=true
+
+[Quality]
+Type=enumeration
+Items=0;1;2;3;4;5
+Label=Quality
+Category=QT Options
+Index=1
+Description=The quality of the export.  0 = Minimum, 1 = Low, 2 = Normal, 3 = High, 4 = Max, 5 = Lossless
+Required=false
+DisableIfBlank=true
+
+[Depth]
+Type=enumeration
+Items=24;32
+Label=Depth
+Category=QT Options
+Index=1
+Description=The pixel depth of the export.
+Required=false
+DisableIfBlank=true
+
+
+[MultiThreaded]
+Type=boolean
+Label=Enable Multi-threaded Rendering
+Category=Rendering Options
+Index=10
+Description=Enable multithreaded rendering.
+Required=false
+DisableIfBlank=true
+

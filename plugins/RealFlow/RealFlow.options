@@ -1,0 +1,110 @@
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=RealFlow Info
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[IDOC]
+Type=string
+Label=IDOC Name
+Category=RealFlow Info
+Index=1
+Description=The IDOC to render (optional)
+Required=false
+DisableIfBlank=true
+
+[Version]
+Type=label
+Label=Version
+Category=RealFlow Info
+Index=2
+Description=The version of RealFlow to render with
+Required=false
+DisableIfBlank=true
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=RealFlow Build To Force
+Category=RealFlow Info
+Index=3
+Description=The build of RealFlow to force
+Required=false
+DisableIfBlank=true
+
+[StartPreviousFrame]
+Type=boolean
+Label=Start Rendering At [Start Frame - 1]
+Category=Render Options
+Index=0
+Description=If enabled, Deadline will set the start frame for each task to one frame before the specified start frame
+Required=false
+DisableIfBlank=true
+
+[Threads]
+Type=integer
+Minimum=0
+Maximum=16
+Label=Render Threads
+Category=Render Options
+Index=1
+Description=Number of threads to be used (specify 0 to use the optimal number of threads)
+Required=false
+DisableIfBlank=true
+
+[Mesh]
+Type=boolean
+Label=Generate Mesh
+Category=Render Options
+Index=2
+Description=This option will generate the mesh for a scene where particle cache files were created previosly
+Required=false
+DisableIfBlank=true
+
+[UseCache]
+Type=boolean
+Label=Use Particle Cache
+Category=Render Options
+Index=3
+Description=If you have created particle cache files for a specific frame, and you want to resume your simulation from that frame, you have to use this option
+Required=false
+DisableIfBlank=true
+
+[Script]
+Type=filename
+Label=Script
+Category=Render Options
+Index=4
+Description=The external batch script file (.rfs) to use with your simulation
+Required=false
+DisableIfBlank=true
+
+[Graph]
+Type=filename
+Label=Graph
+Category=Render Options
+Index=5
+Description=The external RealFlow graph file (.rfg) to use with your simulation
+Required=false
+DisableIfBlank=true
+
+[ResetScene]
+Type=boolean
+Label=Reset Scene
+Category=Render Options
+Index=6
+Description=If this option is enabled, the scene will be reset before the simulation starts
+Required=false
+DisableIfBlank=true
+
+[Preview]
+Type=boolean
+Label=Render Preview
+Category=Render Options
+Index=7
+Description=Enable this option to create a Maxwell Render preview.
+Required=false
+DisableIfBlank=true

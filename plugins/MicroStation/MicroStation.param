@@ -1,0 +1,42 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=MicroStation Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[MicroStationExecutable8]
+Category=MicroStation Executables
+CategoryOrder=0
+CategoryIndex=0
+Label=MicroStation v8i SS3
+Type=multilinemultifilename
+Description=The path to the ustation.exe used for rendering on each slave, use a ; to separate multiple paths.
+Default=C:\Program Files (x86)\Bentley\MicroStation V8i (SELECTseries)\Microstation\ustation.exe
+
+[MicroStationExecutable10]
+Category=MicroStation Executables
+CategoryOrder=0
+CategoryIndex=1
+Label=MicroStation CONNECT
+Type=multilinemultifilename
+Description=The path to the microstation.exe used for rendering on each slave, use a ; to separate multiple paths.
+Default=C:\Program Files\Bentley\MicroStation CONNECT Edition\MicroStation\microstation.exe
+
+[WriteScriptToLog]
+Type=boolean
+Label=Write Script To Log
+Category=Key-in Script Jobs
+Default=True
+Description=Echo script commands while running.

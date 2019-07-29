@@ -1,0 +1,26 @@
+[FlowFile]
+Type=filename
+Label=Scene Filename
+Category=Scene File
+Index=0
+Description=The scene filename as it exists on the network
+Required=false
+DisableIfBlank=true
+
+[Version]
+Type=string
+Label=Version
+Category=Fusion Version
+Description=The Fusion version to render with
+Required=true
+DisableIfBlank=false
+Default=5
+
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Fusion Build To Force
+Category=Fusion Version
+Description=The build of Fusion to force
+Required=false
+DisableIfBlank=true

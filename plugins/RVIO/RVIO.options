@@ -1,0 +1,2886 @@
+[Build]
+Type=enum
+Values=None;32bit;64bit
+Label=Build To Force
+Category=Options - General
+Index=10
+Description=The build of RVIO to force
+Required=false
+DisableIfBlank=true
+
+[CommandLine]
+Type=string
+Label=Command Line Options
+Category=Options - General
+Index=20
+Description=
+Required=false
+DisableIfBlank=true
+
+
+
+
+[InputConvertLog]
+Type=boolean
+Label=Input To Linear Space Via Cineon Log->Lin
+Category=Options - Flags
+Index=20
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputConvertSRGB]
+Type=boolean
+Label=Input To Linear Space From sRGB Space
+Category=Options - Flags
+Index=40
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputConvert709]
+Type=boolean
+Label=Input To Linear Space From Rec-709 Space
+Category=Options - Flags
+Index=50
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputPremultiply]
+Type=boolean
+Label=Premultiply Input Alpha and Color
+Category=Options - Flags
+Index=60
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputUnpremultiply]
+Type=boolean
+Label=Un-premultiply Input Alpha and Color
+Category=Options - Flags
+Index=70
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputFlip]
+Type=boolean
+Label=Flip Image (Vertical)
+Category=Options - Flags
+Index=80
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputFlop]
+Type=boolean
+Label=Flop Image (Horizontal)
+Category=Options - Flags
+Index=90
+Description=
+Required=false
+DisableIfBlank=true
+
+[BestQuality]
+Type=boolean
+Label=Best Quality Color Conversions
+Category=Options - Flags
+Index=100
+Description=
+Required=false
+DisableIfBlank=true
+
+[NoPrerender]
+Type=boolean
+Label=Turn Off Prerendering Optimization
+Category=Options - Flags
+Index=110
+Description=
+Required=false
+DisableIfBlank=true
+
+
+
+
+[InputOverrideGamma]
+Type=boolean
+Label=Input Using Gamma Correction
+Category=Options - Overrides
+Index=10
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputGamma]
+Type=float
+Minimum=0.0
+Maximum=5.0
+DecimalPlaces=1
+Increment=0.2
+Label=
+Category=Options - Overrides
+Index=11
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputOverrideExposure]
+Type=boolean
+Label=Apply Relative Exposure Change
+Category=Options - Overrides
+Index=20
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputExposure]
+Type=float
+Minimum=-3.000
+Maximum=3.000
+DecimalPlaces=3
+Increment=0.500
+Label=
+Category=Options - Overrides
+Index=21
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputOverrideScale]
+Type=boolean
+Label=Scale Input Image Geometry
+Category=Options - Overrides
+Index=30
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputScale]
+Type=float
+Minimum=0.01
+Maximum=10.00
+DecimalPlaces=2
+Increment=0.25
+Label=
+Category=Options - Overrides
+Index=31
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputOverrideResize]
+Type=boolean
+Label=Resize Input Image Geometry
+Category=Options - Overrides
+Index=40
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputResizeWidth]
+Type=integer
+Minimum=1
+Maximum=99999
+Label=        Width
+Category=Options - Overrides
+Index=41
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputResizeHeight]
+Type=integer
+Minimum=0
+Maximum=99999
+Label=        Height
+Category=Options - Overrides
+Index=42
+Description=
+Required=false
+DisableIfBlank=true
+
+[OverrideResample]
+Type=boolean
+Label=Resample Method
+Category=Options - Overrides
+Index=50
+Description=
+Required=false
+DisableIfBlank=true
+
+[Resample]
+Type=enum
+Values=area;linear;cubic;nearest
+Label=
+Category=Options - Overrides
+Index=51
+Description=
+Required=false
+DisableIfBlank=true
+
+[OverrideThreads]
+Type=boolean
+Label=Reader/Render Threads
+Category=Options - Overrides
+Index=60
+Description=
+Required=false
+DisableIfBlank=true
+
+[Threads]
+Type=integer
+Minimum=1
+Maximum=16
+Label=
+Category=Options - Overrides
+Index=61
+Description=
+Required=false
+DisableIfBlank=true
+
+[OverrideLeaderFrames]
+Type=boolean
+Label=Leader Frames
+Category=Options - Overrides
+Index=70
+Description=
+Required=false
+DisableIfBlank=true
+
+[LeaderFrames]
+Type=integer
+Minimum=1
+Maximum=99999
+Label=
+Category=Options - Overrides
+Index=71
+Description=
+Required=false
+DisableIfBlank=true
+
+[OverrideInputChannels]
+Type=boolean
+Label=Map Input Channels
+Category=Options - Overrides
+Index=80
+Description=
+Required=false
+DisableIfBlank=true
+
+[InputChannels]
+Type=string
+Label=
+Category=Options - Overrides
+Index=81
+Description=
+Required=false
+DisableIfBlank=true
+
+[OverrideFlags]
+Type=boolean
+Label=Arbitrary Flags For Mu
+Category=Options - Overrides
+Index=90
+Description=
+Required=false
+DisableIfBlank=true
+
+[Flags]
+Type=string
+Label=
+Category=Options - Overrides
+Index=91
+Description=
+Required=false
+DisableIfBlank=true
+
+[OverrideInitScript]
+Type=boolean
+Label=Init Script
+Category=Options - Overrides
+Index=100
+Description=
+Required=false
+DisableIfBlank=true
+
+[InitScript]
+Type=string
+Label=
+Category=Options - Overrides
+Index=101
+Description=
+Required=false
+DisableIfBlank=true
+
+[OverrideLeaderScript]
+Type=boolean
+Label=Insert Leader/Slate
+Category=Options - Overrides
+Index=110
+Description=
+Required=false
+DisableIfBlank=true
+
+[LeaderScript]
+Type=string
+Label=
+Category=Options - Overrides
+Index=111
+Description=
+Required=false
+DisableIfBlank=true
+
+[OverrideOverlayScript]
+Type=boolean
+Label=Visual Overlay
+Category=Options - Overrides
+Index=120
+Description=
+Required=false
+DisableIfBlank=true
+
+[OverlayScript]
+Type=string
+Label=
+Category=Options - Overrides
+Index=121
+Description=
+Required=false
+DisableIfBlank=true
+
+
+
+
+[OutputFile]
+Type=filenamesave
+Label=Output File
+Category=Output - General
+Index=10
+Description=
+Required=false
+DisableIfBlank=true
+
+
+
+
+[OutputConvertLog]
+Type=boolean
+Label=Output To Log Space Via Cineon Lin->Log
+Category=Output - Flags
+Index=10
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputConvertSRGB]
+Type=boolean
+Label=Output To sRGB ColorSpace
+Category=Output - Flags
+Index=20
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputConvert709]
+Type=boolean
+Label=Output To Rec-709 ColorSpace
+Category=Output - Flags
+Index=30
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputPremultiply]
+Type=boolean
+Label=Premultiply Output Alpha and Color
+Category=Output - Flags
+Index=40
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputUnpremultiply]
+Type=boolean
+Label=Un-premultiply Output Alpha and Color
+Category=Output - Flags
+Index=50
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputStereo]
+Type=boolean
+Label=Output Stereo Image Pairs
+Category=Output - Flags
+Index=60
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputTimeFromRV]
+Type=boolean
+Label=Output Time Range From .rv File
+Category=Output - Flags
+Index=70
+Description=
+Required=false
+DisableIfBlank=true
+
+
+
+
+[OutputOverrideFPS]
+Type=boolean
+Label=Frames Per Second
+Category=Output - Overrides
+Index=10
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputFPS]
+Type=float
+Minimum=0.0
+Maximum=99999.0
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Output - Overrides
+Index=11
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputOverrideResolution]
+Type=boolean
+Label=Output Resolution
+Category=Output - Overrides
+Index=20
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputResolutionWidth]
+Type=integer
+Minimum=1
+Maximum=99999
+Label=        Width
+Category=Output - Overrides
+Index=21
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputResolutionHeight]
+Type=integer
+Minimum=1
+Maximum=99999
+Label=        Height
+Category=Output - Overrides
+Index=22
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputOverrideGamma]
+Type=boolean
+Label=Apply Gamma To Output
+Category=Output - Overrides
+Index=30
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputGamma]
+Type=float
+Minimum=0.0
+Maximum=5.0
+DecimalPlaces=1
+Increment=0.2
+Label=
+Category=Output - Overrides
+Index=31
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputOverrideFormat]
+Type=boolean
+Label=Output Bits and Format
+Category=Output - Overrides
+Index=40
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputFormatBits]
+Type=enum
+Values=8;16;32
+Label=        Bits
+Category=Output - Overrides
+Index=41
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputFormat]
+Type=enum
+Values=float;int
+Label=        Format
+Category=Output - Overrides
+Index=42
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputOverrideCodecQuality]
+Type=boolean
+Label=Output Codec Quality
+Category=Output - Overrides
+Index=50
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputCodecQuality]
+Type=float
+Minimum=0.0
+Maximum=1.0
+DecimalPlaces=1
+Increment=0.1
+Label=
+Category=Output - Overrides
+Index=51
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputOverrideCodec]
+Type=boolean
+Label=Output Codec
+Category=Output - Overrides
+Index=60
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputCodec]
+Type=string
+Label=
+Category=Output - Overrides
+Index=61
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputOverrideKeyInterval]
+Type=boolean
+Label=Video Key Interval
+Category=Output - Overrides
+Index=70
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputKeyInterval]
+Type=integer
+Minimum=0
+Maximum=99999
+Label=
+Category=Output - Overrides
+Index=71
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputOverrideDataRate]
+Type=boolean
+Label=Max Video Data Rate
+Category=Output - Overrides
+Index=80
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputDataRate]
+Type=integer
+Minimum=0
+Maximum=99999
+Label=
+Category=Output - Overrides
+Index=81
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputOverrideDLut]
+Type=boolean
+Label=Display LUT
+Category=Output - Overrides
+Index=90
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputDLut]
+Type=filename
+Label=
+Category=Output - Overrides
+Index=91
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputOverrideChannels]
+Type=boolean
+Label=Map Output Channels
+Category=Output - Overrides
+Index=100
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputChannels]
+Type=string
+Label=
+Category=Output - Overrides
+Index=101
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputOverrideTimeRange]
+Type=boolean
+Label=Output Time Range
+Category=Output - Overrides
+Index=110
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputTimeRange]
+Type=string
+Label=
+Category=Output - Overrides
+Index=111
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputOverrideComment]
+Type=boolean
+Label=Output Comment (Movie Files)
+Category=Output - Overrides
+Index=120
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputComment]
+Type=string
+Label=
+Category=Output - Overrides
+Index=121
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputOverrideCopyright]
+Type=boolean
+Label=Output Copyright (Movie Files)
+Category=Output - Overrides
+Index=130
+Description=
+Required=false
+DisableIfBlank=true
+
+[OutputCopyright]
+Type=string
+Label=
+Category=Output - Overrides
+Index=131
+Description=
+Required=false
+DisableIfBlank=true
+
+[AudioOverrideCodec]
+Type=boolean
+Label=Audio Codec
+Category=Output - Overrides
+Index=140
+Description=
+Required=false
+DisableIfBlank=true
+
+[AudioCodec]
+Type=string
+Label=
+Category=Output - Overrides
+Index=141
+Description=
+Required=false
+DisableIfBlank=true
+
+[AudioOverrideRate]
+Type=boolean
+Label=Audio Sample Rate
+Category=Output - Overrides
+Index=150
+Description=
+Required=false
+DisableIfBlank=true
+
+[AudioRate]
+Type=integer
+Minimum=1
+Maximum=99999
+Label=
+Category=Output - Overrides
+Index=151
+Description=
+Required=false
+DisableIfBlank=true
+
+[AudioOverrideFormat]
+Type=boolean
+Label=Audio Bits and Format
+Category=Output - Overrides
+Index=160
+Description=
+Required=false
+DisableIfBlank=true
+
+[AudioFormatBits]
+Type=enum
+Values=8;16;32
+Label=        Bits
+Category=Output - Overrides
+Index=161
+Description=
+Required=false
+DisableIfBlank=true
+
+[AudioFormat]
+Type=enum
+Values=float;int
+Label=        Format
+Category=Output - Overrides
+Index=162
+Description=
+Required=false
+DisableIfBlank=true
+
+[AudioOverrideQuality]
+Type=boolean
+Label=Audio Quality
+Category=Output - Overrides
+Index=170
+Description=
+Required=false
+DisableIfBlank=true
+
+[AudioQuality]
+Type=float
+Minimum=0.0
+Maximum=1.0
+DecimalPlaces=1
+Increment=0.1
+Label=
+Category=Output - Overrides
+Index=171
+Description=
+Required=false
+DisableIfBlank=true
+
+[AudioOverrideChannels]
+Type=boolean
+Label=Audio Channels
+Category=Output - Overrides
+Index=180
+Description=
+Required=false
+DisableIfBlank=true
+
+[AudioChannels]
+Type=integer
+Minimum=1
+Maximum=99999
+Label=
+Category=Output - Overrides
+Index=181
+Description=
+Required=false
+DisableIfBlank=true
+
+[ExrNoOneChannel]
+Type=boolean
+Label=Never Use One Channel
+Category=Output - EXR
+Index=10
+Description=
+Required=false
+DisableIfBlank=true
+
+[ExrInherit]
+Type=boolean
+Label=Guess Channel Inheritance
+Category=Output - EXR
+Index=20
+Description=
+Required=false
+DisableIfBlank=true
+
+[ExrOverrideCPUs]
+Type=boolean
+Label=Override Thread Count
+Category=Output - EXR
+Index=30
+Description=
+Required=false
+DisableIfBlank=true
+
+[ExrCPUs]
+Type=integer
+Minimum=1
+Maximum=16
+Label=
+Category=Output - EXR
+Index=31
+Description=
+Required=false
+DisableIfBlank=true
+
+[CinOverrideFormat]
+Type=boolean
+Label=Override Format
+Category=Output - Cineon/DPX
+Index=10
+Description=
+Required=false
+DisableIfBlank=true
+
+[CinFormat]
+Type=string
+Label=
+Category=Output - Cineon/DPX
+Index=11
+Description=
+Required=false
+DisableIfBlank=true
+
+
+
+
+[LayerCount]
+Type=label
+Label=Layers Submitted
+Category=Layers
+Index=10
+CategoryOrder=0
+Description=
+Required=false
+DisableIfBlank=true
+
+
+
+
+
+[Layer0Name]
+Type=label
+Label=Layer Name
+Category=Layer 1
+Index=10
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0Input1]
+Type=filename
+Label=Source 1
+Category=Layer 1
+Index=20
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0Input1StartFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Start
+Category=Layer 1
+Index=21
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0Input1EndFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        End
+Category=Layer 1
+Index=22
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0Input2]
+Type=filename
+Label=Source 2
+Category=Layer 1
+Index=30
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0Input2StartFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Start
+Category=Layer 1
+Index=31
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0Input2EndFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        End
+Category=Layer 1
+Index=32
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0AudioFiles]
+Type=multifilename
+Label=Audio Files
+Category=Layer 1
+Index=40
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0DisableAudio]
+Type=boolean
+Label=Disable Movie Audio
+Category=Layer 1
+Index=50
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0OverridePixelAspectRatio]
+Type=boolean
+Label=Pixel Aspect Ratio
+Category=Layer 1
+Index=60
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0PixelAspectRatio]
+Type=float
+Minimum=-1000
+Maximum=1000
+DecimalPlaces=4
+Increment=1
+Label=
+Category=Layer 1
+Index=61
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0OverrideRangeOffset]
+Type=boolean
+Label=Start Frame Offset
+Category=Layer 1
+Index=70
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0RangeOffset]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=
+Category=Layer 1
+Index=71
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0OverrideFPS]
+Type=boolean
+Label=Frames Per Second
+Category=Layer 1
+Index=80
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0FPS]
+Type=float
+Minimum=0
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 1
+Index=81
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0OverrideAudioOffset]
+Type=boolean
+Label=Audio Offset
+Category=Layer 1
+Index=90
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0AudioOffset]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 1
+Index=91
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0OverrideStereoOffset]
+Type=boolean
+Label=Stereo Eye Offset
+Category=Layer 1
+Index=100
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0StereoOffset]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 1
+Index=101
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0OverrideVolume]
+Type=boolean
+Label=Audio Volume
+Category=Layer 1
+Index=110
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0Volume]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 1
+Index=111
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0OverrideFileLut]
+Type=boolean
+Label=File LUT
+Category=Layer 1
+Index=120
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0FileLut]
+Type=filename
+Label=
+Category=Layer 1
+Index=121
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0OverrideLookLut]
+Type=boolean
+Label=Look LUT
+Category=Layer 1
+Index=130
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0LookLut]
+Type=filename
+Label=
+Category=Layer 1
+Index=131
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0OverridePreCacheLut]
+Type=boolean
+Label=Pre-Cache LUT
+Category=Layer 1
+Index=140
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0PreCacheLut]
+Type=filename
+Label=
+Category=Layer 1
+Index=141
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0OverrideChannels]
+Type=boolean
+Label=Remap Channels
+Category=Layer 1
+Index=150
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0Channels]
+Type=string
+Label=
+Category=Layer 1
+Index=151
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0OverrideCrop]
+Type=boolean
+Label=Crop
+Category=Layer 1
+Index=160
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0CropX0]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X0
+Category=Layer 1
+Index=161
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0CropY0]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y0
+Category=Layer 1
+Index=162
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0CropX1]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X1
+Category=Layer 1
+Index=163
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0CropY1]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y1
+Category=Layer 1
+Index=164
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0OverrideUnCrop]
+Type=boolean
+Label=Un-Crop
+Category=Layer 1
+Index=170
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0UnCropW]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Width
+Category=Layer 1
+Index=171
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0UnCropH]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Height
+Category=Layer 1
+Index=172
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0UnCropX]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X
+Category=Layer 1
+Index=173
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer0UnCropY]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y
+Category=Layer 1
+Index=174
+Description=
+Required=false
+DisableIfBlank=true
+
+
+
+
+[Layer1Name]
+Type=label
+Label=Layer Name
+Category=Layer 2
+Index=10
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1Input1]
+Type=filename
+Label=Source 1
+Category=Layer 2
+Index=20
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1Input1StartFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Start
+Category=Layer 2
+Index=21
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1Input1EndFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        End
+Category=Layer 2
+Index=22
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1Input2]
+Type=filename
+Label=Source 2
+Category=Layer 2
+Index=30
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1Input2StartFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Start
+Category=Layer 2
+Index=31
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1Input2EndFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        End
+Category=Layer 2
+Index=32
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1AudioFiles]
+Type=multifilename
+Label=Audio Files
+Category=Layer 2
+Index=40
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1DisableAudio]
+Type=boolean
+Label=Disable Movie Audio
+Category=Layer 2
+Index=50
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1OverridePixelAspectRatio]
+Type=boolean
+Label=Pixel Aspect Ratio
+Category=Layer 2
+Index=60
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1PixelAspectRatio]
+Type=float
+Minimum=-1000
+Maximum=1000
+DecimalPlaces=4
+Increment=1
+Label=
+Category=Layer 2
+Index=61
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1OverrideRangeOffset]
+Type=boolean
+Label=Start Frame Offset
+Category=Layer 2
+Index=70
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1RangeOffset]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=
+Category=Layer 2
+Index=71
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1OverrideFPS]
+Type=boolean
+Label=Frames Per Second
+Category=Layer 2
+Index=80
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1FPS]
+Type=float
+Minimum=0
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 2
+Index=81
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1OverrideAudioOffset]
+Type=boolean
+Label=Audio Offset
+Category=Layer 2
+Index=90
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1AudioOffset]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 2
+Index=91
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1OverrideStereoOffset]
+Type=boolean
+Label=Stereo Eye Offset
+Category=Layer 2
+Index=100
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1StereoOffset]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 2
+Index=101
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1OverrideVolume]
+Type=boolean
+Label=Audio Volume
+Category=Layer 2
+Index=110
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1Volume]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 2
+Index=111
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1OverrideFileLut]
+Type=boolean
+Label=File LUT
+Category=Layer 2
+Index=120
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1FileLut]
+Type=filename
+Label=
+Category=Layer 2
+Index=121
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1OverrideLookLut]
+Type=boolean
+Label=Look LUT
+Category=Layer 2
+Index=130
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1LookLut]
+Type=filename
+Label=
+Category=Layer 2
+Index=131
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1OverridePreCacheLut]
+Type=boolean
+Label=Pre-Cache LUT
+Category=Layer 2
+Index=140
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1PreCacheLut]
+Type=filename
+Label=
+Category=Layer 2
+Index=141
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1OverrideChannels]
+Type=boolean
+Label=Remap Channels
+Category=Layer 2
+Index=150
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1Channels]
+Type=string
+Label=
+Category=Layer 2
+Index=151
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1OverrideCrop]
+Type=boolean
+Label=Crop
+Category=Layer 2
+Index=160
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1CropX0]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X0
+Category=Layer 2
+Index=161
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1CropY0]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y0
+Category=Layer 2
+Index=162
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1CropX1]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X1
+Category=Layer 2
+Index=163
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1CropY1]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y1
+Category=Layer 2
+Index=164
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1OverrideUnCrop]
+Type=boolean
+Label=Un-Crop
+Category=Layer 2
+Index=170
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1UnCropW]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Width
+Category=Layer 2
+Index=171
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1UnCropH]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Height
+Category=Layer 2
+Index=172
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1UnCropX]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X
+Category=Layer 2
+Index=173
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer1UnCropY]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y
+Category=Layer 2
+Index=174
+Description=
+Required=false
+DisableIfBlank=true
+
+
+
+
+[Layer2Name]
+Type=label
+Label=Layer Name
+Category=Layer 3
+Index=10
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2Input1]
+Type=filename
+Label=Source 1
+Category=Layer 3
+Index=20
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2Input1StartFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Start
+Category=Layer 3
+Index=21
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2Input1EndFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        End
+Category=Layer 3
+Index=22
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2Input2]
+Type=filename
+Label=Source 2
+Category=Layer 3
+Index=30
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2Input2StartFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Start
+Category=Layer 3
+Index=31
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2Input2EndFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        End
+Category=Layer 3
+Index=32
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2AudioFiles]
+Type=multifilename
+Label=Audio Files
+Category=Layer 3
+Index=40
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2DisableAudio]
+Type=boolean
+Label=Disable Movie Audio
+Category=Layer 3
+Index=50
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2OverridePixelAspectRatio]
+Type=boolean
+Label=Pixel Aspect Ratio
+Category=Layer 3
+Index=60
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2PixelAspectRatio]
+Type=float
+Minimum=-1000
+Maximum=1000
+DecimalPlaces=4
+Increment=1
+Label=
+Category=Layer 3
+Index=61
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2OverrideRangeOffset]
+Type=boolean
+Label=Start Frame Offset
+Category=Layer 3
+Index=70
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2RangeOffset]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=
+Category=Layer 3
+Index=71
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2OverrideFPS]
+Type=boolean
+Label=Frames Per Second
+Category=Layer 3
+Index=80
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2FPS]
+Type=float
+Minimum=0
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 3
+Index=81
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2OverrideAudioOffset]
+Type=boolean
+Label=Audio Offset
+Category=Layer 3
+Index=90
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2AudioOffset]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 3
+Index=91
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2OverrideStereoOffset]
+Type=boolean
+Label=Stereo Eye Offset
+Category=Layer 3
+Index=100
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2StereoOffset]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 3
+Index=101
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2OverrideVolume]
+Type=boolean
+Label=Audio Volume
+Category=Layer 3
+Index=110
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2Volume]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 3
+Index=111
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2OverrideFileLut]
+Type=boolean
+Label=File LUT
+Category=Layer 3
+Index=120
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2FileLut]
+Type=filename
+Label=
+Category=Layer 3
+Index=121
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2OverrideLookLut]
+Type=boolean
+Label=Look LUT
+Category=Layer 3
+Index=130
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2LookLut]
+Type=filename
+Label=
+Category=Layer 3
+Index=131
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2OverridePreCacheLut]
+Type=boolean
+Label=Pre-Cache LUT
+Category=Layer 3
+Index=140
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2PreCacheLut]
+Type=filename
+Label=
+Category=Layer 3
+Index=141
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2OverrideChannels]
+Type=boolean
+Label=Remap Channels
+Category=Layer 3
+Index=150
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2Channels]
+Type=string
+Label=
+Category=Layer 3
+Index=151
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2OverrideCrop]
+Type=boolean
+Label=Crop
+Category=Layer 3
+Index=160
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2CropX0]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X0
+Category=Layer 3
+Index=161
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2CropY0]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y0
+Category=Layer 3
+Index=162
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2CropX1]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X1
+Category=Layer 3
+Index=163
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2CropY1]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y1
+Category=Layer 3
+Index=164
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2OverrideUnCrop]
+Type=boolean
+Label=Un-Crop
+Category=Layer 3
+Index=170
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2UnCropW]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Width
+Category=Layer 3
+Index=171
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2UnCropH]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Height
+Category=Layer 3
+Index=172
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2UnCropX]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X
+Category=Layer 3
+Index=173
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer2UnCropY]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y
+Category=Layer 3
+Index=174
+Description=
+Required=false
+DisableIfBlank=true
+
+
+
+
+[Layer3Name]
+Type=label
+Label=Layer Name
+Category=Layer 4
+Index=10
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3Input1]
+Type=filename
+Label=Source 1
+Category=Layer 4
+Index=20
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3Input1StartFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Start
+Category=Layer 4
+Index=21
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3Input1EndFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        End
+Category=Layer 4
+Index=22
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3Input2]
+Type=filename
+Label=Source 2
+Category=Layer 4
+Index=30
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3Input2StartFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Start
+Category=Layer 4
+Index=31
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3Input2EndFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        End
+Category=Layer 4
+Index=32
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3AudioFiles]
+Type=multifilename
+Label=Audio Files
+Category=Layer 4
+Index=40
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3DisableAudio]
+Type=boolean
+Label=Disable Movie Audio
+Category=Layer 4
+Index=50
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3OverridePixelAspectRatio]
+Type=boolean
+Label=Pixel Aspect Ratio
+Category=Layer 4
+Index=60
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3PixelAspectRatio]
+Type=float
+Minimum=-1000
+Maximum=1000
+DecimalPlaces=4
+Increment=1
+Label=
+Category=Layer 4
+Index=61
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3OverrideRangeOffset]
+Type=boolean
+Label=Start Frame Offset
+Category=Layer 4
+Index=70
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3RangeOffset]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=
+Category=Layer 4
+Index=71
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3OverrideFPS]
+Type=boolean
+Label=Frames Per Second
+Category=Layer 4
+Index=80
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3FPS]
+Type=float
+Minimum=0
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 4
+Index=81
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3OverrideAudioOffset]
+Type=boolean
+Label=Audio Offset
+Category=Layer 4
+Index=90
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3AudioOffset]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 4
+Index=91
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3OverrideStereoOffset]
+Type=boolean
+Label=Stereo Eye Offset
+Category=Layer 4
+Index=100
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3StereoOffset]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 4
+Index=101
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3OverrideVolume]
+Type=boolean
+Label=Audio Volume
+Category=Layer 4
+Index=110
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3Volume]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 4
+Index=111
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3OverrideFileLut]
+Type=boolean
+Label=File LUT
+Category=Layer 4
+Index=120
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3FileLut]
+Type=filename
+Label=
+Category=Layer 4
+Index=121
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3OverrideLookLut]
+Type=boolean
+Label=Look LUT
+Category=Layer 4
+Index=130
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3LookLut]
+Type=filename
+Label=
+Category=Layer 4
+Index=131
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3OverridePreCacheLut]
+Type=boolean
+Label=Pre-Cache LUT
+Category=Layer 4
+Index=140
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3PreCacheLut]
+Type=filename
+Label=
+Category=Layer 4
+Index=141
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3OverrideChannels]
+Type=boolean
+Label=Remap Channels
+Category=Layer 4
+Index=150
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3Channels]
+Type=string
+Label=
+Category=Layer 4
+Index=151
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3OverrideCrop]
+Type=boolean
+Label=Crop
+Category=Layer 4
+Index=160
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3CropX0]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X0
+Category=Layer 4
+Index=161
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3CropY0]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y0
+Category=Layer 4
+Index=162
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3CropX1]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X1
+Category=Layer 4
+Index=163
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3CropY1]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y1
+Category=Layer 4
+Index=164
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3OverrideUnCrop]
+Type=boolean
+Label=Un-Crop
+Category=Layer 4
+Index=170
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3UnCropW]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Width
+Category=Layer 4
+Index=171
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3UnCropH]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Height
+Category=Layer 4
+Index=172
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3UnCropX]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X
+Category=Layer 4
+Index=173
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer3UnCropY]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y
+Category=Layer 4
+Index=174
+Description=
+Required=false
+DisableIfBlank=true
+
+
+
+
+
+[Layer4Name]
+Type=label
+Label=Layer Name
+Category=Layer 5
+Index=10
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4Input1]
+Type=filename
+Label=Source 1
+Category=Layer 5
+Index=20
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4Input1StartFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Start
+Category=Layer 5
+Index=21
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4Input1EndFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        End
+Category=Layer 5
+Index=22
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4Input2]
+Type=filename
+Label=Source 2
+Category=Layer 5
+Index=30
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4Input2StartFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Start
+Category=Layer 5
+Index=31
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4Input2EndFrame]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        End
+Category=Layer 5
+Index=32
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4AudioFiles]
+Type=multifilename
+Label=Audio Files
+Category=Layer 5
+Index=40
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4DisableAudio]
+Type=boolean
+Label=Disable Movie Audio
+Category=Layer 5
+Index=50
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4OverridePixelAspectRatio]
+Type=boolean
+Label=Pixel Aspect Ratio
+Category=Layer 5
+Index=60
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4PixelAspectRatio]
+Type=float
+Minimum=-1000
+Maximum=1000
+DecimalPlaces=4
+Increment=1
+Label=
+Category=Layer 5
+Index=61
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4OverrideRangeOffset]
+Type=boolean
+Label=Start Frame Offset
+Category=Layer 5
+Index=70
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4RangeOffset]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=
+Category=Layer 5
+Index=71
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4OverrideFPS]
+Type=boolean
+Label=Frames Per Second
+Category=Layer 5
+Index=80
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4FPS]
+Type=float
+Minimum=0
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 5
+Index=81
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4OverrideAudioOffset]
+Type=boolean
+Label=Audio Offset
+Category=Layer 5
+Index=90
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4AudioOffset]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 5
+Index=91
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4OverrideStereoOffset]
+Type=boolean
+Label=Stereo Eye Offset
+Category=Layer 5
+Index=100
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4StereoOffset]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 5
+Index=101
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4OverrideVolume]
+Type=boolean
+Label=Audio Volume
+Category=Layer 5
+Index=110
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4Volume]
+Type=float
+Minimum=-99999
+Maximum=99999
+DecimalPlaces=2
+Increment=1
+Label=
+Category=Layer 5
+Index=111
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4OverrideFileLut]
+Type=boolean
+Label=File LUT
+Category=Layer 5
+Index=120
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4FileLut]
+Type=filename
+Label=
+Category=Layer 5
+Index=121
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4OverrideLookLut]
+Type=boolean
+Label=Look LUT
+Category=Layer 5
+Index=130
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4LookLut]
+Type=filename
+Label=
+Category=Layer 5
+Index=131
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4OverridePreCacheLut]
+Type=boolean
+Label=Pre-Cache LUT
+Category=Layer 5
+Index=140
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4PreCacheLut]
+Type=filename
+Label=
+Category=Layer 5
+Index=141
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4OverrideChannels]
+Type=boolean
+Label=Remap Channels
+Category=Layer 5
+Index=150
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4Channels]
+Type=string
+Label=
+Category=Layer 5
+Index=151
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4OverrideCrop]
+Type=boolean
+Label=Crop
+Category=Layer 5
+Index=160
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4CropX0]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X0
+Category=Layer 5
+Index=161
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4CropY0]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y0
+Category=Layer 5
+Index=162
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4CropX1]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X1
+Category=Layer 5
+Index=163
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4CropY1]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y1
+Category=Layer 5
+Index=164
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4OverrideUnCrop]
+Type=boolean
+Label=Un-Crop
+Category=Layer 5
+Index=170
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4UnCropW]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Width
+Category=Layer 5
+Index=171
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4UnCropH]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Height
+Category=Layer 5
+Index=172
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4UnCropX]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        X
+Category=Layer 5
+Index=173
+Description=
+Required=false
+DisableIfBlank=true
+
+[Layer4UnCropY]
+Type=integer
+Minimum=-99999
+Maximum=99999
+Label=        Y
+Category=Layer 5
+Index=174
+Description=
+Required=false
+DisableIfBlank=true

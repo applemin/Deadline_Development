@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationPackage SchemaVersion="1.0" AutodeskProduct="AutoCAD" Name="AutoCADSubmitter" Description="The integrated submitter plugin for Deadline" AppVersion="1.0.1" ProductType="Application" Author="Grant Bartel" ProductCode="{1640fdac-4c8f-4c17-9c73-f70443779ae4}">
+  <CompanyDetails Name="Thinkbox Software" Email="supportticket@thinkboxsoftware.com" />
+  <Components>
+    <RuntimeRequirements OS="Win64|Win32" Platform="AutoCAD*" SeriesMin="20.0" SeriesMax="R20.1.99" />
+    <ComponentEntry AppName="AutoCADSubmitter" ModuleName=".\Contents\AutoCADSubmitter.dll" LoadOnAutoCADStartup="True" LoadOnCommandInvocation="True">
+      <Commands GroupName="DeadlineSubmitter">
+        <Command Local="SubmitToDeadline" Global="SubmitToDeadline" />
+        <Command Local="OpenDeadlineMonitor" Global="OpenDeadlineMonitor" />
+      </Commands>
+    </ComponentEntry>
+    <ComponentEntry
+      AppName="AutoCADSubmitter"
+      ModuleName="./Contents/Resources/DeadlineSubmitterCui.cuix" />
+  </Components>
+</ApplicationPackage>

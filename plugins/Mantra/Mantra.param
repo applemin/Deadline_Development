@@ -1,0 +1,152 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Mantra Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Mantra7_0_Executable]
+Label=Mantra 7 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=0
+Default=C:\Program Files\Side Effects Software\Houdini 7.0.000\bin\mantra.exe;C:\Program Files (x86)\Side Effects Software\Houdini 7.0.000\bin\mantra.exe;/Library/Frameworks/Houdini.framework/Resources/bin/mantra;/usr/local/Houdini/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra8_0_Executable]
+Label=Mantra 8 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=1
+Default=C:\Program Files\Side Effects Software\Houdini 8.0.000\bin\mantra.exe;C:\Program Files (x86)\Side Effects Software\Houdini 8.0.000\bin\mantra.exe;/Library/Frameworks/Houdini.framework/Resources/bin/mantra;/usr/local/Houdini/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra9_0_Executable]
+Label=Mantra 9 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=2
+Default=C:\Program Files\Side Effects Software\Houdini 9.0.000\bin\mantra.exe;C:\Program Files (x86)\Side Effects Software\Houdini 9.0.000\bin\mantra.exe;/Library/Frameworks/Houdini.framework/Resources/bin/mantra;/usr/local/Houdini/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra10_0_Executable]
+Label=Mantra 10 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=3
+Default=C:\Program Files\Side Effects Software\Houdini 10.0.000\bin\mantra.exe;C:\Program Files (x86)\Side Effects Software\Houdini 10.0.000\bin\mantra.exe;/Library/Frameworks/Houdini.framework/Resources/bin/mantra;/usr/local/Houdini/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra11_0_Executable]
+Label=Mantra 11 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=4
+Default=C:\Program Files\Side Effects Software\Houdini 11.0.000\bin\mantra.exe;C:\Program Files (x86)\Side Effects Software\Houdini 11.0.000\bin\mantra.exe;/Library/Frameworks/Houdini.framework/Resources/bin/mantra;/usr/local/Houdini/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra12_0_Executable]
+Label=Mantra 12 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=5
+Default=C:\Program Files\Side Effects Software\Houdini 12.0.000\bin\mantra.exe;C:\Program Files (x86)\Side Effects Software\Houdini 12.0.000\bin\mantra.exe;/Library/Frameworks/Houdini.framework/Resources/bin/mantra;/usr/local/Houdini/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra13_0_Executable]
+Label=Mantra 13 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=6
+Default=C:\Program Files\Side Effects Software\Houdini 13.0.000\bin\mantra.exe;C:\Program Files (x86)\Side Effects Software\Houdini 13.0.000\bin\mantra.exe;/Library/Frameworks/Houdini.framework/Resources/bin/mantra;/usr/local/Houdini/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra14_0_Executable]
+Label=Mantra 14 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=7
+Default=C:\Program Files\Side Effects Software\Houdini 14.0.000\bin\mantra.exe;C:\Program Files (x86)\Side Effects Software\Houdini 14.0.000\bin\mantra.exe;/Library/Frameworks/Houdini.framework/Resources/bin/mantra;/usr/local/Houdini/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra15_0_Executable]
+Label=Mantra 15 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=8
+Default=C:\Program Files\Side Effects Software\Houdini 15.0.000\bin\mantra.exe;C:\Program Files (x86)\Side Effects Software\Houdini 15.0.000\bin\mantra.exe;/Library/Frameworks/Houdini.framework/Resources/bin/mantra;/usr/local/Houdini/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra15_5_Executable]
+Label=Mantra 15.5 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=9
+Default=C:\Program Files\Side Effects Software\Houdini 15.5.000\bin\mantra.exe;C:\Program Files (x86)\Side Effects Software\Houdini 15.5.000\bin\mantra.exe;/Library/Frameworks/Houdini.framework/Resources/bin/mantra;/usr/local/Houdini/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra16_0_Executable]
+Label=Mantra 16 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=10
+Default=C:\Program Files\Side Effects Software\Houdini 16.0.000\bin\mantra.exe;C:\Program Files (x86)\Side Effects Software\Houdini 16.0.000\bin\mantra.exe;/Applications/Houdini/Houdini16.0.000/Frameworks/Houdini.framework/Versions/16.0.000/Resources/bin/mantra;/opt/hfs16.0/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra16_5_Executable]
+Label=Mantra 16.5 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=11
+Default=C:\Program Files\Side Effects Software\Houdini 16.5.000\bin\mantra.exe;C:\Program Files (x86)\Side Effects Software\Houdini 16.5.000\bin\mantra.exe;/Applications/Houdini/Houdini16.5.000/Frameworks/Houdini.framework/Versions/16.5.000/Resources/bin/mantra;/opt/hfs16.5/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra17_0_Executable]
+Label=Mantra 17 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=12
+Default=C:\Program Files\Side Effects Software\Houdini 17.0.000\bin\mantra.exe;/Applications/Houdini/Houdini17.0.000/Frameworks/Houdini.framework/Versions/17.0.000/Resources/bin/mantra;/opt/hfs17.0/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[Mantra17_5_Executable]
+Label=Mantra 17.5 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=13
+Default=C:\Program Files\Side Effects Software\Houdini 17.5.000\bin\mantra.exe;/Applications/Houdini/Houdini17.5.000/Frameworks/Houdini.framework/Versions/Current/Resources/bin/mantra;/opt/hfs17.5/bin/mantra
+Description=The path to the Mantra executable used for rendering.
+
+[EnablePathMapping]
+Type=boolean
+Category=Path Mapping (For Mixed Farms)
+CategoryOrder=3
+CategoryIndex=0
+Label=Enable Path Mapping
+Default=true
+Description=If enabled, a temporary IFD file will be created locally on the slave for rendering because Deadline does the path mapping directly in the IFD file. This feature can be turned off if there are no Path Mapping entries defined in the Repository Options.

@@ -1,0 +1,7 @@
+jpg,    JPEG,       image
+exr,    OpenExr,    image
+png,    PNG,        image
+tga,    Targa,      image
+tif,    Tiff,       image
+mov,    MOV,        movie
+mxf,    MXF,        movie

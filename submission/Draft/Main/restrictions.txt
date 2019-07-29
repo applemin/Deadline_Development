@@ -1,0 +1,7 @@
+dnxhd: FrameRate = 23.976, 24, 25, 29.97, 50, 59.94
+mxf: FrameRate = 24, 25, 50
+jpg: EnableQuality = jpeg
+exr: EnableQuality = dwaa, dwab
+tif: EnableQuality = jpeg
+mov: EnableQuality = mjpeg, mpeg4, h264, dnxhd, vp8
+mxf: EnableQuality = dnxhd

@@ -1,0 +1,77 @@
+[TransferJobID]
+Type=label
+Label=Job ID
+Category=Transfer Job Options
+Index=0
+Description=The ID of the job to be transferred
+Required=true
+DisableIfBlank=false
+Default=
+
+[TransferRepository]
+Type=folder
+Label=New Repository
+Category=Transfer Job Options
+Index=1
+Description=The new repository that this job will be transferred to
+Required=true
+DisableIfBlank=false
+Default=
+
+[CompressFiles]
+Type=boolean
+Label=Compress Files During Transfer
+Category=Transfer Job Options
+Index=2
+Description=If enabled, the job files will be compressed during the transfer.
+Required=true
+DisableIfBlank=false
+Default=false
+
+[EmailResultsAfterTransfer]
+Type=boolean
+Label=Email Results After Transfer
+Category=Transfer Job Options
+Index=3
+Description=If enabled, an email will be sent out after the tranfer containing the results (note this is separate from the Job Completion notification for this job)
+Required=true
+DisableIfBlank=false
+Default=false
+
+[SuspendedAfterTransfer]
+Type=boolean
+Label=Suspend Remote Job After Transfer
+Category=Transfer Job Options
+Index=4
+Description=If enabled, the job will be suspended in the new repository after it is transferred
+Required=true
+DisableIfBlank=false
+Default=false
+
+[RemoveLocalAfterTransfer]
+Type=boolean
+Label=Remove Local Job After Transfer
+Category=Transfer Job Options
+Index=5
+Description=If enabled, the local job will be deleted after the job is successfully transferred
+Required=true
+DisableIfBlank=false
+Default=false
+
+[TransferJobFrames]
+Type=string
+Label=Frame List
+Category=Frame Overrides For New Job (Leave Blank To Use Defaults)
+Index=0
+Description=The new frame list for the transferred job.
+Required=false
+DisableIfBlank=true
+
+[TransferJobChunkSize]
+Type=string
+Label=Frames Per Task
+Category=Frame Overrides For New Job (Leave Blank To Use Defaults)
+Index=1
+Description=The new task chunk size for the transferred job. Must be 1 or greater.
+Required=false
+DisableIfBlank=true

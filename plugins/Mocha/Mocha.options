@@ -1,0 +1,174 @@
+[Version]
+Type=label
+Label=Version
+Category=General Options
+Description=The version of Mocha Pro to render/export with.
+Required=false
+Index=0
+Default=
+DisableIfBlank=true
+
+[Scene]
+Type=filename
+Label=Mocha Project File
+Category=General Options
+Description=The Mocha project to be rendered/exported.
+Required=true
+Index=1
+Default=
+DisableIfBlank=false
+
+[Output]
+Type=Folder
+Label=Output Directory
+Category=General Options
+Description=The directory where the render/export output will be written to. The location must be accessible by the slave(s).
+Required=true
+Index=2
+Default=
+DisableIfBlank=false
+
+[ProjFrameOffset]
+Type=integer
+Label=Frame Offset
+Category=General Options
+Description=If the project frame range does not start with 0, please specify the offset.
+Required=true
+Index=3
+Default=0
+DisableIfBlank=false
+
+[JobType]
+Type=string
+Label=Job Type
+Category=Job Settings
+Description=The type of Mocha job.
+Required=true
+Index=0
+Default=Render
+DisableIfBlank=true
+
+[JobSubType]
+Type=string
+Label=Job Sub Type
+Category=Job Settings
+Description=The sub type of Mocha job.
+Required=true
+Index=1
+Default=remove
+DisableIfBlank=true
+
+[FileExtension]
+Type=string
+Label=File Extension
+Category=Job Settings
+Description=The output file extension.
+Required=false
+Index=2
+DisableIfBlank=true
+
+[OutputPrefix]
+Type=string
+Label=Output Prefix
+Category=Job Settings
+Description=The output prefix goes before the frame number in the file name. Not required.
+Required=false
+Index=3
+DisableIfBlank=true
+
+[OutputSuffix]
+Type=string
+Label=Output Suffix
+Category=Job Settings
+Description=The output suffix goes after the frame number in the file name. Not required.
+Required=false
+Index=4
+DisableIfBlank=true
+
+[LayerGroupInfo]
+Type=string
+Label=Layer Group Info
+Category=Job Settings
+Description=The layers to render.
+Required=false
+Index=5
+DisableIfBlank=true
+
+[ClipViewIndex]
+Type=enum
+Label=Clip View Index
+Category=Job Settings
+Description=By default, this is zero (0), but if you are working with a multi-view clip, you can set the index here. In stereo mode, Left and Right views are 0 and 1 respectively.
+Items=0;1
+Required=false
+Index=6
+DisableIfBlank=true
+
+[ExporterName]
+Type=string
+Label=Exporter Name
+Category=Job Settings
+Description=The name of the exporter. The exporters list can be accessed in <repository>\plugins\Mocha.
+Required=false
+Index=7
+DisableIfBlank=true
+
+[FileName]
+Type=string
+Label=File Name
+Category=Job Settings
+Description=The exporter output file name, including extension.
+Required=false
+Index=8
+DisableIfBlank=true
+
+[Views]
+Type=string
+Label=Views
+Category=Job Settings
+Description=List of names or abbreviations of views to export (use comma as the delimiter). When in stereo mode, Left(L) will be used by default.
+Required=false
+Index=9
+DisableIfBlank=true
+
+[FrameIndexWidth]
+Type=string
+Label=Frame Index Width
+Category=Job Settings
+Description=The number of digits allocated for the index portion of the file name. If the number is not large enough to accomodate all output frame indices, it will be ignored and the minimum required number of digits will be used instead.
+Required=false
+Index=10
+DisableIfBlank=true
+
+[Colorize]
+Type=enum
+Label=Colorize
+Category=Job Settings
+Description=Used to export the colored version of the mattes.
+Items=Grayscale;Matte-color;Layer
+Required=false
+Index=11
+
+[Invert]
+Type=boolean
+Label=Invert
+Category=Job Settings
+Description=Mimes the Invert checkbox in Mocha's Export Tracking Data dialog.
+Required=false
+Index=12
+
+[RemoveLensDistortion]
+Type=boolean
+Label=Remove Lens Distortion
+Category=Job Settings
+Description=Mimes the Remove Lens Distortion checkbox of the Export Tracking Data dialog.
+Required=false
+Index=13
+
+[Stabilize]
+Type=boolean
+Label=Stabilize
+Category=Job Settings
+Description=Mimes the Stabilize checkbox of the Export Tracking Data dialog.
+Required=false
+Index=14

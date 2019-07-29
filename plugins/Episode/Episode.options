@@ -1,0 +1,84 @@
+[SourceFile]
+Type=Filename
+Label=Input File Name
+Category=File Settings
+CategoryOrder=1
+Index=0
+Description=The input source file name as it exists on the network.
+Required=true
+Default=
+
+[EncoderFile]
+Type=Filename
+Label=Encoder File Name
+Category=File Settings
+CategoryOrder=1
+Index=1
+Description=The preset file name as it exists on the network.
+Required=false
+Default=
+DisableIfBlank=false
+
+[OutputPath]
+Type=Folder
+Label=Output Path (optional)
+Category=File Settings
+CategoryOrder=1
+Index=2
+Description=An optional output path as it exists on the network.
+Required=true
+Default=
+
+[CustomOutputName]
+Type=String
+Label=Custom Output Name (optional)
+Category=File Settings
+CategoryOrder=1
+Index=3
+Description=Optionally, override the default output file naming convention.
+Required=false
+DisableIfBlank=false
+
+[ExtraArguments]
+Type=String
+Label=Additional CLI Arguments (optional)
+Category=File Settings
+CategoryOrder=1
+Index=4
+Description=Any additional command line arguments to be submitted.
+Required=false
+DisableIfBlank=false
+
+[SplitEnabled]
+Type=Boolean
+Label=Enable Split Encoding
+Category=Split and Stitch Settings
+CategoryOrder=2
+Index=0
+Description=If enabled, the encoder(s) will split the encoding and stitch to the final output.
+Required=false
+DisableIfBlank=false
+
+[MinSplitTime]
+Type=Integer
+Label=Minimum Split Duration (sec)
+Category=Split and Stitch Settings
+CategoryOrder=2
+Index=1
+Description=Specify minimum duration in seconds for each split. The default value is 30.
+Increment=1
+Minimum=9
+Maximum=3600
+Default=30
+
+[MaxSplits]
+Type=Integer
+Label=Maximum Number of Video Splits
+Category=Split and Stitch Settings
+CategoryOrder=2
+Index=2
+Description=Specify maximum number of splits created. The default value is 16.
+Increment=1
+Minimum=2
+Maximum=32
+Default=16

@@ -1,0 +1,89 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=SketchUp Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[SketchUp_7_Executable]
+Label=SketchUp 7 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=0
+Default=C:\Program Files\Google\Google SketchUp 7\SketchUp.exe;C:\Program Files (x86)\Google\Google SketchUp 7\SketchUp.exe;/Applications/Google SketchUp 7/SketchUp.app/Contents/MacOS/SketchUp
+Description=The path to the SketchUp executable.
+
+[SketchUp_8_Executable]
+Label=SketchUp 8 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=1
+Default=C:\Program Files\Google\Google SketchUp 8\SketchUp.exe\SketchUp.exe;C:\Program Files (x86)\Google\Google SketchUp 8\SketchUp.exe;/Applications/Google SketchUp 8/SketchUp.app/Contents/MacOS/SketchUp
+Description=The path to the SketchUp executable.
+
+[SketchUp_2013_Executable]
+Label=SketchUp 2013 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=2
+Default=C:\Program Files\SketchUp\SketchUp 2013\SketchUp.exe;C:\Program Files (x86)\SketchUp\SketchUp 2013\SketchUp.exe;/Applications/SketchUp 2013/SketchUp.app/Contents/MacOS/SketchUp
+Description=The path to the SketchUp executable.
+
+[SketchUp_2014_Executable]
+Label=SketchUp 2014 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=3
+Default=C:\Program Files\SketchUp\SketchUp 2014\SketchUp.exe;C:\Program Files (x86)\SketchUp\SketchUp 2014\SketchUp.exe;/Applications/SketchUp 2014/SketchUp.app/Contents/MacOS/SketchUp
+Description=The path to the SketchUp executable.
+
+[SketchUp_2015_Executable]
+Label=SketchUp 2015 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=4
+Default=C:\Program Files\SketchUp\SketchUp 2015\SketchUp.exe;C:\Program Files (x86)\SketchUp\SketchUp 2015\SketchUp.exe;/Applications/SketchUp 2015/SketchUp.app/Contents/MacOS/SketchUp
+Description=The path to the SketchUp executable.
+
+[SketchUp_2016_Executable]
+Label=SketchUp 2016 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=5
+Default=C:\Program Files\SketchUp\SketchUp 2016\SketchUp.exe;C:\Program Files (x86)\SketchUp\SketchUp 2016\SketchUp.exe;/Applications/SketchUp 2016/SketchUp.app/Contents/MacOS/SketchUp
+Description=The path to the SketchUp executable.
+
+[SketchUp_2017_Executable]
+Label=SketchUp 2017 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=6
+Default=C:\Program Files\SketchUp\SketchUp 2017\SketchUp.exe;/Applications/SketchUp 2017/SketchUp.app/Contents/MacOS/SketchUp
+Description=The path to the SketchUp executable.
+
+[SketchUp_2018_Executable]
+Label=SketchUp 2018 Executable
+Category=Render Executables
+CategoryOrder=0
+Type=multilinemultifilename
+Index=7
+Default=C:\Program Files\SketchUp\SketchUp 2018\SketchUp.exe;/Applications/SketchUp 2018/SketchUp.app/Contents/MacOS/SketchUp
+Description=The path to the SketchUp executable.

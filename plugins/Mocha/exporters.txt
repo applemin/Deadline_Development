@@ -1,0 +1,47 @@
+Shapes data exporters
+        Adobe Premiere shape data
+        Combustion GMask Script (*.gmask)
+        Flame GMask Script (*.gmask)
+        HitFilm [Transform & Shape] (*.hfcs)
+        MochaBlend shape data
+        Nuke Roto [Basic] (*.nk)
+        Nuke RotoPaint [Basic] (*.nk)
+        Nuke SplineWarp (*.nk)
+        Nuke v6.2+ Roto [Transform & Shape] (*.nk)
+        Nuke v6.2+ RotoPaint [Transform & Shape] (*.nk)
+        Shake Rotoshape (*.ssf)
+        mocha shape data for AE
+        mocha shape data for Final Cut
+Tracking data exporters
+        After Effects CS3 Corner Pin [supports motion blur, CS3 and older] (*.txt)
+        After Effects Corner Pin [corner pin only, supports RG Warp and mochaImport] (*.txt)
+        After Effects Corner Pin [supports motion blur] (*.txt)
+        After Effects Transform Data [position, scale and rotation] (*.txt)
+        Assimilate SCRATCH Corner Pin (*.txt)
+        Autodesk IFFFSE Point Tracker Data (*.ascii)
+        Autodesk IFFFSE Point Tracker Data (Flame 2014) (*.ascii)
+        Autodesk IFFFSE Stabilizer Data (*.stabilizer)
+        Autodesk IFFFSE Stabilizer Data (Flame 2014) (*.stabilizer)
+        Avid DS Tracking Data (*.fraw)
+        Blackmagic Fusion COMP Data (*.comp)
+        Boris FX BCC Center Point (*.txt)
+        Boris FX BCC Corner Pin (*.txt)
+        Final Cut Basic Motion [translate, rotate, scale] (*.xml)
+        Final Cut Distort [corner pin] (*.xml)
+        HitFilm Corner Pin [supports motion blur] (*.hfcs)
+        HitFilm Transform Data [position, scale and rotation] (*.hfcs)
+        Motion basic transform (*.motn)
+        Motion corner pin (*.motn)
+        Nuke 7 Tracker (*.nk)
+        Nuke Ascii (*.txt)
+        Nuke Corner Pin (*.nk)
+        Quantel Corner Pin Data (*.xml)
+        Shake Script (*.shk)
+Camera solve data exporters
+        After Effects 3D Motion Data (*.txt)
+        FBX 6.1.0 3D Data (*.fbx)
+        FBX 6.1.0 3D Data for Nuke 6.3v7 (*.fbx)
+        HitFilm Composite Shot (*.hfcs)
+
+
+Custom data exporters

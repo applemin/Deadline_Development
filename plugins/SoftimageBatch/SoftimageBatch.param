@@ -1,0 +1,99 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Softimage Batch Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[RenderExecutable8]
+Type=multilinemultifilename
+Label=Softimage 2010 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=2
+Default=C:\Softimage\Softimage_2010\Application\bin\xsibatch.bat;C:\Softimage\Softimage_2010_x64\Application\bin\xsibatch.bat;/usr/Softimage/Softimage_2010/Application/bin/xsibatch
+Description=The path to the XSIBatch.bat file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable9]
+Type=multilinemultifilename
+Label=Softimage 2011 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=3
+Default=C:\Program Files\Autodesk\Softimage 2011\Application\bin\XSIBatch.bat;C:\Program Files (x86)\Autodesk\Softimage 2011\Application\bin\XSIBatch.bat;/usr/Softimage/Softimage_2011/Application/bin/xsibatch
+Description=The path to the XSIBatch.bat file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable10]
+Type=multilinemultifilename
+Label=Softimage 2012 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=4
+Default=C:\Program Files\Autodesk\Softimage 2012\Application\bin\XSIBatch.bat;C:\Program Files (x86)\Autodesk\Softimage 2012\Application\bin\XSIBatch.bat;/usr/Softimage/Softimage_2012/Application/bin/xsibatch
+Description=The path to the XSIBatch.bat file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable11]
+Type=multilinemultifilename
+Label=Softimage 2013 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=5
+Default=C:\Program Files\Autodesk\Softimage 2013\Application\bin\XSIBatch.bat;C:\Program Files (x86)\Autodesk\Softimage 2013\Application\bin\XSIBatch.bat;/usr/Softimage/Softimage_2013/Application/bin/xsibatch
+Description=The path to the XSIBatch.bat file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable12]
+Type=multilinemultifilename
+Label=Softimage 2014 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=6
+Default=C:\Program Files\Autodesk\Softimage 2014\Application\bin\XSIBatch.bat;C:\Program Files (x86)\Autodesk\Softimage 2014\Application\bin\XSIBatch.bat;/usr/Softimage/Softimage_2014/Application/bin/xsibatch
+Description=The path to the XSIBatch.bat file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable13]
+Type=multilinemultifilename
+Label=Softimage 2015 Render Executable
+Category=Render Executables
+CategoryOrder=0
+Index=7
+Default=C:\Program Files\Autodesk\Softimage 2015\Application\bin\XSIBatch.bat;C:\Program Files (x86)\Autodesk\Softimage 2015\Application\bin\XSIBatch.bat;/usr/Softimage/Softimage_2015/Application/bin/xsibatch
+Description=The path to the XSIBatch.bat file used for rendering. Enter alternative paths on separate lines.
+
+[StrictErrorChecking]
+Type=boolean
+Label=Enable Strict Error Checking
+Category=Render Options
+CategoryOrder=1
+Index=13
+Default=True
+Description=If enabled, Deadline will fail in almost all cases when the job whenever Softimage prints out 'ERROR' for whatever reason.
+
+[ConnectionTimeout]
+Type=integer
+Label=Connection Timeout
+Category=Render Options
+CategoryOrder=1
+Index=14
+Default=300
+Description=The amount of seconds to give the Deadline plugin and Softimage to establish a connection before the job fails.
+
+[ProgressUpdateTimeout]
+Type=Integer
+Label=Timeout For Progress Updates
+Category=Render Options
+CategoryOrder=1
+Index=15
+Minimum=0
+Description=The amount of seconds to between Softimage progress updates before the job is failed. Set to 0 to disable this feature.
+Default=0

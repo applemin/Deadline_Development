@@ -1,0 +1,18 @@
+[Renderer]
+Type=enum
+Values=ThreeDelight;Air;Aqsis;BMRT;Entropy;Pixie;RenderDotC;RenderMan;RenderPipe
+Label=Renderer
+Category=RIB Options
+Description=The RIB renderer to use
+Required=true
+DisableIfBlank=false
+DefaultValue=ThreeDelight
+
+[CommandLineOptions]
+Type=string
+Label=Additional Arguments
+Category=Command Line Options
+Description=Additional command line arguments that are sent to the RIB renderer
+Required=false
+DisableIfBlank=false
+DefaultValue=

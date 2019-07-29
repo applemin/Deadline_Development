@@ -1,0 +1,429 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=V-Ray Spawner Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[VRaySpawnerExecutable_Max2012]
+Type=multilinemultifilename
+Label=3ds Max 2012 Spawner Executable
+Category=V-Ray Spawner Executables for 3ds Max
+CategoryOrder=0
+CategoryIndex=0
+Default=C:\Program Files\Autodesk\3ds Max 2012\vrayspawner2012.exe;C:\Program Files\Autodesk\3ds Max Design 2012\vrayspawner2012.exe
+Description=The path to the V-Ray Spawner executable file for 3ds Max 2012. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Max2013]
+Type=multilinemultifilename
+Label=3ds Max 2013 Spawner Executable
+Category=V-Ray Spawner Executables for 3ds Max
+CategoryOrder=0
+CategoryIndex=1
+Default=C:\Program Files\Autodesk\3ds Max 2013\vrayspawner2013.exe;C:\Program Files\Autodesk\3ds Max Design 2013\vrayspawner2013.exe
+Description=The path to the V-Ray Spawner executable file for 3ds Max 2013. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Max2014]
+Type=multilinemultifilename
+Label=3ds Max 2014 Spawner Executable
+Category=V-Ray Spawner Executables for 3ds Max
+CategoryOrder=0
+CategoryIndex=2
+Default=C:\Program Files\Autodesk\3ds Max 2014\vrayspawner2014.exe;C:\Program Files\Autodesk\3ds Max Design 2014\vrayspawner2014.exe
+Description=The path to the V-Ray Spawner executable file for 3ds Max 2014. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Max2015]
+Type=multilinemultifilename
+Label=3ds Max 2015 Spawner Executable
+Category=V-Ray Spawner Executables for 3ds Max
+CategoryOrder=0
+CategoryIndex=3
+Default=C:\Program Files\Autodesk\3ds Max 2015\vrayspawner2015.exe;C:\Program Files\Autodesk\3ds Max Design 2015\vrayspawner2015.exe
+Description=The path to the V-Ray Spawner executable file for 3ds Max 2015. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Max2016]
+Type=multilinemultifilename
+Label=3ds Max 2016 Spawner Executable
+Category=V-Ray Spawner Executables for 3ds Max
+CategoryOrder=0
+CategoryIndex=4
+Default=C:\Program Files\Autodesk\3ds Max 2016\vrayspawner2016.exe
+Description=The path to the V-Ray Spawner executable file for 3ds Max 2016. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Max2017]
+Type=multilinemultifilename
+Label=3ds Max 2017 Spawner Executable
+Category=V-Ray Spawner Executables for 3ds Max
+CategoryOrder=0
+CategoryIndex=5
+Default=C:\Program Files\Autodesk\3ds Max 2017\vrayspawner2017.exe
+Description=The path to the V-Ray Spawner executable file for 3ds Max 2017. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Max2018]
+Type=multilinemultifilename
+Label=3ds Max 2018 Spawner Executable
+Category=V-Ray Spawner Executables for 3ds Max
+CategoryOrder=0
+CategoryIndex=6
+Default=C:\Program Files\Autodesk\3ds Max 2018\vrayspawner2018.exe
+Description=The path to the V-Ray Spawner executable file for 3ds Max 2018. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Max2019]
+Type=multilinemultifilename
+Label=3ds Max 2019 Spawner Executable
+Category=V-Ray Spawner Executables for 3ds Max
+CategoryOrder=0
+CategoryIndex=6
+Default=C:\Program Files\Autodesk\3ds Max 2019\vrayspawner2019.exe
+Description=The path to the V-Ray Spawner executable file for 3ds Max 2019. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_MaxRT2012]
+Type=multilinemultifilename
+Label=3ds Max 2012 V-Ray RT Standalone Executable
+Category=V-Ray RT Standalone Executables for 3ds Max
+CategoryOrder=1
+CategoryIndex=0
+Default=C:\Program Files\Chaos Group\V-Ray\RT for 3ds Max 2012 for x64\bin\vray.exe
+Description=The path to the V-Ray Standalone executable file for 3ds Max 2012. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_MaxRT2013]
+Type=multilinemultifilename
+Label=3ds Max 2013 V-Ray RT Standalone Executable
+Category=V-Ray RT Standalone Executables for 3ds Max
+CategoryOrder=1
+CategoryIndex=1
+Default=C:\Program Files\Chaos Group\V-Ray\RT for 3ds Max 2013 for x64\bin\vray.exe
+Description=The path to the V-Ray RT Standalone executable file for 3ds Max 2013. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_MaxRT2014]
+Type=multilinemultifilename
+Label=3ds Max 2014 V-Ray RT Standalone Executable
+Category=V-Ray RT Standalone Executables for 3ds Max
+CategoryOrder=1
+CategoryIndex=2
+Default=C:\Program Files\Chaos Group\V-Ray\RT for 3ds Max 2014 for x64\bin\vray.exe
+Description=The path to the V-Ray RT Standalone executable file for 3ds Max 2014. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_MaxRT2015]
+Type=multilinemultifilename
+Label=3ds Max 2015 V-Ray RT Standalone Executable
+Category=V-Ray RT Standalone Executables for 3ds Max
+CategoryOrder=1
+CategoryIndex=3
+Default=C:\Program Files\Chaos Group\V-Ray\RT for 3ds Max 2015 for x64\bin\vray.exe
+Description=The path to the V-Ray RT Standalone executable file for 3ds Max 2015. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_MaxRT2016]
+Type=multilinemultifilename
+Label=3ds Max 2016 V-Ray RT Standalone Executable
+Category=V-Ray RT Standalone Executables for 3ds Max
+CategoryOrder=1
+CategoryIndex=4
+Default=C:\Program Files\Chaos Group\V-Ray\RT for 3ds Max 2016 for x64\bin\vray.exe
+Description=The path to the V-Ray RT Standalone executable file for 3ds Max 2016. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_MaxRT2017]
+Type=multilinemultifilename
+Label=3ds Max 2017 V-Ray RT Standalone Executable
+Category=V-Ray RT Standalone Executables for 3ds Max
+CategoryOrder=1
+CategoryIndex=5
+Default=C:\Program Files\Chaos Group\V-Ray\RT for 3ds Max 2017 for x64\bin\vray.exe
+Description=The path to the V-Ray RT Standalone executable file for 3ds Max 2017. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_MaxRT2018]
+Type=multilinemultifilename
+Label=3ds Max 2018 V-Ray RT Standalone Executable
+Category=V-Ray RT Standalone Executables for 3ds Max
+CategoryOrder=1
+CategoryIndex=6
+Default=C:\Program Files\Chaos Group\V-Ray\RT for 3ds Max 2018 for x64\bin\vray.exe
+Description=The path to the V-Ray RT Standalone executable file for 3ds Max 2018. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_MaxRT2019]
+Type=multilinemultifilename
+Label=3ds Max 2019 V-Ray RT Standalone Executable
+Category=V-Ray RT Standalone Executables for 3ds Max
+CategoryOrder=1
+CategoryIndex=6
+Default=C:\Program Files\Chaos Group\V-Ray\RT for 3ds Max 2019 for x64\bin\vray.exe
+Description=The path to the V-Ray RT Standalone executable file for 3ds Max 2019. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Maya2012]
+Type=multilinemultifilename
+Label=Maya 2012 Spawner Executable
+Category=V-Ray Spawner Executables for Maya
+CategoryOrder=2
+CategoryIndex=0
+Default=C:\Program Files\Autodesk\Maya2012\vray\bin\vray.exe;/Applications/Autodesk/maya2012/vray/bin/vrayslave;/usr/autodesk/maya2012/vray/bin/vrayslave
+Description=The path to the V-Ray Spawner executable file for Maya 2012. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Maya2013]
+Type=multilinemultifilename
+Label=Maya 2013 Spawner Executable
+Category=V-Ray Spawner Executables for Maya
+CategoryOrder=2
+CategoryIndex=1
+Default=C:\Program Files\Autodesk\Maya2013\vray\bin\vray.exe;/Applications/Autodesk/maya2013/vray/bin/vrayslave;/usr/autodesk/maya2013/vray/bin/vrayslave
+Description=The path to the V-Ray Spawner executable file for Maya 2013. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Maya2014]
+Type=multilinemultifilename
+Label=Maya 2014 Spawner Executable
+Category=V-Ray Spawner Executables for Maya
+CategoryOrder=2
+CategoryIndex=2
+Default=C:\Program Files\Autodesk\Maya2014\vray\bin\vray.exe;/Applications/Autodesk/maya2014/vray/bin/vrayslave;/usr/autodesk/maya2014/vray/bin/vrayslave
+Description=The path to the V-Ray Spawner executable file for Maya 2014. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Maya2015]
+Type=multilinemultifilename
+Label=Maya 2015 Spawner Executable
+Category=V-Ray Spawner Executables for Maya
+CategoryOrder=2
+CategoryIndex=3
+Default=C:\Program Files\Autodesk\Maya2015\vray\bin\vray.exe;/Applications/Autodesk/maya2015/vray/bin/vrayslave;/usr/autodesk/maya2015/vray/bin/vrayslave
+Description=The path to the V-Ray Spawner executable file for Maya 2015. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Maya2016]
+Type=multilinemultifilename
+Label=Maya 2016 Spawner Executable
+Category=V-Ray Spawner Executables for Maya
+CategoryOrder=2
+CategoryIndex=4
+Default=C:\Program Files\Autodesk\Maya2016\vray\bin\vray.exe;/Applications/Autodesk/maya2016/vray/bin/vrayslave;/usr/autodesk/maya2016/vray/bin/vrayslave
+Description=The path to the V-Ray Spawner executable file for Maya 2016. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Maya2017]
+Type=multilinemultifilename
+Label=Maya 2017 Spawner Executable
+Category=V-Ray Spawner Executables for Maya
+CategoryOrder=2
+CategoryIndex=5
+Type=multilinemultifilename
+Default=C:\Program Files\Autodesk\Maya2017\vray\bin\vray.exe;/Applications/Autodesk/maya2017/vray/bin/vrayslave;/usr/autodesk/maya2017/vray/bin/vrayslave
+Description=The path to the V-Ray Spawner executable file for Maya 2017. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Maya2018]
+Type=multilinemultifilename
+Label=Maya 2018 Spawner Executable
+Category=V-Ray Spawner Executables for Maya
+CategoryOrder=2
+CategoryIndex=6
+Type=multilinemultifilename
+Default=C:\Program Files\Autodesk\Maya2018\vray\bin\vray.exe;/Applications/Autodesk/maya2018/vray/bin/vrayslave;/usr/autodesk/maya2018/vray/bin/vrayslave
+Description=The path to the V-Ray Spawner executable file for Maya 2018. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Softimage2012]
+Type=multilinemultifilename
+Label=Softimage 2012 Standalone Executable
+Category=V-Ray Standalone Executables for Softimage
+CategoryOrder=3
+CategoryIndex=0
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc10\vray.exe
+Description=The path to the V-Ray Standalone executable file for Softimage 2012. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Softimage2013]
+Type=multilinemultifilename
+Label=Softimage 2013 Standalone Executable
+Category=V-Ray Standalone Executables for Softimage
+CategoryOrder=3
+CategoryIndex=1
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc10\vray.exe
+Description=The path to the V-Ray Standalone executable file for Softimage 2013. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Softimage2014]
+Type=multilinemultifilename
+Label=Softimage 2014 Standalone Executable
+Category=V-Ray Standalone Executables for Softimage
+CategoryOrder=3
+CategoryIndex=2
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc10\vray.exe
+Description=The path to the V-Ray Standalone executable file for Softimage 2014. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Softimage2015]
+Type=multilinemultifilename
+Label=Softimage 2015 Standalone Executable
+Category=V-Ray Standalone Executables for Softimage
+CategoryOrder=3
+CategoryIndex=3
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc10\vray.exe
+Description=The path to the V-Ray Standalone executable file for Softimage 2015. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Cinema4D12]
+Type=multilinemultifilename
+Label=Cinema4D R12 Standalone Executable
+Category=V-Ray Standalone Executables for Cinema 4D
+CategoryOrder=4
+CategoryIndex=0
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc10\vray.exe
+Description=The path to the V-Ray Standalone executable file for Cinema 4D R12. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Cinema4D13]
+Type=multilinemultifilename
+Label=Cinema4D R13 Standalone Executable
+Category=V-Ray Standalone Executables for Cinema 4D
+CategoryOrder=4
+CategoryIndex=1
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc10\vray.exe
+Description=The path to the V-Ray Standalone executable file for Cinema 4D R13. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Cinema4D14]
+Type=multilinemultifilename
+Label=Cinema4D R14 Standalone Executable
+Category=V-Ray Standalone Executables for Cinema 4D
+CategoryOrder=4
+CategoryIndex=2
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc10\vray.exe
+Description=The path to the V-Ray Standalone executable file for Cinema 4D R14. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Cinema4D15]
+Type=multilinemultifilename
+Label=Cinema4D R15 Standalone Executable
+Category=V-Ray Standalone Executables for Cinema 4D
+CategoryOrder=4
+CategoryIndex=3
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc10\vray.exe
+Description=The path to the V-Ray Standalone executable file for Cinema 4D R15. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Cinema4D16]
+Type=multilinemultifilename
+Label=Cinema4D R16 Standalone Executable
+Category=V-Ray Standalone Executables for Cinema 4D
+CategoryOrder=4
+CategoryIndex=4
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc10\vray.exe
+Description=The path to the V-Ray Standalone executable file for Cinema 4D R16. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Cinema4D17]
+Type=multilinemultifilename
+Label=Cinema4D R17 Standalone Executable
+Category=V-Ray Standalone Executables for Cinema 4D
+CategoryOrder=4
+CategoryIndex=5
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc10\vray.exe
+Description=The path to the V-Ray Standalone executable file for Cinema 4D R17. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Cinema4D18]
+Type=multilinemultifilename
+Label=Cinema4D R18 Standalone Executable
+Category=V-Ray Standalone Executables for Cinema 4D
+CategoryOrder=4
+CategoryIndex=6
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc10\vray.exe
+Description=The path to the V-Ray Standalone executable file for Cinema 4D R18. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Rhino]
+Type=multilinemultifilename
+Label=Rhino Spawner Executable
+Category=V-Ray Spawner Executables for Rhino
+CategoryOrder=5
+CategoryIndex=0
+Default=C:\ProgramData\ASGVIS\Common\x64\vc10\Distributed Rendering\XMLDRSpawner.exe;C:\Program Files\ASGvis\Render Slave\DRSpawner.exe
+Description=The path to the V-Ray Spawner executable file for Rhino. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_SketchUp]
+Type=multilinemultifilename
+Label=SketchUp Spawner Executable
+Category=V-Ray Spawner Executables for SketchUp
+CategoryOrder=6
+CategoryIndex=0
+Default=C:\ProgramData\ASGVIS\Common\x64\vc10\Distributed Rendering\XMLDRSpawner.exe;C:\Program Files\ASGvis\Render Slave\DRSpawner.exe;/Applications/ASGVIS/DRSpawner/XMLDRSpawner.bin
+Description=The path to the V-Ray Spawner executable file for SketchUp. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Modo]
+Label=Modo Spawner Executable
+Category=V-Ray Spawner Executables for Modo
+CategoryOrder=7
+CategoryIndex=0
+Type=multilinemultifilename
+Default=C:\Program Files\Chaos Group\V-Ray\MODO x64\vraysl\vray.exe
+Description=The path to the V-Ray Spawner executable file for Modo. Enter alternative paths on separate lines.
+
+[VRaySpawnerExecutable_Standalone]
+Label=V-Ray Standalone Executable
+Category=V-Ray Standalone Executables
+CategoryOrder=8
+CategoryIndex=0
+Type=multilinemultifilename
+Default=C:\Program Files\Chaos Group\V-Ray\Standalone for x64\bin\x64\vc101\vray.exe;/usr/ChaosGroup/V-Ray/Standalone_for_linux_x64/bin/linux_x64/gcc-4.6/vray
+Description=The path to the executable file for V-Ray Standalone. Enter alternative paths on separate lines.
+
+[ExistingDRProcess]
+Type=enum
+Category=DR Process Handling
+Label=Handle Existing DR/DBR Process
+CategoryOrder=9
+CategoryIndex=0
+Items=Do Nothing;Fail On Existing Process;Kill On Existing Process
+Description=Either Do Nothing, FAIL on existing DR/DBR process or KILL the existing DR/DBR process if already running.
+Default=Fail On Existing Process
+
+[DROnJobComplete]
+Type=enum
+Category=DR Job Handling
+Label=DR On Job Complete
+CategoryOrder=10
+CategoryIndex=0
+Description=If desired, you can automatically archive or delete the DR job when it completes.
+Items=Do Nothing;Archive;Delete
+Default=Do Nothing
+
+[DRAutoClose]
+Type=Boolean
+Category=DR Session Handling
+Label=DR Session Auto Timeout Enable
+CategoryOrder=11
+CategoryIndex=0
+Description=Enable to force DR Session to be marked as complete if no DR Session has run with a specified time.
+Default=False
+
+[DRCloseTimeoutBeforeRender]
+Type=Integer
+Category=DR Session Handling
+Label=DR Session Auto Timeout (Minutes)
+Minimum=1
+CategoryOrder=11
+CategoryIndex=1
+Description=DR Session minimum timeout before last closed DR Session is marked as complete on slave (minutes). This timeout occurs before at least one render has been completed.
+Default=15
+
+[DRCloseWaitForRender]
+Type=Boolean
+Category=DR Session Handling
+Label=DR Session Auto Timeout: Wait for first render
+CategoryOrder=11
+CategoryIndex=2
+Description=Enable to Force at least one render to be completed before Auto Timeout becomes active.
+Default=True
+
+[DRCloseTimeoutAfterRender]
+Type=Integer
+Category=DR Session Handling
+Label=DR Session Auto Timeout: After first render (Minutes)
+Minimum=0
+CategoryOrder=11
+CategoryIndex=3
+Description=DR Session minimum timeout after at least one render has been completed.
+Default=15
+
+[VerboseLevel]
+Type=enum
+Category=Logging Options (V-Ray Standalone)
+Label=Logging Verbosity Level
+CategoryOrder=12
+CategoryIndex=0
+Items=3 - errors, warnings and informational messages;4 - all output
+Description=The verbose level (amount) of information to be printed to the standard output. Only available when using vray.exe
+Default=3 - errors, warnings and informational messages

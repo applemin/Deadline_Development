@@ -1,0 +1,1178 @@
+--------------------------------------------------------
+-- Fusion 5 Deadline Submission Script
+--------------------------------------------------------
+
+---------------------------------------------------------------------------------
+-- These are included here, just in case eyeon.scriptlib is not available.
+---------------------------------------------------------------------------------
+function deadlineGetExtension(name)
+	local i = 0
+	for i = string.len(name), 1, -1 do
+		local teststring = string.sub(name, i, i)
+		if teststring == "." then
+			return string.sub(name, i+1, -1)
+		end
+	end
+end
+
+function deadlineTrimExtension(filename)
+	local period_loc = 0
+	--print(filename)
+	local i = 0
+	for i = string.len(filename), 1, -1 do
+		if string.sub(filename, i, i) == "." then
+			period_loc = i
+			break
+		end
+	end
+	--print(string.sub(filename, 1, period_loc-1))
+	return string.sub(filename, 1, period_loc-1)
+end
+
+function deadlineGetFilePath(path)
+	local i = 0
+	for i = string.len(path), 1, -1 do
+		teststring = string.sub(path, i, i)
+		if teststring == "\\" or teststring == "/" then
+			return string.sub(path, 1, i)
+		end
+	end
+end
+
+---------------------------------------------------------------------------------
+-- Additional helper functions.
+---------------------------------------------------------------------------------
+
+local function iswindows()
+	return (package.config:sub(1,1) == "\\")
+end
+
+local function escapeArgument( argument )
+-- This is a function which takes a single string and returns a the string wrapped in quotes with all quotes inside the string escaped.
+-- This also replaces all %'s with %% on Windows
+	quoteChar = "'"
+	if iswindows() then
+		quoteChar = "\""
+		argument = argument:gsub( "%%", "%%" )--in gsub % is a reserved character for patterns.  This replaces % with %%
+	end	
+	return quoteChar .. argument:gsub( quoteChar, "\\" .. quoteChar ) .. quoteChar
+end
+
+local function rtrim(s)
+  local n = #s
+  while n > 0 and s:find("^%s", n) do n = n - 1 end
+  return s:sub(1, n)
+end
+
+-- Checks if the path is saving to a movie format.
+function pathIsMovieFormat(path)
+	local extension = deadlineGetExtension(path)
+	if extension ~= nil then 
+		extension = string.lower(extension)
+		if		( extension == "avi" ) or ( extension == "vdr" ) or ( extension == "wav" ) or
+				( extension == "dvs" ) or
+				( extension == "fb"  ) or
+				( extension == "omf" ) or ( extension == "omfi" ) or
+				( extension == "stm" ) or
+				( extension == "tar" ) or
+				( extension == "vpv" ) or
+				( extension == "mov" ) then
+			return true
+		end
+	end
+	return false
+end
+
+-- Replaces the frame number in the filename with the given frame number.
+function replaceFrameNo(filename, frameNumber)
+	-- the filename without the extension
+	local fileNoExt = deadlineTrimExtension(filename)
+	-- just the extension (no dot)
+	local fileExt = deadlineGetExtension(filename)
+	
+	local numberStart = string.len(fileNoExt)
+
+	local i = 0
+	for i = string.len(fileNoExt), 1, -1 do
+		if tonumber(string.sub(fileNoExt, i, i)) == nil then
+			numberStart = i
+			break
+		end
+	end
+	
+	local fileNoNumbers = string.sub( fileNoExt, 1, numberStart )
+	
+	local digitCount = string.len(fileNoExt) - numberStart
+	if digitCount == 0 then
+		digitCount = 4
+	end
+	
+	local digits
+	-- if no frame number is specified, pad it with ? characters,
+	-- otherwise replace the frame number
+	if frameNumber == nil then
+		digits = "?"
+	
+		while string.len(digits) < digitCount do
+			digits = "?" .. digits
+		end
+	else
+		digits = tostring( frameNumber )
+	
+		while string.len(digits) < digitCount do
+			digits = "0" .. digits
+		end
+	end
+	
+	if fileExt == nil then
+		fileExt = ""
+	end
+	
+	return fileNoNumbers .. digits .. "." .. fileExt
+end
+
+-- Check the table that stores the integration settings for a specific key
+function CheckIntegrationKVPs( searchValue )
+	local found = false
+	for key,value in pairs( INTEGRATIONKVPS ) do
+		if key == searchValue then
+			found = true
+		end
+	end
+
+	return found
+end
+
+function MessageBox(msg, theTitle)
+	if( iup ~= nil ) then
+		iup.Message( theTitle, msg )
+	else
+		local d = {}
+		d[1] = {"Msg", Name = msg, "Text", ReadOnly = true, Lines = 0 }
+		comp:AskUser( theTitle, d )
+	end
+end
+
+function OKCancelDlg(msg, title)
+	if( iup ~= nil ) then
+		result = iup.Alarm( title, msg, "OK", "Cancel" )
+		if result == 1 then
+			return true
+		else
+			return false
+		end
+	else
+		local d = {}
+		d[1] = {"Msg", Name = msg, "Text", ReadOnly = true, Lines = 0 }
+		local dialog = comp:AskUser( title, d )
+
+		if dialog == nil then
+			return false
+		else
+			return true
+		end
+	end
+end
+
+function GetListFromFile(filename)
+	local fh = io.open(filename, 'r');
+	if fh == nil then
+		return nil
+	end
+
+	local result = {}
+	local index = 1
+	result[index] = fh:read("*l")
+	while not (result[index] == nil) do
+		index = index + 1
+		result[index] = fh:read("*l")
+	end
+	io.close(fh)
+
+	return result
+end
+
+function GetStringFromFile(filename)
+	local fh = io.open(filename, 'r')
+	if fh == nil then
+		return nil
+	end
+
+	local result = fh:read("*a")
+	io.close(fh)
+
+	return result
+end
+
+function GetNumberFromFile(filename)
+	local fh = io.open(filename, 'r')
+	if fh == nil then
+		return nil
+	end
+	
+	local result = fh:read("*l")
+	io.close(fh)
+	
+	return tonumber(result)
+end
+
+function WriteStringToFile(filename, value)
+	local fh = writeto(filename)
+	if fh == nil then
+		return false
+	end
+
+	fh:write(value)
+	io.close(fh)
+
+	return true
+end
+
+local function getDeadlineCommand()
+	deadlineCommand = ""
+	deadlinePath = os.getenv( "DEADLINE_PATH" )
+	
+	if not iswindows() and ( deadlinePath == nil or deadlinePath == "" ) then
+		if fileexists( "/Users/Shared/Thinkbox/DEADLINE_PATH" ) then
+			input = assert( io.open( "/Users/Shared/Thinkbox/DEADLINE_PATH", 'r' ) )
+			deadlinePath = assert( input:read( '*a' ) )
+			input:close()
+			
+			deadlinePath = rtrim( deadlinePath )
+		end
+	end
+	
+	if deadlinePath == nil or deadlinePath == "" then
+		deadlineCommand = "deadlinecommand"
+	else
+		deadlineCommand = deadlinePath .."/deadlinecommand"
+	end
+		
+	return deadlineCommand
+end
+
+local function RunDeadlineCommand( options )
+
+	deadlineCommand = getDeadlineCommand()
+	local command, commandOutput = "", ""
+	local input;
+
+	if iswindows() then
+		command = "\"\"" .. deadlineCommand .. "\" " .. options .. "\""
+		input = assert( io.popen( command, 'r' ) )
+		commandOutput = assert( input:read( '*a' ) )
+		input:close()
+	else
+		-- On *nix systems io.popen doesn't grab stdout, so we use os.execute and pipe the results into a file that we read.
+		local tempFile = os.tmpname()
+		
+		command = "\"" .. deadlineCommand .. "\" " .. options .. " > \"" .. tempFile .. "\""
+		os.execute( command )
+		input = assert( io.open( tempFile, 'r' ) )
+		commandOutput = assert( input:read( '*a' ) )
+		input:close()
+		
+		os.remove( tempFile )
+	end
+	
+	return rtrim(commandOutput)
+end
+
+function GetDeadlineRepositoryFilePath(subdir)
+
+	local path = ""
+	local options = ""
+
+	if (subdir == nil or subdir == "" ) then
+		options = "-GetRepositoryPath"
+	else
+		options = "-GetRepositoryFilePath " .. subdir
+	end
+	
+	path = RunDeadlineCommand( options )
+	
+	if ( path == nil or path == "" ) then
+		MessageBox( "Failed to get repository path from deadlinecommand.exe", "Submit to Deadline Proxy" )
+		return nil
+	end
+	return path
+end
+
+function GetMaximumPriorityFromDeadline()
+	commandOutput = RunDeadlineCommand( "-getmaximumpriority" )
+	commandOutput = tonumber(commandOutput)
+	return commandOutput
+end
+
+function GetListFromDeadline(options)
+
+	commandOutput = RunDeadlineCommand(options)	
+	list = {}
+
+	for i in string.gmatch(commandOutput, "%S+") do
+		table.insert(list,i)
+	end
+
+	return list
+end
+
+-- Does a few basic checks on the file
+function SanityCheck(comp)
+	local loaders = GetLoaders(comp)
+	local savers = GetSavers(comp)
+	local message = ""
+
+	local i = 0
+	for i = 1, table.getn(loaders), 1 do
+		local attr = loaders[i]:GetAttrs()
+		if not attr.TOOLB_PassThrough then
+			local cl = attr.TOOLST_Clip_Name
+				if cl == nil then
+					message = message .. "Loader \"" .. attr.TOOLS_Name .. "\" has no input path specified.\n"
+				else
+					for j = 1, table.getn(cl) do
+						local name = cl[j]
+						if( string.sub(name, 1, 2) == "C:" or string.sub(name, 1, 2) == "c:" ) then
+								message = message .. "Loader \"" .. attr.TOOLS_Name .. "\" is loading from the local c: drive.\n"
+						else
+							if( string.sub(name, 1, 2) == "D:" or string.sub(name, 1, 2) == "d:" ) then
+								message = message .. "Loader \"" .. attr.TOOLS_Name .. "\" is loading from the local d: drive.\n"
+							else
+								if( string.sub(name, 1, 2) == "E:" or string.sub(name, 1, 2) == "e:" ) then
+									message = message .. "Loader \"" .. attr.TOOLS_Name .. "\" is loading from the local e: drive.\n"
+								end
+							end
+						end
+					end
+				end
+		end
+	end
+
+	local saverCount = 0
+	for i = 1, table.getn(savers) do
+		local attr = savers[i]:GetAttrs()
+		if not attr.TOOLB_PassThrough then
+			local cl = savers[i].Clip[fusion.TIME_UNDEFINED]
+			local name = cl
+			
+			if( string.sub(name, 1, 2) == "C:" or string.sub(name, 1, 2) == "c:" ) then
+				message = message .. "Saver \"" .. attr.TOOLS_Name .. "\" is saving to the local c: drive.\n"
+			else
+				if( string.sub(name, 1, 2) == "D:" or string.sub(name, 1, 2) == "d:" ) then
+						message = message .. "Saver \"" .. attr.TOOLS_Name .. "\" is saving to the local d: drive.\n"
+				else
+						if( string.sub(name, 1, 2) == "E:" or string.sub(name, 1, 2) == "e:" ) then
+								message = message .. "Saver \"" .. attr.TOOLS_Name .. "\" is saving to the local e: drive.\n"
+						end
+				end
+			end
+			
+			name = fusion:MapPath( name )
+							
+			-- check to make sure the saver contains a complete path
+			if iswindows() then
+				x, y = string.find( name, "%a:" )
+				if not (x == 1) then
+					tempName = string.gsub( name, "\\", "/" )
+					x, y = string.find( tempName, "//" )
+					if not (x == 1) then
+						message = message .. "Saver \"" .. attr.TOOLS_Name .. "\" does not contain a complete output path.\n"
+					end
+				end
+			end
+			
+			local nameTrim = deadlineTrimExtension(name)
+			local endDigitsCount = 0
+			for k = string.len(nameTrim), 1, -1 do
+				if (tonumber(string.sub( nameTrim, k, k )) == nil) then
+					break
+				end
+				endDigitsCount = endDigitsCount + 1
+			end
+			if endDigitsCount > 0 and endDigitsCount < 4 then
+				if not pathIsMovieFormat(name) then
+					message = message .. "Saver \"" .. attr.TOOLS_Name .. "\" output file ends in a small number\n"
+				end
+			end
+			if( name == "" ) then
+				message = message .. "Saver \"" .. attr.TOOLS_Name .. "\" has an empty output.\n"
+			end
+			
+			if cl==nil then
+				message = message .. "Saver \"" .. attr.TOOLS_Name .. "\" has no output.\n"
+			end
+			saverCount = saverCount + 1
+		end
+	end
+
+	if saverCount == 0 then
+		message = message .. "There are no savers which haven't been passed through.\n"
+	end
+	
+	local deadlinePath= GetDeadlineRepositoryFilePath("submission/Fusion/Main/CustomSanityChecks.eyeonscript")
+	if deadlinePath ~= nil and deadlinePath ~= "" then
+		local customSanityScript = (deadlinePath):gsub("%s+", "")
+		if fileexists( customSanityScript ) then
+			dofile( customSanityScript )
+			print( "Executed custom sanity check script, " .. customSanityScript )
+			message = message .. CustomDeadlineSanityChecks(comp)
+		end
+	end
+	
+	return message
+end
+
+-- end functions
+
+print("Submit to Deadline");
+
+-- Set the temp directory.
+tempDir = nil
+if iswindows() then
+	tempDir = os.getenv( "TEMP" )
+else
+	tempDir = "/tmp"
+end
+
+submitOutputFile = tempDir .. "/submitOutput.txt"
+submitExitCodeFile = tempDir .. "/submitexitcode.txt"
+
+ca = comp:GetAttrs()
+
+-- First check if the file has ever been saved
+-- If it hasn't, report an error and exit
+if ca.COMPS_FileName == "" then
+	MessageBox( "You must save the comp before you can submit it.", "Submit to Deadline" )
+	return
+end
+
+-- Reset limit group option in case previous custom sanity check modified it
+fusion:SetData("DEADLINE_LimitGroups", "")
+fusion:SetData("DEADLINE_OutputFilenames", nil)
+sanityMessage = SanityCheck(composition)
+if not (sanityMessage == "") then
+	if not OKCancelDlg( sanityMessage .. "\n\nPress OK to submit this job.", "Sanity Check" ) then
+		return
+	end
+end
+
+-- Now check if the flow was modified. If it is, ask to save it.
+if ca.COMPB_Modified then
+	if  OKCancelDlg( "The comp has been modified, save it for submission?", "Submit to Deadline" ) then
+		comp:Save(ca.COMPS_FileName)
+	else
+		return
+	end
+end
+
+-- Get values for the submission dialog
+framerange = tostring(ca.COMPN_RenderStartTime) .. "-" .. tostring(ca.COMPN_RenderEndTime)
+
+-- If IUP isn't supported, then just call the Monitor submitter.
+if( iup == nil ) then
+	local repositoryPath = GetDeadlineRepositoryFilePath("scripts/Submission/FusionSubmission.py")
+	local scriptPath = rtrim( repositoryPath )
+	
+	local fusionVersion = fusion:GetAttrs().FUSIONS_Version
+	fusionVersion = fusionVersion:match("(%d+%.%d+)")
+	
+	local scriptCommand = "-ExecuteScript \"" .. scriptPath .. "\" SUBMITTED_FROM_FUSION \"" .. ca.COMPS_FileName .. "\" \"" .. framerange .. "\" \"" .. fusionVersion .. "\""
+	RunDeadlineCommand( scriptCommand )
+	
+	return
+end
+
+-- Added For project Blunt with special ReTime data
+savedCompRange = comp:GetData('DEADLINE_FrameRange')
+postJobScript = comp:GetData('DEADLINE_PostJobScript')
+---
+
+if savedCompRange ~= nil then
+	framerange = savedCompRange
+	fusion:SetData("DEADLINE_DefaultFirstAndLast", 0)
+end
+
+maximumPriority = GetMaximumPriorityFromDeadline()
+if maximumPriority == nil then
+	return
+end
+
+pools = GetListFromDeadline("-pools")
+if pools == nil then
+	return
+end
+
+secondaryPools = {}
+secondaryPools[1] = ""
+for i = 1, table.getn(pools) do
+	secondaryPools[i+1] = pools[i]
+end
+
+groups = GetListFromDeadline("-groups")
+if groups == nil then
+	return
+end
+
+--local startingComment = ""
+local startingComment = "Fusion " .. fusion:GetAttrs().FUSIONS_Version .. " Submission"
+
+-- Get the savers
+local savers = GetSavers(composition)
+
+-- check to see if we are submitting a .mov and set chunksize up if so
+local isMovieFormat = false
+local i = 0
+for i = 1, table.getn(savers) do
+	if not savers[i]:GetAttrs().TOOLB_PassThrough then
+		outPath = savers[i].Clip[1]
+		if( pathIsMovieFormat(outPath) ) then
+			isMovieFormat = true
+		end
+	end
+end
+if( isMovieFormat ) then
+	--startingComment = "Movie format saver";
+	startingComment = startingComment .. " - Movie format saver";
+end
+
+
+-- Get sticky defaults
+defaultPool = fusion:GetData("DEADLINE_DefaultPool")
+defaultSecondaryPool = fusion:GetData("DEADLINE_DefaultSecondaryPool")
+defaultPriority = fusion:GetData("DEADLINE_DefaultPriority")
+defaultGroup = fusion:GetData("DEADLINE_DefaultGroup")
+defaultDepartment = fusion:GetData("DEADLINE_DefaultDepartment")
+defaultChunkSize = fusion:GetData("DEADLINE_DefaultChunkSize")
+defaultMachineLimit = fusion:GetData("DEADLINE_DefaultMachineLimit")
+defaultSlaveTimeout = fusion:GetData("DEADLINE_DefaultSlaveTimeout")
+defaultFirstAndLast = fusion:GetData("DEADLINE_DefaultFirstAndLast")
+defaultCommandLineMode = fusion:GetData("DEADLINE_DefaultCommandLineMode")
+defaultLimitGroups = fusion:GetData("DEADLINE_LimitGroups2")
+defaultCheckOutput = fusion:GetData("DEADLINE_CheckOutput")
+defaultAutoTimeout = fusion:GetData("DEADLINE_AutoTimeout")
+defaultSubmitComp = fusion:GetData("DEADLINE_SubmitComp")
+
+--if poolOnly == nil then poolOnly = 0 end
+if defaultPool == nil then defaultPool = "none" end
+if defaultSecondaryPool == nil then defaultSecondaryPool = "" end
+if defaultPriority == nil then defaultPriority = 50 end
+if defaultGroup == nil then defaultGroup = "none" end
+if defaultDepartment == nil then defaultDepartment = "" end
+if defaultProxy == nil then defaultProxy = 1 end
+if defaultHighQuality == nil then defaultHighQuality = 1 end
+if defaultChunkSize == nil then defaultChunkSize = 5 end
+if defaultMachineLimit == nil then defaultMachineLimit = 0 end
+if defaultSlaveTimeout == nil then defaultSlaveTimeout = 0 end
+if defaultFirstAndLast == nil then defaultFirstAndLast = 0 end
+if defaultCommandLineMode == nil then defaultCommandLineMode = 0 end
+if defaultLimitGroups == nil then defaultLimitGroups = "" end
+if defaultCheckOutput == 0 then defaultCheckOutput = "OFF" else defaultCheckOutput = "ON" end
+if defaultAutoTimeout == nil then defaultAutoTimeout = 0 end
+if defaultSubmitComp == nil then defaultSubmitComp = 0 end
+
+-- Find the pool number corresponding to the chosen default pool
+defaultPoolNumber = 0
+for i = 1, table.getn(pools) do
+	if defaultPool == pools[i] then
+		defaultPoolNumber = i-1 -- dropdowns are 0-based, arrays are 1-based
+	end
+end
+
+defaultSecondaryPoolNumber = 0
+for i = 1, table.getn(secondaryPools) do
+	if defaultSecondaryPool == secondaryPools[i] then
+		defaultSecondaryPoolNumber = i-1 -- dropdowns are 0-based, arrays are 1-based
+	end
+end
+
+defaultGroupNumber = 0
+for i = 1, table.getn(groups) do
+	if defaultGroup == groups[i] then
+		defaultGroupNumber = i-1 -- dropdowns are 0-based, arrays are 1-based
+	end
+end
+
+defaultOnCompleteNumber = 0
+onCompletes = { "Nothing", "Archive", "Delete"}
+
+-- Get default job name
+defaultJobName = ca.COMPS_Name
+
+-- Get default build
+builds = { "None", "32bit", "64bit"}
+defaultBuild = 0
+x, y = string.find( fusion:GetAttrs().FUSIONS_MachineType, "32" )
+if x ~= nil then
+	defaultBuild = 1
+else
+	x, y = string.find( fusion:GetAttrs().FUSIONS_MachineType, "64" )
+	if x ~= nil then
+		defaultBuild = 2
+	end
+end
+
+
+-- Prepare the submission dialog
+result = "CANCEL"
+LABELSIZE = "80"
+BOXSIZE = "180"
+BROWSEBUTTONSIZE = "60x13"
+INTEGRATIONKVPS = {}
+PRIORITYTIP = "Priority must be a number between 0 and " .. maximumPriority .. " inclusive."
+TIMEOUTTIP = "Task Timeout must be a number between 0 and 99999 inclusive."
+CONCURRENTTIP = "Concurrent Tasks must be a number between 1 and 16 inclusive."
+MACHINELIMITTIP = "Machine Limit must be a number between 0 and 99999 inclusive."
+CHUNKSIZETIP = "Frames Per Task must be a number between 1 and 99999 inclusive."
+PROXYTIP = "Proxy must be a number between 1 and 8 inclusive."
+
+jobNameText = iup.text { value = defaultJobName, margin = "15", expand = "HORIZONTAL" }
+commentText = iup.text { value = startingComment, margin = "15", expand = "HORIZONTAL" }
+departmentText = iup.text { value = defaultDepartment, margin = "15", expand = "HORIZONTAL" }
+
+poolCombo = iup.list { value = "", dropdown = "YES", margin = "15", size = BOXSIZE }
+for i, v in pairs(pools) do
+	poolCombo[tostring(i)] = v
+end
+poolCombo.value = tostring(defaultPoolNumber+1)
+
+secondaryPoolCombo = iup.list { value = "", dropdown = "YES", margin = "15", size = BOXSIZE }
+for i, v in pairs(secondaryPools) do
+	secondaryPoolCombo[tostring(i)] = v
+end
+secondaryPoolCombo.value = tostring(defaultSecondaryPoolNumber+1)
+
+groupCombo = iup.list { value = "", dropdown = "YES", margin = "15", size = BOXSIZE }
+for i, v in pairs(groups) do
+	groupCombo[tostring(i)] = v
+end
+groupCombo.value = tostring(defaultGroupNumber+1)
+
+defaultPriority = tonumber(defaultPriority)
+if( defaultPriority > maximumPriority ) then
+	defaultPriority = math.floor(maximumPriority / 2)
+end
+
+priorityText = iup.text { value = defaultPriority, margin = "15", size = BOXSIZE, tip = PRIORITYTIP }
+timeoutText = iup.text { value = defaultSlaveTimeout, margin = "15", size = BOXSIZE, tip = TIMEOUTTIP }
+autoTimeoutToggle = iup.toggle { title = "Enable Auto Task Timeout", margin = "15", expand = "HORIZONTAL" }
+if defaultAutoTimeout == 1 then
+	autoTimeoutToggle.value = "ON"
+end
+
+concurrentLabel = iup.label{ title = "Concurrent Tasks", size = LABELSIZE }
+concurrentText = iup.text { value = "1", margin = "15", size = BOXSIZE, tip = CONCURRENTTIP }
+limitConcurrentToggle = iup.toggle { value = "YES", title = "Limit Tasks To Slave's Task List", margin = "15", expand = "HORIZONTAL" }
+machineLimitLabel = iup.label{ title = "Machine Limit", size = LABELSIZE }
+machineLimitText = iup.text { value = defaultMachineLimit, margin = "15", size = BOXSIZE, tip = MACHINELIMITTIP }
+isBlacklistToggle = iup.toggle { title = "Machine List Is A Blacklist", margin = "15", expand = "HORIZONTAL" }
+machineListText = iup.text { value = "", margin = "15", expand = "HORIZONTAL" }
+machineListButton = iup.button { title = "Browse", FLAT="NO", margin = "47", size = BROWSEBUTTONSIZE }
+limitGroupsText = iup.text { value = defaultLimitGroups, margin = "15", expand = "HORIZONTAL" }
+limitGroupsButton = iup.button { title = "Browse", FLAT="NO", margin = "47", size = BROWSEBUTTONSIZE }
+dependenciesText = iup.text { value = "", margin = "15", expand = "HORIZONTAL" }
+dependenciesButton = iup.button { title = "Browse", FLAT="NO", margin = "47", size = BROWSEBUTTONSIZE }
+
+onCompleteCombo = iup.list { value = "", dropdown = "YES", margin = "15", size = BOXSIZE }
+for i, v in pairs(onCompletes) do
+	onCompleteCombo[tostring(i)] = v
+end
+onCompleteCombo.value = tostring(defaultOnCompleteNumber+1)
+
+suspendedToggle = iup.toggle { title = "Submit Job As Suspended", margin = "15", expand = "HORIZONTAL" }
+framesText = iup.text { value = framerange, margin = "15", size = BOXSIZE }
+firstAndLastToggle = iup.toggle { title = "Render First And Last Frames First", margin = "15", expand = "HORIZONTAL" }
+if defaultFirstAndLast == 1 then
+	firstAndLastToggle.value = "ON"
+end
+
+chunkSizeLabel = iup.label{ title = "Frames Per Task", size = LABELSIZE }
+chunkSizeText = iup.text { value = defaultChunkSize, margin = "15", size = BOXSIZE, tip = CHUNKSIZETIP }
+submitCompToggle = iup.toggle { title = "Submit Comp File With Job", margin = "15", expand = "HORIZONTAL" }
+if defaultSubmitComp == 1 then
+	submitCompToggle.value = "ON"
+end
+
+buildCombo = iup.list { value = "", dropdown = "YES", margin = "15", size = BOXSIZE }
+for i, v in pairs(builds) do
+	buildCombo[tostring(i)] = v
+end
+buildCombo.value = tostring(defaultBuild+1)
+
+saverOutputToggle = iup.toggle { value = defaultCheckOutput, title = "Check Saver Output", margin = "15", expand = "HORIZONTAL" }
+proxyLabel = iup.label{ title = "Proxy", size = LABELSIZE }
+proxyText = iup.text { value = defaultProxy, margin = "15", size = BOXSIZE, tip = PROXYTIP }
+highQualityToggle = iup.toggle { title = "High Quality", margin = "15", expand = "HORIZONTAL" }
+if defaultHighQuality == 1 then
+	highQualityToggle.value = "ON"
+end
+
+commandLineToggle = iup.toggle { title = "Command Line Mode (disables some options)", margin = "15", expand = "HORIZONTAL" }
+if defaultCommandLineMode == 1 then
+	commandLineToggle.value = "ON"
+end
+
+integrationButton = iup.button { title = "Pipeline Tools", size = 80, FLAT="NO", margin = "47" }
+submitButton = iup.button { title = "Submit", size = 80, FLAT="NO", margin = "47" }
+closeButton = iup.button { title = "Cancel", size = 80, FLAT="NO", margin ="47" }
+
+if isMovieFormat then
+	machineLimitLabel.active = "NO"
+	machineLimitText.active = "NO"
+	chunkSizeLabel.active = "NO"
+	chunkSizeText.active = "NO"
+	firstAndLastToggle.active = "NO"
+end
+
+if defaultCommandLineMode == 1 then
+	proxyLabel.active = "NO"
+	proxyText.active = "NO"
+	highQualityToggle.active = "NO"
+	saverOutputToggle.active = "NO"
+else
+	concurrentLabel.active = "NO"
+	concurrentText.active = "NO"
+	limitConcurrentToggle.active = "NO"
+end
+
+jobOptionsTab = iup.vbox
+{
+	iup.label { title = "'", separator = "HORIZONTAL", visible = "NO" },
+	
+	iup.hbox { iup.label{ title = "Job Name", size = LABELSIZE }, jobNameText },
+	iup.hbox { iup.label{ title = "Comment", size = LABELSIZE }, commentText },
+	iup.hbox { iup.label{ title = "Description", size = LABELSIZE }, departmentText },
+	
+	iup.label { title = "'", separator = "HORIZONTAL" },
+	
+	iup.hbox { iup.label{ title = "Pool", size = LABELSIZE }, poolCombo },
+	iup.hbox { iup.label{ title = "Secondary Pool", size = LABELSIZE }, secondaryPoolCombo },
+	iup.hbox { iup.label{ title = "Group", size = LABELSIZE }, groupCombo },
+	iup.hbox { iup.label{ title = "Priority", size = LABELSIZE }, priorityText },
+	iup.hbox { iup.label{ title = "Task Timeout", size = LABELSIZE }, timeoutText, autoTimeoutToggle },
+	iup.hbox { concurrentLabel, concurrentText, limitConcurrentToggle },
+	iup.hbox { machineLimitLabel, machineLimitText, isBlacklistToggle },
+	iup.hbox { iup.label{ title = "Machine List", size = LABELSIZE }, machineListText, machineListButton },
+	iup.hbox { iup.label{ title = "Limit Groups", size = LABELSIZE }, limitGroupsText, limitGroupsButton },
+	iup.hbox { iup.label{ title = "Dependencies", size = LABELSIZE }, dependenciesText, dependenciesButton },
+	iup.hbox { iup.label{ title = "On Job Complete", size = LABELSIZE }, onCompleteCombo, suspendedToggle },
+	
+	iup.label { title = "'", separator = "HORIZONTAL" },
+	
+	iup.hbox { iup.label{ title = "Frame List", size = LABELSIZE }, framesText, firstAndLastToggle },
+	iup.hbox { chunkSizeLabel, chunkSizeText, submitCompToggle },
+	iup.hbox { iup.label{ title = "Build", size = LABELSIZE }, buildCombo, saverOutputToggle },
+	iup.hbox { proxyLabel, proxyText, highQualityToggle },
+	iup.hbox { iup.label{ title = "", size = LABELSIZE }, commandLineToggle },
+	
+	tabtitle="Job Options"
+}
+
+------------------------------------------------------------------
+-- theSize = "500x365"
+-- if tonumber(fusion:GetAttrs().FUSIONS_Version) < 7 then
+	-- theSize = "500x400"
+-- end
+dlg = iup.dialog
+{
+	title="Submit To Deadline", menu = mnu,
+	foreground = "YES",
+	size = nil, gap = "8", margin = "4",
+	topmost = "NO", resize = "NO", maxbox = "NO", minbox = "NO",
+	defaultenter = submitButton, 
+	defaultesc = closeButton,
+	
+	iup.vbox
+	{
+		iup.tabs{ jobOptionsTab },
+		iup.hbox { margin = "0x4", iup.label{ title = "", expand = "HORIZONTAL" }, integrationButton, submitButton, closeButton, ALIGNMENT="ACENTER" }
+	},
+}
+
+function selectValuesFromDeadline( dlCommand, uiElement )
+-- Calls DeadlineCommand using the specified command and the previous value from the specified uiElement 
+-- it then update the uiElement with the returned value if the action was not cancelled
+-- dlCommand: The command that is to be run
+-- uiElement: The text box we want to pull the previous value from and to set the new value to.
+	local retrievedValue = RunDeadlineCommand( dlCommand .. " " .. escapeArgument( uiElement.value )  )
+	if not( retrievedValue == "Action was cancelled by user" ) then
+		uiElement.value = retrievedValue
+	end
+
+end
+
+function machineListButton:action()
+	selectValuesFromDeadline( "-selectmachinelist", machineListText )
+end
+
+function limitGroupsButton:action()
+	selectValuesFromDeadline( "-selectlimitgroups", limitGroupsText )
+end
+
+function dependenciesButton:action()
+	selectValuesFromDeadline( "-selectdependencies", dependenciesText )
+end
+
+function commandLineToggle:action()
+	if commandLineToggle.value == "OFF" then
+		concurrentLabel.active = "NO"
+		concurrentText.active = "NO"
+		limitConcurrentToggle.active = "NO"
+		proxyLabel.active = "YES"
+		proxyText.active = "YES"
+		highQualityToggle.active = "YES"
+		saverOutputToggle.active = "YES"
+	else
+		concurrentLabel.active = "YES"
+		concurrentText.active = "YES"
+		limitConcurrentToggle.active = "YES"
+		proxyLabel.active = "NO"
+		proxyText.active = "NO"
+		highQualityToggle.active = "NO"
+		saverOutputToggle.active = "NO"
+	end
+end
+
+function integrationButton:action()
+	local scriptPath = (GetDeadlineRepositoryFilePath("submission/Integration/Main/IntegrationUIStandAlone.py")):gsub("%s+", "")
+	local results = RunDeadlineCommand( "-ExecuteScript " .. scriptPath .. " Fusion Draft Shotgun FTrack 0" )
+	local outputLines = split( results, "\n" )
+	local keyValuePairs = {}
+
+	for temp,line in pairs(outputLines) do
+		line = line:gsub( "^%s*(.-)%s*$", "%1" )
+
+		if not(string.find( line, '(', 1, true )) then
+			local tokens = split( line, "=" )
+
+			if table.getn( tokens ) > 1 then
+				local key = tokens[1]
+				local value = tokens[2]
+
+				keyValuePairs[key] = value
+			end
+		end
+	end
+
+	-- table.getn() does not work on tables that use non-integers as keys, so checking if first value is not nil
+	if not (next(keyValuePairs) == nil) then
+		INTEGRATIONKVPS = keyValuePairs
+	end
+end
+
+function submitButton:action()
+	errors = ""
+	
+	priority = tonumber(priorityText.value)
+	if priority == nil or priority < 0 or priority > 100 then
+		errors = errors .. PRIORITYTIP .. "\n\n"
+	end
+
+	timeout = tonumber(timeoutText.value)
+	if timeout == nil or timeout < 0 or timeout > 99999 then
+		errors = errors .. TIMEOUTTIP .. "\n\n"
+	end
+	
+	concurrent = tonumber(concurrentText.value)
+	if concurrent == nil or concurrent < 1 or concurrent > 16 then
+		errors = errors .. CONCURRENTTIP .. "\n\n"
+	end
+	
+	machineLimit = tonumber(machineLimitText.value)
+	if machineLimit == nil or machineLimit < 0 or machineLimit > 99999 then
+		errors = errors .. MACHINELIMITTIP .. "\n\n"
+	end
+	
+	chunkSize = tonumber(chunkSizeText.value)
+	if chunkSize == nil or chunkSize < 1 or chunkSize > 99999 then
+		errors = errors .. CHUNKSIZETIP .. "\n\n"
+	end
+	
+	proxy = tonumber(proxyText.value)
+	if proxy == nil or proxy < 1 or proxy > 8 then
+		errors = errors .. PROXYTIP .. "\n\n"
+	end
+
+	if string.len( errors ) > 0 then
+		MessageBox( errors .. "Please fix these issues before submitting the job.", "Submit to Deadline - Errors" )
+	else
+		result = "SUBMIT"
+		return iup.CLOSE
+	end
+end
+
+iup.SetAttribute(dlg, "NATIVEPARENT", touserdata(fusion:GetMainWindow()))
+
+function closeButton:action()
+	result = "CANCEL"
+	return iup.CLOSE
+end
+
+
+dlg:show()
+
+status,err = pcall(iup.MainLoop)
+if not status then
+	print(err)
+end
+
+if result == "CANCEL" then
+	dlg:destroy()
+	return
+end
+
+
+jobName = jobNameText.value
+comment = commentText.value
+department = departmentText.value
+priority = priorityText.value
+machineLimit = machineLimitText.value
+slaveTimeout = timeoutText.value
+limitGroups = limitGroupsText.value
+renderFrames = framesText.value
+chunkSize = chunkSizeText.value
+proxy = proxyText.value
+concurrentTasks = concurrentText.value
+machineList = machineListText.value
+dependencies = dependenciesText.value
+
+pool = pools[tonumber(poolCombo.value)]
+secondaryPool = secondaryPools[tonumber(secondaryPoolCombo.value)]
+group = groups[tonumber(groupCombo.value)]
+onComplete = onCompletes[tonumber(onCompleteCombo.value)]
+build = builds[tonumber(buildCombo.value)]
+
+smartTimeout = 0
+if autoTimeoutToggle.value == "ON" then
+	smartTimeout = 1
+end
+
+submitSuspended = 0
+if suspendedToggle.value == "ON" then
+	submitSuspended = 1
+end
+
+firstAndLast = 0
+if firstAndLastToggle.value == "ON" then
+	firstAndLast = 1
+end
+
+submitFlow = 0
+if submitCompToggle.value == "ON" then
+	submitFlow = 1
+end
+
+checkOutput = 0
+if saverOutputToggle.value == "ON" then
+	checkOutput = 1
+end
+
+highQuality = 0
+if highQualityToggle.value == "ON" then
+	highQuality = 1
+end
+
+commandLineMode = 0
+if commandLineToggle.value == "ON" then
+	commandLineMode = 1
+end
+
+limitConcurrent = 0
+if limitConcurrentToggle.value == "ON" then
+	limitConcurrent = 1
+end
+
+isBlacklist = 0
+if isBlacklistToggle.value == "ON" then
+	isBlacklist = 1
+end
+
+-- Save the sticky defaults
+fusion:SetData("DEADLINE_DefaultPool", pool)
+fusion:SetData("DEADLINE_DefaultSecondaryPool", secondaryPool)
+fusion:SetData("DEADLINE_DefaultPriority", priority)
+fusion:SetData("DEADLINE_DefaultGroup", group)
+fusion:SetData("DEADLINE_DefaultDepartment", department)
+if not isMovieFormat then
+	fusion:SetData("DEADLINE_DefaultChunkSize", chunkSize)
+	fusion:SetData("DEADLINE_DefaultMachineLimit", machineLimit)
+	fusion:SetData("DEADLINE_DefaultFirstAndLast", firstAndLast)
+end
+fusion:SetData("DEADLINE_DefaultSlaveTimeout", slaveTimeout)
+fusion:SetData("DEADLINE_DefaultCommandLineMode", commandLineMode)
+fusion:SetData("DEADLINE_LimitGroups2", limitGroups)
+fusion:SetData("DEADLINE_CheckOutput", checkOutput)
+fusion:SetData("DEADLINE_SubmitComp", submitFlow)
+
+if not isMovieFormat and firstAndLast == 1 then
+	startFrame = ca.COMPN_RenderStartTime
+	endFrame = ca.COMPN_RenderEndTime
+	renderFrames = tostring(startFrame) .. "," .. tostring(endFrame) .. "," .. tostring(startFrame) .. "-" .. tostring(endFrame)
+end
+
+-- Generate the job info files
+submitInfoFile = tempDir .. "/fusion_submit_info.job"
+fh = io.open( submitInfoFile, 'w' )
+if fh == nil then
+	MessageBox( "Could not generate job file", "Submit to Deadline" )
+	dlg:destroy()
+	return
+end
+
+if commandLineMode == 0 then
+	fh:write( "Plugin=Fusion\n" )
+else
+	fh:write( "Plugin=FusionCmd\n" )
+end
+
+fh:write( "Name=" .. jobName .. "\n" )
+fh:write( "Comment=" .. comment .. "\n" )
+fh:write( "Frames=" .. renderFrames .. "\n" )
+
+if isMovieFormat then
+	fh:write( "MachineLimit=1\n" );
+	fh:write( "ChunkSize=1000000\n" )
+else
+	fh:write( "MachineLimit=" .. machineLimit .. "\n" );
+	fh:write( "ChunkSize=" .. chunkSize .. "\n" )
+end
+
+fh:write( "Priority=" .. tostring(priority) .. "\n" )
+fh:write( "Pool=" .. pool .. "\n" )
+fh:write( "SecondaryPool=" .. secondaryPool .. "\n" )
+fh:write( "Group=" .. group .. "\n" )
+fh:write( "Department=" .. department .. "\n" )
+fh:write( "TaskTimeoutMinutes=" .. slaveTimeout .. "\n" )
+fh:write( "EnableAutoTimeout=" .. smartTimeout .. "\n" )
+
+internalLimitGroups = fusion:GetData( "DEADLINE_LimitGroups" )
+if internalLimitGroups ~= nil and internalLimitGroups ~= "" then
+	fh:write( "LimitGroups=" .. limitGroups .. "," .. internalLimitGroups .. "\n" )
+else
+	fh:write( "LimitGroups=" .. limitGroups .. "\n" )
+end
+
+-- Write the saver output directories for all the savers which are not passed through
+count = 0
+outputFilenames = fusion:GetData( "DEADLINE_OutputFilenames" )
+if outputFilenames ~= nil then
+	for i = 1, table.getn(outputFilenames) do
+		fh:write( "OutputFilename" .. count .. "=" .. outputFilenames[i] .. "\n" )
+		count = count + 1
+	end
+else
+	for i = 1, table.getn(savers) do
+		if not savers[i]:GetAttrs().TOOLB_PassThrough then
+			-- TODO sanity check: outputDir == nil => saver without an output specified
+			outPath = savers[i].Clip[1]
+			-- For non-movie formats, do the padding with ? characters
+			if not pathIsMovieFormat(outPath) then
+				outPath = replaceFrameNo( outPath, nil )
+			end
+			fh:write( "OutputFilename" .. count .. "=" .. fusion:MapPath( outPath ) .. "\n" )
+			count = count + 1
+		end
+	end
+end
+	
+fh:write( "OnJobComplete=" .. onComplete .. "\n" )
+if submitSuspended == 1 then
+	fh:write( "InitialStatus=Suspended\n" )
+end
+
+if commandLineMode == 1 then
+	fh:write( "ConcurrentTasks=" .. concurrentTasks .. "\n" )
+	fh:write( "LimitConcurrentTasksToNumberOfCpus=" .. limitConcurrent .. "\n" )
+end
+
+if isBlacklist == 1 then
+	fh:write( "Blacklist=" .. machineList .. "\n" )
+else
+	fh:write( "Whitelist=" .. machineList .. "\n" )
+end
+
+fh:write( "JobDependencies=" .. dependencies .. "\n" )
+
+if CheckIntegrationKVPs( "integrationSettingsPath" ) then
+	integrationFile = INTEGRATIONKVPS["integrationSettingsPath"]
+	integrationfh = io.open(integrationFile, 'r')
+	local line = integrationfh:read("*l")
+	
+	while not (line == nil) do
+		fh:write( line .. "\n" )
+		line = integrationfh:read("*l")
+	end
+
+	if CheckIntegrationKVPs( "batchMode" ) then
+		if INTEGRATIONKVPS["batchMode"] == "True" then
+			batchgroup = 1
+		end
+	end
+end
+
+if batchgroup == 1 then
+	fh:write( "BatchName=" .. jobName .. "\n" )
+end
+
+io.close(fh)
+
+pluginInfoFile = tempDir .. "/fusion_plugin_info.job"
+fh = io.open( pluginInfoFile , 'w' )
+if fh == nil then
+	MessageBox( "Could not generate plugin info file", "Submit to Deadline" )
+	dlg:destroy()
+	return
+end
+charVer = fusion:GetAttrs().FUSIONS_Version
+charVer = charVer:match("(%d+%.%d+)")
+fh:write( "Version=" .. charVer .. "\n" )
+fh:write( "Build=" .. build .. "\n" )
+if submitFlow == 0 then
+	fh:write( "FlowFile=" .. ca.COMPS_FileName .. "\n" )
+end
+if commandLineMode == 0 then
+	fh:write( "HighQuality=" .. highQuality .. "\n" )
+	fh:write( "Proxy=" .. proxy .. "\n" )
+	fh:write( "CheckOutput=" .. checkOutput .. "\n" )
+end
+io.close(fh)
+
+-- Submit the job and handle any errors
+
+if submitFlow == 1 then
+	options = "\"" .. submitInfoFile .. "\" \"" .. pluginInfoFile .. "\" \"" .. ca.COMPS_FileName .. "\""
+else
+	options =  "\"" .. submitInfoFile .. "\" \"" .. pluginInfoFile .. "\""
+end
+options = options:gsub('"', '')
+
+jobResult = RunDeadlineCommand(options)
+
+-- check if JobID exists - then the job was submitted successfully
+jobId = "";
+lines = string.gmatch(jobResult, "[^\r\n]+") 
+for line in lines do
+	if string.sub( line, 1, string.len("JobID=" ) ) == "JobID=" then
+		jobId = line:gsub("JobID=","")
+		jobId = jobId:match( "^%s*(.-)%s*$" )
+		break
+	end
+end
+
+if jobId ~= nil or jobId ~= "" then
+	MessageBox( jobResult, "Submission Successful" )
+	
+	local customPostSubmitScript = GetDeadlineRepositoryFilePath("submission/Fusion/Main/CustomPostSubmit.eyeonscript")
+	if fileexists( customPostSubmitScript ) then
+		dofile( customPostSubmitScript );
+		print( "Executed custom post submit script, " .. customPostSubmitScript )
+		RunCustomPostSubmit( comp, renderFrames, jobResult );
+	end
+	
+	dlg:destroy()
+	return
+else
+	MessageBox( jobResult, "Submission Failed" )
+	dlg:destroy()
+	return
+end
+

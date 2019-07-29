@@ -1,0 +1,8 @@
+Undefined,          Identity
+Linear,             Identity
+sRGB,               Draft sRGB
+rec709,             Draft rec709
+Cineon,             Draft Cineon
+Gamma 1.8,          Draft Gamma 1.8
+Gamma 2.2,          Draft Gamma 2.2
+AlexaV3LogC,        Draft AlexaV3LogC

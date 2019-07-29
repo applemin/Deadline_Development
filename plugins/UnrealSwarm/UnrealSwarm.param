@@ -1,0 +1,35 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Unreal Swarm Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[SwarmExecutable4]
+Type=multilinemultifilename
+Category=Swarm Executables
+CategoryOrder=0
+Index=0
+Label=Unreal Engine 4 Swarm Executable
+Default=C:\Program Files\Epic Games\4.9\Engine\Binaries\DotNET\SwarmAgent.exe
+Description=The path to Unreal Engine 4.x Swarm Agent used for rendering. Enter alternative paths on separate lines.
+
+[SleepTime]
+Label=Sleep Time (Seconds)
+Category=Options
+CategoryOrder=1
+Type=integer
+Index=0
+Default=5
+Description=The amount of time (in seconds) that the Unreal Swarm plugin will sleep before checking to see if it can close.

@@ -1,0 +1,35 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=Mistika VR Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[MistikaExecutable]
+Type=multilinemultifilename
+Label=Mistika VR Executable
+Category=Mistika VR Executables
+CategoryOrder=0
+CategoryIndex=0
+Default=C:\Program Files\SGO\VR\bin\vr.exe;/Applications/MistikaVR.app/Contents/MacOS/vr
+Description=The path to the Mistika VR executable. Enter alternative paths on separate lines.
+
+[EnablePathMapping]
+Type=boolean
+Category=Path Mapping (For Mixed Farms)
+CategoryOrder=1
+CategoryIndex=0
+Label=Enable Path Mapping
+Default=true
+Description=If enabled, a temporary Mistika VR file will be created locally on the Slave for rendering because Deadline does the path mapping directly in the Mistika VR file. This feature can be turned off if there are no Path Mapping entries defined in the Repository Options.

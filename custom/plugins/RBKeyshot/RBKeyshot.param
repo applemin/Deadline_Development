@@ -1,0 +1,45 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=RBKeyshot Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[RenderExecutable7]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=1
+Label=KeyShot 7 Render Executable
+Default=C:\Program Files\KeyShot7.3.4\bin\keyshot.exe
+Description=The path to the KeyShot 7 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable7.1.5]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=2
+Label=KeyShot 7.1.5 Render Executable
+Default=C:\Program Files\KeyShot7\bin\keyshot.exe
+Description=The path to the KeyShot 7.1.5 executable file used for rendering. Enter alternative paths on separate lines.
+
+
+[RenderExecutable8]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=3
+Label=KeyShot 7.3.4 Render Executable
+Default=C:\Program Files\KeyShot8\bin\keyShot.exe
+Description=The path to the KeyShot 8 executable file used for rendering. Enter alternative paths on separate lines.

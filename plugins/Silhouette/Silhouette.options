@@ -1,0 +1,144 @@
+[Version]
+Type=enum
+Values=5
+Label=Silhouette Version
+Category=Global Settings
+CategoryOrder=0
+Index=0
+Description=The version of Silhouette to use.
+Required=false
+DisableIfBlank=true
+
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Global Settings
+CategoryOrder=0
+Index=1
+Description=The scene filename as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[Session]
+Type=string
+Label=Session
+Category=Render Overrides
+CategoryOrder=1
+Index=0
+Description=Make the specified session active in the project.
+Required=false
+DisableIfBlank=false
+
+[Node]
+Type=string
+Label=Node
+Category=Render Overrides
+CategoryOrder=1
+Index=1
+Description=The specified node in the active session to render.
+Required=false
+DisableIfBlank=false
+
+[OutputDirectory]
+Type=string
+Label=Output Directory
+Category=Render Overrides
+CategoryOrder=1
+Index=2
+Description=The output directory to use.
+Required=false
+DisableIfBlank=false
+
+[OutputFilename]
+Type=string
+Label=Output Filename
+Category=Render Overrides
+CategoryOrder=1
+Index=3
+Description=The output prefix to use.
+Required=false
+DisableIfBlank=false
+
+[OutputFormat]
+Type=enum
+Values=;Cineon;DPX;IFF;JPEG;OpenEXR;PNG;SGI;TIFF;Targa
+Label=Output Format
+Category=Render Overrides
+CategoryOrder=1
+Index=4
+Description=Override the output format to use instead of the format declared in the project file.
+Required=false
+DisableIfBlank=false
+
+[AdditionalOptions]
+Type=string
+Label=Additional Options
+Category=Render Overrides
+CategoryOrder=1
+Index=5
+Description=Any additional options to use while rendering.
+Required=false
+DisableIfBlank=false
+
+[Resolution]
+Type=enum
+Values=full;half;third;quarter
+Label=Resolution
+Category=Render Overrides
+CategoryOrder=1
+Index=6
+Description=Override the output resolution to full resolution, half resolution, third resolution or quarter resolution.
+Required=false
+DisableIfBlank=false
+
+[Fields]
+Type=enum
+Values=none;interlace;aa;bb;bc;cd;dd
+Label=Field Handling
+Category=Render Overrides
+CategoryOrder=1
+Index=7
+Description=Sets the field handling to the selected option. The 2 letter options assume 3:2 handling.
+Required=false
+DisableIfBlank=false
+
+[Dominance]
+Type=enum
+Values=even;odd
+Label=Dominance
+Category=Render Overrides
+CategoryOrder=1
+Index=8
+Description=Sets the field dominance only when field handling is enabled.
+Required=false
+DisableIfBlank=false
+
+[RunScript]
+Type=boolean
+Label=Run Python script
+Category=Script Options
+CategoryOrder=2
+Index=0
+Description=If enabled, the specified (possibly submitted with the job) Python script will be executed after the project is loaded.
+Required=false
+DisableIfBlank=true
+
+[DisableRender]
+Type=boolean
+Label=Disable Rendering
+Category=Script Options
+CategoryOrder=2
+Index=1
+Description=If this option is enabled, rendering will be disabled, which might be useful for certain Python script jobs.
+Required=false
+DisableIfBlank=true
+
+[ScriptFile]
+Type=filename
+Label=Script Filename
+Category=Script Options
+CategoryOrder=2
+Index=2
+Description=The Python script filename as it exists on the network.
+Required=false
+DisableIfBlank=false

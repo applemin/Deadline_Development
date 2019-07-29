@@ -1,0 +1,49 @@
+[Version]
+Type=label
+Label=Media Encoder Version
+Category=Media Encoder
+CategoryOrder=0
+Index=0
+Description=The version of Media Encoder to use to encode.
+Required=false
+DisableIfBlank=true
+
+[InputPath]
+Type=filename
+Label=Input Filename
+Category=File Settings
+CategoryOrder=10
+Index=0
+Description=The input filename as it exists on the network.
+Required=true
+Default=
+
+[OutputPath]
+Type=filename
+Label=Output Filename
+Category=File Settings
+CategoryOrder=10
+Index=10
+Description=The output filename as it exists on the network.
+Required=true
+Default=
+
+[PresetFile]
+Type=filename
+Label=Preset Filename
+Category=File Settings
+CategoryOrder=10
+Index=20
+Description=The preset filename as it exists on the network.
+Required=false
+Default=
+DisableIfBlank=false
+
+[OverwriteOutput]
+Type=boolean
+Label=Overwrites Output
+Category=File Settings
+CategoryOrder=10
+Index=30
+Description=Overwrites Output if it already exists if enabled.
+Required=false

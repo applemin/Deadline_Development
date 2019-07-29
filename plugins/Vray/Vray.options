@@ -1,0 +1,135 @@
+[InputFilename]
+Type=filename
+Label=Input Filename
+Category=Input Options
+CategoryOrder=0
+Index=0
+Description=The input filename to render.
+Required=True
+DisableIfBlank=false
+Default=
+
+[Width]
+Type=integer
+Minimum=0
+Label=Image Width
+Category=Output Resolution
+CategoryOrder=1
+Index=1
+Description=The output image width in pixels.
+Required=false
+DisableIfBlank=true
+
+[Height]
+Type=integer
+Minimum=0
+Label=Image Height
+Category=Output Resolution
+CategoryOrder=1
+Index=2
+Description=The output image height in pixels.
+Required=false
+DisableIfBlank=true
+
+[OutputFilename]
+Type=filenamesave
+Label=Output Filename
+Category=Output Options
+CategoryOrder=2
+Index=0
+Description=The output filename to render to.
+Required=True
+DisableIfBlank=false
+Default=
+
+[Threads]
+Type=integer
+Label=Render Threads
+Category=V-Ray Options
+CategoryOrder=3
+Description=The number of threads to use for rendering (specify 0 to use the optimal number of threads).
+Required=false
+DisableIfBlank=true
+
+[CommandLineOptions]
+Type=string
+Label=Additional Arguments
+Category=Command Line
+CategoryOrder=4
+Index=1
+Description=Additional command line arguments that are sent to V-Ray.
+Required=false
+DisableIfBlank=false
+DefaultValue=
+
+[VRayEngine]
+Type=enum
+Values=V-Ray;V-Ray RT; V-Ray RT(OpenCL); V-Ray RT(CUDA)
+Label=V-Ray Engine
+Category=V-Ray RT
+CategoryOrder=5
+Index=1
+Description=Select which V-Ray render engine to use.
+Required=false
+DisableIfBlank=false
+
+[RTTimeout]
+Type=float
+Label=Frame Timeout (minutes)
+Category=V-Ray RT
+CategoryOrder=5
+Index=2
+Description=Specify a timeout value for a frame in minutes when using the RT engine (0.0 is default - no timeout).
+Required=false
+DisableIfBlank=false
+
+[RTNoise]
+Type=float
+Label=Noise Threshold
+Category=V-Ray RT
+CategoryOrder=5
+Index=3
+Description=Specify a noise threshold when using the RT engine (default is 0.001).
+Required=false
+DisableIfBlank=false
+
+[RTSamples]
+Type=integer
+Label=Sample Level
+Category=V-Ray RT
+CategoryOrder=5
+Index=4
+Description=Specify maximum paths per pixel when using the RT engine (default is 0 - no limit).
+Required=false
+DisableIfBlank=false
+
+[DisplayVFB]
+Type=boolean
+Label=Display VFB
+Category=V-Ray Frame Buffer
+CategoryOrder=4
+Index=1
+Description=Display the V-Ray Frame Buffer window while rendering.
+Required=false
+DisableIfBlank=false
+
+[AutocloseVFB]
+Type=boolean
+Label=Autoclose VFB
+Category=V-Ray Frame Buffer
+CategoryOrder=4
+Index=2
+Description=Autoclose the V-Ray Frame Buffer once rendering has completed.
+Required=false
+DisableIfBlank=false
+
+[DisplaySRGB]
+Type=enum
+Values=On;Off
+Label=Display Colours in sRGB Space
+Category=V-Ray Frame Buffer
+CategoryOrder=4
+Index=3
+Description=Select whether to have the sRGB option of the V-Ray Frame Buffer turned on or off initially.
+Required=false
+DisableIfBlank=false

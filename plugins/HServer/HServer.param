@@ -1,0 +1,26 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=HServer Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=False
+Description=Not configurable
+
+[SleepTime]
+Label=Sleep Time (Seconds)
+Category=Options
+CategoryOrder=0
+Type=integer
+Index=0
+Default=5
+Description=The amount of time (in seconds) that the HServer plugin will sleep before checking to see if it can close.
