@@ -11,6 +11,7 @@ from System.IO import *
 from System.Text import *
 from Deadline.Plugins import *
 from Deadline.Scripting import *
+from FranticX.Processes import *
 
 ######################################################################
 ## This is the function that Deadline calls to get an instance of the
