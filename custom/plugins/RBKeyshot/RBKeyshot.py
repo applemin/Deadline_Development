@@ -56,13 +56,13 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
                 now_time = datetime.datetime.now()
                 delta_time = now_time - last_modified
 
-                if int(str(delta_time)) >= 3:
+                if int(delta_time.days) >= 3:
                     try:
                         shutil.rmtree(set_dir, ignore_errors=True)
                     except:
                         pass
                     if not os.path.exists(set_dir):
-                        self.LogInfo("[Deleted] Time Passed : %s >> Directory : %s " % (delta_time.days, set_dir))
+                        self.LogInfo("[Deleted] Time Passed : %s >> Directory : %s " % (delta_time, set_dir))
 
 
 
