@@ -56,7 +56,7 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
                 now_time = datetime.datetime.now()
                 delta_time = now_time - last_modified
 
-                if delta_time >= 3:
+                if int(delta_time) >= 3:
                     try:
                         shutil.rmtree(set_dir, ignore_errors=True)
                     except:
