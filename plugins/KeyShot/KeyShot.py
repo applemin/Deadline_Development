@@ -49,9 +49,11 @@ class KeyShotPlugin (DeadlinePlugin):
         self.StdoutHandling = True
         self.PopupHandling = True
 
+        self.AddPopupHandler("FPS", "Are you sure you want to continue?", "Yes")
 
-        self.AddPopupHandler( r"KeyShot 7", "Close program" )
-        self.AddPopupHandler("KeyShot 7", "OK")
+
+        #self.AddPopupHandler( r"KeyShot 7", "Close program" )
+        #self.AddPopupHandler("KeyShot 7", "OK")
         #self.AddExitCodeToIgnore(-1)
 
     def RenderExecutable( self ):
