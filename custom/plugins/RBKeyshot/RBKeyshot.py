@@ -48,13 +48,23 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
         self.LogInfo("Default Temp Folder Dir : " + self.TempFolder)
         self.LogInfo("Running TempCleanup System")
 
+
         for dir in os.walk(self.TempFolder):
             if dir[0] != self.TempFolder:
                 set_dir = dir[0]
                 last_modified = datetime.datetime.fromtimestamp(os.path.getmtime(set_dir))
                 now_time = datetime.datetime.now()
                 delta_time = now_time - last_modified
-                self.LogInfo("Time Passed : %s >> Directory : %s " % (delta_time.days, set_dir))
+
+                if delta_time >= 3:
+                    try:
+                        shutil.rmtree(set_dir, ignore_errors=True)
+                    except:
+                        pass
+                    if not os.path.exists(set_dir):
+                        self.LogInfo("[Deleted] Time Passed : %s >> Directory : %s " % (delta_time.days, set_dir))
+
+
 
     def Cleanup( self ):
 
@@ -84,7 +94,8 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
 
     def RenderArgument( self ):
 
-        self.TempCleanup()
+        if not self.TempFolder:
+            self.TempCleanup()
 
         AnimationStill = self.GetBooleanPluginInfoEntryWithDefault("animation_still", False)
         SingleFrame = self.GetBooleanPluginInfoEntryWithDefault("single_frame", False)
