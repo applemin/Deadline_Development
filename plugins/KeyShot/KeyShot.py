@@ -54,7 +54,6 @@ class KeyShotPlugin (DeadlinePlugin):
         self.HandleWindows10Popups=True
 
         self.AddPopupHandler("FPS", "Are you sure you want to continue?", "Yes")
-        self.AddPopupIgnorer("FPS")
 
 
         #self.AddPopupHandler( r"KeyShot 7", "Close program" )
