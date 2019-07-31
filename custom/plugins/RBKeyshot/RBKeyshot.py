@@ -40,7 +40,6 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
     def __init__( self ):
         self.InitializeProcessCallback += self.InitializeProcess
         self.RenderExecutableCallback += self.RenderExecutable
-        self.TempDirCleanup += self.TempCleanup
         self.RenderArgumentCallback += self.RenderArgument
 
     def TempCleanup(self):
@@ -81,6 +80,9 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
 
 
     def RenderArgument( self ):
+
+        self.TempCleanup()
+
         AnimationStill = self.GetBooleanPluginInfoEntryWithDefault("animation_still", False)
         SingleFrame = self.GetBooleanPluginInfoEntryWithDefault("single_frame", False)
         RenderRegion = self.GetPluginInfoEntryWithDefault("region", None)
