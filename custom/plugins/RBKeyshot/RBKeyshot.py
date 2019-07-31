@@ -35,7 +35,7 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
     outputFilename = None
     RandomNumber = str(time.time()).split('.')[0]
     continueProgress = True
-    TempFolder = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')
+    TempFolder = str(os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp'))
 
     def __init__( self ):
         self.InitializeProcessCallback += self.InitializeProcess
@@ -43,6 +43,7 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
         self.RenderArgumentCallback += self.RenderArgument
 
     def TempCleanup(self):
+        self.LogInfo("Default Temp Folder Dir : " + self.)
         self.LogInfo("Running TempCleanup System")
 
         for dir in os.path.walk(self.TempFolder):
