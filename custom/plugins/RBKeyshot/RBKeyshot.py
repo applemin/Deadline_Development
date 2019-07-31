@@ -36,23 +36,24 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
     RandomNumber = str(time.time()).split('.')[0]
     continueProgress = True
     TempFolder = str(os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp'))
+    print TempFolder
 
     def __init__( self ):
         self.InitializeProcessCallback += self.InitializeProcess
         self.RenderExecutableCallback += self.RenderExecutable
         self.RenderArgumentCallback += self.RenderArgument
 
-    def TempCleanup(self):
-        self.LogInfo("Default Temp Folder Dir : " + self.)
-        self.LogInfo("Running TempCleanup System")
-
-        for dir in os.path.walk(self.TempFolder):
-            if dir[0] != self.TempFolder:
-                set_dir = dir[0]
-                last_modified = datetime.datetime.fromtimestamp(os.path.getmtime(set_dir))
-                now_time = datetime.datetime.now()
-                delta_time = now_time - last_modified
-                self.LogInfo("Time Passed : %s >> Directory : %s " % (delta_time.days, set_dir))
+    # def TempCleanup(self):
+    #     self.LogInfo("Default Temp Folder Dir : " + self.)
+    #     self.LogInfo("Running TempCleanup System")
+    #
+    #     for dir in os.path.walk(self.TempFolder):
+    #         if dir[0] != self.TempFolder:
+    #             set_dir = dir[0]
+    #             last_modified = datetime.datetime.fromtimestamp(os.path.getmtime(set_dir))
+    #             now_time = datetime.datetime.now()
+    #             delta_time = now_time - last_modified
+    #             self.LogInfo("Time Passed : %s >> Directory : %s " % (delta_time.days, set_dir))
 
     def Cleanup( self ):
 
@@ -82,7 +83,7 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
 
     def RenderArgument( self ):
 
-        self.TempCleanup()
+        #self.TempCleanup()
 
         AnimationStill = self.GetBooleanPluginInfoEntryWithDefault("animation_still", False)
         SingleFrame = self.GetBooleanPluginInfoEntryWithDefault("single_frame", False)
