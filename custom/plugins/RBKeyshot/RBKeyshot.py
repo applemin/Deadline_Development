@@ -94,7 +94,7 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
 
     def RenderArgument( self ):
 
-        if not self.TempFolder:
+        if self.TempFolder:
             self.TempCleanup()
 
         AnimationStill = self.GetBooleanPluginInfoEntryWithDefault("animation_still", False)
