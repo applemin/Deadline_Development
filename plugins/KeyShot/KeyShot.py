@@ -8,7 +8,7 @@ import subprocess
 from System import *
 from System.Diagnostics import *
 from System.IO import *
-
+from System.Text import *
 from Deadline.Plugins import *
 from Deadline.Scripting import *
 
@@ -48,6 +48,8 @@ class KeyShotPlugin (DeadlinePlugin):
 
         self.StdoutHandling = True
         self.PopupHandling = True
+        self.HandleQtPopups = True
+        self.PopupMaxChildWindows = 25
 
         self.AddPopupHandler("FPS", "Are you sure you want to continue?", "Yes")
 
