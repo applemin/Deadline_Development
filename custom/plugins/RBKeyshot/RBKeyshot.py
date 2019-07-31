@@ -4,6 +4,7 @@ import shutil
 import time
 import sys
 import subprocess
+import datetime
 
 from System import *
 from System.Diagnostics import *
@@ -34,10 +35,25 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
     outputFilename = None
     RandomNumber = str(time.time()).split('.')[0]
     continueProgress = True
+    TempFolder = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')
+
     def __init__( self ):
         self.InitializeProcessCallback += self.InitializeProcess
         self.RenderExecutableCallback += self.RenderExecutable
+        self.TempDirCleanup += self.TempCleanup
         self.RenderArgumentCallback += self.RenderArgument
+
+    def TempCleanup(self):
+        self.LogInfo("Running TempCleanup System")
+
+        for dir in os.path.walk(self.TempFolder):
+            if dir[0] != self.TempFolder:
+                set_dir = dir[0]
+                last_modified = datetime.datetime.fromtimestamp(os.path.getmtime(set_dir))
+                now_time = datetime.datetime.now()
+                delta_time = now_time - last_modified
+                self.LogInfo("Time Passed : %s >> Directory : %s " % (delta_time.days, set_dir))
+
     def Cleanup( self ):
 
         for stdoutHandler in self.StdoutHandlers:
@@ -69,7 +85,7 @@ class RB_KeyshotPlugin( DeadlinePlugin ):
         SingleFrame = self.GetBooleanPluginInfoEntryWithDefault("single_frame", False)
         RenderRegion = self.GetPluginInfoEntryWithDefault("region", None)
         RegionSpecs = [int(s) for s in str(RenderRegion).split('"') if s.isdigit()]
-        print(RegionSpecs)
+
 
         camera = self.GetPluginInfoEntry("Camera0")
         self.MultiCameraRendering = self.GetBooleanPluginInfoEntryWithDefault("MultiCameraRendering", False)
