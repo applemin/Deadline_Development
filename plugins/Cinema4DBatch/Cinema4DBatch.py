@@ -524,9 +524,22 @@ class Cinema4DController( object ):
                     scriptBuilder.AppendLine()
                     outputPath = os.path.join( filepath, fileprefix )
                     outputPath = outputPath.replace( "\\", "\\\\" ) # Escape the backslashes in the path
+
+                    #Pre Path - Save Options Debugging
+                    self.Plugin.LogInfo("Pre checking Path - Save option before set params")
+                    scriptBuilder.AppendLine("print rd[c4d.RDATA_MULTIPASS_SAVEIMAGE]")
+                    scriptBuilder.AppendLine("print rd[c4d.RDATA_SAVEIMAGE]")
+                    scriptBuilder.AppendLine("print rd[c4d.RDATA_PATH]")
+
                     scriptBuilder.AppendLine( "rd[c4d.RDATA_MULTIPASS_SAVEIMAGE]= True")
                     scriptBuilder.AppendLine( "rd[c4d.RDATA_SAVEIMAGE]= True")
                     scriptBuilder.AppendLine( "rd[c4d.RDATA_PATH]=\"" + outputPath + "\"" )
+
+                    # Post Path - Save Options Debugging
+                    self.Plugin.LogInfo("Post checking Path - Save option ")
+                    scriptBuilder.AppendLine("print rd[c4d.RDATA_MULTIPASS_SAVEIMAGE]")
+                    scriptBuilder.AppendLine("print rd[c4d.RDATA_SAVEIMAGE]")
+                    scriptBuilder.AppendLine("print rd[c4d.RDATA_PATH]")
                 
                 # Build the multipass output filename from the path and prefix
                 multifilepath = self.Plugin.GetPluginInfoEntryWithDefault( "MultiFilePath", "" ).strip()
