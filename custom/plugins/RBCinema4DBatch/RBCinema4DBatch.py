@@ -371,7 +371,7 @@ class Cinema4DController:
                 else:
                     self.StartFrame = str(self.Plugin.GetStartFrame())
                     self.EndFrame = str(self.Plugin.GetEndFrame())
-                
+
                 scriptBuilder.AppendLine()
                 scriptBuilder.AppendLine( "#!/usr/bin/python" )
                 scriptBuilder.AppendLine( "# -*- coding: utf-16-le -*-" )
@@ -453,6 +453,10 @@ class Cinema4DController:
                     scriptBuilder.AppendLine()
                     outputPath = os.path.join( filepath, fileprefix )
                     outputPath = outputPath.replace( "\\", "\\\\" ) # Escape the backslashes in the path
+
+
+                    scriptBuilder.AppendLine("rd[c4d.RDATA_MULTIPASS_SAVEIMAGE]= True")
+                    scriptBuilder.AppendLine("rd[c4d.RDATA_SAVEIMAGE]= True")
                     scriptBuilder.AppendLine( "rd[c4d.RDATA_PATH]=\"" + outputPath + "\"" )
                 
                 # Build the multipass output filename from the path and prefix
