@@ -524,6 +524,8 @@ class Cinema4DController( object ):
                     scriptBuilder.AppendLine()
                     outputPath = os.path.join( filepath, fileprefix )
                     outputPath = outputPath.replace( "\\", "\\\\" ) # Escape the backslashes in the path
+                    scriptBuilder.AppendLine( "rd[c4d.RDATA_MULTIPASS_SAVEIMAGE]= True")
+                    scriptBuilder.AppendLine( "rd[c4d.RDATA_SAVEIMAGE]= True")
                     scriptBuilder.AppendLine( "rd[c4d.RDATA_PATH]=\"" + outputPath + "\"" )
                 
                 # Build the multipass output filename from the path and prefix
