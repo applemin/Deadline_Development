@@ -526,7 +526,7 @@ class Cinema4DController( object ):
                     outputPath = outputPath.replace( "\\", "\\\\" ) # Escape the backslashes in the path
 
                     #Pre Path - Save Options Debugging
-                    scriptBuilder.AppendLine("Pre checking Path - Save options")
+                    scriptBuilder.AppendLine("print 'Pre checking Path - Save options'")
                     scriptBuilder.AppendLine("print 'RDATA_MULTIPASS_SAVEIMAGE : {}'.format(rd[c4d.RDATA_MULTIPASS_SAVEIMAGE])")
                     scriptBuilder.AppendLine("print 'RDATA_SAVEIMAGE : {}'.format(rd[c4d.RDATA_SAVEIMAGE])")
                     scriptBuilder.AppendLine("print 'RDATA_PATH : {}'.format(rd[c4d.RDATA_PATH])")
@@ -536,7 +536,7 @@ class Cinema4DController( object ):
                     scriptBuilder.AppendLine( "rd[c4d.RDATA_PATH]=\"" + outputPath + "\"" )
 
                     # Post Path - Save Options Debugging
-                    scriptBuilder.AppendLine("Post checking Path - Save options")
+                    scriptBuilder.AppendLine("print 'Post checking Path - Save options'")
                     scriptBuilder.AppendLine("print 'RDATA_MULTIPASS_SAVEIMAGE : {}'.format(rd[c4d.RDATA_MULTIPASS_SAVEIMAGE])")
                     scriptBuilder.AppendLine("print 'RDATA_SAVEIMAGE : {}'.format(rd[c4d.RDATA_SAVEIMAGE])")
                     scriptBuilder.AppendLine("print 'RDATA_PATH : {}'.format(rd[c4d.RDATA_PATH])")
