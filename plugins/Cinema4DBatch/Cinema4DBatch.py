@@ -527,17 +527,19 @@ class Cinema4DController( object ):
 
                     #Pre Path - Save Options Debugging
                     scriptBuilder.AppendLine("print 'Pre checking Path - Save options'")
+                    scriptBuilder.AppendLine("print 'RDATA_GLOBALSAVE : {}'.format(rd[c4d.RDATA_GLOBALSAVE])")
                     scriptBuilder.AppendLine("print 'RDATA_MULTIPASS_SAVEIMAGE : {}'.format(rd[c4d.RDATA_MULTIPASS_SAVEIMAGE])")
                     scriptBuilder.AppendLine("print 'RDATA_SAVEIMAGE : {}'.format(rd[c4d.RDATA_SAVEIMAGE])")
                     scriptBuilder.AppendLine("print 'RDATA_PATH : {}'.format(rd[c4d.RDATA_PATH])")
 
-                    scriptBuilder.AppendLine( "rd[rd[c4d.RDATA_GLOBALSAVE]= True")
+                    scriptBuilder.AppendLine( "rd[c4d.RDATA_GLOBALSAVE]= True")
                     scriptBuilder.AppendLine( "rd[c4d.RDATA_MULTIPASS_SAVEIMAGE]= True")
                     scriptBuilder.AppendLine( "rd[c4d.RDATA_SAVEIMAGE]= True")
                     scriptBuilder.AppendLine( "rd[c4d.RDATA_PATH]=\"" + outputPath + "\"" )
 
                     # Post Path - Save Options Debugging
                     scriptBuilder.AppendLine("print 'Post checking Path - Save options'")
+                    scriptBuilder.AppendLine("print 'RDATA_GLOBALSAVE : {}'.format(rd[c4d.RDATA_GLOBALSAVE])")
                     scriptBuilder.AppendLine("print 'RDATA_MULTIPASS_SAVEIMAGE : {}'.format(rd[c4d.RDATA_MULTIPASS_SAVEIMAGE])")
                     scriptBuilder.AppendLine("print 'RDATA_SAVEIMAGE : {}'.format(rd[c4d.RDATA_SAVEIMAGE])")
                     scriptBuilder.AppendLine("print 'RDATA_PATH : {}'.format(rd[c4d.RDATA_PATH])")
