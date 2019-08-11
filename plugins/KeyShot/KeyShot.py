@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import clr
 import os
 import shutil
@@ -98,6 +99,9 @@ class KeyShotPlugin (DeadlinePlugin):
         writer = StreamWriter( renderScript )
 
         position = len(sceneFilename)-4
+
+        cameraNameEncode = u' '.join((agent_contact, agent_telno)).encode('utf-8').strip()
+
         temp_sceneFilename = sceneFilename[:position] + "_{}".format(cameraName) + "_{}".format(startFrame) + sceneFilename[position:]
         temp_sceneBaseFilename = os.path.basename(temp_sceneFilename)
                 
