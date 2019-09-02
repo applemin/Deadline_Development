@@ -36,6 +36,7 @@ class KeyShotPlugin (DeadlinePlugin):
         self.RenderArgumentCallback += self.RenderArgument
         self.PreRenderTasksCallback += self.PreRenderTasks
         self.infoFilePath = ""
+
     def Cleanup(self):
 
         for stdoutHandler in self.StdoutHandlers:
@@ -129,6 +130,7 @@ class KeyShotPlugin (DeadlinePlugin):
             "ENV_QUALITY_TYPE":                 qualityType}
 
         self.LogInfo("Contents of DEADLINE_KEYSHOT_INFO file:")
+        self.LogInfo(self.infoFilePath)
 
         with open(self.infoFilePath, 'w') as JsonData:
             json.dump(INFO_FILE_LINE_DESC, JsonData, indent=4)
