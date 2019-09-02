@@ -73,8 +73,8 @@ class KeyShotPlugin (DeadlinePlugin):
         ## get plugin and job entries
         ######################################################################
 
-        sceneFilename           =self.GetPluginInfoEntryWithDefault("SceneFile").replace( "\\", "/" )
-        outputFilename          =self.GetPluginInfoEntry("OutputFile").replace( "\\", "/" )
+        sceneFilename           =str(self.GetPluginInfoEntryWithDefault("SceneFile")).replace( "\\", "/" )
+        outputFilename          =str(self.GetPluginInfoEntry("OutputFile")).replace( "\\", "/" )
         camera                  =self.GetPluginInfoEntryWithDefault( "CameraName", "" )
         width                   =self.GetIntegerPluginInfoEntryWithDefault( "RenderWidth", 1280 )
         height                  =self.GetIntegerPluginInfoEntryWithDefault( "RenderHeight", 720 )
@@ -95,7 +95,7 @@ class KeyShotPlugin (DeadlinePlugin):
 
         # TODO: the temp scene file needs new implementation
         position = len(sceneFilename)-4
-        temp_sceneFilename = sceneFilename[:position] + "_{}".format(cameraName) + "_{}".format(startFrame) + sceneFilename[position:]
+        temp_sceneFilename = sceneFilename[:position] + "_{}".format(camera) + "_{}".format(startFrame) + sceneFilename[position:]
         temp_sceneBaseFilename = os.path.basename(temp_sceneFilename)
 
 
