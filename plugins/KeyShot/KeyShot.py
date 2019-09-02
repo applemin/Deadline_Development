@@ -91,7 +91,7 @@ class KeyShotPlugin (DeadlinePlugin):
         advancedMaxSamples      =self.GetIntegerPluginInfoEntryWithDefault( "AdvancedMaxSamples", 16 )
         rayBounces              =self.GetIntegerPluginInfoEntryWithDefault( "RayBounces", 16 )
         antiAliasing            =self.GetIntegerPluginInfoEntryWithDefault( "AntiAliasing", 16 )
-        shadows                 =self.GetIntegerPluginInfoEntryWithDefault( "Shadows", 16 )
+        shadows                 =self.GetFloatPluginInfoEntryWithDefault( "Shadows", 1.0 )
 
         #renderScriptDirectory  =self.CreateTempDirectory( "thread" + str(self.GetThreadNumber()) )
 
