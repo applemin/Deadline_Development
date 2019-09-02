@@ -34,7 +34,8 @@ class KeyShotPlugin (DeadlinePlugin):
         self.InitializeProcessCallback += self.InitializeProcess
         self.RenderExecutableCallback += self.RenderExecutable
         self.RenderArgumentCallback += self.RenderArgument
-    
+        self.PreRenderTasksCallback += self.PreRenderTasks
+        self.infoFilePath = ""
     def Cleanup(self):
 
         for stdoutHandler in self.StdoutHandlers:
