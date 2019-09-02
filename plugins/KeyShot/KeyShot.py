@@ -73,10 +73,10 @@ class KeyShotPlugin (DeadlinePlugin):
         ## get plugin and job entries
         ######################################################################
 
-        sceneFilename           =self.GetPluginInfoEntryWithDefault("SceneFile")
+        sceneFilename           =self.GetPluginInfoEntry("SceneFile")
         sceneFilename           =sceneFilename.replace("\\", "/")
-        outputFilename          =str(self.GetPluginInfoEntry("OutputFile")).replace( "\\", "/" )
-        outputFilename           =outputFilename.replace("\\", "/")
+        outputFilename          =self.GetPluginInfoEntry("OutputFile")
+        outputFilename          =outputFilename.replace("\\", "/")
         camera                  =self.GetPluginInfoEntryWithDefault( "CameraName", "" )
         width                   =self.GetIntegerPluginInfoEntryWithDefault( "RenderWidth", 1280 )
         height                  =self.GetIntegerPluginInfoEntryWithDefault( "RenderHeight", 720 )
