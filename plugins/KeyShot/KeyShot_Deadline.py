@@ -104,18 +104,18 @@ def main(scene_file_path, get_new_file_path):
     if INFO_FILE_LINE_DESC["DAT_CAMERA"] != "":
         lux.setCamera(INFO_FILE_LINE_DESC["DAT_CAMERA"])
 
-        lux.setAnimationFrame(INFO_FILE_LINE_DESC["DAT_START_FRAME"])
-        width = INFO_FILE_LINE_DESC["DAT_WIDTH"]
-        height = INFO_FILE_LINE_DESC["DAT_HEIGHT"]
-        lux.saveFile(get_new_file_path)
-        lux.openFile(get_new_file_path)
-        path = INFO_FILE_LINE_DESC["DAT_OUTPUT_FILE_NAME"]
+    lux.setAnimationFrame(INFO_FILE_LINE_DESC["DAT_START_FRAME"])
+    width = INFO_FILE_LINE_DESC["DAT_WIDTH"]
+    height = INFO_FILE_LINE_DESC["DAT_HEIGHT"]
+    lux.saveFile(get_new_file_path)
+    lux.openFile(get_new_file_path)
+    path = INFO_FILE_LINE_DESC["DAT_OUTPUT_FILE_NAME"]
 
-        opts = lux.getRenderOptions()
-        opts.setAddToQueue(False)
+    opts = lux.getRenderOptions()
+    opts.setAddToQueue(False)
 
-        opts.setOutputRenderLayers(INFO_FILE_LINE_DESC["DAT_RENDER_LAYERS"])
-        opts.setOutputAlphaChannel(INFO_FILE_LINE_DESC["DAT_INCLUDE_ALPHA"])
+    opts.setOutputRenderLayers(INFO_FILE_LINE_DESC["DAT_RENDER_LAYERS"])
+    opts.setOutputAlphaChannel(INFO_FILE_LINE_DESC["DAT_INCLUDE_ALPHA"])
 
     # overrideRenderPasses = INFO_FILE_LINE_DESC["DAT_OVERRIDE_RENDER_PASSES"]
 
@@ -155,6 +155,7 @@ def main(scene_file_path, get_new_file_path):
     elif INFO_FILE_LINE_DESC["DAT_QUALITY_TYPE"] == "Maximum Samples":
         opts.setMaxSamplesRendering(INFO_FILE_LINE_DESC["DAT_PROGRESSIVE_MAX_SAMPLES"])
     else:
+        pass
 
         # advancedRenderingOptions = [
         #     ("AdvancedMaxSamples", "setAdvancedRendering", int, "16"),
@@ -172,12 +173,12 @@ def main(scene_file_path, get_new_file_path):
         except AttributeError:
                print( 'Failed to set advaned quality attribute')
 
-        for frame in range( INFO_FILE_LINE_DESC["DAT_START_FRAME"], INFO_FILE_LINE_DESC["DAT_END_FRAME"] ):
-            renderPath = path
-            renderPath =  renderPath.replace(frame)
-            lux.setAnimationFrame(frame )
-            lux.renderImage(path = renderPath, width = width, height = height, opts = opts)
-            print("Rendered Image: %s" % renderPath)
+    for frame in range( INFO_FILE_LINE_DESC["DAT_START_FRAME"], INFO_FILE_LINE_DESC["DAT_END_FRAME"] ):
+        renderPath = path
+        renderPath =  renderPath.replace(frame)
+        lux.setAnimationFrame(frame )
+        lux.renderImage(path = renderPath, width = width, height = height, opts = opts)
+        print("Rendered Image: %s" % renderPath)
 
     os.remove(get_new_file_path)
 
