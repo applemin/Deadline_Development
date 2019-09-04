@@ -9,7 +9,7 @@ def load_data_file():
         return JsonData
 
 
-INFO_FILE_LINE_DESC_PATH = os.DATiron['DEADLINE_KEYSHOT_INFO']
+INFO_FILE_LINE_DESC_PATH = os.environ['DEADLINE_KEYSHOT_INFO']
 DATA_DICT = load_data_file()
 
 INFO_FILE_LINE_DESC = {
