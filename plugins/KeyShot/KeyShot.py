@@ -110,24 +110,24 @@ class KeyShotPlugin (DeadlinePlugin):
         renderScript = os.path.join( self.GetPluginDirectory(), "KeyShot_Deadline.py" )
 
         INFO_FILE_LINE_DESC = {
-            "ENV_SCENE_FILE_NAME":              sceneFilename,
-            "ENV_TEMP_SCENE_BASE_FILE_NAME":    temp_sceneBaseFilename,
-            "ENV_CAMERA":                       camera,
-            "ENV_START_FRAME":                  startFrame,
-            "ENV_END_FRAME":                    endFrame,
-            "ENV_WIDTH":                        width,
-            "ENV_HEIGHT":                       height,
-            "ENV_OUTPUT_FILE_NAME":             outputFilename,
-            "ENV_RENDER_LAYERS":                renderLayers,
-            "ENV_INCLUDE_ALPHA":                includeAlpha,
-            "ENV_OVERRIDE_RENDER_PASSES":       overrideRenderPasses,
-            "ENV_MAXIMUM_TIME":                 maximumTime,
-            "ENV_PROGRESSIVE_MAX_SAMPLES":      maximumSamples,
-            "ENV_ADVANCED_MAX_SAMPLES":         advancedMaxSamples,
-            "ENV_RAY_BOUNCES":                  rayBounces,
-            "ENV_ANTI_ALIASING":                antiAliasing,
-            "ENV_SHADOWS":                      shadows,
-            "ENV_QUALITY_TYPE":                 qualityType}
+            "DAT_SCENE_FILE_NAME":              sceneFilename,
+            "DAT_TEMP_SCENE_BASE_FILE_NAME":    temp_sceneBaseFilename,
+            "DAT_CAMERA":                       camera,
+            "DAT_START_FRAME":                  startFrame,
+            "DAT_END_FRAME":                    endFrame,
+            "DAT_WIDTH":                        width,
+            "DAT_HEIGHT":                       height,
+            "DAT_OUTPUT_FILE_NAME":             outputFilename,
+            "DAT_RENDER_LAYERS":                renderLayers,
+            "DAT_INCLUDE_ALPHA":                includeAlpha,
+            "DAT_OVERRIDE_RENDER_PASSES":       overrideRenderPasses,
+            "DAT_MAXIMUM_TIME":                 maximumTime,
+            "DAT_PROGRESSIVE_MAX_SAMPLES":      maximumSamples,
+            "DAT_ADVANCED_MAX_SAMPLES":         advancedMaxSamples,
+            "DAT_RAY_BOUNCES":                  rayBounces,
+            "DAT_ANTI_ALIASING":                antiAliasing,
+            "DAT_SHADOWS":                      shadows,
+            "DAT_QUALITY_TYPE":                 qualityType}
 
         self.LogInfo("Contents of DEADLINE_KEYSHOT_INFO file:")
         self.LogInfo(self.infoFilePath)
@@ -137,11 +137,6 @@ class KeyShotPlugin (DeadlinePlugin):
 
         for key, value in INFO_FILE_LINE_DESC.items():
             self.LogInfo("\t%s=%s" % (key, value))
-
-        # with open( self.infoFilePath, 'w' ) as fileHandle:
-        #     for key, value in INFO_FILE_LINE_DESC.items():
-        #         fileHandle.write( value + '\n' )
-        #         self.LogInfo("\t%s=%s" % (line_desc, line))
 
         arguments = []
         arguments.append( "-script \"%s\"" % renderScript)
