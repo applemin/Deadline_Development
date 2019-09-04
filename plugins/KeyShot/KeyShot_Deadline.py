@@ -4,7 +4,7 @@ import shutil
 
 INFO_FILE_LINE_DESC = os.environ['DEADLINE_KEYSHOT_INFO']
 
-print INFO_FILE_LINE_DESC
+print (INFO_FILE_LINE_DESC)
 
 HOME_PATH = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')
 SCENE_FILE_PATH ="%s" % INFO_FILE_LINE_DESC["ENV_SCENE_FILE_NAME"]
