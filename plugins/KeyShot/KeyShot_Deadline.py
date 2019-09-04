@@ -5,7 +5,7 @@ import json
 
 def load_data_file(JasonFile):
     with open(JasonFile, 'r') as JsonData:
-        DataDict = json.load(INFO_FILE_LINE_DESC, JsonData)
+        DataDict = json.load(JsonData)
         return DataDict
 
 
