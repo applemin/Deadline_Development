@@ -3,14 +3,15 @@ import time
 import shutil
 import json
 
-def load_data_file():
-    with open(INFO_FILE_LINE_DESC_PATH, 'r') as JsonData:
-        json.load(INFO_FILE_LINE_DESC, JsonData)
-        return JsonData
+def load_data_file(JasonFile):
+    with open(JasonFile, 'r') as JsonData:
+        DataDict = json.load(INFO_FILE_LINE_DESC, JsonData)
+        return DataDict
 
 
 INFO_FILE_LINE_DESC_PATH = os.environ['DEADLINE_KEYSHOT_INFO']
-DATA_DICT = load_data_file()
+print (INFO_FILE_LINE_DESC_PATH)
+DATA_DICT = load_data_file(INFO_FILE_LINE_DESC_PATH)
 
 INFO_FILE_LINE_DESC = {
     "DAT_SCENE_FILE_NAME":              DATA_DICT["DAT_SCENE_FILE_NAME"],
