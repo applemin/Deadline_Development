@@ -38,8 +38,6 @@ SCENE_FILE_PATH = INFO_FILE_LINE_DESC["DAT_SCENE_FILE_NAME"]
 NEW_SCENE_FILE_NAME = os.path.basename(SCENE_FILE_PATH)
 NEW_TEMP_SCENE_FILE_NAME = INFO_FILE_LINE_DESC["DAT_TEMP_SCENE_BASE_FILE_NAME"]
 
-
-
 def valid_temp_folder():
 
     if os.path.exists(HOME_PATH):
@@ -105,17 +103,14 @@ def main(scene_file_path, get_new_file_path):
         lux.setCamera(INFO_FILE_LINE_DESC["DAT_CAMERA"])
 
     lux.setAnimationFrame(INFO_FILE_LINE_DESC["DAT_START_FRAME"])
-    width = INFO_FILE_LINE_DESC["DAT_WIDTH"]
-    height = INFO_FILE_LINE_DESC["DAT_HEIGHT"]
     lux.saveFile(get_new_file_path)
     lux.openFile(get_new_file_path)
-    path = INFO_FILE_LINE_DESC["DAT_OUTPUT_FILE_NAME"]
 
-    opts = lux.getRenderOptions()
-    opts.setAddToQueue(False)
+    renderOptions = lux.getRenderOptions()
+    renderOptions.setAddToQueue(False)
 
-    opts.setOutputRenderLayers(INFO_FILE_LINE_DESC["DAT_RENDER_LAYERS"])
-    opts.setOutputAlphaChannel(INFO_FILE_LINE_DESC["DAT_INCLUDE_ALPHA"])
+    renderOptions.setOutputRenderLayers(INFO_FILE_LINE_DESC["DAT_RENDER_LAYERS"])
+    renderOptions.setOutputAlphaChannel(INFO_FILE_LINE_DESC["DAT_INCLUDE_ALPHA"])
 
     # overrideRenderPasses = INFO_FILE_LINE_DESC["DAT_OVERRIDE_RENDER_PASSES"]
 
@@ -136,52 +131,43 @@ def main(scene_file_path, get_new_file_path):
 
     # try:
     #     opts.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeDiffusePass"])
-    #     opts.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeReflectionPass"])
-    #     opts.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeClownPass"])
-    #     opts.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeLightingPass"])
-    #     opts.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeRefractionPass"])
-    #     opts.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeDepthPass"])
-    #     opts.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeGIPass"])
-    #     opts.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeShadowPass"])
-    #     opts.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeGeometricNormalPass"])
-    #     opts.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeCausticsPass"])
-    #     opts.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeAOPass"])
+    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeReflectionPass"])
+    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeClownPass"])
+    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeLightingPass"])
+    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeRefractionPass"])
+    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeDepthPass"])
+    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeGIPass"])
+    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeShadowPass"])
+    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeGeometricNormalPass"])
+    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeCausticsPass"])
+    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeAOPass"])
     #
     # except AttributeError:
     #     print( 'Failed to set render pass attributes')
 
     if INFO_FILE_LINE_DESC["DAT_QUALITY_TYPE"] == "Maximum Time":
-        opts.setMaxTimeRendering(INFO_FILE_LINE_DESC["DAT_MAXIMUM_TIME"])
+        renderOptions.setMaxTimeRendering(INFO_FILE_LINE_DESC["DAT_MAXIMUM_TIME"])
     elif INFO_FILE_LINE_DESC["DAT_QUALITY_TYPE"] == "Maximum Samples":
-        opts.setMaxSamplesRendering(INFO_FILE_LINE_DESC["DAT_PROGRESSIVE_MAX_SAMPLES"])
+        renderOptions.setMaxSamplesRendering(INFO_FILE_LINE_DESC["DAT_PROGRESSIVE_MAX_SAMPLES"])
     else:
-        pass
-
-        # advancedRenderingOptions = [
-        #     ("AdvancedMaxSamples", "setAdvancedRendering", int, "16"),
-        #     ("RayBounces", "setRayBounces", int, "6"),
-        #     ("AntiAliasing", "setAntiAliasing", int, "1"),
-        #     ("Shadows", "setShadowQuality", float, "1")]
-
         try:
-
-            opts.setAdvancedRendering(INFO_FILE_LINE_DESC["DAT_ADVANCED_MAX_SAMPLES"])
-            opts.setAdvancedRendering(INFO_FILE_LINE_DESC["DAT_RAY_BOUNCES"])
-            opts.setAdvancedRendering(INFO_FILE_LINE_DESC["DAT_ANTI_ALIASING"])
-            opts.setAdvancedRendering(INFO_FILE_LINE_DESC["DAT_SHADOWS"])
-
+            renderOptions.setAdvancedRendering(INFO_FILE_LINE_DESC["DAT_ADVANCED_MAX_SAMPLES"])
+            renderOptions.setRayBounces(INFO_FILE_LINE_DESC["DAT_RAY_BOUNCES"])
+            renderOptions.setAntiAliasing(INFO_FILE_LINE_DESC["DAT_ANTI_ALIASING"])
+            renderOptions.setShadowQuality(INFO_FILE_LINE_DESC["DAT_SHADOWS"])
         except AttributeError:
-               print( 'Failed to set advaned quality attribute')
+            print('Failed to set advanced quality attribute')
 
-    for frame in range( INFO_FILE_LINE_DESC["DAT_START_FRAME"], INFO_FILE_LINE_DESC["DAT_END_FRAME"] ):
-        renderPath = path
-        renderPath =  renderPath.replace(frame)
-        lux.setAnimationFrame(frame )
-        lux.renderImage(path = renderPath, width = width, height = height, opts = opts)
-        print("Rendered Image: %s" % renderPath)
+    for frame in range(INFO_FILE_LINE_DESC["DAT_START_FRAME"], INFO_FILE_LINE_DESC["DAT_END_FRAME"]):
+        print ("Rendering Frame : %s" % frame)
+        lux.setAnimationFrame(frame)
+        lux.renderImage(path=INFO_FILE_LINE_DESC["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
+                        width=INFO_FILE_LINE_DESC["DAT_WIDTH"],
+                        height=INFO_FILE_LINE_DESC["DAT_HEIGHT"],
+                        renderOptions=renderOptions)
+        print("Rendered Image: %s" % INFO_FILE_LINE_DESC["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)))
 
     os.remove(get_new_file_path)
-
     print ('Job Completed')
     exit()
 
