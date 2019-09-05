@@ -158,7 +158,7 @@ def main(scene_file_path, get_new_file_path):
         except AttributeError:
             print('Failed to set advanced quality attribute')
 
-    for frame in range(INFO_FILE_LINE_DESC["DAT_START_FRAME"], INFO_FILE_LINE_DESC["DAT_END_FRAME"]):
+    for frame in range(int(INFO_FILE_LINE_DESC["DAT_START_FRAME"]), int(INFO_FILE_LINE_DESC["DAT_END_FRAME"])):
         print ("Rendering Frame : %s" % frame)
         lux.setAnimationFrame(frame)
         lux.renderImage(path=INFO_FILE_LINE_DESC["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
