@@ -106,11 +106,11 @@ def main(scene_file_path, get_new_file_path):
     lux.saveFile(get_new_file_path)
     lux.openFile(get_new_file_path)
 
-    _renderOptions = lux.getRenderOptions()
-    _renderOptions.setAddToQueue(False)
+    renderOptions = lux.getRenderOptions()
+    renderOptions.setAddToQueue(False)
 
-    _renderOptions.setOutputRenderLayers(INFO_FILE_LINE_DESC["DAT_RENDER_LAYERS"])
-    _renderOptions.setOutputAlphaChannel(INFO_FILE_LINE_DESC["DAT_INCLUDE_ALPHA"])
+    renderOptions.setOutputRenderLayers(INFO_FILE_LINE_DESC["DAT_RENDER_LAYERS"])
+    renderOptions.setOutputAlphaChannel(INFO_FILE_LINE_DESC["DAT_INCLUDE_ALPHA"])
 
     # overrideRenderPasses = INFO_FILE_LINE_DESC["DAT_OVERRIDE_RENDER_PASSES"]
 
@@ -147,15 +147,15 @@ def main(scene_file_path, get_new_file_path):
 
     print ("Set Quality Mode to : %s" % INFO_FILE_LINE_DESC["DAT_QUALITY_TYPE"])
     if INFO_FILE_LINE_DESC["DAT_QUALITY_TYPE"] == "Maximum Time":
-        _renderOptions.setMaxTimeRendering(INFO_FILE_LINE_DESC["DAT_MAXIMUM_TIME"])
+        renderOptions.setMaxTimeRendering(INFO_FILE_LINE_DESC["DAT_MAXIMUM_TIME"])
     elif INFO_FILE_LINE_DESC["DAT_QUALITY_TYPE"] == "Maximum Samples":
-        _renderOptions.setMaxSamplesRendering(INFO_FILE_LINE_DESC["DAT_PROGRESSIVE_MAX_SAMPLES"])
+        renderOptions.setMaxSamplesRendering(INFO_FILE_LINE_DESC["DAT_PROGRESSIVE_MAX_SAMPLES"])
     else:
         try:
-            _renderOptions.setAdvancedRendering(INFO_FILE_LINE_DESC["DAT_ADVANCED_MAX_SAMPLES"])
-            _renderOptions.setRayBounces(INFO_FILE_LINE_DESC["DAT_RAY_BOUNCES"])
-            _renderOptions.setAntiAliasing(INFO_FILE_LINE_DESC["DAT_ANTI_ALIASING"])
-            _renderOptions.setShadowQuality(INFO_FILE_LINE_DESC["DAT_SHADOWS"])
+            renderOptions.setAdvancedRendering(INFO_FILE_LINE_DESC["DAT_ADVANCED_MAX_SAMPLES"])
+            renderOptions.setRayBounces(INFO_FILE_LINE_DESC["DAT_RAY_BOUNCES"])
+            renderOptions.setAntiAliasing(INFO_FILE_LINE_DESC["DAT_ANTI_ALIASING"])
+            renderOptions.setShadowQuality(INFO_FILE_LINE_DESC["DAT_SHADOWS"])
         except AttributeError:
             print('Failed to set advanced quality attribute')
 
@@ -165,7 +165,7 @@ def main(scene_file_path, get_new_file_path):
         lux.renderImage(path=INFO_FILE_LINE_DESC["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
                         width=INFO_FILE_LINE_DESC["DAT_WIDTH"],
                         height=INFO_FILE_LINE_DESC["DAT_HEIGHT"],
-                        renderOptions=_renderOptions)
+                        opts=renderOptions)
         print("Rendered Image: %s" % INFO_FILE_LINE_DESC["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)))
 
     os.remove(get_new_file_path)
