@@ -95,7 +95,7 @@ def main(scene_file_path, get_new_file_path):
     print ("Contents of DEADLINE_KEYSHOT_INFO received in KeyShot :")
 
     for parameter, value in INFO_FILE_LINE_DESC.items():
-        print ("\t[%s] %s=%s" % (type(value), parameter, value))
+        print ("\t %s  [%s]  = %s" % (type(value), parameter, value))
 
     lux.openFile(scene_file_path)
 
