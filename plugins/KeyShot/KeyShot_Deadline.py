@@ -95,7 +95,7 @@ def main(scene_file_path, get_new_file_path):
     print ("Contents of DEADLINE_KEYSHOT_INFO received in KeyShot :")
 
     for parameter, value in INFO_FILE_LINE_DESC.items():
-        print ("\t%s=%s [%s]" % (parameter, value, type(value)))
+        print ("\t[%s] %s=%s" % (type(value), parameter, value))
 
     lux.openFile(scene_file_path)
 
@@ -144,6 +144,7 @@ def main(scene_file_path, get_new_file_path):
     #
     # except AttributeError:
     #     print( 'Failed to set render pass attributes')
+
     print ("Set Quality Mode to : %s" % INFO_FILE_LINE_DESC["DAT_QUALITY_TYPE"])
     if INFO_FILE_LINE_DESC["DAT_QUALITY_TYPE"] == "Maximum Time":
         renderOptions.setMaxTimeRendering(INFO_FILE_LINE_DESC["DAT_MAXIMUM_TIME"])
@@ -158,7 +159,7 @@ def main(scene_file_path, get_new_file_path):
         except AttributeError:
             print('Failed to set advanced quality attribute')
 
-    for frame in range(int(INFO_FILE_LINE_DESC["DAT_START_FRAME"]), int(INFO_FILE_LINE_DESC["DAT_END_FRAME"])):
+    for frame in range(INFO_FILE_LINE_DESC["DAT_START_FRAME"], INFO_FILE_LINE_DESC["DAT_END_FRAME"]+1 ):
         print ("Rendering Frame : %s" % frame)
         lux.setAnimationFrame(frame)
         lux.renderImage(path=INFO_FILE_LINE_DESC["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
