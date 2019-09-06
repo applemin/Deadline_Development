@@ -15,7 +15,7 @@ from Deadline.Plugins import *
 ## main DeadlinePlugin class.
 ######################################################################
 def GetDeadlinePlugin():
-  return MyPlugin()
+  return SceneParser()
 
 ######################################################################
 ## This is the function that Deadline calls when the plugin is no
@@ -27,7 +27,7 @@ def CleanupDeadlinePlugin( deadlinePlugin ):
 ######################################################################
 ## This is the main DeadlinePlugin class for MyPlugin.
 ######################################################################
-class MyPlugin (DeadlinePlugin):
+class SceneParser (DeadlinePlugin):
 
   def __init__(self):
     self.LogInfo("Inheriting From Deadline Plugin")
@@ -134,7 +134,7 @@ class MyPlugin (DeadlinePlugin):
 #
 # outFile.close()
 
-# def __main__( *args ):
-#     print "Running KeyShot Pre Script"
-#
-#     InstanceCalss = SceneParser()
+def __main__( *args ):
+    print "Running KeyShot Pre Script"
+
+    InstanceCalss = SceneParser()
