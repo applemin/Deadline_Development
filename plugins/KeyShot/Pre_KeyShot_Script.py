@@ -133,7 +133,7 @@ class MyPlugin (DeadlinePlugin):
 #
 # outFile.close()
 
-def __main__( *args ):
-    print "Running KeyShot Pre Script"
-
-    InstanceCalss = SceneParser()
+# def __main__( *args ):
+#     print "Running KeyShot Pre Script"
+#
+#     InstanceCalss = SceneParser()
