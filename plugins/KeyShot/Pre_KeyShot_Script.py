@@ -1,5 +1,13 @@
 import os
-from Deadline.Plugins import DeadlinePlugin
+
+from System import *
+from System.Diagnostics import *
+from System.IO import *
+from System.Text import *
+from Deadline.Plugins import *
+from Deadline.Scripting import *
+from FranticX.Processes import *
+
 
 ######################################################################
 ## GET/SET global variables
