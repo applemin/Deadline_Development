@@ -13,6 +13,10 @@ from FranticX.Processes import *
 ## GET/SET global variables
 ######################################################################
 
+class SceneParser(DeadlinePlugin):
+    def __init__(self):
+        self.LogInfo("Inheritin From Deadline Plugin")
+
 def getScenePath():
 
     DeadlinePlugin.LogInfo("    Constructing file paths ")
@@ -108,4 +112,4 @@ def getScenePath():
 def __main__( *args ):
     print "Running KeyShot Pre Script"
 
-    getScenePath()
+    InstanceCalss = SceneParser()
