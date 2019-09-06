@@ -29,7 +29,8 @@ def CleanupDeadlinePlugin( deadlinePlugin ):
 ######################################################################
 class MyPlugin (DeadlinePlugin):
 
-  LogInfo("Inheritin From Deadline Plugin")
+  def __init__(self):
+    self.LogInfo("Inheriting From Deadline Plugin")
 
 
 
