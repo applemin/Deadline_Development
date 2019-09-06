@@ -8,28 +8,52 @@ from Deadline.Plugins import *
 from Deadline.Scripting import *
 from FranticX.Processes import *
 
+from Deadline.Plugins import *
+
+######################################################################
+## This is the function that Deadline calls to get an instance of the
+## main DeadlinePlugin class.
+######################################################################
+def GetDeadlinePlugin():
+  return MyPlugin()
+
+######################################################################
+## This is the function that Deadline calls when the plugin is no
+## longer in use so that it can get cleaned up.
+######################################################################
+def CleanupDeadlinePlugin( deadlinePlugin ):
+  deadlinePlugin.Cleanup()
+
+######################################################################
+## This is the main DeadlinePlugin class for MyPlugin.
+######################################################################
+class MyPlugin (DeadlinePlugin):
+
+  self.LogInfo("Inheritin From Deadline Plugin")
+
+
 
 ######################################################################
 ## GET/SET global variables
 ######################################################################
 
-class SceneParser(DeadlinePlugin):
-    def __init__(self):
-        self.LogInfo("Inheritin From Deadline Plugin")
-
-def getScenePath():
-
-    DeadlinePlugin.LogInfo("    Constructing file paths ")
-
-    baseScenePath = DeadlinePlugin.GetPluginInfoEntry("SceneFile")
-    baseScenePath = baseScenePath.replace("\\", "/")
-    directoryPath, sceneFileName = os.path.split(baseScenePath)
-    constScenePath = os.path.join(directoryPath, "EDITED_" + sceneFileName)
-
-    DeadlinePlugin.LogInfo("    Original Scene Path : %s " % baseScenePath)
-    DeadlinePlugin.LogInfo("    Edited Scene Path : %s " % constScenePath)
-
-    return baseScenePath, constScenePath
+# class SceneParser(DeadlinePlugin):
+#     def __init__(self):
+#         self.LogInfo("Inheritin From Deadline Plugin")
+#
+# def getScenePath():
+#
+#     DeadlinePlugin.LogInfo("    Constructing file paths ")
+#
+#     baseScenePath = DeadlinePlugin.GetPluginInfoEntry("SceneFile")
+#     baseScenePath = baseScenePath.replace("\\", "/")
+#     directoryPath, sceneFileName = os.path.split(baseScenePath)
+#     constScenePath = os.path.join(directoryPath, "EDITED_" + sceneFileName)
+#
+#     DeadlinePlugin.LogInfo("    Original Scene Path : %s " % baseScenePath)
+#     DeadlinePlugin.LogInfo("    Edited Scene Path : %s " % constScenePath)
+#
+#     return baseScenePath, constScenePath
 
 
 # def targetDataBlock(FILE_PATH):
