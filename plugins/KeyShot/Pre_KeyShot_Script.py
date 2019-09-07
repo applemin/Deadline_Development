@@ -107,8 +107,8 @@ def getScenePath(deadlinePlugin):
 
 def __main__( *args ):
     print "Running KeyShot Pre Script"
-    deadlinePlugin = *args[0]
-    print *args
+    deadlinePlugin = args[0]
+    print args
     getScenePath(deadlinePlugin)
 
 
