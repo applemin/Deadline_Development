@@ -89,7 +89,7 @@ class FileParser:
                 chunkName = self.getChunkName(INDEX, self.chunkDirectory)
                 with open(chunkName, self.FILE_WRITE_ENCODING) as outputChunk:
                     outputChunk.write(dataBlock)
-                    self.chunkList.append(chunkName)
+                    self.chunkList.append(chunkName[0])
                     print "New chunk written to disc : %s " % outputChunk
 
         return self.chunkList
@@ -100,8 +100,6 @@ class FileParser:
         CHUNK_STRING = "Chunk_"
         CHUNK_EXTENSION = ".bip"
         CHUNK_FILE_NAME = CHUNK_STRING + str(chunkIndex) + CHUNK_EXTENSION
-
-        print CHUNK_FILE_NAME
 
         chunkNameString = os.path.join(chunkDirectory, CHUNK_FILE_NAME)
         chunkNameString = chunkNameString.replace("\\", "/")
