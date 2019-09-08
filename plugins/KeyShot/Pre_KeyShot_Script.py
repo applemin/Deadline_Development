@@ -26,9 +26,9 @@ class FileParser:
 
         self.DeadlinePlugin         = DeadlinePlugin
         self.getScenePath           = self.getScenePath()
-        self.createChunkDirectory   = self.createChunkDirectory(self.directoryPath)
-        self.constScenePath         = self.constScenePath(self.baseScenePath, self.constScenePath, self.directoryPath)
-        self.assembleOutputFile     = self.assembleOutputFile(self.chunkList)
+        self.createChunkDirectory   = self.createChunkDirectory()
+        self.constScenePath         = self.constScenePath()
+        self.assembleOutputFile     = self.assembleOutputFile()
 
 
     def getScenePath(self):
@@ -94,7 +94,7 @@ class FileParser:
 
         return self.chunkList
 
-
+    @staticmethod
     def getChunkName(chunkIndex, chunkDirectory):
 
         CHUNK_STRING = "Chunk_"
@@ -102,6 +102,7 @@ class FileParser:
 
         chunkNameString = os.path.join(chunkDirectory, CHUNK_STRING, chunkIndex + CHUNK_EXTENSION).replace("\\", "/")
         print "Chunk name string created : %s" % chunkNameString
+
         return chunkNameString
 
     def assembleOutputFile(self):
@@ -138,21 +139,21 @@ class FileParser:
 
         return True
 
-    def getDataBlock(baseScenePath):
-
-        END_BLOCK_LINE_NUM = None
-        END_LINE_STRING = "luxappm.so"
-
-        # reading data file and inject lines to list
-        dataFile = open(baseScenePath, "rb")
-        dataList = dataFile.readlines()
-        dataFile.close()
-
-        for counter, line in enumerate(dataList):
-            if END_LINE_STRING in line:
-                END_BLOCK_LINE_NUM = counter
-
-        return dataList[:END_BLOCK_LINE_NUM]
+    # def getDataBlock(baseScenePath):
+    #
+    #     END_BLOCK_LINE_NUM = None
+    #     END_LINE_STRING = "luxappm.so"
+    #
+    #     # reading data file and inject lines to list
+    #     dataFile = open(baseScenePath, "rb")
+    #     dataList = dataFile.readlines()
+    #     dataFile.close()
+    #
+    #     for counter, line in enumerate(dataList):
+    #         if END_LINE_STRING in line:
+    #             END_BLOCK_LINE_NUM = counter
+    #
+    #     return dataList[:END_BLOCK_LINE_NUM]
 
 
 def __main__(*args):
