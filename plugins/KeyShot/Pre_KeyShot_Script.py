@@ -100,7 +100,7 @@ class FileParser:
         CHUNK_STRING = "Chunk_"
         CHUNK_EXTENSION = ".bip"
 
-        chunkNameString = os.path.join(chunkDirectory, CHUNK_STRING, str(chunkIndex) + CHUNK_EXTENSION)
+        chunkNameString = os.path.join(chunkDirectory, CHUNK_STRING + str(chunkIndex) + CHUNK_EXTENSION)
         chunkNameString = chunkNameString.replace("\\", "/")
 
         print "Chunk name string created : %s" % chunkNameString
