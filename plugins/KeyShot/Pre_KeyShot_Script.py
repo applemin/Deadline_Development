@@ -50,6 +50,7 @@ class FileParser:
 
         return self.baseScenePath, self.constScenePath, self.constScenePath
 
+
     def createChunkDirectory(self):
 
         chunkDirectory = os.path.join(self.directoryPath, self.DIR_STRING)
@@ -108,6 +109,7 @@ class FileParser:
 
         return chunkNameString
 
+
     def assembleOutputFile(self):
 
         outputFile = open(self.constScenePath, self.FILE_WRITE_ENCODING)
@@ -115,28 +117,7 @@ class FileParser:
         for chunkFile in self.chunkList:
 
             self.DeadlinePlugin.LogInfo("Assembling : %s" % chunkFile)
-
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_1.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_2.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_3.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_4.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_5.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_6.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_7.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_8.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_9.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_10.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_11.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_12.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_13.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_14.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_15.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_16.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_17.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_18.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_19.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_20.bip", "rb").readlines())
-            # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_21.bip", "rb").readlines())
+            outputFile.writelines(open(chunkFile, "rb").readlines())
 
         outputFile.close()
 
