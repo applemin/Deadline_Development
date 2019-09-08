@@ -137,9 +137,9 @@ class FileParser:
         self.DeadlinePlugin.LogInfo("DataBlock file successfully created : %s" % self.dataBlockPath)
 
         dataBlockOutputReminder = open(self.dataBlockReminderPath, self.FILE_WRITE_ENCODING)
-        dataBlockOutputReminder.writelines(dataBlockLines[:END_BLOCK_LINE_NUM])
+        dataBlockOutputReminder.writelines(dataBlockLines[END_BLOCK_LINE_NUM:])
         dataBlockOutputReminder.close()
-        self.DeadlinePlugin.LogInfo("DataBlockReminder file successfully created : %s" % self.dataBlockOutputReminder)
+        self.DeadlinePlugin.LogInfo("DataBlockReminder file successfully created : %s" % self.dataBlockReminderPath)
 
         return self.dataBlockPath, self.dataBlockReminderPath
 
