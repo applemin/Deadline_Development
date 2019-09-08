@@ -89,7 +89,7 @@ class FileParser:
                 chunkName = self.getChunkName(INDEX, self.chunkDirectory)
                 with open(chunkName, self.FILE_WRITE_ENCODING) as outputChunk:
                     outputChunk.write(dataBlock)
-                    self.chunkList.append(chunkName[0])
+                    self.chunkList.append(outputChunk)
                     print "New chunk written to disc : %s " % outputChunk
 
         return self.chunkList
