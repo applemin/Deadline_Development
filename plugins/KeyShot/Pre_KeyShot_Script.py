@@ -32,7 +32,6 @@ class FileParser:
         self.createChunkDirectory   = self.createChunkDirectory()
         self.constructSceneFile     = self.constructSceneFile()
         self.createDataBlock        = self.createDataBlock()
-        self.dataBlockOperation     = self.dataBlockOperation()
         self.assembleOutputFile     = self.assembleOutputFile()
         self.cleanup                = self.cleanup()
 
