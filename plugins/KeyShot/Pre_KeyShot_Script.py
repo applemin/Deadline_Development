@@ -8,18 +8,21 @@ from functools import partial
 
 class FileParser:
 
-    FILE_READ_ENCODING="rb"
-    FILE_WRITE_ENCODING="wb+"
+    FILE_READ_ENCODING      = "rb"
+    FILE_WRITE_ENCODING     = "wb+"
 
-    baseScenePath   = None
-    constScenePath  = None
-    directoryPath   = None
-    chunkDirectory  = None
-    chunkList       = []
+    baseScenePath           = None
+    constScenePath          = None
+    directoryPath           = None
+    chunkDirectory          = None
+    dataBlockFile           = None
+    dataBlockPath           = None
+    dataBlockReminderPath   = None
+    chunkList               = []
 
-    DIR_STRING = "CHUNKED_FILES"
+    DIR_STRING              = "CHUNKED_FILES"
 
-    DATA_CHUNK_SIZE = 50000000 * 5
+    DATA_CHUNK_SIZE         = 50000000 * 5
 
 
     def __init__(self, DeadlinePlugin):
@@ -28,7 +31,10 @@ class FileParser:
         self.getScenePath           = self.getScenePath()
         self.createChunkDirectory   = self.createChunkDirectory()
         self.constructSceneFile     = self.constructSceneFile()
+        self.createDataBlock        = self.createDataBlock()
+        self.dataBlockOperation     = self.dataBlockOperation()
         self.assembleOutputFile     = self.assembleOutputFile()
+        self.cleanup                = self.cleanup()
 
 
     def getScenePath(self):
@@ -63,21 +69,14 @@ class FileParser:
             try:
                 os.mkdir(chunkDirectory)
             except OSError:
-                self.DeadlinePlugin.LogInfo("Creation of the chunk directory %s failed : " % chunkDirectory)
+                self.DeadlinePlugin.LogWarning("Creation of the chunk directory %s failed : " % chunkDirectory)
             else:
-                self.DeadlinePlugin.LogWarning("Chunk Directory successfully created : %s " % chunkDirectory)
+                self.DeadlinePlugin.LogInfo("Chunk Directory successfully created : %s " % chunkDirectory)
 
         return self.chunkDirectory
 
 
     def constructSceneFile(self):
-
-        #TARGET_DATA_BLOCK = getDataBlock(baseScenePath)
-
-        # constFile = open(constScenePath, "wb+")
-        # constFile.writelines(TARGET_DATA_BLOCK)
-        # constFile.writelines(baseScenePath)
-        # constFile.close()
 
         with open(self.baseScenePath, self.FILE_READ_ENCODING) as inputFile:
 
@@ -86,7 +85,6 @@ class FileParser:
 
             for INDEX, dataBlock in enumerate(iterator):
 
-                # TODO : block = process_block(block)    # process block data
                 chunkName = self.getChunkName(INDEX, self.chunkDirectory)
                 with open(chunkName, self.FILE_WRITE_ENCODING) as outputChunk:
                     outputChunk.write(dataBlock)
@@ -109,6 +107,42 @@ class FileParser:
 
         return chunkNameString
 
+    def createDataBlock(self):
+
+        END_BLOCK_LINE_NUM = None
+        END_LINE_STRING = "luxappm.so"
+        DATA_BLOCK_FILE_NAME = "_DataBlock.bip"
+        DATA_REMINDER_FILE_NAME = "_DataChunckReminder.bip"
+
+        self.dataBlockChunk = self.chunkList[0]
+
+        dataBlockChunk = open(self.dataBlockChunk, self.FILE_READ_ENCODING)
+        dataBlockLines = dataBlockChunk.readlines()
+        dataBlockChunk.close()
+
+        for counter, line in enumerate(dataBlockLines):
+            if END_LINE_STRING in line:
+                END_BLOCK_LINE_NUM = counter
+                break
+
+        self.dataBlockPath = os.path.join(self.chunkDirectory, DATA_BLOCK_FILE_NAME)
+        self.dataBlockPath = self.dataBlockPath.replace("\\", "/")
+
+        self.dataBlockReminderPath = os.path.join(self.chunkDirectory, DATA_REMINDER_FILE_NAME)
+        self.dataBlockReminderPath = self.dataBlockReminderPath.replace("\\", "/")
+
+        dataBlockOutputFile = open(self.dataBlockPath, self.FILE_WRITE_ENCODING)
+        dataBlockOutputFile.writelines(dataBlockLines[:END_BLOCK_LINE_NUM])
+        dataBlockOutputFile.close()
+        self.DeadlinePlugin.LogInfo("DataBlock file successfully created : %s" % self.dataBlockPath)
+
+        dataBlockOutputReminder = open(self.dataBlockReminderPath, self.FILE_WRITE_ENCODING)
+        dataBlockOutputReminder.writelines(dataBlockLines[:END_BLOCK_LINE_NUM])
+        dataBlockOutputReminder.close()
+        self.DeadlinePlugin.LogInfo("DataBlockReminder file successfully created : %s" % self.dataBlockOutputReminder)
+
+        return self.dataBlockPath, self.dataBlockReminderPath
+
 
     def assembleOutputFile(self):
 
@@ -123,21 +157,10 @@ class FileParser:
 
         return True
 
-    # def getDataBlock(baseScenePath):
-    #
-    #     END_BLOCK_LINE_NUM = None
-    #     END_LINE_STRING = "luxappm.so"
-    #
-    #     # reading data file and inject lines to list
-    #     dataFile = open(baseScenePath, "rb")
-    #     dataList = dataFile.readlines()
-    #     dataFile.close()
-    #
-    #     for counter, line in enumerate(dataList):
-    #         if END_LINE_STRING in line:
-    #             END_BLOCK_LINE_NUM = counter
-    #
-    #     return dataList[:END_BLOCK_LINE_NUM]
+
+    def cleanup(self):
+
+        self.DeadlinePlugin.LogInfo("Running Cleanup")
 
 
 def __main__(*args):
