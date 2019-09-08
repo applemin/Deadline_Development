@@ -25,10 +25,10 @@ class FileParser:
     def __init__(self, DeadlinePlugin):
 
         self.DeadlinePlugin         = DeadlinePlugin
-        self.getScenePath           = self.constScenePath ()
-        self.createChunkDirectory   = self.createChunkDirectory (self.directoryPath)
-        self.constScenePath         = self.constScenePath (self.baseScenePath, self.constScenePath, self.directoryPath)
-        self.assembleOutputFile     = self.assembleOutputFile (self.chunkList)
+        self.getScenePath           = self.getScenePath()
+        self.createChunkDirectory   = self.createChunkDirectory(self.directoryPath)
+        self.constScenePath         = self.constScenePath(self.baseScenePath, self.constScenePath, self.directoryPath)
+        self.assembleOutputFile     = self.assembleOutputFile(self.chunkList)
 
 
     def getScenePath(self):
