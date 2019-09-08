@@ -89,7 +89,7 @@ class FileParser:
                 chunkName = self.getChunkName(INDEX, self.chunkDirectory)
                 with open(chunkName, self.FILE_WRITE_ENCODING) as outputChunk:
                     outputChunk.write(dataBlock)
-                    self.chunkList.append(outputChunk)
+                    self.chunkList.append(chunkName)
                     print "New chunk written to disc : %s " % outputChunk
 
         return self.chunkList
@@ -112,9 +112,9 @@ class FileParser:
 
         outputFile = open(self.constScenePath, self.FILE_WRITE_ENCODING)
 
-        for chunk in self.chunkList:
+        for chunkFile in self.chunkList:
 
-            print "Assembling : %s" % chunk
+            print "Assembling : %s" % chunkFile
 
             # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_1.bip", "rb").readlines())
             # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_2.bip", "rb").readlines())
