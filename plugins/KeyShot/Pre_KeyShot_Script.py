@@ -27,7 +27,7 @@ class FileParser:
         self.DeadlinePlugin         = DeadlinePlugin
         self.getScenePath           = self.getScenePath()
         self.createChunkDirectory   = self.createChunkDirectory()
-        self.constScenePath         = self.constScenePath()
+        self.constructSceneFile     = self.constructSceneFile()
         self.assembleOutputFile     = self.assembleOutputFile()
 
 
