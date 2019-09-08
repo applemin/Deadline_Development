@@ -62,9 +62,9 @@ class FileParser:
             try:
                 os.mkdir(chunkDirectory)
             except OSError:
-                print ("Creation of the chunk directory %s failed : " % chunkDirectory)
+                self.DeadlinePlugin.LogInfo("Creation of the chunk directory %s failed : " % chunkDirectory)
             else:
-                print ("Chunk Directory successfully created : %s " % chunkDirectory)
+                self.DeadlinePlugin.LogWarning("Chunk Directory successfully created : %s " % chunkDirectory)
 
         return self.chunkDirectory
 
@@ -90,7 +90,7 @@ class FileParser:
                 with open(chunkName, self.FILE_WRITE_ENCODING) as outputChunk:
                     outputChunk.write(dataBlock)
                     self.chunkList.append(chunkName)
-                    print "New chunk written to disc : %s " % outputChunk
+                    self.DeadlinePlugin.LogInfo("New chunk written to disc : %s " % outputChunk)
 
         return self.chunkList
 
@@ -114,7 +114,7 @@ class FileParser:
 
         for chunkFile in self.chunkList:
 
-            print "Assembling : %s" % chunkFile
+            self.DeadlinePlugin.LogInfo("Assembling : %s" % chunkFile)
 
             # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_1.bip", "rb").readlines())
             # outFile.writelines(open("C:/Users/hamed.MRB/Desktop/Python_NPP_Test/chunk/chunck_2.bip", "rb").readlines())
