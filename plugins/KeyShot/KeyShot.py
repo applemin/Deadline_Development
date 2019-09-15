@@ -70,7 +70,9 @@ class KeyShotPlugin (DeadlinePlugin):
 
         return keyshotExe
     
-    def RenderArgument( self ):
+    def RenderArgument(self):
+
+
         sceneFilename = self.GetPluginInfoEntryWithDefault( "SceneFile", self.GetDataFilename() )
         sceneFilename = RepositoryUtils.CheckPathMapping( sceneFilename )
         sceneFilename = sceneFilename.replace( "\\", "/" )
@@ -95,6 +97,19 @@ class KeyShotPlugin (DeadlinePlugin):
         
         startFrame = self.GetStartFrame()
         endFrame = self.GetEndFrame()
+
+        multi_camera_rendering = self.GetBooleanPluginInfoEntryWithDefault("MultiCameraRendering", False)
+        task_id = self.GetCurrentTaskId()
+
+        if multi_camera_rendering:
+            self.LogInfo("Multi Camera Rendering Activated.")
+            camera = str(self.GetPluginInfoEntry("Camera" + str(task_id)))
+            mpath = os.path.dirname(self.outputFilename)
+            fname = os.path.basename(self.outputFilename)
+            path, ext = os.path.splitext(fname)
+
+            self.outputFilename = os.path.join(mpath, camera, str(path + "_" + str(camera) + ext)).replace("\\", "/")
+
         writer = StreamWriter( renderScript )
 
         position = len(sceneFilename)-4
@@ -171,11 +186,10 @@ class KeyShotPlugin (DeadlinePlugin):
         writer.WriteLine("    lux.setAnimationFrame( %d )" % startFrame )
         writer.WriteLine("    width = %s" % width )
         writer.WriteLine("    height = %s" % height )
-        writer.WriteLine("    lux.saveFile(get_new_file_path)")
-        writer.WriteLine("    lux.openFile(get_new_file_path)")
+        if not multi_camera_rendering:
+            writer.WriteLine("    lux.saveFile(get_new_file_path)")
+            writer.WriteLine("    lux.openFile(get_new_file_path)")
         writer.WriteLine("    path = \"%s\"" % outputFilename )
-
-
         
         writer.WriteLine( "    opts = lux.getRenderOptions()" )
         writer.WriteLine( "    opts.setAddToQueue(False)" )
@@ -230,8 +244,8 @@ class KeyShotPlugin (DeadlinePlugin):
         writer.WriteLine( "        lux.renderImage(path = renderPath, width = width, height = height, opts = opts)" )
         writer.WriteLine( "        print(\"Rendered Image: \"+renderPath)" )
 
-
-        writer.WriteLine("    os.remove(get_new_file_path)")
+        if not multi_camera_rendering:
+            writer.WriteLine("    os.remove(get_new_file_path)")
         
         #This only works for a script run from the command line. If run in the scripting console in Keyshot it instead just reloads python
         writer.WriteLine("    print ('Job Completed')")
