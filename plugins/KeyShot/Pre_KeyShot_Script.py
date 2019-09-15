@@ -109,7 +109,7 @@ class FileParser:
     def createDataBlock(self):
 
         END_BLOCK_LINE_NUM = None
-        END_LINE_STRING = "luxappm.so"
+        END_LINE_STRING = "output_style_id"
         DATA_BLOCK_FILE_NAME = "_DataBlock.bip"
         DATA_REMINDER_FILE_NAME = "_DataChunckReminder.bip"
 
@@ -122,7 +122,7 @@ class FileParser:
 
         for counter, line in enumerate(dataBlockLines):
             if END_LINE_STRING in line:
-                END_BLOCK_LINE_NUM = counter
+                END_BLOCK_LINE_NUM = counter+1
                 break
 
         self.dataBlockPath = os.path.join(self.chunkDirectory, DATA_BLOCK_FILE_NAME)
