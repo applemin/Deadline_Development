@@ -76,7 +76,6 @@ class KeyShotPlugin (DeadlinePlugin):
         sceneFilename = self.GetPluginInfoEntryWithDefault( "SceneFile", self.GetDataFilename() )
         sceneFilename = RepositoryUtils.CheckPathMapping( sceneFilename )
         sceneFilename = sceneFilename.replace( "\\", "/" )
-        cameraName = self.GetPluginInfoEntry( "CameraName")
         outputFilename = self.GetPluginInfoEntry( "OutputFile" )
         outputFilename = RepositoryUtils.CheckPathMapping( outputFilename )
         outputFilename = outputFilename.replace( "\\", "/" )
@@ -116,7 +115,7 @@ class KeyShotPlugin (DeadlinePlugin):
 
         position = len(sceneFilename)-4
 
-        temp_sceneFilename = sceneFilename[:position] + "_{}".format(cameraName) + "_{}".format(startFrame) + sceneFilename[position:]
+        temp_sceneFilename = sceneFilename[:position] + "_{}".format(camera) + "_{}".format(startFrame) + sceneFilename[position:]
         temp_sceneBaseFilename = os.path.basename(temp_sceneFilename)
                 
         writer.WriteLine()
