@@ -108,8 +108,12 @@ class KeyShotPlugin (DeadlinePlugin):
             path, ext = os.path.splitext(fname)
 
             outputFilename = os.path.join(mpath, camera, str(path + "_" + str(camera) + ext)).replace("\\", "/")
+
         else:
-            camera = self.GetPluginInfoEntryWithDefault("CameraName", "")
+            try:
+                camera = self.GetPluginInfoEntryWithDefault("Camera0", "")
+            except:
+                camera = self.GetPluginInfoEntryWithDefault("CameraName", "")
 
         writer = StreamWriter( renderScript )
 
