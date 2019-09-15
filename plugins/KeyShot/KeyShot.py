@@ -83,7 +83,7 @@ class KeyShotPlugin (DeadlinePlugin):
         
         width = self.GetIntegerPluginInfoEntryWithDefault( "RenderWidth", 1920 )
         height = self.GetIntegerPluginInfoEntryWithDefault( "RenderHeight", 1080 )
-        camera = self.GetPluginInfoEntryWithDefault( "CameraName", "" )
+
         
         renderLayers = self.GetBooleanPluginInfoEntryWithDefault( "IncludeRenderLayers", False )
         includeAlpha = self.GetBooleanPluginInfoEntryWithDefault( "IncludeAlpha", False )
@@ -104,11 +104,13 @@ class KeyShotPlugin (DeadlinePlugin):
         if multi_camera_rendering:
             self.LogInfo("Multi Camera Rendering Activated.")
             camera = str(self.GetPluginInfoEntry("Camera" + str(task_id)))
-            mpath = os.path.dirname(self.outputFilename)
-            fname = os.path.basename(self.outputFilename)
+            mpath = os.path.dirname(outputFilename)
+            fname = os.path.basename(outputFilename)
             path, ext = os.path.splitext(fname)
 
-            self.outputFilename = os.path.join(mpath, camera, str(path + "_" + str(camera) + ext)).replace("\\", "/")
+            outputFilename = os.path.join(mpath, camera, str(path + "_" + str(camera) + ext)).replace("\\", "/")
+        else:
+            camera = self.GetPluginInfoEntryWithDefault("CameraName", "")
 
         writer = StreamWriter( renderScript )
 
