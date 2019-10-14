@@ -75,27 +75,36 @@ class KeyShotPlugin (DeadlinePlugin):
         ## get plugin and job entries
         ######################################################################
 
-        sceneFilename           =self.GetPluginInfoEntry("SceneFile")
-        sceneFilename           =sceneFilename.replace("\\", "/")
-        outputFilename          =self.GetPluginInfoEntry("OutputFile")
-        outputFilename          =outputFilename.replace("\\", "/")
-        camera                  =self.GetPluginInfoEntryWithDefault( "CameraName", "" )
-        width                   =self.GetIntegerPluginInfoEntryWithDefault( "RenderWidth", 1280 )
-        height                  =self.GetIntegerPluginInfoEntryWithDefault( "RenderHeight", 720 )
-        renderLayers            =self.GetBooleanPluginInfoEntryWithDefault( "IncludeRenderLayers", False )
-        includeAlpha            =self.GetBooleanPluginInfoEntryWithDefault( "IncludeAlpha", False )
-        overrideRenderPasses    =self.GetBooleanPluginInfoEntryWithDefault( "OverrideRenderPasses", False )
-        qualityType             =self.GetPluginInfoEntryWithDefault( "QualityType", "Maximum Time" ).strip()
-        startFrame              =self.GetStartFrame()
-        endFrame                =self.GetEndFrame()
-        maximumTime             =self.GetFloatPluginInfoEntryWithDefault( "MaxTime", 30 )
-        maximumSamples          =self.GetIntegerPluginInfoEntryWithDefault( "ProgressiveMaxSamples", 16 )
-        advancedMaxSamples      =self.GetIntegerPluginInfoEntryWithDefault( "AdvancedMaxSamples", 16 )
-        rayBounces              =self.GetIntegerPluginInfoEntryWithDefault( "RayBounces", 16 )
-        antiAliasing            =self.GetIntegerPluginInfoEntryWithDefault( "AntiAliasing", 16 )
-        shadows                 =self.GetFloatPluginInfoEntryWithDefault( "Shadows", 1.0 )
+        task_id                 = self.GetCurrentTaskId()
+        sceneFilename           = self.GetPluginInfoEntry("SceneFile")
+        sceneFilename           = sceneFilename.replace("\\", "/")
+        outputFilename          = self.GetPluginInfoEntry("OutputFile")
+        outputFilename          = outputFilename.replace("\\", "/")
+        width                   = self.GetIntegerPluginInfoEntryWithDefault("RenderWidth", 1280)
+        height                  = self.GetIntegerPluginInfoEntryWithDefault("RenderHeight", 720)
+        renderLayers            = self.GetBooleanPluginInfoEntryWithDefault("IncludeRenderLayers", False)
+        includeAlpha            = self.GetBooleanPluginInfoEntryWithDefault("IncludeAlpha", False)
+        overrideRenderPasses    = self.GetBooleanPluginInfoEntryWithDefault("OverrideRenderPasses", False)
+        qualityType             = self.GetPluginInfoEntryWithDefault("QualityType", "Maximum Time").strip()
+        startFrame              = self.GetStartFrame()
+        endFrame                = self.GetEndFrame()
+        maximumTime             = self.GetFloatPluginInfoEntryWithDefault("MaxTime", 30 )
+        maximumSamples          = self.GetIntegerPluginInfoEntryWithDefault("ProgressiveMaxSamples", 16)
+        advancedMaxSamples      = self.GetIntegerPluginInfoEntryWithDefault("AdvancedMaxSamples", 16)
+        rayBounces              = self.GetIntegerPluginInfoEntryWithDefault("RayBounces", 16)
+        antiAliasing            = self.GetIntegerPluginInfoEntryWithDefault("AntiAliasing", 16)
+        shadows                 = self.GetFloatPluginInfoEntryWithDefault("Shadows", 1.0)
+        multiTaskRendering      = self.GetBooleanPluginInfoEntryWithDefault("MultiCameraRendering", False)
 
-        #renderScriptDirectory  =self.CreateTempDirectory( "thread" + str(self.GetThreadNumber()) )
+        if multiTaskRendering:
+            camera              = self.GetPluginInfoEntryWithDefault("Camera" + str(task_id), str())
+            outputDirectory     = os.path.dirname(outputFilename)
+            sFileName, sExt     = os.path.splitext(os.path.basename(outputFilename))
+            outputFilename      = os.path.join(outputDirectory, camera, str(sFileName + "_" + str(camera) + sExt))
+        else:
+            sOldKey = self.GetPluginInfoEntryWithDefault("CameraName", str())
+            sNewKey = self.GetPluginInfoEntryWithDefault("Camera0", str())
+            camera              = sOldKey or sNewKey or str()
 
         # TODO: the temp scene file needs new implementation
         position = len(sceneFilename)-4
@@ -127,7 +136,8 @@ class KeyShotPlugin (DeadlinePlugin):
             "DAT_RAY_BOUNCES":                  rayBounces,
             "DAT_ANTI_ALIASING":                antiAliasing,
             "DAT_SHADOWS":                      shadows,
-            "DAT_QUALITY_TYPE":                 qualityType}
+            "DAT_QUALITY_TYPE":                 qualityType,
+            "DAT_MULTI_TASK_RENDERING":         multiTaskRendering}
 
         self.LogInfo("Contents of DEADLINE_KEYSHOT_INFO file:")
         self.LogInfo(self.infoFilePath)

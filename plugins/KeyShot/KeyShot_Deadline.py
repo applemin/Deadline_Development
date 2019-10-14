@@ -33,7 +33,8 @@ INFO_FILE_LINE_DESC = {
     "DAT_RAY_BOUNCES":                  DATA_DICT["DAT_RAY_BOUNCES"],
     "DAT_ANTI_ALIASING":                DATA_DICT["DAT_ANTI_ALIASING"],
     "DAT_SHADOWS":                      DATA_DICT["DAT_SHADOWS"],
-    "DAT_QUALITY_TYPE":                 DATA_DICT["DAT_QUALITY_TYPE"]}
+    "DAT_QUALITY_TYPE":                 DATA_DICT["DAT_QUALITY_TYPE"],
+    "DAT_MULTI_TASK_RENDERING":         DATA_DICT["DAT_MULTI_TASK_RENDERING"]}
         
 HOME_PATH = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')
 SCENE_FILE_PATH = INFO_FILE_LINE_DESC["DAT_SCENE_FILE_NAME"]
@@ -105,8 +106,10 @@ def main(scene_file_path, get_new_file_path):
         lux.setCamera(INFO_FILE_LINE_DESC["DAT_CAMERA"])
 
     lux.setAnimationFrame(INFO_FILE_LINE_DESC["DAT_START_FRAME"])
-    lux.saveFile(get_new_file_path)
-    lux.openFile(get_new_file_path)
+
+    if not INFO_FILE_LINE_DESC["DAT_MULTI_TASK_RENDERING"]:
+        lux.saveFile(get_new_file_path)
+        lux.openFile(get_new_file_path)
 
     renderOptions = lux.getRenderOptions()
     renderOptions.setAddToQueue(False)
@@ -170,7 +173,8 @@ def main(scene_file_path, get_new_file_path):
                         opts=renderOptions)
         print("Rendered Image: %s" % INFO_FILE_LINE_DESC["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)))
 
-    os.remove(get_new_file_path)
+    if not INFO_FILE_LINE_DESC["DAT_MULTI_TASK_RENDERING"]:
+        os.remove(get_new_file_path)
     print ('Job Completed')
     exit()
 
