@@ -5,55 +5,41 @@ import sys
 import subprocess
 import json
 
-def load_data_file(JasonFile):
-    with open(JasonFile, 'r') as JsonData:
-        DataDict = json.load(JsonData)
-        return DataDict
+# get data file path and load data fom json file
+s_data_file = os.environ['DEADLINE_KEYSHOT_INFO']
+d_data = load_data_file(s_data_file)
+print("Data File Path : ", s_data_file)
 
 
-INFO_FILE_LINE_DESC_PATH = os.environ['DEADLINE_KEYSHOT_INFO']
-print (INFO_FILE_LINE_DESC_PATH)
-DATA_DICT = load_data_file(INFO_FILE_LINE_DESC_PATH)
+s_home_path = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')
+s_file_path = d_data["DAT_SCENE_FILE_NAME"]
+s_file_name = os.path.basename(s_file_path)
+s_temp_file_name = d_data["DAT_TEMP_SCENE_BASE_FILE_NAME"]
+s_new_file_path, s_new_temp_file_path = file_transfer(s_file_path)
+print('s_new_file_path ={}'.format(s_new_file_path))
+print('s_new_temp_file_path ={}'.format(s_new_temp_file_path))
 
-INFO_FILE_LINE_DESC = {
-    "DAT_SCENE_FILE_NAME":              DATA_DICT["DAT_SCENE_FILE_NAME"],
-    "DAT_TEMP_SCENE_BASE_FILE_NAME":    DATA_DICT["DAT_TEMP_SCENE_BASE_FILE_NAME"],
-    "DAT_CAMERA":                       DATA_DICT["DAT_CAMERA"],
-    "DAT_START_FRAME":                  DATA_DICT["DAT_START_FRAME"],
-    "DAT_END_FRAME":                    DATA_DICT["DAT_END_FRAME"],
-    "DAT_WIDTH":                        DATA_DICT["DAT_WIDTH"],
-    "DAT_HEIGHT":                       DATA_DICT["DAT_HEIGHT"],
-    "DAT_OUTPUT_FILE_NAME":             DATA_DICT["DAT_OUTPUT_FILE_NAME"],
-    "DAT_RENDER_LAYERS":                DATA_DICT["DAT_RENDER_LAYERS"],
-    "DAT_INCLUDE_ALPHA":                DATA_DICT["DAT_INCLUDE_ALPHA"],
-    "DAT_OVERRIDE_RENDER_PASSES":       DATA_DICT["DAT_OVERRIDE_RENDER_PASSES"],
-    "DAT_MAXIMUM_TIME":                 DATA_DICT["DAT_MAXIMUM_TIME"],
-    "DAT_PROGRESSIVE_MAX_SAMPLES":      DATA_DICT["DAT_PROGRESSIVE_MAX_SAMPLES"],
-    "DAT_ADVANCED_MAX_SAMPLES":         DATA_DICT["DAT_ADVANCED_MAX_SAMPLES"],
-    "DAT_RAY_BOUNCES":                  DATA_DICT["DAT_RAY_BOUNCES"],
-    "DAT_ANTI_ALIASING":                DATA_DICT["DAT_ANTI_ALIASING"],
-    "DAT_SHADOWS":                      DATA_DICT["DAT_SHADOWS"],
-    "DAT_QUALITY_TYPE":                 DATA_DICT["DAT_QUALITY_TYPE"],
-    "DAT_MULTI_TASK_RENDERING":         DATA_DICT["DAT_MULTI_TASK_RENDERING"]}
-        
-HOME_PATH = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')
-SCENE_FILE_PATH = INFO_FILE_LINE_DESC["DAT_SCENE_FILE_NAME"]
-NEW_SCENE_FILE_NAME = os.path.basename(SCENE_FILE_PATH)
-NEW_TEMP_SCENE_FILE_NAME = INFO_FILE_LINE_DESC["DAT_TEMP_SCENE_BASE_FILE_NAME"]
+
+def load_data_file(json_file):
+    with open(json_file, 'r') as json_data:
+        d_data = json.load(json_data)
+        return d_data
+
 
 def valid_temp_folder():
 
-    if os.path.exists(HOME_PATH):
+    if os.path.exists(s_home_path):
         print('Temp folder has already been created.')
         return True
     else:
         try:
-            os.makedirs(HOME_PATH)
+            os.makedirs(s_home_path)
             print('Temp folder created successfully.')
             return True
         except:
             print('Temp folder could not be created.')
             return False
+
 
 def dir_update_check(NETWORK_FILE_DIR, DESTINATION_PATH):
 
@@ -67,13 +53,14 @@ def dir_update_check(NETWORK_FILE_DIR, DESTINATION_PATH):
         print('Directory update required.')
         return False
 
-def file_transfer(SCENE_FILE_PATH):
 
-    NETWORK_FILE_DIR = os.path.dirname(SCENE_FILE_PATH)
+def file_transfer(s_file_path):
+
+    NETWORK_FILE_DIR = os.path.dirname(s_file_path)
     NETWORK_DIR_NAME = os.path.basename(NETWORK_FILE_DIR)
     DESTINATION_PATH = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp', NETWORK_DIR_NAME)
-    NEW_SCENE_PATH = os.path.join(DESTINATION_PATH, NEW_SCENE_FILE_NAME)
-    NEW_SCENE_TEMP_PATH = os.path.join(DESTINATION_PATH, NEW_TEMP_SCENE_FILE_NAME)
+    NEW_SCENE_PATH = os.path.join(DESTINATION_PATH, s_file_name)
+    NEW_SCENE_TEMP_PATH = os.path.join(DESTINATION_PATH, s_temp_file_name)
 
     if os.path.exists(DESTINATION_PATH) and dir_update_check(NETWORK_FILE_DIR, DESTINATION_PATH):
         print('Render folder has already been transferred , returning immediately .')
@@ -93,99 +80,58 @@ def file_transfer(SCENE_FILE_PATH):
 
     return NEW_SCENE_PATH, NEW_SCENE_TEMP_PATH
 
-def main(scene_file_path, get_new_file_path):
 
-    print ("Contents of DEADLINE_KEYSHOT_INFO received in KeyShot :")
+def main(s_file_path, s_new_file_path):
 
-    for parameter, value in INFO_FILE_LINE_DESC.items():
-        print ("\t %s  [%s]  = %s" % (parameter, type(value), value))
+    print("Contents of DEADLINE_KEYSHOT_INFO received in KeyShot :")
+    for parameter, value in d_data.items():
+        print("\t %s  [%s]  = %s" % (parameter, type(value), value))
 
-    lux.openFile(scene_file_path)
+    lux.openFile(s_file_path)
 
-    if INFO_FILE_LINE_DESC["DAT_CAMERA"] != "":
-        lux.setCamera(INFO_FILE_LINE_DESC["DAT_CAMERA"])
+    if d_data["DAT_CAMERA"] != "":
+        lux.setCamera(d_data["DAT_CAMERA"])
 
-    lux.setAnimationFrame(INFO_FILE_LINE_DESC["DAT_START_FRAME"])
+    lux.setAnimationFrame(d_data["DAT_START_FRAME"])
 
-    if not INFO_FILE_LINE_DESC["DAT_MULTI_TASK_RENDERING"]:
-        lux.saveFile(get_new_file_path)
-        lux.openFile(get_new_file_path)
+    if not d_data["DAT_MULTI_TASK_RENDERING"]:
+        lux.saveFile(s_new_file_path)
+        lux.openFile(s_new_file_path)
 
     renderOptions = lux.getRenderOptions()
     renderOptions.setAddToQueue(False)
 
-    renderOptions.setOutputRenderLayers(INFO_FILE_LINE_DESC["DAT_RENDER_LAYERS"])
-    renderOptions.setOutputAlphaChannel(INFO_FILE_LINE_DESC["DAT_INCLUDE_ALPHA"])
-
-    # overrideRenderPasses = INFO_FILE_LINE_DESC["DAT_OVERRIDE_RENDER_PASSES"]
-
-    # if overrideRenderPasses:
-    #     renderPassOptions = [
-    #         ("IncludeDiffusePass", "setOutputDiffusePass"),
-    #         ("IncludeReflectionPass", "setOutputReflectionPass"),
-    #         ("IncludeClownPass", "setOutputClownPass"),
-    #         ("IncludeLightingPass", "setOutputDirectLightingPass"),
-    #         ("IncludeRefractionPass", "setOutputRefractionPass"),
-    #         ("IncludeDepthPass", "setOutputDepthPass"),
-    #         ("IncludeGIPass", "setOutputIndirectLightingPass"),
-    #         ("IncludeShadowPass", "setOutputShadowPass"),
-    #         ("IncludeGeometricNormalPass", "setOutputNormalsPass"),
-    #         ("IncludeCausticsPass", "setOutputCausticsPass"),
-    #         ("IncludeAOPass", "setOutputAmbientOcclusionPass")]
+    renderOptions.setOutputRenderLayers(d_data["DAT_RENDER_LAYERS"])
+    renderOptions.setOutputAlphaChannel(d_data["DAT_INCLUDE_ALPHA"])
 
 
-    # try:
-    #     opts.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeDiffusePass"])
-    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeReflectionPass"])
-    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeClownPass"])
-    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeLightingPass"])
-    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeRefractionPass"])
-    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeDepthPass"])
-    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeGIPass"])
-    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeShadowPass"])
-    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeGeometricNormalPass"])
-    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeCausticsPass"])
-    #     renderOptions.setOutputDiffusePass(INFO_FILE_LINE_DESC["DAT_IncludeAOPass"])
-    #
-    # except AttributeError:
-    #     print( 'Failed to set render pass attributes')
-
-    print ("Set Quality Mode to : %s" % INFO_FILE_LINE_DESC["DAT_QUALITY_TYPE"])
-    if INFO_FILE_LINE_DESC["DAT_QUALITY_TYPE"] == "Maximum Time":
-        renderOptions.setMaxTimeRendering(INFO_FILE_LINE_DESC["DAT_MAXIMUM_TIME"])
-    elif INFO_FILE_LINE_DESC["DAT_QUALITY_TYPE"] == "Maximum Samples":
-        renderOptions.setMaxSamplesRendering(INFO_FILE_LINE_DESC["DAT_PROGRESSIVE_MAX_SAMPLES"])
+    print ("Set Quality Mode to : %s" % d_data["DAT_QUALITY_TYPE"])
+    if d_data["DAT_QUALITY_TYPE"] == "Maximum Time":
+        renderOptions.setMaxTimeRendering(d_data["DAT_MAXIMUM_TIME"])
+    elif d_data["DAT_QUALITY_TYPE"] == "Maximum Samples":
+        renderOptions.setMaxSamplesRendering(d_data["DAT_PROGRESSIVE_MAX_SAMPLES"])
     else:
         try:
-            renderOptions.setAdvancedRendering(INFO_FILE_LINE_DESC["DAT_ADVANCED_MAX_SAMPLES"])
-            renderOptions.setRayBounces(INFO_FILE_LINE_DESC["DAT_RAY_BOUNCES"])
-            renderOptions.setAntiAliasing(INFO_FILE_LINE_DESC["DAT_ANTI_ALIASING"])
-            renderOptions.setShadowQuality(INFO_FILE_LINE_DESC["DAT_SHADOWS"])
+            renderOptions.setAdvancedRendering(d_data["DAT_ADVANCED_MAX_SAMPLES"])
+            renderOptions.setRayBounces(d_data["DAT_RAY_BOUNCES"])
+            renderOptions.setAntiAliasing(d_data["DAT_ANTI_ALIASING"])
+            renderOptions.setShadowQuality(d_data["DAT_SHADOWS"])
         except AttributeError:
             print('Failed to set advanced quality attribute')
 
-    for frame in range(INFO_FILE_LINE_DESC["DAT_START_FRAME"], INFO_FILE_LINE_DESC["DAT_END_FRAME"]+1 ):
+    for frame in range(d_data["DAT_START_FRAME"], d_data["DAT_END_FRAME"]+1):
         print ("Rendering Frame : %s" % frame)
         lux.setAnimationFrame(frame)
-        lux.renderImage(path=INFO_FILE_LINE_DESC["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
-                        width=INFO_FILE_LINE_DESC["DAT_WIDTH"],
-                        height=INFO_FILE_LINE_DESC["DAT_HEIGHT"],
+        lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
+                        width=d_data["DAT_WIDTH"],
+                        height=d_data["DAT_HEIGHT"],
                         opts=renderOptions)
-        print("Rendered Image: %s" % INFO_FILE_LINE_DESC["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)))
+        print("Rendered Image: %s" % d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)))
 
-    if not INFO_FILE_LINE_DESC["DAT_MULTI_TASK_RENDERING"]:
-        os.remove(get_new_file_path)
-    print ('Job Completed')
+    if not d_data["DAT_MULTI_TASK_RENDERING"]:
+        os.remove(s_new_file_path)
+    print('Job Completed')
     exit()
 
-GET_NEW_FILE_PATH, GET_NEW_TEMP_FILE_PATH = file_transfer(SCENE_FILE_PATH)
-print('GET_NEW_FILE_PATH ={}'.format(GET_NEW_FILE_PATH))
-print('GET_NEW_TEMP_FILE_PATH ={}'.format(GET_NEW_TEMP_FILE_PATH))
 
-if GET_NEW_FILE_PATH:
-    print('Starting new workflow...')
-    main(GET_NEW_FILE_PATH, GET_NEW_TEMP_FILE_PATH)
-else:
-    print('Switching to old workflow...')
-    main(SCENE_FILE_PATH)
-
+main(s_new_file_path, s_new_temp_file_path)

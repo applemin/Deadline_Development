@@ -106,10 +106,9 @@ class KeyShotPlugin (DeadlinePlugin):
             sNewKey = self.GetPluginInfoEntryWithDefault("Camera0", str())
             camera              = sOldKey or sNewKey or str()
 
-        # TODO: the temp scene file needs new implementation
-        position = len(sceneFilename)-4
-        temp_sceneFilename = sceneFilename[:position] + "_{}".format(camera) + "_{}".format(startFrame) + sceneFilename[position:]
-        temp_sceneBaseFilename = os.path.basename(temp_sceneFilename)
+
+        s_sceneFilename, s_ext = os.path.splitext(os.path.basename(sceneFilename))
+        s_temp_sceneFilename = s_sceneFilename + "_{}".format(camera) + "_{}".format(startFrame) + s_ext
 
 
         ######################################################################
@@ -120,7 +119,7 @@ class KeyShotPlugin (DeadlinePlugin):
 
         INFO_FILE_LINE_DESC = {
             "DAT_SCENE_FILE_NAME":              sceneFilename,
-            "DAT_TEMP_SCENE_BASE_FILE_NAME":    temp_sceneBaseFilename,
+            "DAT_TEMP_SCENE_BASE_FILE_NAME":    s_temp_sceneFilename,
             "DAT_CAMERA":                       camera,
             "DAT_START_FRAME":                  startFrame,
             "DAT_END_FRAME":                    endFrame,
@@ -149,14 +148,12 @@ class KeyShotPlugin (DeadlinePlugin):
             self.LogInfo("\t%s=%s" % (key, value))
 
         arguments = []
-        arguments.append( "-script \"%s\"" % renderScript)
+        arguments.append("-script \"%s\"" % renderScript)
         
-        return " ".join( arguments )
+        return " ".join(arguments)
 
     def PreRenderTasks(self):
 
         self.infoFilePath = os.path.join( self.GetJobsDataDirectory(), "deadline_KeyShot_info.json" )
         self.SetEnvironmentVariable( "DEADLINE_KEYSHOT_INFO", self.infoFilePath )
-        self.LogInfo( 'Setting DEADLINE_KEYSHOT_INFO environment variable to "%s"' % self.infoFilePath )
-
-        self.LogInfo( "Starting KeyShot Job" )
+        self.LogInfo('Setting DEADLINE_KEYSHOT_INFO environment variable to "%s"' % self.infoFilePath )
