@@ -8,4 +8,4 @@ from functools import partial
 
 def __main__(*args):
 
-    print " Running KeyShot Post Job Script"
+    print "Running KeyShot Post Job Script"
