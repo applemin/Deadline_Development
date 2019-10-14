@@ -27,13 +27,14 @@ class FileParser:
 
     def __init__(self, DeadlinePlugin):
 
-        self.DeadlinePlugin         = DeadlinePlugin
-        self.getScenePath           = self.getScenePath()
-        self.createChunkDirectory   = self.createChunkDirectory()
-        self.constructSceneFile     = self.constructSceneFile()
-        self.createDataBlock        = self.createDataBlock()
-        self.assembleOutputFile     = self.assembleOutputFile()
-        self.cleanup                = self.cleanup()
+        pass
+        # self.DeadlinePlugin         = DeadlinePlugin
+        # self.getScenePath           = self.getScenePath()
+        # self.createChunkDirectory   = self.createChunkDirectory()
+        # self.constructSceneFile     = self.constructSceneFile()
+        # self.createDataBlock        = self.createDataBlock()
+        # self.assembleOutputFile     = self.assembleOutputFile()
+        # self.cleanup                = self.cleanup()
 
 
     def getScenePath(self):

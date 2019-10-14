@@ -1,3 +1,11 @@
-POST_VAR = "Post_KeyShot_Script"
-def __main__( *args ):
-    print POST_VAR
+import os
+from functools import partial
+
+#######################################################################################################################
+# GET/SET global variables
+#######################################################################################################################
+
+
+def __main__(*args):
+
+    print " Running KeyShot Post Job Script"
