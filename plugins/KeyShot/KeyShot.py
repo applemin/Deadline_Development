@@ -39,10 +39,9 @@ class KeyShotPlugin (DeadlinePlugin):
         self.infoFilePath = ""
 
     def TempCleanup(self):
-        self.LogInfo("Default Temp Folder Dir : " + self.TempFolder)
-        self.LogInfo("Running TempCleanup System")
-
         s_temp_path = str(os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')).replace("\\", "/")
+        self.LogInfo("Default Temp Folder Dir : " + s_temp_path)
+        self.LogInfo("Running TempCleanup System")
 
         for dir in os.walk(s_temp_path):
             if dir[0] != s_temp_path:
