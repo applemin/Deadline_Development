@@ -5,6 +5,7 @@ import time
 import sys
 import subprocess
 import json
+import datetime
 
 from System import *
 from System.Diagnostics import *
@@ -36,6 +37,27 @@ class KeyShotPlugin (DeadlinePlugin):
         self.RenderArgumentCallback += self.RenderArgument
         self.PreRenderTasksCallback += self.PreRenderTasks
         self.infoFilePath = ""
+
+    def TempCleanup(self):
+        self.LogInfo("Default Temp Folder Dir : " + self.TempFolder)
+        self.LogInfo("Running TempCleanup System")
+
+        s_temp_path = str(os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')).replace("\\", "/")
+
+        for dir in os.walk(s_temp_path):
+            if dir[0] != s_temp_path:
+                set_dir = dir[0]
+                last_modified = datetime.datetime.fromtimestamp(os.path.getmtime(set_dir))
+                now_time = datetime.datetime.now()
+                delta_time = now_time - last_modified
+
+                if int(delta_time.days) >= 3:
+                    try:
+                        shutil.rmtree(set_dir, ignore_errors=True)
+                    except:
+                        pass
+                    if not os.path.exists(set_dir):
+                        self.LogInfo("[Deleted] Time Passed : %s >> Directory : %s " % (delta_time, set_dir))
 
     def Cleanup(self):
 
@@ -69,7 +91,9 @@ class KeyShotPlugin (DeadlinePlugin):
 
         return keyshotExe
     
-    def RenderArgument( self ):
+    def RenderArgument(self):
+
+        self.TempCleanup()
 
         ######################################################################
         ## get plugin and job entries
