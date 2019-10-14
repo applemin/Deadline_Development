@@ -7,23 +7,9 @@ import json
 
 # get data file path and load data fom json file
 s_data_file = os.environ['DEADLINE_KEYSHOT_INFO']
-d_data = load_data_file(s_data_file)
+with open(s_data_file, 'r') as json_data:
+    d_data = json.load(json_data)
 print("Data File Path : ", s_data_file)
-
-
-s_home_path = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')
-s_file_path = d_data["DAT_SCENE_FILE_NAME"]
-s_file_name = os.path.basename(s_file_path)
-s_temp_file_name = d_data["DAT_TEMP_SCENE_BASE_FILE_NAME"]
-s_new_file_path, s_new_temp_file_path = file_transfer(s_file_path)
-print('s_new_file_path ={}'.format(s_new_file_path))
-print('s_new_temp_file_path ={}'.format(s_new_temp_file_path))
-
-
-def load_data_file(json_file):
-    with open(json_file, 'r') as json_data:
-        d_data = json.load(json_data)
-        return d_data
 
 
 def valid_temp_folder():
@@ -133,5 +119,12 @@ def main(s_file_path, s_new_file_path):
     print('Job Completed')
     exit()
 
+s_home_path = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')
+s_file_path = d_data["DAT_SCENE_FILE_NAME"]
+s_file_name = os.path.basename(s_file_path)
+s_temp_file_name = d_data["DAT_TEMP_SCENE_BASE_FILE_NAME"]
+s_new_file_path, s_new_temp_file_path = file_transfer(s_file_path)
+print('s_new_file_path ={}'.format(s_new_file_path))
+print('s_new_temp_file_path ={}'.format(s_new_temp_file_path))
 
 main(s_new_file_path, s_new_temp_file_path)
