@@ -11,6 +11,11 @@ with open(s_data_file, 'r') as json_data:
     d_data = json.load(json_data)
 print("Data File Path : ", s_data_file)
 
+s_home_path = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')
+s_file_path = d_data["DAT_SCENE_FILE_NAME"]
+s_file_name = os.path.basename(s_file_path)
+s_temp_file_name = d_data["DAT_TEMP_SCENE_BASE_FILE_NAME"]
+
 
 def valid_temp_folder():
 
@@ -67,13 +72,16 @@ def file_transfer(s_file_path):
     return NEW_SCENE_PATH, NEW_SCENE_TEMP_PATH
 
 
-def main(s_file_path, s_new_file_path):
+def main():
+    s_file_p, s_new_file_p = file_transfer(s_file_path)
+    print('s_new_file_path ={}'.format(s_file_p))
+    print('s_new_temp_file_path ={}'.format(s_new_file_p))
 
     print("Contents of DEADLINE_KEYSHOT_INFO received in KeyShot :")
     for parameter, value in d_data.items():
         print("\t %s  [%s]  = %s" % (parameter, type(value), value))
 
-    lux.openFile(s_file_path)
+    lux.openFile(s_file_p)
 
     if d_data["DAT_CAMERA"] != "":
         lux.setCamera(d_data["DAT_CAMERA"])
@@ -81,8 +89,8 @@ def main(s_file_path, s_new_file_path):
     lux.setAnimationFrame(d_data["DAT_START_FRAME"])
 
     if not d_data["DAT_MULTI_TASK_RENDERING"]:
-        lux.saveFile(s_new_file_path)
-        lux.openFile(s_new_file_path)
+        lux.saveFile(s_new_file_p)
+        lux.openFile(s_new_file_p)
 
     renderOptions = lux.getRenderOptions()
     renderOptions.setAddToQueue(False)
@@ -115,16 +123,9 @@ def main(s_file_path, s_new_file_path):
         print("Rendered Image: %s" % d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)))
 
     if not d_data["DAT_MULTI_TASK_RENDERING"]:
-        os.remove(s_new_file_path)
+        os.remove(s_new_file_p)
     print('Job Completed')
     exit()
 
-s_home_path = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')
-s_file_path = d_data["DAT_SCENE_FILE_NAME"]
-s_file_name = os.path.basename(s_file_path)
-s_temp_file_name = d_data["DAT_TEMP_SCENE_BASE_FILE_NAME"]
-s_new_file_path, s_new_temp_file_path = file_transfer(s_file_path)
-print('s_new_file_path ={}'.format(s_new_file_path))
-print('s_new_temp_file_path ={}'.format(s_new_temp_file_path))
 
-main(s_new_file_path, s_new_temp_file_path)
+main()
