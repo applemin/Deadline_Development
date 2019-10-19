@@ -82,6 +82,7 @@ def main():
         print("\t %s  [%s]  = %s" % (parameter, type(value), value))
 
     lux.openFile(s_file_p)
+    lux.pause()
 
     if d_data["DAT_CAMERA"] != "":
         lux.setCamera(d_data["DAT_CAMERA"])
@@ -91,13 +92,13 @@ def main():
     if not d_data["DAT_MULTI_TASK_RENDERING"]:
         lux.saveFile(s_new_file_p)
         lux.openFile(s_new_file_p)
+    lux.pause()
 
     renderOptions = lux.getRenderOptions()
     renderOptions.setAddToQueue(False)
 
     renderOptions.setOutputRenderLayers(d_data["DAT_RENDER_LAYERS"])
     renderOptions.setOutputAlphaChannel(d_data["DAT_INCLUDE_ALPHA"])
-
 
     print ("Set Quality Mode to : %s" % d_data["DAT_QUALITY_TYPE"])
     if d_data["DAT_QUALITY_TYPE"] == "Maximum Time":
