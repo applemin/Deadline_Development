@@ -240,7 +240,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         with open(self.infoFilePath, 'w') as JsonData:
             json.dump(d_data_file, JsonData, indent=4)
 
-        for key, value in d_data_file.items():
+        for key, value in sorted(d_data_file.items()):
             self.LogInfo("\t%s=%s" % (key, value))
 
         arguments = []
