@@ -131,7 +131,7 @@ class KeyShotPlugin (DeadlinePlugin):
         setOutputAlphaChannel           = self.GetBooleanPluginInfoEntryWithDefault("IncludeAlpha", False)
 
 
-        if multiTaskRendering:
+        if multiCameraRendering :
             camera              = self.GetPluginInfoEntryWithDefault("Camera" + str(task_id), str())
             outputDirectory     = os.path.dirname(outputFilename)
             sFileName, sExt     = os.path.splitext(os.path.basename(outputFilename))
