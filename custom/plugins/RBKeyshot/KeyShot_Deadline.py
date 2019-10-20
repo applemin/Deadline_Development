@@ -151,7 +151,7 @@ def main():
         print("Rendered Image: %s" % d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)))
 
     if b_reload:
-        print("\t Removing temp scene: %s" % s_new_file_p")
+        print("\t Removing temp scene: %s" % s_new_file_p)
         os.remove(s_new_file_p)
     print('Job Completed')
     exit()
