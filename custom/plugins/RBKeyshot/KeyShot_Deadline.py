@@ -72,16 +72,31 @@ def file_transfer(s_file_path):
 
     return NEW_SCENE_PATH, NEW_SCENE_TEMP_PATH
 
-
 def main():
 
     l_advanced_render_options = ["setAdvancedRendering",
+                                 "setGlobalIllumination",
                                  "setRayBounces",
                                  "setAntiAliasing",
-                                 "setShadowQuality"]
+                                 "setShadowQuality",
+                                 "setCausticsQuality",
+                                 "setSharpShadows",
+                                 "setSharperTextureFiltering",
+                                 "setGlobalIlluminationCache"]
 
     l_render_pass_options = ["setOutputRenderLayers",
-                             "setOutputAlphaChannel"]
+                             "setOutputAlphaChannel",
+                             "setOutputDiffusePass",
+                             "setOutputReflectionPass",
+                             "setOutputClownPass",
+                             "setOutputDirectLightingPass",
+                             "setOutputRefractionPass",
+                             "setOutputDepthPass",
+                             "setOutputIndirectLightingPass",
+                             "setOutputNormalsPass",
+                             "setOutputCausticsPass",
+                             "setOutputShadowPass",
+                             "setOutputAmbientOcclusionPass"]
 
     s_file_p, s_new_file_p = file_transfer(s_file_path)
     b_reload = not any([d_data["DAT_MULTI_CAMERA_RENDERING"], d_data["DAT_MULTI_TASK_RENDERING"]])
@@ -112,8 +127,9 @@ def main():
         except AttributeError:
             print('Failed to set render pass attribute: %s' % pass_setting)
 
-    if d_data["DAT_QUALITY_TYPE"] == "Maximum Time":renderOptions.setMaxTimeRendering(d_data["DAT_MAXIMUM_TIME"])
-    elif d_data["DAT_QUALITY_TYPE"] == "Maximum Samples":renderOptions.setMaxSamplesRendering(d_data["DAT_PROGRESSIVE_MAX_SAMPLES"])
+    if d_data["DAT_REGION_DATA"]:renderOptions.setRegion(d_data["DAT_REGION_DATA"])
+    if d_data["DAT_QUALITY_TYPE"] == "maximum_time":renderOptions.setMaxTimeRendering(d_data["DAT_MAXIMUM_TIME"])
+    elif d_data["DAT_QUALITY_TYPE"] == "maximum_samples":renderOptions.setMaxSamplesRendering(d_data["DAT_PROGRESSIVE_MAX_SAMPLES"])
     else:
         for quality_setting in l_advanced_render_options:
             try:
