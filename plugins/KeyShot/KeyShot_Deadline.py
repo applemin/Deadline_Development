@@ -98,7 +98,7 @@ def main():
     lux.setAnimationFrame(d_data["DAT_START_FRAME"])
 
     if b_reload:
-        print("\t Reloading temp scene.")
+        print("\t Reloading temp scene: %s" % s_new_file_p)
         lux.saveFile(s_new_file_p)
         lux.openFile(s_new_file_p)
     lux.pause()
@@ -135,7 +135,7 @@ def main():
         print("Rendered Image: %s" % d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)))
 
     if b_reload:
-        print("\t Removing temp scene.")
+        print("\t Removing temp scene: %s" % s_new_file_p)
         os.remove(s_new_file_p)
     print('Job Completed')
     exit()
