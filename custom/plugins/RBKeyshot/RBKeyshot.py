@@ -119,6 +119,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         s_output_file_name       = self.GetPluginInfoEntry("OutputFile")
         s_output_file_name       = s_output_file_name.replace("\\", "/")
 
+        b_still_batch            = self.GetBooleanPluginInfoEntryWithDefault("still_batch", False)
         b_animation_still        = self.GetBooleanPluginInfoEntryWithDefault("animation_still", False)
         b_single_frame           = self.GetBooleanPluginInfoEntryWithDefault("single_frame", False)
         b_multi_task_rendering   = self.GetBooleanPluginInfoEntryWithDefault("multi_task_rendering", False)
@@ -131,7 +132,6 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         i_width                  = self.GetIntegerPluginInfoEntryWithDefault("render_width", 1920)
         i_height                 = self.GetIntegerPluginInfoEntryWithDefault("render_height", 1080)
         i_max_samples            = self.GetIntegerPluginInfoEntryWithDefault("progressive_max_samples", 16)
-
 
         # get custom quality options
         setAdvancedRendering       = int  (self.GetPluginInfoEntryWithDefault("advanced_samples", "16"))
@@ -167,7 +167,6 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         s_quality_type           = self.d_render_mode[str(s_render_mode)]
 
         if b_multi_camera_rendering:
-
             s_camera_name       = self.GetPluginInfoEntryWithDefault("Camera" + str(s_task_id), str())
             s_output_directory  = os.path.dirname(s_output_file_name)
             s_file_name, s_ext  = os.path.splitext(os.path.basename(s_output_file_name))
@@ -183,6 +182,18 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             i_start_frame = self.GetStartFrame()
             i_end_frame   = self.GetEndFrame()
 
+         # still_batch implementation for RenderShare submitter
+        if b_still_batch:
+            self.GetPluginInfoEntryWithDefault("batchkey" + str(s_task_id), list())
+            s_camera_name       = self.GetPluginInfoEntryWithDefault("camera_batch" + str(s_task_id), str())
+            s_model_set_name    = [self.GetPluginInfoEntryWithDefault("moldelset_batch" + str(s_task_id), str())]
+            s_output_directory  = os.path.dirname(s_output_file_name)
+            s_file_name, s_ext  = os.path.splitext(os.path.basename(s_output_file_name))
+            s_output_file_name  = os.path.join(s_output_directory,
+                                               s_camera_name + "_" + s_model_set_name,
+                                               str(s_file_name + s_ext))
+
+
         s_scene_name, s_ext = os.path.splitext(os.path.basename(s_scene_file_name))
         s_temp_scene_file_name = s_scene_name + "_{}".format(self.s_random) + "_{}".format(str(i_start_frame)) + s_ext
 
@@ -197,6 +208,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             "DAT_SCENE_FILE_NAME":              s_scene_file_name,
             "DAT_TEMP_SCENE_BASE_FILE_NAME":    s_temp_scene_file_name,
             "DAT_CAMERA":                       s_camera_name,
+            "DAT_MODEL_SET":                    s_model_set_name,
             "DAT_START_FRAME":                  i_start_frame,
             "DAT_END_FRAME":                    i_end_frame,
             "DAT_WIDTH":                        i_width,
