@@ -120,6 +120,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         s_output_file_name       = s_output_file_name.replace("\\", "/")
 
         b_still_batch            = self.GetBooleanPluginInfoEntryWithDefault("still_batch", False)
+        b_animation_batch        = self.GetBooleanPluginInfoEntryWithDefault("animation_batch", False)
         b_animation_still        = self.GetBooleanPluginInfoEntryWithDefault("animation_still", False)
         b_single_frame           = self.GetBooleanPluginInfoEntryWithDefault("single_frame", False)
         b_multi_task_rendering   = self.GetBooleanPluginInfoEntryWithDefault("multi_task_rendering", False)
@@ -191,6 +192,9 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             s_output_file_name  = os.path.join(s_output_directory,
                                                s_camera_name + "_" + s_model_set_name,
                                                str(s_file_name + s_ext))
+        if b_animation_batch:
+            s_camera_name       = self.GetPluginInfoEntryWithDefault("active_camera", str())
+            s_model_set_name    = self.GetPluginInfoEntryWithDefault("active_model_set", str())
 
 
         s_scene_name, s_ext = os.path.splitext(os.path.basename(s_scene_file_name))
