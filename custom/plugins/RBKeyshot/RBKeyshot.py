@@ -185,7 +185,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
          # still_batch implementation for RenderShare submitter
         if b_still_batch:
             s_camera_name       = self.GetPluginInfoEntryWithDefault("camera_batch" + str(s_task_id), str())
-            s_model_set_name    = [self.GetPluginInfoEntryWithDefault("moldelset_batch" + str(s_task_id), str())]
+            s_model_set_name    = self.GetPluginInfoEntryWithDefault("moldelset_batch" + str(s_task_id), str())
             s_output_directory  = os.path.dirname(s_output_file_name)
             s_file_name, s_ext  = os.path.splitext(os.path.basename(s_output_file_name))
             s_output_file_name  = os.path.join(s_output_directory,
@@ -207,7 +207,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             "DAT_SCENE_FILE_NAME":              s_scene_file_name,
             "DAT_TEMP_SCENE_BASE_FILE_NAME":    s_temp_scene_file_name,
             "DAT_CAMERA":                       s_camera_name,
-            "DAT_MODEL_SET":                    s_model_set_name,
+            "DAT_MODEL_SET":                    [s_model_set_name],
             "DAT_START_FRAME":                  i_start_frame,
             "DAT_END_FRAME":                    i_end_frame,
             "DAT_WIDTH":                        i_width,
