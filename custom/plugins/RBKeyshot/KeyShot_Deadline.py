@@ -110,7 +110,7 @@ def main():
     lux.openFile(s_file_p)
     lux.pause()
     if d_data["DAT_CAMERA"]: lux.setCamera(d_data["DAT_CAMERA"])
-    if d_data["DAT_MODEL_SET"]: lux.setModelSets(d_data["DAT_MODEL_SET"])
+    if any(d_data["DAT_MODEL_SET"]): lux.setModelSets(d_data["DAT_MODEL_SET"])
     lux.setAnimationFrame(d_data["DAT_START_FRAME"])
 
     if b_reload:

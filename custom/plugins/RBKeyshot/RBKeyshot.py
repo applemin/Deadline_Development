@@ -112,6 +112,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
         s_render_region          = self.GetPluginInfoEntryWithDefault("region", None)
         s_camera_name            = self.GetPluginInfoEntryWithDefault("Camera0", str())
+        s_model_set_name         = self.GetPluginInfoEntryWithDefault("active_model_set", str())
 
         s_scene_file_name        = self.GetPluginInfoEntryWithDefault("SceneFile", self.GetDataFilename())
         s_scene_file_name        = s_scene_file_name.replace("\\", "/")
