@@ -4,6 +4,8 @@ import shutil
 import time
 import sys
 import subprocess
+import json
+import datetime
 
 from System import *
 from System.Diagnostics import *
@@ -28,260 +30,163 @@ def CleanupDeadlinePlugin( deadlinePlugin ):
 ######################################################################
 class KeyShotPlugin (DeadlinePlugin):
 
-    def __init__( self ):
-        self.InitializeProcessCallback += self.InitializeProcess
-        self.RenderExecutableCallback += self.RenderExecutable
-        self.RenderArgumentCallback += self.RenderArgument
-    
+    def __init__(self):
+
+        self.InitializeProcessCallback  += self.InitializeProcess
+        self.RenderExecutableCallback   += self.RenderExecutable
+        self.RenderArgumentCallback     += self.RenderArgument
+        self.PreRenderTasksCallback     += self.PreRenderTasks
+        self.infoFilePath = str()
+
+    def TempCleanup(self):
+        s_temp_path = str(os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')).replace("\\", "/")
+        self.LogInfo("Default Temp Folder Dir : " + s_temp_path)
+        self.LogInfo("Running TempCleanup System")
+
+        if not s_temp_path:
+            self.LogWarning("temp directory not exists")
+            return
+
+        for dir in os.walk(s_temp_path):
+            if dir[0] != s_temp_path:
+                set_dir = dir[0]
+                last_modified = datetime.datetime.fromtimestamp(os.path.getmtime(set_dir))
+                now_time = datetime.datetime.now()
+                delta_time = now_time - last_modified
+
+                if int(delta_time.days) >= 3:
+                    try:
+                        shutil.rmtree(set_dir, ignore_errors=True)
+                    except OSError:
+                        self.LogWarning("Directory : %s could not be deleted" % set_dir)
+                    if not os.path.exists(set_dir):
+                        self.LogInfo("[Deleted] Time Passed : %s >> Directory : %s " % (delta_time, set_dir))
+
     def Cleanup(self):
+
         for stdoutHandler in self.StdoutHandlers:
             del stdoutHandler.HandleCallback
         
         del self.InitializeProcessCallback
         del self.RenderExecutableCallback
         del self.RenderArgumentCallback
+        del self.PreRenderTasksCallback
     
-    ## Called by Deadline to initialize the process.
-    def InitializeProcess( self ):
-        # Set the plugin specific settings.
-        self.SingleFramesOnly = False
+    def InitializeProcess(self):
+
         self.PluginType = PluginType.Simple
-
         self.StdoutHandling = True
-        self.PopupHandling = True
-        self.HandleQtPopups = True
-        self.PopupMaxChildWindows = 25
-        self.HandleWindows10Popups=True
-
-        self.AddPopupHandler("FPS", "Are you sure you want to continue?", "Yes")
-
-
-        #self.AddPopupHandler( r"KeyShot 7", "Close program" )
-        #self.AddPopupHandler("KeyShot 7", "OK")
-        #self.AddExitCodeToIgnore(-1)
 
     def RenderExecutable( self ):
-        version = self.GetPluginInfoEntryWithDefault( "Version", "6" ).strip() #default to empty string (this should match pre-versioning config entries)
-        
-        keyshotExeList = self.GetConfigEntry( "RenderExecutable%s" % version )
-        keyshotExe = FileUtils.SearchFileList( keyshotExeList )
+
+        version = self.GetPluginInfoEntryWithDefault("Version", "6").strip()
+        keyshotExeList = self.GetConfigEntry("RenderExecutable%s" % version)
+        keyshotExe = FileUtils.SearchFileList(keyshotExeList)
         if( keyshotExe == "" ):
-            self.FailRender( "KeyShot " + version + " render executable was not found in the semicolon separated list \"" + keyshotExeList + "\". The path to the render executable can be configured from the Plugin Configuration in the Deadline Monitor." )
+            self.FailRender("KeyShot "
+                            + version
+                            + " render executable was not found in the semicolon separated list \""
+                            + keyshotExeList)
 
         return keyshotExe
     
     def RenderArgument(self):
 
+        self.TempCleanup()
 
-        sceneFilename = self.GetPluginInfoEntryWithDefault( "SceneFile", self.GetDataFilename() )
-        sceneFilename = RepositoryUtils.CheckPathMapping( sceneFilename )
-        sceneFilename = sceneFilename.replace( "\\", "/" )
-        outputFilename = self.GetPluginInfoEntry( "OutputFile" )
-        outputFilename = RepositoryUtils.CheckPathMapping( outputFilename )
-        outputFilename = outputFilename.replace( "\\", "/" )
-        
-        width = self.GetIntegerPluginInfoEntryWithDefault( "RenderWidth", 1920 )
-        height = self.GetIntegerPluginInfoEntryWithDefault( "RenderHeight", 1080 )
+        ######################################################################
+        ## get plugin and job entries
+        ######################################################################
+        startFrame              = self.GetStartFrame()
+        endFrame                = self.GetEndFrame()
 
-        
-        renderLayers = self.GetBooleanPluginInfoEntryWithDefault( "IncludeRenderLayers", False )
-        includeAlpha = self.GetBooleanPluginInfoEntryWithDefault( "IncludeAlpha", False )
-        
-        overrideRenderPasses = self.GetBooleanPluginInfoEntryWithDefault( "OverrideRenderPasses", False )
-        qualityType = self.GetPluginInfoEntryWithDefault( "QualityType", "Maximum Time" ).strip()
+        task_id                 = self.GetCurrentTaskId()
+        sceneFilename           = self.GetPluginInfoEntry("SceneFile")
+        sceneFilename           = sceneFilename.replace("\\", "/")
+        outputFilename          = self.GetPluginInfoEntry("OutputFile")
+        outputFilename          = outputFilename.replace("\\", "/")
 
-        renderScriptDirectory = self.CreateTempDirectory( "thread" + str(self.GetThreadNumber()) )
-        
-        renderScript = Path.Combine(renderScriptDirectory,"KeyShot_RenderScript.py")
-        
-        startFrame = self.GetStartFrame()
-        endFrame = self.GetEndFrame()
+        width                   = self.GetIntegerPluginInfoEntryWithDefault("RenderWidth", 1280)
+        height                  = self.GetIntegerPluginInfoEntryWithDefault("RenderHeight", 720)
+        maximumSamples          = self.GetIntegerPluginInfoEntryWithDefault("ProgressiveMaxSamples", 16)
 
-        multi_camera_rendering = self.GetBooleanPluginInfoEntryWithDefault("MultiCameraRendering", False)
-        task_id = self.GetCurrentTaskId()
+        maximumTime             = self.GetFloatPluginInfoEntryWithDefault("MaxTime", 30 )
 
-        if multi_camera_rendering:
-            self.LogInfo("Multi Camera Rendering Activated.")
-            camera = str(self.GetPluginInfoEntry("Camera" + str(task_id)))
-            mpath = os.path.dirname(outputFilename)
-            fname = os.path.basename(outputFilename)
-            path, ext = os.path.splitext(fname)
+        overrideRenderPasses    = self.GetBooleanPluginInfoEntryWithDefault("OverrideRenderPasses", False)
+        multiTaskRendering      = self.GetBooleanPluginInfoEntryWithDefault("multi_task_rendering", False)
+        multiCameraRendering    = self.GetBooleanPluginInfoEntryWithDefault("MultiCameraRendering", False)
 
-            outputFilename = os.path.join(mpath, camera, str(path + "_" + str(camera) + ext)).replace("\\", "/")
+        qualityType             = self.GetPluginInfoEntryWithDefault("QualityType", "Maximum Time").strip()
+        camera                  = self.GetPluginInfoEntryWithDefault("CameraName", str()) or \
+                                  self.GetPluginInfoEntryWithDefault("Camera0", str()) or str()
 
-        else:
-            try:
-                camera = self.GetPluginInfoEntryWithDefault("Camera0", "")
-            except:
-                camera = self.GetPluginInfoEntryWithDefault("CameraName", "")
+        # get custom quality options
+        setAdvancedRendering       = self.GetIntegerPluginInfoEntryWithDefault("AdvancedMaxSamples", 16)
+        setRayBounces              = self.GetIntegerPluginInfoEntryWithDefault("RayBounces", 16)
+        setAntiAliasing            = self.GetIntegerPluginInfoEntryWithDefault("AntiAliasing", 16)
+        setShadowQuality           = self.GetFloatPluginInfoEntryWithDefault("Shadows", 1.0)
 
-        writer = StreamWriter( renderScript )
+        # get render pass options
+        setOutputRenderLayers           = self.GetBooleanPluginInfoEntryWithDefault("IncludeRenderLayers", False)
+        setOutputAlphaChannel           = self.GetBooleanPluginInfoEntryWithDefault("IncludeAlpha", False)
 
-        position = len(sceneFilename)-4
 
-        temp_sceneFilename = sceneFilename[:position] + "_{}".format(camera) + "_{}".format(startFrame) + sceneFilename[position:]
-        temp_sceneBaseFilename = os.path.basename(temp_sceneFilename)
-                
-        writer.WriteLine()
-        writer.WriteLine()
-        writer.WriteLine("import os")
-        writer.WriteLine("import time")
-        writer.WriteLine("import shutil")
+        if multiCameraRendering :
+            camera              = self.GetPluginInfoEntryWithDefault("Camera" + str(task_id), str())
+            outputDirectory     = os.path.dirname(outputFilename)
+            sFileName, sExt     = os.path.splitext(os.path.basename(outputFilename))
+            outputFilename      = os.path.join(outputDirectory, camera, str(sFileName + "_" + str(camera) + sExt))
+            outputFilename      = outputFilename.replace("\\", "/")
+            self.LogInfo("Multitask : %s | Output path : %s" % (multiTaskRendering, outputFilename))
 
-        writer.WriteLine("HOME_PATH = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')")
-        writer.WriteLine("SCENE_FILE_PATH ='{}'".format(sceneFilename))
-        writer.WriteLine("NEW_SCENE_FILE_NAME = os.path.basename(SCENE_FILE_PATH)")
-        writer.WriteLine("NEW_TEMP_SCENE_FILE_NAME ='{}'".format(temp_sceneBaseFilename))
+        s_sceneFilename, s_ext = os.path.splitext(os.path.basename(sceneFilename))
+        s_temp_sceneFilename = s_sceneFilename + "_{}".format(camera) + "_{}".format(startFrame) + s_ext
 
-        writer.WriteLine("def valid_temp_folder():")
-        writer.WriteLine("    if os.path.exists(HOME_PATH):")
-        writer.WriteLine("        print('Temp folder has already been created.')")
-        writer.WriteLine("        return True")
-        writer.WriteLine("    else:")
-        writer.WriteLine("        try:")
-        writer.WriteLine("            os.makedirs(HOME_PATH)")
-        writer.WriteLine("            print('Temp folder created successfully.')")
-        writer.WriteLine("            return True")
-        writer.WriteLine("        except:")
-        writer.WriteLine("            print('Temp folder could not be created.')")
-        writer.WriteLine("            return False")
 
-        writer.WriteLine("def dir_update_check(NETWORK_FILE_DIR, DESTINATION_PATH):")
-        writer.WriteLine("    NETWORK_FILE_DIR_LIST = os.listdir(NETWORK_FILE_DIR)")
-        writer.WriteLine("    DESTINATION_PATH_LIST = os.listdir(DESTINATION_PATH)")
+        ######################################################################
+        ## Constructing ENV file
+        ######################################################################
 
-        writer.WriteLine("    if len(NETWORK_FILE_DIR_LIST) == len(DESTINATION_PATH_LIST) or len(NETWORK_FILE_DIR_LIST) < len(DESTINATION_PATH_LIST):")
-        writer.WriteLine("        print('No directory update required.')")
-        writer.WriteLine("        return True")
-        writer.WriteLine("    else:")
-        writer.WriteLine("        print('Directory update required.')")
-        writer.WriteLine("        return False")
+        renderScript = os.path.join( self.GetPluginDirectory(), "KeyShot_Deadline.py" )
 
-        writer.WriteLine("def file_transfer(SCENE_FILE_PATH):")
-        writer.WriteLine("    NETWORK_FILE_DIR = os.path.dirname(SCENE_FILE_PATH)")
-        writer.WriteLine("    NETWORK_DIR_NAME = os.path.basename(NETWORK_FILE_DIR)")
-        writer.WriteLine("    DESTINATION_PATH = os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp', NETWORK_DIR_NAME)")
-        writer.WriteLine("    NEW_SCENE_PATH = os.path.join(DESTINATION_PATH, NEW_SCENE_FILE_NAME)")
-        writer.WriteLine("    NEW_SCENE_TEMP_PATH = os.path.join(DESTINATION_PATH, NEW_TEMP_SCENE_FILE_NAME)")
+        d_data_file = {
+            "DAT_SCENE_FILE_NAME":              sceneFilename,
+            "DAT_TEMP_SCENE_BASE_FILE_NAME":    s_temp_sceneFilename,
+            "DAT_CAMERA":                       camera,
+            "DAT_START_FRAME":                  startFrame,
+            "DAT_END_FRAME":                    endFrame,
+            "DAT_WIDTH":                        width,
+            "DAT_HEIGHT":                       height,
+            "DAT_OUTPUT_FILE_NAME":             outputFilename,
+            "DAT_OVERRIDE_RENDER_PASSES":       overrideRenderPasses,
+            "DAT_MAXIMUM_TIME":                 maximumTime,
+            "DAT_PROGRESSIVE_MAX_SAMPLES":      maximumSamples,
+            "DAT_QUALITY_TYPE":                 qualityType,
+            "DAT_MULTI_CAMERA_RENDERING":       multiCameraRendering,
+            "DAT_MULTI_TASK_RENDERING":         multiTaskRendering,
+            "setAdvancedRendering":             setAdvancedRendering,
+            "setRayBounces":                    setRayBounces,
+            "setAntiAliasing":                  setAntiAliasing,
+            "setShadowQuality":                 setShadowQuality,
+            "setOutputRenderLayers":            setOutputRenderLayers,
+            "setOutputAlphaChannel":            setOutputAlphaChannel}
 
-        writer.WriteLine("    if os.path.exists(DESTINATION_PATH) and dir_update_check(NETWORK_FILE_DIR, DESTINATION_PATH):")
-        writer.WriteLine("        print('Render folder has already been transferred , returning immediately .')")
-        writer.WriteLine("        return NEW_SCENE_PATH, NEW_SCENE_TEMP_PATH")
-        writer.WriteLine("    elif os.path.exists(DESTINATION_PATH) and not dir_update_check(NETWORK_FILE_DIR, DESTINATION_PATH):")
-        writer.WriteLine("        shutil.rmtree(DESTINATION_PATH)")
-        writer.WriteLine("        print('Render folder has been removed.')")
+        self.LogInfo("Contents of DEADLINE_KEYSHOT_INFO file:")
+        self.LogInfo(self.infoFilePath)
 
-        writer.WriteLine("    if valid_temp_folder():")
-        writer.WriteLine("        try:")
-        writer.WriteLine("            shutil.copytree(NETWORK_FILE_DIR, DESTINATION_PATH)")
-        writer.WriteLine("            print('Render folder transferred successfully.')")
-        writer.WriteLine("        except:")
-        writer.WriteLine("            print('Render folder could not be transferred.')")
-        writer.WriteLine("    else:")
-        writer.WriteLine("        print('File transfer failed')")
+        with open(self.infoFilePath, 'w') as JsonData:
+            json.dump(d_data_file, JsonData, indent=4)
 
-        writer.WriteLine("    return NEW_SCENE_PATH, NEW_SCENE_TEMP_PATH")
+        for key, value in sorted(d_data_file.items()):
+            self.LogInfo("\t%s=%s" % (key, value))
 
-        writer.WriteLine("def main(scene_file_path, get_new_file_path):")
-        writer.WriteLine("    lux.openFile(scene_file_path)")
-
-        if camera != "":
-            writer.WriteLine("    lux.setCamera(\"%s\")" % camera )
-
-        writer.WriteLine("    lux.setAnimationFrame( %d )" % startFrame )
-        writer.WriteLine("    width = %s" % width )
-        writer.WriteLine("    height = %s" % height )
-        if not multi_camera_rendering:
-            writer.WriteLine("    lux.saveFile(get_new_file_path)")
-            writer.WriteLine("    lux.openFile(get_new_file_path)")
-        writer.WriteLine("    path = \"%s\"" % outputFilename )
-        
-        writer.WriteLine( "    opts = lux.getRenderOptions()" )
-        writer.WriteLine( "    opts.setAddToQueue(False)" )
-
-        writer.WriteLine( "    opts.setOutputRenderLayers(%s)" % renderLayers )
-        writer.WriteLine( "    opts.setOutputAlphaChannel(%s)" % includeAlpha )
-        
-        overrideRenderPasses = self.GetBooleanPluginInfoEntryWithDefault( "OverrideRenderPasses", False )
-        if overrideRenderPasses:           
-            renderPassOptions = [
-                ("IncludeDiffusePass", "setOutputDiffusePass"),
-                ("IncludeReflectionPass", "setOutputReflectionPass"),
-                ("IncludeClownPass", "setOutputClownPass"),
-                ("IncludeLightingPass", "setOutputDirectLightingPass"),
-                ("IncludeRefractionPass", "setOutputRefractionPass"),
-                ("IncludeDepthPass", "setOutputDepthPass"),
-                ("IncludeGIPass", "setOutputIndirectLightingPass"),
-                ("IncludeShadowPass", "setOutputShadowPass"),
-                ("IncludeGeometricNormalPass", "setOutputNormalsPass"),
-                ("IncludeCausticsPass", "setOutputCausticsPass"),
-                ("IncludeAOPass", "setOutputAmbientOcclusionPass")
-            ]
-            
-            for pluginEntry, renderOption in renderPassOptions:
-                writer.WriteLine( "    try:" )
-                writer.WriteLine( "        opts.%s(%s)" % (renderOption, self.GetBooleanPluginInfoEntryWithDefault(pluginEntry, False) ) )
-                writer.WriteLine( "    except AttributeError:" )
-                writer.WriteLine( "        print( 'Failed to set attribute: %s' )" % pluginEntry )
-        
-        if qualityType == "Maximum Time":
-            writer.WriteLine( "    opts.setMaxTimeRendering(%s)" % self.GetFloatPluginInfoEntryWithDefault( "MaxTime", 30 ) )
-        elif qualityType == "Maximum Samples":
-            writer.WriteLine( "    opts.setMaxSamplesRendering(%s)" % self.GetIntegerPluginInfoEntryWithDefault( "ProgressiveMaxSamples", 16 ) )
-        else:
-            advancedRenderingOptions = [
-                ( "AdvancedMaxSamples", "setAdvancedRendering", int, "16" ),
-                ( "RayBounces", "setRayBounces", int, "6" ),
-                ( "AntiAliasing", "setAntiAliasing", int, "1" ),
-                ( "Shadows", "setShadowQuality", float, "1" ),
-            ]
-            
-            for pluginEntry, renderOption, type, default in advancedRenderingOptions:
-                writer.WriteLine( "    try:" )
-                writer.WriteLine( "        opts.%s( %s )" % (renderOption, type( self.GetPluginInfoEntryWithDefault( pluginEntry, default ) ) ) )
-                writer.WriteLine( "    except AttributeError:" )
-                writer.WriteLine( "           print( 'Failed to set attribute: %s' )" % pluginEntry )
-        
-        writer.WriteLine( "    for frame in range( %d, %d ):" % ( startFrame, endFrame + 1 )  )
-        writer.WriteLine( "        renderPath = path" )
-        writer.WriteLine( "        renderPath =  renderPath.replace( \"%d\", str(frame) )" )
-        writer.WriteLine( "        lux.setAnimationFrame( frame )" )
-        writer.WriteLine( "        lux.renderImage(path = renderPath, width = width, height = height, opts = opts)" )
-        writer.WriteLine( "        print(\"Rendered Image: \"+renderPath)" )
-
-        if not multi_camera_rendering:
-            writer.WriteLine("    os.remove(get_new_file_path)")
-        
-        #This only works for a script run from the command line. If run in the scripting console in Keyshot it instead just reloads python
-        writer.WriteLine("    print ('Job Completed')")
-        writer.WriteLine("    exit()" )
-
-        writer.WriteLine("GET_NEW_FILE_PATH, GET_NEW_TEMP_FILE_PATH = file_transfer(SCENE_FILE_PATH)")
-        writer.WriteLine("print('GET_NEW_FILE_PATH ={}'.format(GET_NEW_FILE_PATH))")
-        writer.WriteLine("print('GET_NEW_TEMP_FILE_PATH ={}'.format(GET_NEW_TEMP_FILE_PATH))")
-
-        writer.WriteLine("if GET_NEW_FILE_PATH:")
-        writer.WriteLine("    print('Starting new workflow...')")
-        writer.WriteLine("    main(GET_NEW_FILE_PATH, GET_NEW_TEMP_FILE_PATH)")
-        writer.WriteLine("else:")
-        writer.WriteLine("    print('Switching to old workflow...')")
-        writer.WriteLine("    main(SCENE_FILE_PATH)")
-        
-        writer.Close()
-        
         arguments = []
+        arguments.append("-script \"%s\"" % renderScript)
         
-        if self.GetBooleanConfigEntryWithDefault( "UseRenderNodeLicenses", False ):
-            thisSlave = self.GetSlaveName().lower()
-            proSlaveString = self.GetConfigEntryWithDefault( "ProSlaves", "" )
-            proSlaves = [ proSlave.strip().lower() for proSlave in proSlaveString.split(",") ]
-            
-            if thisSlave in proSlaves:
-                self.LogInfo( "This slave is in the pro license list - a KeyShot pro license will be used instead of a render node license" )
-            else:
-                arguments.append( "-keyshot_render_node" )
-        
-        
-        arguments.append( "-script \"%s\"" % renderScript)
-        
-        return " ".join( arguments )
+        return " ".join(arguments)
+
+    def PreRenderTasks(self):
+
+        self.infoFilePath = os.path.join( self.GetJobsDataDirectory(), "deadline_KeyShot_info.json" )
+        self.SetEnvironmentVariable( "DEADLINE_KEYSHOT_INFO", self.infoFilePath )
+        self.LogInfo('Setting DEADLINE_KEYSHOT_INFO environment variable to "%s"' % self.infoFilePath )
