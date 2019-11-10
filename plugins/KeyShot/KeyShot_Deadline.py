@@ -90,7 +90,7 @@ def main():
 
     print("Contents of DEADLINE_KEYSHOT_INFO received in KeyShot :")
     for parameter, value in sorted(d_data.items()):
-        print('{0:20}{1:20}{2:20}'.format(parameter, type(value), value))
+        print('{0:20}{1:20}{2:20}'.format(str(parameter), str(type(value)), str(value)))
 
     lux.openFile(s_file_p)
     lux.pause()
@@ -123,7 +123,7 @@ def main():
                 print('Failed to set custom quality attribute: %s' % quality_setting)
 
     for parameter, value in sorted(renderOptions.getDict().items()):
-        print('{0:20}{1:20}{2:20}'.format(parameter, type(value), value))
+        print('{0:20}{1:20}{2:20}'.format(str(parameter), str(type(value)), str(value)))
 
     for frame in range(d_data["DAT_START_FRAME"], d_data["DAT_END_FRAME"]+1):
         print ("Rendering Frame : %s" % frame)
