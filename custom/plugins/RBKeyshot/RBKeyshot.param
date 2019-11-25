@@ -34,7 +34,6 @@ Label=KeyShot 7.1.5 Render Executable
 Default=C:\Program Files\KeyShot7\bin\keyshot.exe
 Description=The path to the KeyShot 7.1.5 executable file used for rendering. Enter alternative paths on separate lines.
 
-
 [RenderExecutable8]
 Type=multilinemultifilename
 Category=Render Executables
@@ -43,3 +42,12 @@ CategoryIndex=3
 Label=KeyShot 7.3.4 Render Executable
 Default=C:\Program Files\KeyShot8\bin\keyShot.exe
 Description=The path to the KeyShot 8 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable9]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=4
+Label=KeyShot 9 Render Executable
+Default=C:\Program Files\KeyShot9\bin\keyshot.exe
+Description=The path to the KeyShot 9 executable file used for rendering. Enter alternative paths on separate lines.
