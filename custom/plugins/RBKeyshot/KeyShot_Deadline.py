@@ -1,10 +1,7 @@
 import os
 import shutil
-import time
-import sys
-import subprocess
 import json
-import ast
+
 
 # get data file path and load data fom json file
 s_data_file = os.environ['DEADLINE_KEYSHOT_INFO']
@@ -105,6 +102,7 @@ def main():
 
     print("Contents of DEADLINE_KEYSHOT_INFO received in KeyShot :")
     for parameter, value in sorted(d_data.items()):
+
         print('{0:100}{1:100}{2:100}'.format(str(parameter), str(type(value)), str(value)))
 
     lux.openFile(s_file_p)
@@ -139,7 +137,7 @@ def main():
             except AttributeError:
                 print('Failed to set custom quality attribute: %s' % quality_setting)
 
-    for parameter, value in sorted(ast.literal_eval(str(renderOptions).split("\n")[1]).items()):
+    for parameter, value in sorted(renderOptions.getDict().items()):
         print('{0:100}{1:100}{2:100}'.format(str(parameter), str(type(value)), str(value)))
 
     for frame in range(d_data["DAT_START_FRAME"], d_data["DAT_END_FRAME"]+1):
