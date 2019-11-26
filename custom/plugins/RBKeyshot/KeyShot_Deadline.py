@@ -142,11 +142,16 @@ def main():
 
     for frame in range(d_data["DAT_START_FRAME"], d_data["DAT_END_FRAME"]+1):
         print ("Rendering Frame : %s" % frame)
+        print(d_data["DAT_OUTPUT_FILE_NAME"], type(d_data["DAT_OUTPUT_FILE_NAME"]))
+        print(d_data["DAT_WIDTH"], type(d_data["DAT_WIDTH"]))
+        print(d_data["DAT_HEIGHT"], type(d_data["DAT_HEIGHT"]))
+
         lux.setAnimationFrame(frame)
         lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
                         width=d_data["DAT_WIDTH"],
                         height=d_data["DAT_HEIGHT"],
                         opts=renderOptions)
+
         print("Rendered Image: %s" % d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)))
 
     if b_reload:
