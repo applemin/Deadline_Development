@@ -120,7 +120,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         s_scene_file_name        = s_scene_file_name.replace("\\", "/")
 
         s_output_file_name       = self.GetPluginInfoEntry("OutputFile")
-        i_output_id              = self.GetPluginInfoEntryWithDefault("output_id", -1)
+        i_output_id              = self.GetPluginInfoEntryWithDefault("output_id", "-1")
         s_output_file_name       = s_output_file_name.replace("\\", "/")
 
         b_still_batch            = self.GetBooleanPluginInfoEntryWithDefault("still_batch", False)
