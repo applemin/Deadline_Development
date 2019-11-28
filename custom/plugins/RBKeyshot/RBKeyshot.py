@@ -107,6 +107,8 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         ######################################################################
         s_task_id = self.GetCurrentTaskId()
 
+        i_version                = self.GetIntegerPluginInfoEntry("version")
+
         i_start_frame            = self.GetLongPluginInfoEntry("start_frame")
         i_end_frame              = self.GetLongPluginInfoEntry("end_frame")
 
@@ -118,6 +120,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         s_scene_file_name        = s_scene_file_name.replace("\\", "/")
 
         s_output_file_name       = self.GetPluginInfoEntry("OutputFile")
+        i_output_id              = self.GetPluginInfoEntryWithDefault("output_id", -1)
         s_output_file_name       = s_output_file_name.replace("\\", "/")
 
         b_still_batch            = self.GetBooleanPluginInfoEntryWithDefault("still_batch", False)
@@ -184,7 +187,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             i_start_frame = self.GetStartFrame()
             i_end_frame   = self.GetEndFrame()
 
-         # still_batch implementation for RenderShare submitter
+
         if b_still_batch:
             s_camera_name       = self.GetPluginInfoEntryWithDefault("camera_batch" + str(s_task_id), str())
             s_model_set_name    = self.GetPluginInfoEntryWithDefault("moldelset_batch" + str(s_task_id), str())
@@ -209,6 +212,8 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         renderScript = os.path.join(self.GetPluginDirectory(), "KeyShot_Deadline.py")
 
         d_data_file = {
+            "version":                          i_version,
+            "output_id":                        i_output_id,
             "DAT_SCENE_FILE_NAME":              s_scene_file_name,
             "DAT_TEMP_SCENE_BASE_FILE_NAME":    s_temp_scene_file_name,
             "DAT_CAMERA":                       s_camera_name,
