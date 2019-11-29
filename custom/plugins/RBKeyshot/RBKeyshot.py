@@ -316,9 +316,10 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
     def OutputTransfer(self, src_path, out_path):
 
-        self.LogInfo("Render source path : %s" % src_path.replace("\\", "/"))
+        src_path = src_path.replace("\\", "/").replace("//", "/")
+        self.LogInfo("Render source path : %s" % src_path)
         self.LogInfo("Render output path : %s" % out_path)
-        o_package = shutil.make_archive(src_path.replace("\\", "/").replace("//", "/"), 'zip',
+        o_package = shutil.make_archive(src_path, 'zip',
                                         os.path.dirname(src_path),
                                         self.s_job_name)
         self.LogInfo("Archived package : %s" % o_package)
