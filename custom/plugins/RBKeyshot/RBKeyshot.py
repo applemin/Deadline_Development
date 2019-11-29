@@ -1,11 +1,11 @@
 import clr
 import os
-import shutil
-import time
 import sys
-import subprocess
+import time
 import json
+import shutil
 import datetime
+import subprocess
 
 from System import *
 from System.Diagnostics import *
@@ -36,7 +36,12 @@ class RB_KeyshotPlugin(DeadlinePlugin):
                      "1": "maximum_time",
                      "2": "maximum_samples"}
 
+    l_req_transfer = ["exr", "psd", "tif"]
     s_random = str(time.time()).split('.')[0]
+    b_output_transfer = False
+    d_transfer_data = {"src_path": str(),
+                       "out_path": str()}
+    s_job_name = str()
 
     def __init__(self):
 
@@ -44,6 +49,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         self.RenderExecutableCallback   += self.RenderExecutable
         self.RenderArgumentCallback     += self.RenderArgument
         self.PreRenderTasksCallback     += self.PreRenderTasks
+        self.PostRenderTasksCallback    += self.PostRenderTasks
         self.infoFilePath = str()
 
     def TempCleanup(self):
@@ -70,6 +76,20 @@ class RB_KeyshotPlugin(DeadlinePlugin):
                     if not os.path.exists(set_dir):
                         self.LogInfo("[Deleted] Time Passed : %s >> Directory : %s " % (delta_time, set_dir))
 
+
+    def RenderTempSetup(self):
+
+        render_dir = str(os.path.join(os.environ['HOMEPATH'], 'Desktop', 'TempRender')).replace("\\", "/")
+        if not os.path.exists(render_dir):
+            try:
+                os.mkdir(render_dir)
+            except OSError:
+                print ("Creation of the directory %s failed" % render_dir)
+            else:
+                print ("Successfully created the directory %s " % render_dir)
+
+        return render_dir
+
     def Cleanup(self):
 
         for stdoutHandler in self.StdoutHandlers:
@@ -79,6 +99,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         del self.RenderExecutableCallback
         del self.RenderArgumentCallback
         del self.PreRenderTasksCallback
+        del self.PostRenderTasksCallback
 
     def InitializeProcess(self):
 
@@ -100,7 +121,10 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
     def RenderArgument(self):
 
+        currentJob = self.GetJob()
+        self.s_job_name = str(currentJob.JobName)
         self.TempCleanup()
+        s_temp_render_path = self.RenderTempSetup()
 
         ######################################################################
         ## get plugin and job entries
@@ -122,6 +146,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         s_output_file_name       = self.GetPluginInfoEntry("OutputFile")
         i_output_id              = self.GetPluginInfoEntryWithDefault("output_id", "-1")
         s_output_file_name       = s_output_file_name.replace("\\", "/")
+        s_temp_output            = os.path.join(s_temp_render_path, self.s_job_name)
 
         b_still_batch            = self.GetBooleanPluginInfoEntryWithDefault("still_batch", False)
         b_animation_batch        = self.GetBooleanPluginInfoEntryWithDefault("animation_batch", False)
@@ -172,6 +197,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         s_quality_type           = self.d_render_mode[str(s_render_mode)]
 
         if b_multi_camera_rendering:
+
             s_camera_name       = self.GetPluginInfoEntryWithDefault("Camera" + str(s_task_id), str())
             s_output_directory  = os.path.dirname(s_output_file_name)
             s_file_name, s_ext  = os.path.splitext(os.path.basename(s_output_file_name))
@@ -182,6 +208,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             s_output_file_name  = s_output_file_name.replace("\\", "/")
             self.LogInfo("Multitask : %s | Output path : %s" % (b_multi_camera_rendering, s_output_file_name))
 
+
         if not b_single_frame:
             # TODO : this needs testing
             i_start_frame = self.GetStartFrame()
@@ -189,13 +216,21 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
 
         if b_still_batch:
+            self.b_output_transfer=True
             s_camera_name       = self.GetPluginInfoEntryWithDefault("camera_batch" + str(s_task_id), str())
             s_model_set_name    = self.GetPluginInfoEntryWithDefault("moldelset_batch" + str(s_task_id), str())
             s_output_directory  = os.path.dirname(s_output_file_name)
             s_file_name, s_ext  = os.path.splitext(os.path.basename(s_output_file_name))
-            s_output_file_name  = os.path.join(s_output_directory,
+            # s_output_file_name  = os.path.join(s_output_directory,
+            #                                    s_camera_name + "_" + s_model_set_name,
+            #                                    str(s_file_name + s_ext))
+            s_output_file_name  = os.path.join(s_temp_render_path,
                                                s_camera_name + "_" + s_model_set_name,
                                                str(s_file_name + s_ext))
+
+            self.l_transfer_data["src_path"] = os.path.dirname(s_output_file_name)
+            self.l_transfer_data["out_path"] = os.path.dirname(s_output_directory)
+
         if b_animation_batch:
             s_camera_name       = self.GetPluginInfoEntryWithDefault("active_camera", str())
             s_model_set_name    = self.GetPluginInfoEntryWithDefault("active_model_set", str())
@@ -264,13 +299,22 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         for key, value in sorted(d_data_file.items()):
             self.LogInfo("\t%s=%s" % (key, value))
 
-        arguments = []
         arguments = " -script \"%s\"" % renderScript
 
         return arguments
 
     def PreRenderTasks(self):
+        self.LogInfo("Running PreRenderTasks")
+        self.infoFilePath = os.path.join( self.GetJobsDataDirectory(), "deadline_KeyShot_info.json")
+        self.SetEnvironmentVariable("DEADLINE_KEYSHOT_INFO", self.infoFilePath)
+        self.LogInfo('Setting DEADLINE_KEYSHOT_INFO environment variable to "%s"' % self.infoFilePath)
 
-        self.infoFilePath = os.path.join( self.GetJobsDataDirectory(), "deadline_KeyShot_info.json" )
-        self.SetEnvironmentVariable( "DEADLINE_KEYSHOT_INFO", self.infoFilePath )
-        self.LogInfo('Setting DEADLINE_KEYSHOT_INFO environment variable to "%s"' % self.infoFilePath )
+    def PostRenderTasks(self):
+        self.LogInfo("Running PostRenderTasks")
+        if self.b_output_transfer:
+            self.OutputTransfer(self.d_transfer_data["src_path"], self.d_transfer_data["out_path"])
+
+    def OutputTransfer(self, src_path, out_path):
+
+        o_package = shutil.make_archive(src_path, 'zip', os.path.dirname(src_path), self.s_job_name)
+        shutil.move(o_package, out_path)
