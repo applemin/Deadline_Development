@@ -229,7 +229,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
                                                str(s_file_name + s_ext))
 
             self.d_transfer_data["src_path"] = os.path.dirname(s_output_file_name)
-            self.d_transfer_data["out_path"] = os.path.dirname(s_output_directory)
+            self.d_transfer_data["out_path"] = s_output_directory
 
         if b_animation_batch:
             s_camera_name       = self.GetPluginInfoEntryWithDefault("active_camera", str())
@@ -318,5 +318,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
         self.LogInfo("Render source path : %s" % src_path)
         self.LogInfo("Render output path : %s" % out_path)
-        o_package = shutil.make_archive(src_path, 'zip', os.path.dirname(src_path), self.s_job_name)
+        o_package = shutil.make_archive(src_path.replace("\\", "/"), 'zip',
+                                        os.path.dirname(src_path),
+                                        self.s_job_name)
         shutil.move(o_package, out_path)
