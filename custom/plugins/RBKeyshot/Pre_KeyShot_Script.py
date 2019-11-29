@@ -24,7 +24,6 @@ class FileParser:
 
     DATA_CHUNK_SIZE         = 50000000 * 5
 
-
     def __init__(self, DeadlinePlugin):
 
         pass
@@ -35,7 +34,6 @@ class FileParser:
         # self.createDataBlock        = self.createDataBlock()
         # self.assembleOutputFile     = self.assembleOutputFile()
         # self.cleanup                = self.cleanup()
-
 
     def getScenePath(self):
 
@@ -56,7 +54,6 @@ class FileParser:
 
         return self.baseScenePath, self.constScenePath, self.constScenePath
 
-
     def createChunkDirectory(self):
 
         chunkDirectory = os.path.join(self.directoryPath, self.DIR_STRING)
@@ -74,7 +71,6 @@ class FileParser:
                 self.DeadlinePlugin.LogInfo("   Chunk Directory successfully created : %s " % chunkDirectory)
 
         return self.chunkDirectory
-
 
     def constructSceneFile(self):
 
@@ -146,7 +142,6 @@ class FileParser:
 
         return self.dataBlockPath, self.dataBlockReminderPath
 
-
     def assembleOutputFile(self):
 
         outputFile = open(self.constScenePath, self.FILE_WRITE_ENCODING)
@@ -159,7 +154,6 @@ class FileParser:
         outputFile.close()
 
         return True
-
 
     def cleanup(self):
 
