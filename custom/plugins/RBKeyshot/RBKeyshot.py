@@ -324,6 +324,6 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
         o_package = shutil.make_archive(src_path, 'zip',
                                         os.path.dirname(src_path),
-                                        self.s_job_name + "/")
+                                        os.path.basename(src_path))
         self.LogInfo("Archived package : %s" % o_package)
         shutil.move(o_package, out_path)
