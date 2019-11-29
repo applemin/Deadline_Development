@@ -228,8 +228,8 @@ class RB_KeyshotPlugin(DeadlinePlugin):
                                                s_camera_name + "_" + s_model_set_name,
                                                str(s_file_name + s_ext))
 
-            self.l_transfer_data["src_path"] = os.path.dirname(s_output_file_name)
-            self.l_transfer_data["out_path"] = os.path.dirname(s_output_directory)
+            self.d_transfer_data["src_path"] = os.path.dirname(s_output_file_name)
+            self.d_transfer_data["out_path"] = os.path.dirname(s_output_directory)
 
         if b_animation_batch:
             s_camera_name       = self.GetPluginInfoEntryWithDefault("active_camera", str())
