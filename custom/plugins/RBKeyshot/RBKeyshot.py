@@ -216,7 +216,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
 
         if b_still_batch:
-            self.b_output_transfer=True
+            self.b_output_transfer = True
             s_camera_name       = self.GetPluginInfoEntryWithDefault("camera_batch" + str(s_task_id), str())
             s_model_set_name    = self.GetPluginInfoEntryWithDefault("moldelset_batch" + str(s_task_id), str())
             s_output_directory  = os.path.dirname(s_output_file_name)
@@ -327,7 +327,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
                                         os.path.basename(src_path))
         self.LogInfo("Archived package : %s" % o_package)
         net_file_path = os.path.join(out_path, self.s_job_name)
-        self.LogInfo("Network file path : %s" % o_package)
+        self.LogInfo("Network file path : %s" % net_file_path)
         if os.path.exists(net_file_path):
             os.remove(net_file_path)
 
