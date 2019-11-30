@@ -326,4 +326,14 @@ class RB_KeyshotPlugin(DeadlinePlugin):
                                         os.path.dirname(src_path),
                                         os.path.basename(src_path))
         self.LogInfo("Archived package : %s" % o_package)
+        net_file_path = os.path.join(out_path, self.s_job_name)
+        self.LogInfo("Network file path : %s" % o_package)
+        if os.path.exists(net_file_path):
+            os.remove(net_file_path)
+
+        self.LogInfo("Moving %s to %s" % (o_package, out_path))
         shutil.move(o_package, out_path)
+        self.LogInfo("Removing File : %s " % o_package)
+        os.remove(o_package)
+        self.LogInfo("Removing Directory : %s " % src_path)
+        shutil.rmtree(src_path)
