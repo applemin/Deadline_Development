@@ -333,7 +333,5 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
         self.LogInfo("Moving %s to %s" % (o_package, out_path))
         shutil.move(o_package, out_path)
-        self.LogInfo("Removing File : %s " % o_package)
-        os.remove(o_package)
         self.LogInfo("Removing Directory : %s " % src_path)
         shutil.rmtree(src_path)
