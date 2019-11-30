@@ -326,7 +326,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
                                         os.path.dirname(src_path),
                                         os.path.basename(src_path))
         self.LogInfo("Archived package : %s" % o_package)
-        net_file_path = os.path.join(out_path, self.s_job_name)
+        net_file_path = os.path.join(out_path, os.path.basename((o_package.replace("\\", "/")))).replace("\\", "/")
         self.LogInfo("Network file path : %s" % net_file_path)
         if os.path.exists(net_file_path):
             os.remove(net_file_path)
