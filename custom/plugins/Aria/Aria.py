@@ -100,3 +100,4 @@ class AriaPlugin(DeadlinePlugin):
     def HandleStdoutProgress(self):
         self.SetProgress(float(self.GetRegexMatch(1)))
         self.SetStatusMessage(self.GetRegexMatch(0))
+        self.updateProgress()
