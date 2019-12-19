@@ -98,5 +98,5 @@ class AriaPlugin(DeadlinePlugin):
         return renderArguments
 
     def HandleStdoutProgress(self):
-        self.LogInfo(str(float(self.GetRegexMatch(1))))
         self.SetProgress(float(self.GetRegexMatch(1)))
+        self.SetStatusMessage(self.GetRegexMatch(0))
