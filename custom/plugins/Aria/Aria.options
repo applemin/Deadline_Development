@@ -1,0 +1,41 @@
+[Version]
+Type=enum
+Values=2
+Label=Aria Version
+Category=Global Settings
+CategoryOrder=0
+Index=0
+Description=The version of Aria to use.
+Required=false
+DisableIfBlank=true
+
+[DownloadFile]
+Type=filename
+Label=Download Filename
+Category=Global Settings
+CategoryOrder=0
+Index=1
+Description=The download filename as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[OutputDirectory]
+Type=string
+Label=Output Directory
+Category=Render Overrides
+CategoryOrder=1
+Index=2
+Description=The output directory to use.
+Required=false
+DisableIfBlank=false
+
+[AdditionalOptions]
+Type=string
+Label=Additional Options
+Category=Render Overrides
+CategoryOrder=1
+Index=5
+Description=Any additional options to use while rendering.
+Required=false
+DisableIfBlank=false
+
