@@ -74,7 +74,7 @@ class AriaPlugin(DeadlinePlugin):
 
         outputLog = self.GetBooleanPluginInfoEntryWithDefault("Log", False)
 
-        logFile = self.GetBooleanPluginInfoEntryWithDefault("LogFile", str())
+        logFile = self.GetPluginInfoEntryWithDefault("LogFile", str())
         logFile = self.HandlePathSeparators(logFile)
 
         renderArguments = " %s " % downloadFile
