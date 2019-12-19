@@ -81,7 +81,7 @@ class AriaPlugin(DeadlinePlugin):
 
         renderArguments += "-log "
         
-        dryRun = self.GetPluginInfoEntryWithDefault("DryRun", False)
+        dryRun = self.GetBooleanPluginInfoEntryWithDefault("DryRun", False)
         if dryRun:
             renderArguments += "--dry-run=%s " % str(dryRun).lower()
 
