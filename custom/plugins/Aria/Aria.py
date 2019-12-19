@@ -98,4 +98,4 @@ class AriaPlugin(DeadlinePlugin):
         return renderArguments
 
     def HandleStdoutProgress(self):
-        self.SetProgress(float(self.GetRegexMatch(1)))
+        self.SetProgress(float(self.GetRegexMatch(0)))
