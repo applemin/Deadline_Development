@@ -68,32 +68,26 @@ class AriaPlugin(DeadlinePlugin):
     def RenderArgument(self):
 
         downloadFile = self.GetPluginInfoEntryWithDefault("DownloadLink", self.GetDataFilename())
-
         outputPath = self.GetPluginInfoEntryWithDefault("OutputDirectory", str())
+        outputFilename = self.GetPluginInfoEntryWithDefault("OutputFilename", str())
         outputPath = self.HandlePathSeparators(outputPath)
-
-        outputLog = self.GetBooleanPluginInfoEntryWithDefault("Log", False)
-
-        logFile = self.GetPluginInfoEntryWithDefault("LogFile", str())
-        logFile = self.HandlePathSeparators(logFile)
+        outputLog = self.GetPluginInfoEntryWithDefault("Log", str())
+        serverConnections = self.GetIntegerPluginInfoEntryWithDefault("ServerConnections", 1)
+        splitConnections = self.GetIntegerPluginInfoEntryWithDefault("SplitConnections", 5)
+        serverTimeStamp = self.GetBooleanPluginInfoEntryWithDefault("ServerTimeStamp", True)
+        timeOut = self.GetIntegerPluginInfoEntryWithDefault("Timeout", 60)
+        dryRun = self.GetBooleanPluginInfoEntryWithDefault("DryRun", False)
 
         renderArguments = " %s " % downloadFile
-
-        renderArguments += "-log "
-        
-        dryRun = self.GetBooleanPluginInfoEntryWithDefault("DryRun", False)
-        if dryRun:
-            renderArguments += "--dry-run=%s " % str(dryRun).lower()
-
-        if not dryRun:
-            renderArguments += "-d %s " % outputPath
-            if outputLog:
-                arg = "-"
-                if logFile:
-                    arg = logFile
-                renderArguments += "-l %s " % arg
-
-        renderArguments += " %s " % self.GetPluginInfoEntryWithDefault("AdditionalOptions", str())
+        if outputFilename:
+            renderArguments += "--out=%s " % outputPath
+        renderArguments += "--split=%s " % splitConnections
+        renderArguments += "--timeout=%s " % timeOut
+        renderArguments += "--remote-time=%s " % str(serverTimeStamp).lower()
+        renderArguments += "--dir=%s " % outputPath
+        renderArguments += "--max-connection-per-server=%s " % serverConnections
+        renderArguments += "--log=%s " % outputLog
+        renderArguments += "%s " % self.GetPluginInfoEntryWithDefault("AdditionalOptions", str())
         
         return renderArguments
 
