@@ -7,9 +7,9 @@ class PrepDownloadEnv:
 
         self.DeadlinePlugin = DeadlinePlugin
 
-        self.DeadlinePlugin.LogInfo("    Starting Download Env Preparation : %s ")
+        self.DeadlinePlugin.LogInfo("Starting Download Env Preparation")
         self.job = self.DeadlinePlugin.GetJob()
-        self.DeadlinePlugin.LogInfo("    Current Job ID : %s " % str(self.job.JobId))
+        self.DeadlinePlugin.LogInfo("Current Job ID : %s " % str(self.job.JobId))
 
 def __main__(*args):
 
