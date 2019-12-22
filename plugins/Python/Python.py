@@ -62,43 +62,43 @@ class PythonPlugin (DeadlinePlugin):
         return exe
     
     def RenderArgument( self ):
-        scriptFile = self.GetPluginInfoEntryWithDefault( "ScriptFile", self.GetDataFilename() )
-        scriptFile = RepositoryUtils.CheckPathMapping( scriptFile )
+        scriptFile = self.GetPluginInfoEntryWithDefault("ScriptFile", self.GetDataFilename())
+        scriptFile = RepositoryUtils.CheckPathMapping(scriptFile)
         
-        arguments = self.GetPluginInfoEntryWithDefault( "Arguments", "" )
-        arguments = RepositoryUtils.CheckPathMapping( arguments )
+        arguments = self.GetPluginInfoEntryWithDefault("Arguments", "")
+        arguments = RepositoryUtils.CheckPathMapping(arguments)
 
-        arguments = re.sub( r"<(?i)STARTFRAME>", str( self.GetStartFrame() ), arguments )
-        arguments = re.sub( r"<(?i)ENDFRAME>", str( self.GetEndFrame() ), arguments )
-        arguments = re.sub( r"<(?i)QUOTE>", "\"", arguments)
+        arguments = re.sub(r"<(?i)STARTFRAME>", str(self.GetStartFrame()), arguments)
+        arguments = re.sub(r"<(?i)ENDFRAME>", str(self.GetEndFrame()), arguments)
+        arguments = re.sub(r"<(?i)QUOTE>", "\"", arguments)
 
-        arguments = self.ReplacePaddedFrame( arguments, "<(?i)STARTFRAME%([0-9]+)>", self.GetStartFrame() )
-        arguments = self.ReplacePaddedFrame( arguments, "<(?i)ENDFRAME%([0-9]+)>", self.GetEndFrame() )
+        arguments = self.ReplacePaddedFrame(arguments, "<(?i)STARTFRAME%([0-9]+)>", self.GetStartFrame())
+        arguments = self.ReplacePaddedFrame(arguments, "<(?i)ENDFRAME%([0-9]+)>", self.GetEndFrame())
 
         count = 0
         for filename in self.GetAuxiliaryFilenames():
-            localAuxFile = Path.Combine( self.GetJobsDataDirectory(), filename )
-            arguments = re.sub( r"<(?i)AUXFILE" + str( count ) + r">", localAuxFile.replace( "\\", "/" ), arguments )
+            localAuxFile = Path.Combine(self.GetJobsDataDirectory(), filename)
+            arguments = re.sub( r"<(?i)AUXFILE" + str(count) + r">", localAuxFile.replace("\\", "/"), arguments)
             count += 1
 
         if SystemUtils.IsRunningOnWindows():
-            scriptFile = scriptFile.replace( "/", "\\" )
+            scriptFile = scriptFile.replace("/", "\\")
         else:
-            scriptFile = scriptFile.replace( "\\", "/" )
+            scriptFile = scriptFile.replace("\\", "/")
 
         return "-u \"" + scriptFile + "\" " + arguments
 
-    def ReplacePaddedFrame( self, arguments, pattern, frame ):
-        frameRegex = Regex( pattern )
+    def ReplacePaddedFrame(self, arguments, pattern, frame):
+        frameRegex = Regex(pattern)
         while True:
-            frameMatch = frameRegex.Match( arguments )
+            frameMatch = frameRegex.Match(arguments)
             if frameMatch.Success:
-                paddingSize = int( frameMatch.Groups[ 1 ].Value )
+                paddingSize = int(frameMatch.Groups[1].Value)
                 if paddingSize > 0:
-                    padding = StringUtils.ToZeroPaddedString( frame, paddingSize, False )
+                    padding = StringUtils.ToZeroPaddedString(frame, paddingSize, False)
                 else:
                     padding = str(frame)
-                arguments = arguments.replace( frameMatch.Groups[ 0 ].Value, padding )
+                arguments = arguments.replace(frameMatch.Groups[0].Value, padding)
             else:
                 break
         
