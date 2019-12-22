@@ -69,8 +69,8 @@ class AriaPlugin(DeadlinePlugin):
 
         downloadFile = self.GetPluginInfoEntryWithDefault("DownloadLink", self.GetDataFilename())
         outputPath = self.GetPluginInfoEntryWithDefault("OutputDirectory", str())
-        outputFilename = self.GetPluginInfoEntryWithDefault("OutputFilename", str())
         outputPath = self.HandlePathSeparators(outputPath)
+        outputFilename = self.GetPluginInfoEntryWithDefault("OutputFilename", str())
         outputLog = self.GetPluginInfoEntryWithDefault("Log", str())
         serverConnections = self.GetIntegerPluginInfoEntryWithDefault("ServerConnections", 1)
         splitConnections = self.GetIntegerPluginInfoEntryWithDefault("SplitConnections", 5)
@@ -80,13 +80,14 @@ class AriaPlugin(DeadlinePlugin):
 
         renderArguments = " %s " % downloadFile
         if outputFilename:
-            renderArguments += "--out=%s " % outputPath
+            renderArguments += "--out=%s " % outputFilename
+        if outputLog:
+            renderArguments += "--log=%s " % outputLog
         renderArguments += "--split=%s " % splitConnections
         renderArguments += "--timeout=%s " % timeOut
         renderArguments += "--remote-time=%s " % str(serverTimeStamp).lower()
         renderArguments += "--dir=%s " % outputPath
         renderArguments += "--max-connection-per-server=%s " % serverConnections
-        renderArguments += "--log=%s " % outputLog
         renderArguments += "%s " % self.GetPluginInfoEntryWithDefault("AdditionalOptions", str())
         
         return renderArguments
