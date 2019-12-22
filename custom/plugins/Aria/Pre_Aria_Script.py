@@ -11,6 +11,7 @@ class PrepDownloadEnv:
         self.job = self.DeadlinePlugin.GetJob()
         self.DeadlinePlugin.LogInfo("Current Job ID : %s " % str(self.job.JobId))
 
+
 def __main__(*args):
 
     print " Running Aria Pre Job Script"
