@@ -19,7 +19,7 @@ def get_job_data(job_code):
 
     return request_data
 
-def create_aria_job():
+def create_aria_job(system_options):
 
     JobInfo = {"Name": "Aria_Test_Job",
                "Frames": "1",
