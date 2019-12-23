@@ -1,60 +1,73 @@
+import os
 import sys
+import json
+import requests
+
 import Deadline.DeadlineConnect as Connect
 conn = Connect.DeadlineCon('localhost', 1234)
 
 
+def get_job_data(job_code):
+
+    token_id = os.environ['SOCKET_ID']
+
+    url = 'https://get_data'
+    body = {'': ''}
+    headers = {'': ''}
+
+    request_data = requests.post(url, data=json.dumps(body), headers=headers)
+
+    return request_data
+
+def create_aria_job():
+
+    JobInfo = {"Name": "Aria_Test_Job",
+               "Frames": "1",
+               "Priority": 100,
+               "Plugin": "Aria"}
+
+    PluginInfo = {'OutputDirectory': '',
+                  'DownloadLink': '',
+                  'Version': 2,
+                  'Log': '',
+                  'DryRun': False,
+                  'OutputFilename': '',
+                  'ServerConnections': 1,
+                  'SplitConnections': 5,
+                  'ServerTimeStamp': True,
+                  'Timeout': 60}
+
+    """
+    Name = Laptop Animation_NORMAL
+    UserName = renderboost
+    Whitelist = S11
+    MachineLimit = 1
+    MachineName = S11
+    OutputDirectory0 = A:/AriaTest
+    PreJobScript = A:/DeadlineRepository10/custom/plugins/Aria/Pre_Aria_Script.py
+    """
+
+    try:
+        new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
+        print("Job created with id {}".format(new_job['_id']))
+    except Exception as _err:
+        print("Submission failed: %s" % _err)
+
+
 def submit_jobs(*args):
     print "Running Python Script"
-    print "Args: ", args
+    for idx, arg in args:
+        print "Index : %s |Arg : %s " % (idx, arg)
 
-    # # api-endpoint
-    # URL="http://maps.googleapis.com/maps/api/geocode/json"
-    #
-    # # location given here
-    # location="delhi technological university"
-    #
-    # # defining a params dict for the parameters to be sent to the API
-    # PARAMS={'address': location}
-    #
-    # # sending get request and saving the response as response object
-    # r=requests.get(url=URL, params=PARAMS)
-    #
-    # # extracting data in json format
-    # data=r.json()
-    #
-    # # extracting latitude, longitude and formatted address
-    # # of the first matching location
-    # latitude=data['results'][0]['geometry']['location']['lat']
-    # longitude=data['results'][0]['geometry']['location']['lng']
-    # formatted_address=data['results'][0]['formatted_address']
-    #
-    # # printing the output
-    # print("Latitude:%s\nLongitude:%s\nFormatted Address:%s" % (latitude, longitude, formatted_address))
+    # get jobs data from API
+    # jobs_data = get_job_data(args[1])
+
+    # create aria job
+    system_options = list()
+    create_aria_job(system_options)
 
 
 if __name__ == "__main__":
     submit_jobs(sys.argv)
 
-# JOB_NAME = 'Ping Localhost'
-# CMD_APP = r'c:\windows\system32\cmd.exe'
-# CMD_ARG = r'/c ping localhost'
-#
-# JobInfo = {
-#     "Name": JOB_NAME,
-#     "Frames": "1",
-#     "Plugin": "CommandLine"
-#     }
-#
-# PluginInfo = {
-#     'Shell': 'default',
-#     'ShellExecute': False,
-#     'StartupDirectory': '',
-#     'Executable': CMD_APP,
-#     'Arguments': CMD_ARG
-#     }
-#
-# try:
-#     new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
-#     print("Job created with id {}".format(new_job['_id']))
-# except:
-#     print("Submission failed")
+
