@@ -1,5 +1,5 @@
 import os
-
+import Deadline.DeadlineConnect as Connect
 
 class SystemOptions():
 
