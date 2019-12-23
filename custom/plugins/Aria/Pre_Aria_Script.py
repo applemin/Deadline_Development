@@ -1,5 +1,4 @@
 import os
-from enum import Enum
 
 
 class SystemOptions(Enum):
@@ -25,9 +24,17 @@ class PrepDownloadEnv:
         self.job = self.DeadlinePlugin.GetJob()
         self.DeadlinePlugin.LogInfo("Current Job ID : %s " % str(self.job.JobId))
 
-        for option in SystemOptions:
-            self.DeadlinePlugin.LogInfo("System Options : ")
-            self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (option, self.GetPluginInfoEntry(option)))
+        self.DeadlinePlugin.LogInfo("System Options : ")
+        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.directlink, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.directlink)))
+        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.filedate, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.filedate)))
+        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.filename, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.filename)))
+        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.find, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.find)))
+        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.jid, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.jid)))
+        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.link, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.link)))
+        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.susspend, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.susspend)))
+        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.uid, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.uid)))
+        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.username, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.username)))
+        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.userpath, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.userpath)))
 
 def __main__(*args):
 
