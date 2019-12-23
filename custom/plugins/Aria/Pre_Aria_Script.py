@@ -1,9 +1,7 @@
 import os
 import sys
-sys.path.append(r"D:\DeadlineRepository10\api\python\Deadline")
 
-for item in sys.path:
-    print item
+for item in sys.path:print item
 import Deadline.DeadlineConnect as Connect
 
 class SystemOptions():
