@@ -1,8 +1,6 @@
 import os
 import sys
-
 for item in sys.path:print item
-import Deadline.DeadlineConnect as Connect
 
 class SystemOptions():
 

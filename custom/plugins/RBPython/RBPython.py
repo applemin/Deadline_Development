@@ -16,10 +16,13 @@ def CleanupDeadlinePlugin( deadlinePlugin ):
 
 class PythonPlugin (DeadlinePlugin):
     
-    def __init__( self ):
+    def __init__(self):
         self.InitializeProcessCallback += self.InitializeProcess
         self.RenderExecutableCallback += self.RenderExecutable
         self.RenderArgumentCallback += self.RenderArgument
+        self.PreRenderTasksCallback     += self.PreRenderTasks
+        self.PostRenderTasksCallback    += self.PostRenderTasks
+
     
     def Cleanup(self):
         for stdoutHandler in self.StdoutHandlers:
@@ -28,6 +31,8 @@ class PythonPlugin (DeadlinePlugin):
         del self.InitializeProcessCallback
         del self.RenderExecutableCallback
         del self.RenderArgumentCallback
+        del self.PreRenderTasksCallback
+        del self.PostRenderTasksCallback
     
     def InitializeProcess(self):
         self.PluginType = PluginType.Simple
@@ -107,3 +112,10 @@ class PythonPlugin (DeadlinePlugin):
     def HandleProgress( self ):
         progress = float( self.GetRegexMatch(1) )
         self.SetProgress( progress )
+
+    def PreRenderTasks(self):
+        self.LogInfo("Running PreRenderTasks")
+
+
+    def PostRenderTasks(self):
+        self.LogInfo("Running PostRenderTasks")
