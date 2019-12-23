@@ -1,4 +1,6 @@
 import os
+import sys
+sys.path.append("A:/DeadlineRepository10/api/python/Deadline")
 import Deadline.DeadlineConnect as Connect
 
 class SystemOptions():
