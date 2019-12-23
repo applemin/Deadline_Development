@@ -14,6 +14,7 @@ class SystemOptions():
     username = "SYS_username"
     userpath = "SYS_userpath"
 
+
 class PrepDownloadEnv:
 
     def __init__(self, DeadlinePlugin):
@@ -24,17 +25,22 @@ class PrepDownloadEnv:
         self.job = self.DeadlinePlugin.GetJob()
         self.DeadlinePlugin.LogInfo("Current Job ID : %s " % str(self.job.JobId))
 
+        self.SystemOptions = {"SYS_directlink": self.DeadlinePlugin.GetPluginInfoEntry("SYS_directlink"),
+                              "SYS_filedate": self.DeadlinePlugin.GetPluginInfoEntry("SYS_filedate"),
+                              "SYS_filename": self.DeadlinePlugin.GetPluginInfoEntry("SYS_filename"),
+                              "SYS_find": self.DeadlinePlugin.GetPluginInfoEntry("SYS_find"),
+                              "SYS_jid": self.DeadlinePlugin.GetPluginInfoEntry("SYS_jid"),
+                              "SYS_link": self.DeadlinePlugin.GetPluginInfoEntry("SYS_link"),
+                              "SYS_susspend": self.DeadlinePlugin.GetPluginInfoEntry("SYS_susspend"),
+                              "SYS_uid": self.DeadlinePlugin.GetPluginInfoEntry("SYS_uid"),
+                              "SYS_username": self.DeadlinePlugin.GetPluginInfoEntry("SYS_username"),
+                              "SYS_userpath": self.DeadlinePlugin.GetPluginInfoEntry("SYS_userpath")
+                              }
+
         self.DeadlinePlugin.LogInfo("System Options : ")
-        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.directlink, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.directlink)))
-        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.filedate, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.filedate)))
-        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.filename, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.filename)))
-        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.find, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.find)))
-        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.jid, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.jid)))
-        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.link, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.link)))
-        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.susspend, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.susspend)))
-        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.uid, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.uid)))
-        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.username, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.username)))
-        self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (SystemOptions.userpath, self.DeadlinePlugin.GetPluginInfoEntry(SystemOptions.userpath)))
+        for key, value in self.SystemOptions.items():
+            self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (key, value))
+
 
 def __main__(*args):
 
