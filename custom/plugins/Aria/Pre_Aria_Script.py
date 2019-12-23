@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append(r"A:\DeadlineRepository10\api\python\Deadline")
+sys.path.append(r"D:\DeadlineRepository10\api\python\Deadline")
 
 for item in sys.path:
     print item
