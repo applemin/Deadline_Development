@@ -24,7 +24,8 @@ def create_aria_job(system_options):
     JobInfo = {"Name": "Aria_Test_Job",
                "Frames": "1",
                "Priority": 100,
-               "Plugin": "Aria"}
+               "Plugin": "Aria",
+               "BatchName": "Test_Batch"}
 
     PluginInfo = {'OutputDirectory': '',
                   'DownloadLink': '',
