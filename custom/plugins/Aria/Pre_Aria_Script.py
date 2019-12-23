@@ -1,7 +1,7 @@
 import os
 
 
-class SystemOptions(Enum):
+class SystemOptions():
 
     directlink = "SYS_directlink"
     filedate = "SYS_filedate"
