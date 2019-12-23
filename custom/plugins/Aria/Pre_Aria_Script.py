@@ -8,8 +8,6 @@ class SystemOptions():
     filename = "SYS_filename"
     find = "SYS_find"
     jid = "SYS_jid"
-    link = "SYS_link"
-    susspend = "SYS_susspend"
     uid = "SYS_uid"
     username = "SYS_username"
     userpath = "SYS_userpath"
@@ -25,17 +23,14 @@ class PrepDownloadEnv:
         self.job = self.DeadlinePlugin.GetJob()
         self.DeadlinePlugin.LogInfo("Current Job ID : %s " % str(self.job.JobId))
 
-        self.SystemOptions = {"SYS_directlink": self.DeadlinePlugin.GetPluginInfoEntry("SYS_directlink"),
-                              "SYS_filedate": self.DeadlinePlugin.GetPluginInfoEntry("SYS_filedate"),
-                              "SYS_filename": self.DeadlinePlugin.GetPluginInfoEntry("SYS_filename"),
-                              "SYS_find": self.DeadlinePlugin.GetPluginInfoEntry("SYS_find"),
-                              "SYS_jid": self.DeadlinePlugin.GetPluginInfoEntry("SYS_jid"),
-                              "SYS_link": self.DeadlinePlugin.GetPluginInfoEntry("SYS_link"),
-                              "SYS_susspend": self.DeadlinePlugin.GetPluginInfoEntry("SYS_susspend"),
-                              "SYS_uid": self.DeadlinePlugin.GetPluginInfoEntry("SYS_uid"),
-                              "SYS_username": self.DeadlinePlugin.GetPluginInfoEntry("SYS_username"),
-                              "SYS_userpath": self.DeadlinePlugin.GetPluginInfoEntry("SYS_userpath")
-                              }
+        self.SystemOptions = {SystemOptions.directlink: self.DeadlinePlugin.GetPluginInfoEntry("SYS_directlink"),
+                              SystemOptions.filedate: self.DeadlinePlugin.GetPluginInfoEntry("SYS_filedate"),
+                              SystemOptions.filename: self.DeadlinePlugin.GetPluginInfoEntry("SYS_filename"),
+                              SystemOptions.find: self.DeadlinePlugin.GetPluginInfoEntry("SYS_find"),
+                              SystemOptions.jid: self.DeadlinePlugin.GetPluginInfoEntry("SYS_jid"),
+                              SystemOptions.uid: self.DeadlinePlugin.GetPluginInfoEntry("SYS_uid"),
+                              SystemOptions.username: self.DeadlinePlugin.GetPluginInfoEntry("SYS_username"),
+                              SystemOptions.userpath: self.DeadlinePlugin.GetPluginInfoEntry("SYS_userpath")}
 
         self.DeadlinePlugin.LogInfo("System Options : ")
         for key, value in self.SystemOptions.items():
@@ -47,7 +42,3 @@ def __main__(*args):
     print " Running Aria Pre Job Script"
     DeadlinePlugin = args[0]
     PrepDownloadEnv(DeadlinePlugin)
-
-
-
-
