@@ -71,9 +71,8 @@ def create_aria_job(job_code, system_options):
         print "Creating download directory"
         os.makedirs(output_directory)
 
-    is_file_valid = validate_version_info(username, uid, filename, filedate, output_directory)
+    if not os.path.exists(os.path.join(output_directory, filename)):
 
-    if is_file_valid:
         JobInfo = {"Name": job_code + "_Downloder",
                    "Frames": "1",
                    "Priority": 100,
@@ -103,6 +102,7 @@ def create_aria_job(job_code, system_options):
     else:
         return
 
+
 def create_render_job(job_info, plugin_info):
     print "Creating Render Job "
 
@@ -119,8 +119,8 @@ def submit_jobs(*args):
     print "Job_Code: %s" % job_code
 
     # create aria job
-    system_options = dict()
-    create_aria_job(job_code, jobs_data["data"]["SystemInfo"])
+    system_options = jobs_data["data"]["SystemInfo"]
+    create_aria_job(job_code, system_options)
 
     # create render job
     job_options = jobs_data["data"]["JobInfo"]
