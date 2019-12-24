@@ -10,12 +10,12 @@ conn = Connect.DeadlineCon('localhost', 1234)
 
 def get_job_data(job_code):
 
-    token_id = os.getenv("SOCKET_ID", "")
+    token_id = os.getenv("SOCKET_ID")
     print "Socket ID : %s" % token_id
 
     url = 'https://api.renderboost.com/node/demand/job-data'
     body = {'jobcode': job_code}
-    headers = {'token': token_id}
+    headers = {'token': str(token_id)}
 
     request_data = requests.post(url, data=body, headers=headers)
     pprint(request_data.json())
