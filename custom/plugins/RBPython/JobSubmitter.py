@@ -11,6 +11,7 @@ conn = Connect.DeadlineCon('localhost', 1234)
 def get_job_data(job_code):
 
     token_id = os.environ['SOCKET_ID']
+    print "Socket ID : %s" % token_id
 
     url = 'https://api.renderboost.com/node/demand/job-data'
     body = {'jobcode': job_code}
