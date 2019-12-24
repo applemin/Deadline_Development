@@ -58,7 +58,7 @@ def create_render_job(job_info, plugin_info):
 
 def submit_jobs(*args):
     print "Running Python Script"
-    for idx, arg in args:
+    for idx, arg in enumerate(args):
         print "Index : %s |Arg : %s " % (idx, arg)
 
     # get jobs data from API
