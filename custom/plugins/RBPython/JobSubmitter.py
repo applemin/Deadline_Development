@@ -59,12 +59,10 @@ def create_render_job(job_info, plugin_info):
 def submit_jobs(*args):
     print "Running Python Script"
     print type(args), args
-    for idx, arg in enumerate(args):
-        print "Index : %s |Arg : %s " % (idx, arg)
 
     # get jobs data from API
-    jobs_data = get_job_data(args[1])
-    print "Job_Code: %s" % args[1]
+    jobs_data = get_job_data(args[0][1])
+    print "Job_Code: %s" % args[0][1]
 
     # create aria job
     system_options = dict()
