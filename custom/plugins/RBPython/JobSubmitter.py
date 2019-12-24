@@ -46,7 +46,7 @@ def get_job_data(job_code):
     return request_data.json()
 
 
-def create_aria_job(job_code, system_options):
+def create_aria_job(job_code, python_job_id, system_options):
 
     storage_directory = os.getenv("FILE_STORAGE")
 
@@ -80,6 +80,7 @@ def create_aria_job(job_code, system_options):
                    "BatchName": job_code + "_Batch",
                    "Whitelist": "S11",
                    "MachineLimit": 1,
+                   "JobDependency0": str(python_job_id),
                    "PreJobScript": "A:/DeadlineRepository10/custom/plugins/Aria/Pre_Aria_Script.py"}
 
         PluginInfo = {'OutputDirectory': output_directory,
@@ -115,11 +116,13 @@ def submit_jobs(*args):
     # get jobs data from API
     job_code = args[0][1]
     jobs_data = get_job_data(job_code)
+    python_job_id = args[0][2]
+
     print "Job_Code: %s" % job_code
 
     # create aria job
     system_options = jobs_data["data"]["SystemInfo"]
-    create_aria_job(job_code, system_options)
+    create_aria_job(job_code, python_job_id, system_options)
 
     # create render job
     job_options = jobs_data["data"]["JobInfo"]

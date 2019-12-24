@@ -74,7 +74,7 @@ class PythonPlugin (DeadlinePlugin):
         scriptFile = RepositoryUtils.CheckPathMapping(scriptFile)
         
         arguments = self.GetPluginInfoEntryWithDefault("Arguments", "")
-        arguments += self.currentJob
+        arguments += " %s" % self.currentJob
         arguments = RepositoryUtils.CheckPathMapping(arguments)
 
         arguments = re.sub(r"<(?i)STARTFRAME>", str(self.GetStartFrame()), arguments)
