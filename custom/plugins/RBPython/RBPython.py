@@ -120,7 +120,7 @@ class PythonPlugin (DeadlinePlugin):
     def PreRenderTasks(self):
         self.LogInfo("Running PreRenderTasks")
         self.currentJob = self.GetJob()
-        self.LogInfo("Current Job ID : %s" % currentJob.JobId)
+        self.LogInfo("Current Job ID : %s" % self.currentJob.JobId)
 
 
     def PostRenderTasks(self):
