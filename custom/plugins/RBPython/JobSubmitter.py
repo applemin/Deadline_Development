@@ -103,7 +103,7 @@ def create_aria_job(job_code, system_options):
         return
 
 
-def create_render_job(job_info, plugin_info):
+def create_render_job(job_code, job_info, plugin_info):
     print "Creating Render Job "
 
 
