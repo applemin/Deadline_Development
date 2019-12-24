@@ -17,6 +17,7 @@ def validate_version_info(username, uid, filename, filedate, filepath):
                          "username": filedate}
 
     if os.path.exists(json_file):
+        print "Version file is exists. : %s" % json_file
         with open(json_file, 'r') as json_file:
             loaded_data = json.load(json_file)
         if sorted(dict_version_info) == sorted(loaded_data):
