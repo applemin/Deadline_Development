@@ -2,6 +2,7 @@ import os
 import sys
 for item in sys.path:print item
 
+
 class SystemOptions():
 
     directlink = "SYS_directlink"
@@ -17,25 +18,26 @@ class SystemOptions():
 class PrepDownloadEnv:
 
     def __init__(self, DeadlinePlugin):
+        pass
 
-        self.DeadlinePlugin = DeadlinePlugin
-
-        self.DeadlinePlugin.LogInfo("Starting Download Env Preparation")
-        self.job = self.DeadlinePlugin.GetJob()
-        self.DeadlinePlugin.LogInfo("Current Job ID : %s " % str(self.job.JobId))
-
-        self.SystemOptions = {SystemOptions.directlink: self.DeadlinePlugin.GetPluginInfoEntry("SYS_directlink"),
-                              SystemOptions.filedate: self.DeadlinePlugin.GetPluginInfoEntry("SYS_filedate"),
-                              SystemOptions.filename: self.DeadlinePlugin.GetPluginInfoEntry("SYS_filename"),
-                              SystemOptions.find: self.DeadlinePlugin.GetPluginInfoEntry("SYS_find"),
-                              SystemOptions.jid: self.DeadlinePlugin.GetPluginInfoEntry("SYS_jid"),
-                              SystemOptions.uid: self.DeadlinePlugin.GetPluginInfoEntry("SYS_uid"),
-                              SystemOptions.username: self.DeadlinePlugin.GetPluginInfoEntry("SYS_username"),
-                              SystemOptions.userpath: self.DeadlinePlugin.GetPluginInfoEntry("SYS_userpath")}
-
-        self.DeadlinePlugin.LogInfo("System Options : ")
-        for key, value in self.SystemOptions.items():
-            self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (key, value))
+        # self.DeadlinePlugin = DeadlinePlugin
+        #
+        # self.DeadlinePlugin.LogInfo("Starting Download Env Preparation")
+        # self.job = self.DeadlinePlugin.GetJob()
+        # self.DeadlinePlugin.LogInfo("Current Job ID : %s " % str(self.job.JobId))
+        #
+        # self.SystemOptions = {SystemOptions.directlink: self.DeadlinePlugin.GetPluginInfoEntry("SYS_directlink"),
+        #                       SystemOptions.filedate: self.DeadlinePlugin.GetPluginInfoEntry("SYS_filedate"),
+        #                       SystemOptions.filename: self.DeadlinePlugin.GetPluginInfoEntry("SYS_filename"),
+        #                       SystemOptions.find: self.DeadlinePlugin.GetPluginInfoEntry("SYS_find"),
+        #                       SystemOptions.jid: self.DeadlinePlugin.GetPluginInfoEntry("SYS_jid"),
+        #                       SystemOptions.uid: self.DeadlinePlugin.GetPluginInfoEntry("SYS_uid"),
+        #                       SystemOptions.username: self.DeadlinePlugin.GetPluginInfoEntry("SYS_username"),
+        #                       SystemOptions.userpath: self.DeadlinePlugin.GetPluginInfoEntry("SYS_userpath")}
+        #
+        # self.DeadlinePlugin.LogInfo("System Options : ")
+        # for key, value in self.SystemOptions.items():
+        #     self.DeadlinePlugin.LogInfo("Key:%s | Value:%s" % (key, value))
 
 
 def __main__(*args):
