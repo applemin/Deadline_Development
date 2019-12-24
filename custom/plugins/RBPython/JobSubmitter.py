@@ -17,7 +17,7 @@ def validate_version_info(username, uid, filename, filedate, filepath):
                          "username": filedate}
 
     if os.path.exists(json_file):
-        with open(json_file) as json_file:
+        with open(json_file, 'r') as json_file:
             loaded_data = json.load(json_file)
         if sorted(dict_version_info) == sorted(loaded_data):
             print "This file is already downloaded, returning the process. : %s" % filename
