@@ -15,8 +15,11 @@ def CleanupDeadlinePlugin( deadlinePlugin ):
     deadlinePlugin.Cleanup()
 
 class PythonPlugin (DeadlinePlugin):
-    
+
     def __init__(self):
+
+        self.currentJob = str()
+
         self.InitializeProcessCallback += self.InitializeProcess
         self.RenderExecutableCallback += self.RenderExecutable
         self.RenderArgumentCallback += self.RenderArgument
@@ -71,6 +74,7 @@ class PythonPlugin (DeadlinePlugin):
         scriptFile = RepositoryUtils.CheckPathMapping(scriptFile)
         
         arguments = self.GetPluginInfoEntryWithDefault("Arguments", "")
+        arguments += self.currentJob
         arguments = RepositoryUtils.CheckPathMapping(arguments)
 
         arguments = re.sub(r"<(?i)STARTFRAME>", str(self.GetStartFrame()), arguments)
@@ -115,6 +119,8 @@ class PythonPlugin (DeadlinePlugin):
 
     def PreRenderTasks(self):
         self.LogInfo("Running PreRenderTasks")
+        self.currentJob = self.GetJob()
+        self.LogInfo("Current Job ID : %s" % currentJob.JobId)
 
 
     def PostRenderTasks(self):
