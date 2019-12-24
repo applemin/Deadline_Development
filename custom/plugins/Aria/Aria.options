@@ -9,7 +9,7 @@ Description=The version of Aria to use.
 Required=false
 DisableIfBlank=false
 
-[DownloadFile]
+[DownloadLink]
 Type=filename
 Label=Download Link
 Category=File Settings
