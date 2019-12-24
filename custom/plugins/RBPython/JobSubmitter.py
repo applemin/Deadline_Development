@@ -17,8 +17,8 @@ def get_job_data(job_code):
     body = {'jobcode': job_code}
     headers = {'token': token_id}
 
-    request_data = requests.post(url, data=json.dumps(body), headers=headers)
-    pprint(request_data)
+    request_data = requests.post(url, data=body, headers=headers)
+    pprint(request_data.json())
 
     return request_data
 
