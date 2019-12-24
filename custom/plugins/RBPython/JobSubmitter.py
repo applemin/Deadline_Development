@@ -62,7 +62,7 @@ def create_aria_job(job_code, system_options):
     find = system_options["find"]
     filedate = system_options["filedate"]
 
-    plugin = "aria"
+    plugin = "Aria"
     output_directory = os.path.join(storage_directory, userpath, job_code)
 
     if not os.path.exists(output_directory):
