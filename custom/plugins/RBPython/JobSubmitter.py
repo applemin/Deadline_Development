@@ -80,10 +80,9 @@ def create_aria_job(job_code, system_options):
                    "BatchName": job_code + "_Batch",
                    "Whitelist": "S11",
                    "MachineLimit": 1,
-                   "OutputDirectory0": output_directory,
                    "PreJobScript": "A:/DeadlineRepository10/custom/plugins/Aria/Pre_Aria_Script.py"}
 
-        PluginInfo = {'OutputDirectory': '',
+        PluginInfo = {'OutputDirectory': output_directory,
                       'DownloadLink': directlink,
                       'Version': 2,
                       'Log': '',
