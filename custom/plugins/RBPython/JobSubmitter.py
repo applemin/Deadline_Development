@@ -15,6 +15,7 @@ def validate_version_info(username, uid, filename, filedate, filepath):
                          "username": uid,
                          "username": filename,
                          "username": filedate}
+
     if os.path.exists(json_file):
         with open(json_file) as json_file:
             loaded_data = json.loads(json_file)
@@ -118,11 +119,11 @@ def submit_jobs(*args):
 
     # create aria job
     system_options = dict()
-    create_aria_job(job_code, jobs_data["SystemInfo"])
+    create_aria_job(job_code, jobs_data["data"]["SystemInfo"])
 
     # create render job
-    job_options = jobs_data["JobInfo"]
-    plugin_options = jobs_data["PluginInfo"]
+    job_options = jobs_data["data"]["JobInfo"]
+    plugin_options = jobs_data["data"]["PluginInfo"]
     create_render_job(job_code, job_options, plugin_options)
 
 
