@@ -62,7 +62,7 @@ def submit_jobs(*args):
         print "Index : %s |Arg : %s " % (idx, arg)
 
     # get jobs data from API
-    # jobs_data = get_job_data(args[1])
+    jobs_data = get_job_data(args[1])
 
     # create aria job
     system_options = dict()
