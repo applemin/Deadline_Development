@@ -39,14 +39,13 @@ class ZipPlugin(DeadlinePlugin):
         self.PluginType = PluginType.Simple
         self.StdoutHandling = True
 
-        self.version = int(self.GetPluginInfoEntryWithDefault("Version", "2"))
 
         #self.AddStdoutHandlerCallback(r".*\(([0-9]+)%\).*").HandleCallback += self.HandleStdoutProgress
 
     def RenderExecutable(self):
 
         exe = str()
-        exe_list = self.GetConfigEntry("Zip_RenderExecutable_" + str(self.version))
+        exe_list = self.GetConfigEntry("Zip_RenderExecutable_")
         exe = FileUtils.SearchFileList(exe_list)
         if exe == str():
             self.FailRender("7Zip render executable was not found \"" + exe_list + "\". ")
