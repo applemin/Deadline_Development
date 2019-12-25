@@ -92,7 +92,7 @@ def create_aria_job(job_code, python_job_id, system_options):
         try:
             new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
             print("Job created with id {}".format(new_job['_id']))
-            return new_job
+            return new_job['_id']
         except Exception as _err:
             print("Submission failed: %s" % _err)
     else:
@@ -124,7 +124,7 @@ def create_zip_job(job_code, aria_job_id, system_options):
     try:
         new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
         print("Job created with id {}".format(new_job['_id']))
-        return new_job
+        return new_job['_id']
     except Exception as _err:
         print("Submission failed: %s" % _err)
 
@@ -141,7 +141,7 @@ def create_render_job(job_code, zip_job_id, job_options, plugin_options):
     try:
         new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
         print("Job created with id {}".format(new_job['_id']))
-        return new_job
+        return new_job['_id']
     except Exception as _err:
         print("Submission failed: %s" % _err)
 
@@ -158,7 +158,6 @@ def submit_jobs(*args):
     python_job_id = args[0][2]
 
     print "Job_Code: %s" % job_code
-
 
     system_options = jobs_data["data"]["SystemInfo"]
     for key, value in system_options.items():
