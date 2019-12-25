@@ -132,6 +132,19 @@ def create_zip_job(job_code, aria_job_id, system_options):
 def create_render_job(job_code, zip_job_id, job_options, plugin_options):
     print "Creating Render Job "
 
+    JobInfo = {"BatchName": job_code + "_Batch",
+               "JobDependency0": str(zip_job_id)}
+    JobInfo.update(job_options)
+
+    PluginInfo = plugin_options
+
+    try:
+        new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
+        print("Job created with id {}".format(new_job['_id']))
+        return new_job
+    except Exception as _err:
+        print("Submission failed: %s" % _err)
+
 
 def submit_jobs(*args):
     print "Running Python Script"
@@ -162,7 +175,7 @@ def submit_jobs(*args):
     # create render job
     job_options = jobs_data["data"]["JobInfo"]
     plugin_options = jobs_data["data"]["PluginInfo"]
-    create_render_job(job_code, zip_job_id, job_options, plugin_options)
+    render_job_id = create_render_job(job_code, zip_job_id, job_options, plugin_options)
 
 
 if __name__ == "__main__":
