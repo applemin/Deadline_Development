@@ -9,13 +9,14 @@ conn = Connect.DeadlineCon('localhost', 1234)
 
 storage_directory = os.getenv("FILE_STORAGE")
 
+
 def validate_version_info(username, uid, filename, filedate, filepath):
 
     json_file = os.path.join(filepath, '_version.json')
     dict_version_info = {"username": username,
-                         "username": uid,
-                         "username": filename,
-                         "username": filedate}
+                         "uid": uid,
+                         "filename": filename,
+                         "filedate": filedate}
 
     if os.path.exists(json_file):
         print "Version file is exists. : %s" % json_file
@@ -97,6 +98,7 @@ def create_aria_job(job_code, python_job_id, system_options):
     else:
         return
 
+
 def create_zip_job(job_code, aria_job_id, system_options):
 
     userpath = system_options["userpath"]
@@ -125,8 +127,7 @@ def create_zip_job(job_code, aria_job_id, system_options):
         print("Submission failed: %s" % _err)
 
 
-
-def create_render_job(job_code, job_info, plugin_info):
+def create_render_job(job_code, zip_job_id, job_options, plugin_options):
     print "Creating Render Job "
 
 
@@ -154,12 +155,12 @@ def submit_jobs(*args):
     aria_job_id = create_aria_job(job_code, python_job_id, system_options)
 
     # create extractor job
-    create_zip_job(job_code, aria_job_id, system_options)
+    zip_job_id = create_zip_job(job_code, aria_job_id, system_options)
 
     # create render job
     job_options = jobs_data["data"]["JobInfo"]
     plugin_options = jobs_data["data"]["PluginInfo"]
-    create_render_job(job_code, job_options, plugin_options)
+    create_render_job(job_code, zip_job_id, job_options, plugin_options)
 
 
 if __name__ == "__main__":
