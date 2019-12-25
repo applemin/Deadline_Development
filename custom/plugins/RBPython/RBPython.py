@@ -7,6 +7,7 @@ from Deadline.Scripting import *
 import os
 import sys
 import re
+import requests
 
 def GetDeadlinePlugin():
     return PythonPlugin()
