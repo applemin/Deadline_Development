@@ -107,6 +107,7 @@ def create_zip_job(job_code, aria_job_id, system_options):
 
     plugin = 'RBZip'
     output_directory = os.path.join(storage_directory, userpath, job_code)
+    zip_file = os.path.join(output_directory, filename)
 
     JobInfo = {"Name": job_code + "_Extractor",
                "Frames": "1",
@@ -117,7 +118,8 @@ def create_zip_job(job_code, aria_job_id, system_options):
                "MachineLimit": 1,
                "JobDependency0": str(aria_job_id)}
 
-    PluginInfo = {'OutputDirectory': output_directory}
+    PluginInfo = {'ZipFile': zip_file,
+                  'OutputDirectory': output_directory}
 
     try:
         new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
