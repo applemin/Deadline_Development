@@ -68,7 +68,7 @@ def create_aria_job(job_code, python_job_id, system_options):
 
     if not os.path.exists(os.path.join(output_directory, filename)):
 
-        JobInfo = {"Name": job_code + "_Downloder",
+        JobInfo = {"Name": job_code + "_Downloader",
                    "Frames": "1",
                    "Priority": 100,
                    "Plugin": plugin,
@@ -130,6 +130,7 @@ def create_zip_job(job_code, aria_job_id, system_options):
 
 
 def create_render_job(job_code, zip_job_id, job_options, plugin_options):
+
     print "Creating Render Job "
 
     JobInfo = {"BatchName": job_code + "_Batch",
@@ -147,6 +148,7 @@ def create_render_job(job_code, zip_job_id, job_options, plugin_options):
 
 
 def submit_jobs(*args):
+
     print "Running Python Script"
     print type(args), args
     for idx, arg in enumerate(args[0]):
