@@ -1,0 +1,92 @@
+[Version]
+Type=enum
+Values=2
+Label=Aria Version
+Category=Global Settings
+CategoryOrder=0
+Index=0
+Description=The version of Aria to use.
+Required=false
+DisableIfBlank=false
+
+[DownloadLink]
+Type=filename
+Label=Download Link
+Category=File Settings
+CategoryOrder=1
+Index=0
+Description=The download filename as it exists on the network.
+Required=false
+DisableIfBlank=false
+
+[OutputDirectory]
+Type=string
+Label=Output Directory
+Category=File Settings
+CategoryOrder=1
+Index=1
+Description=The output directory to use.
+Required=false
+DisableIfBlank=false
+
+[OutputFilename]
+Type=string
+Label=Output Filename
+Category=File Settings
+CategoryOrder=1
+Index=2
+Description=The file name of the downloaded file.
+Required=false
+DisableIfBlank=false
+
+[ServerConnections]
+Type=integer
+Minimum=1
+Label=Max Connection Per Server
+Category=Connection Setting
+CategoryOrder=2
+Index=0
+Description=The maximum number of connections to one server for each download
+Required=false
+DisableIfBlank=false
+
+[ServerTimeStamp]
+Type=string
+Label=Server Time Stamp
+Category=Connection Setting
+CategoryOrder=2
+Index=1
+Description=Retrieve timestamp of the remote file.
+Required=false
+DisableIfBlank=false
+
+[SplitConnections]
+Type=string
+Label=Server Split Connections
+Category=Connection Setting
+CategoryOrder=2
+Index=2
+Description=Download a file using N connections.
+Required=false
+DisableIfBlank=false
+
+[Timeout]
+Type=integer
+Minimum=1
+Label=Max Connection Timeout
+Category=Connection Setting
+CategoryOrder=2
+Index=3
+Description=Set timeout in seconds.
+Required=false
+DisableIfBlank=false
+
+[AdditionalOptions]
+Type=string
+Label=Additional Options
+Category=Extra Setting
+CategoryOrder=3
+Index=0
+Description=Any additional options to use while rendering.
+Required=false
+DisableIfBlank=false
