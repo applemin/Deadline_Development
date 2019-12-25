@@ -18,10 +18,10 @@ Description=Not configurable
 
 [Zip_RenderExecutable_]
 Type=multilinemultifilename
-Category=Render Executables
+Category=7Zip Executables
 CategoryOrder=0
 Index=0
-Label=Silhouette 5 Executable
+Label=7Zip Executable
 Description=The path to the 7Zip executable file used for rendering. Enter alternative paths on separate lines.
 Default=C:\aria2c.exe
 
