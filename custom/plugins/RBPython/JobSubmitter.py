@@ -7,6 +7,7 @@ from pprint import pprint
 import Deadline.DeadlineConnect as Connect
 conn = Connect.DeadlineCon('localhost', 1234)
 
+storage_directory = os.getenv("FILE_STORAGE")
 
 def validate_version_info(username, uid, filename, filedate, filepath):
 
@@ -47,13 +48,6 @@ def get_job_data(job_code):
 
 
 def create_aria_job(job_code, python_job_id, system_options):
-
-    storage_directory = os.getenv("FILE_STORAGE")
-
-    for key, value in system_options.items():
-        print "SysOptions Key : %s | Value : %s" % (key, value)
-        if not value:
-            raise ValueError("No value given for : %s" % key)
 
     username = system_options["username"]
     userpath = system_options["userpath"]
@@ -97,10 +91,39 @@ def create_aria_job(job_code, python_job_id, system_options):
         try:
             new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
             print("Job created with id {}".format(new_job['_id']))
+            return new_job
         except Exception as _err:
             print("Submission failed: %s" % _err)
     else:
         return
+
+def create_zip_job(job_code, aria_job_id, system_options):
+
+    userpath = system_options["userpath"]
+    filename = system_options["filename"]
+    find = system_options["find"]
+
+    plugin = 'RBZip'
+    output_directory = os.path.join(storage_directory, userpath, job_code)
+
+    JobInfo = {"Name": job_code + "_Extractor",
+               "Frames": "1",
+               "Priority": 100,
+               "Plugin": plugin,
+               "BatchName": job_code + "_Batch",
+               "Whitelist": "S11",
+               "MachineLimit": 1,
+               "JobDependency0": str(aria_job_id)}
+
+    PluginInfo = {'OutputDirectory': output_directory}
+
+    try:
+        new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
+        print("Job created with id {}".format(new_job['_id']))
+        return new_job
+    except Exception as _err:
+        print("Submission failed: %s" % _err)
+
 
 
 def create_render_job(job_code, job_info, plugin_info):
@@ -120,9 +143,18 @@ def submit_jobs(*args):
 
     print "Job_Code: %s" % job_code
 
-    # create aria job
+
     system_options = jobs_data["data"]["SystemInfo"]
-    create_aria_job(job_code, python_job_id, system_options)
+    for key, value in system_options.items():
+        print "SysOptions Key : %s | Value : %s" % (key, value)
+        if not value:
+            raise ValueError("No value given for : %s" % key)
+
+    # create aria job
+    aria_job_id = create_aria_job(job_code, python_job_id, system_options)
+
+    # create extractor job
+    create_zip_job(job_code, aria_job_id, system_options)
 
     # create render job
     job_options = jobs_data["data"]["JobInfo"]
