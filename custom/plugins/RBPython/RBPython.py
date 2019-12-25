@@ -23,8 +23,8 @@ class PythonPlugin (DeadlinePlugin):
         self.InitializeProcessCallback += self.InitializeProcess
         self.RenderExecutableCallback += self.RenderExecutable
         self.RenderArgumentCallback += self.RenderArgument
-        self.PreRenderTasksCallback     += self.PreRenderTasks
-        self.PostRenderTasksCallback    += self.PostRenderTasks
+        self.PreRenderTasksCallback += self.PreRenderTasks
+        self.PostRenderTasksCallback += self.PostRenderTasks
 
     
     def Cleanup(self):
@@ -74,7 +74,7 @@ class PythonPlugin (DeadlinePlugin):
         scriptFile = RepositoryUtils.CheckPathMapping(scriptFile)
         
         arguments = self.GetPluginInfoEntryWithDefault("Arguments", "")
-        arguments += " %s" % self.currentJob
+        arguments += " %s" % self.currentJob.JobId
         arguments = RepositoryUtils.CheckPathMapping(arguments)
 
         arguments = re.sub(r"<(?i)STARTFRAME>", str(self.GetStartFrame()), arguments)
