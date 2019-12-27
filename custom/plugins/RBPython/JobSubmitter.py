@@ -175,7 +175,7 @@ class Submitter:
 
     def get_scene_file(self):
 
-        base_job_dir = os.path.join(self.STORAGE_DIRECTORY, self.job_code)
+        base_job_dir = os.path.join(self.STORAGE_DIRECTORY, self.user_path, self.job_code)
         scene_file_path = str()
 
         if os.path.exists(base_job_dir):
