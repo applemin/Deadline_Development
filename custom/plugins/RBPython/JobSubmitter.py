@@ -7,8 +7,9 @@ from pprint import pprint
 import Deadline.DeadlineConnect as Connect
 conn = Connect.DeadlineCon('localhost', 1234)
 
+job_code = str()
 storage_directory = os.getenv("FILE_STORAGE")
-
+cloud_directory = os.getenv("CLOUD_DIRECTORY")
 
 def validate_version_info(username, uid, filename, filedate, filepath):
 
@@ -129,15 +130,64 @@ def create_zip_job(job_code, aria_job_id, system_options):
         print("Submission failed: %s" % _err)
 
 
-def create_render_job(job_code, zip_job_id, job_options, plugin_options):
+def create_cloud_directory():
+
+    cloud_job_folder = os.path.join(cloud_directory, job_code)
+    if not os.path.exists(cloud_job_folder):
+        os.makedirs(cloud_job_folder)
+        print "Job folder created in cloud : %s" % cloud_job_folder
+
+    return cloud_job_folder
+
+
+def get_scene_file(scene_file_name):
+
+    base_job_dir = os.path.join(storage_directory, job_code)
+    scene_file_path = str()
+
+    if os.path.exists(base_job_dir):
+        print "Job directory is exists: %s" % base_job_dir
+    else:
+        raise Exception("Job folder is not exist in storage %s" % base_job_dir)
+
+    for (dir_path, dir_names, file_names) in os.walk(base_job_dir):
+        scene_file_path = [os.path.join(dir_path, _file) for _file in file_names if _file == scene_file_name]
+        print "Scene file path found : %s " % scene_file_path
+
+    return scene_file_path
+
+
+def get_extra_options(scene_file_name, job_options, plugin_options):
+
+    output_directory = create_cloud_directory()
+    scene_file = get_scene_file(scene_file_name)
+
+    extra_job_options = {"OutputDirectory0": output_directory}
+
+    extra_plugin_options = {"OutputFile": os.path.join(output_directory, job_options["OutputFilename0"]),
+                            "SceneFile": scene_file}
+
+    if job_options["Plugin"] == "RBKeyshot":
+        return extra_job_options, extra_plugin_options
+    elif job_options["Plugin"] == "Keyshot":
+        return extra_job_options, extra_plugin_options
+    else:
+        return extra_job_options, extra_plugin_options
+
+
+def create_render_job(job_code, zip_job_id, scene_file_name, job_options, plugin_options):
 
     print "Creating Render Job "
+    extra_job_options, extra_plugin_options = get_extra_options(scene_file_name, job_options, plugin_options)
 
     JobInfo = {"BatchName": job_code + "_Batch",
                "JobDependency0": str(zip_job_id)}
     JobInfo.update(job_options)
+    JobInfo.update(extra_job_options)
 
-    PluginInfo = plugin_options
+    PluginInfo = dict()
+    PluginInfo.update(plugin_options)
+    PluginInfo.update(extra_plugin_options)
 
     try:
         new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
@@ -151,6 +201,8 @@ def submit_jobs(*args):
 
     print "Running Python Script"
     print type(args), args
+
+    global job_code
     for idx, arg in enumerate(args[0]):
         print "Index : %s | Arg : %s" % (idx, arg)
 
@@ -175,8 +227,13 @@ def submit_jobs(*args):
 
     # create render job
     job_options = jobs_data["data"]["JobInfo"]
+    scene_file_name = jobs_data["data"]["SystemInfo"]["find"]
     plugin_options = jobs_data["data"]["PluginInfo"]
-    render_job_id = create_render_job(job_code, zip_job_id, job_options, plugin_options)
+    render_job_id = create_render_job(job_code,
+                                      zip_job_id,
+                                      scene_file_name,
+                                      job_options,
+                                      plugin_options)
 
 
 if __name__ == "__main__":
