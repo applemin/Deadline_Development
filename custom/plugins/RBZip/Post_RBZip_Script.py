@@ -6,7 +6,7 @@ from Deadline.Jobs import *
 
 def update_scene_file(DeadlinePlugin):
     current_job = DeadlinePlugin.GetJob()
-    jobs = RepositoryUtils.GetJobs()
+    jobs = RepositoryUtils.GetJobs(True)
     for job in jobs:
         if job.JobName == current_job.JobName:
             print job.JobName
