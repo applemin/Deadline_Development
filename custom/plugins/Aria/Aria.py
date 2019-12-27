@@ -43,7 +43,7 @@ class AriaPlugin(DeadlinePlugin):
         self.version = int(self.GetPluginInfoEntryWithDefault("Version", "2"))
         
         self.AddStdoutHandlerCallback(r".*\(([0-9]+)%\).*").HandleCallback += self.HandleStdoutProgress
-        self.AddStdoutHandlerCallback(".*(OK):download completed.*").HandleCallback += self.HandleJobCompleted
+        self.AddStdoutHandlerCallback(".*download completed.*").HandleCallback += self.HandleJobCompleted
 
     def RenderExecutable(self):
 
@@ -128,4 +128,3 @@ class AriaPlugin(DeadlinePlugin):
             print "Creating version file. : %s" % json_file
             json.dumps(dict_version_info, json_file)
 
-        return True
