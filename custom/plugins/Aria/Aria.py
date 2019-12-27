@@ -114,7 +114,8 @@ class AriaPlugin(DeadlinePlugin):
                              "uid": uid,
                              "file_name": file_name,
                              "file_date": file_date,
-                             "user_path": user_path}
+                             "user_path": user_path,
+                             "package_path": os.path.join(outputPath, file_name)}
 
         # if os.path.exists(json_file) and os.path.isfile(json_file):
         #     print "Version file is exists. : %s" % json_file
@@ -126,5 +127,5 @@ class AriaPlugin(DeadlinePlugin):
 
         with open(json_file, 'w') as _json_file:
             print "Creating version file. : %s" % json_file
-            json.dump(dict_version_info, _json_file)
+            json.dump(dict_version_info, _json_file, indent=4)
 
