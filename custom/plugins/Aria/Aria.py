@@ -107,15 +107,14 @@ class AriaPlugin(DeadlinePlugin):
         user_name = self.GetPluginInfoEntry("UserName")
         user_path = self.GetPluginInfoEntry("UserPath")
         outputPath = self.GetPluginInfoEntry("OutputDirectory")
-        json_file_name = "_version_" + os.path.splitext(file_name)[0] + ".json"
+        json_file_name = "_version_" + os.path.splitext(file_name)[0] + ".version"
 
         json_file = os.path.join(outputPath, json_file_name)
         dict_version_info = {"user_name": user_name,
                              "uid": uid,
                              "file_name": file_name,
                              "file_date": file_date,
-                             "user_path": user_path,
-                             "package_path": os.path.join(outputPath, file_name).replace("\\", "/")}
+                             "user_path": user_path}
 
         # if os.path.exists(json_file) and os.path.isfile(json_file):
         #     print "Version file is exists. : %s" % json_file

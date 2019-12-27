@@ -24,7 +24,8 @@ class Submitter:
         self.job_code = args[0][1]
         self.python_job_id = args[0][2]
         jobs_data = self.get_job_data()
-
+        self.version_file = str()
+        self.scene_file = str()
         self.system_options = jobs_data["data"]["SystemInfo"]
         self.job_options = jobs_data["data"]["JobInfo"]
         self.plugin_options = jobs_data["data"]["PluginInfo"]
@@ -72,54 +73,71 @@ class Submitter:
 
         print "Creating Aria Job "
         plugin = "Aria"
-        output_directory = os.path.join(self.STORAGE_DIRECTORY, self.user_path, self.job_code)
+        user_root_folder = os.path.join(self.STORAGE_DIRECTORY, self.user_path)
+        output_directory = os.path.join(user_root_folder, self.job_code)
+
+        extra_plugin_options = {"FileDate": self.file_date,
+                                "FileName": self.file_name,
+                                "UID": self.uid,
+                                "UserName": self.user_name,
+                                "UserPath": self.user_path}
+
+        def validate_file_data(_version_file):
+
+            with open(_version_file, 'r') as json_file:
+                loaded_data = json.load(json_file)
+            if sorted(extra_plugin_options) == sorted(loaded_data):
+                print "This file is already downloaded, returning the process. : %s" % _version_file
+                return True
+
+        # check if this file is already downloaded
+        root_folder_list = os.listdir(os.path.join(self.STORAGE_DIRECTORY, self.user_path))
+        version_file = "_version_" + os.path.splitext(self.file_name)[0] + ".version"
+        for folder in root_folder_list:
+            current_file = os.path.join(user_root_folder, folder, version_file).replace("\\", "/")
+            if os.path.exists(current_file):
+                result = validate_file_data(current_file)
+                if result:
+                    self.version_file = current_file
+                    print "Version data found for this file : %s " % current_file
+                    return
 
         if not os.path.exists(output_directory):
             print "Download directory is not exist : %s" % output_directory
             print "Creating download directory"
             os.makedirs(output_directory)
 
-        if not os.path.exists(os.path.join(output_directory, self.file_name)):
+        pre_script = os.path.join(self.DEADLINE_REPO, "custom/plugins/Aria/Pre_Aria_Script.py").replace("\\", "/")
+        post_script = os.path.join(self.DEADLINE_REPO, "custom/plugins/Aria/Post_Aria_Script.py").replace("\\", "/")
 
-            extra_plugin_options = {"FileDate": self.file_date,
-                                    "FileName": self.file_name,
-                                    "UID": self.uid,
-                                    "UserName": self.user_name,
-                                    "UserPath": self.user_path}
+        JobInfo = {"Name": self.job_code + "_Downloader",
+                   "Frames": "1",
+                   "Priority": 100,
+                   "Plugin": plugin,
+                   "BatchName": self.job_code + "_Batch",
+                   "Whitelist": "S11",
+                   "MachineLimit": 1,
+                   "JobDependency0": str(python_job_id),
+                   "PreJobScript": pre_script}
 
-            pre_script = os.path.join(self.DEADLINE_REPO, "custom/plugins/Aria/Pre_Aria_Script.py").replace("\\", "/")
-            post_script = os.path.join(self.DEADLINE_REPO, "custom/plugins/Aria/Post_Aria_Script.py").replace("\\", "/")
+        PluginInfo = {'OutputDirectory': output_directory,
+                      'DownloadLink': self.download_link,
+                      'Version': 2,
+                      'Log': '',
+                      'DryRun': False,
+                      'OutputFilename': '',
+                      'ServerConnections': 1,
+                      'SplitConnections': 5,
+                      'ServerTimeStamp': True,
+                      'Timeout': 60}
 
-            JobInfo = {"Name": self.job_code + "_Downloader",
-                       "Frames": "1",
-                       "Priority": 100,
-                       "Plugin": plugin,
-                       "BatchName": self.job_code + "_Batch",
-                       "Whitelist": "S11",
-                       "MachineLimit": 1,
-                       "JobDependency0": str(python_job_id),
-                       "PreJobScript": pre_script}
-
-            PluginInfo = {'OutputDirectory': output_directory,
-                          'DownloadLink': self.download_link,
-                          'Version': 2,
-                          'Log': '',
-                          'DryRun': False,
-                          'OutputFilename': '',
-                          'ServerConnections': 1,
-                          'SplitConnections': 5,
-                          'ServerTimeStamp': True,
-                          'Timeout': 60}
-
-            PluginInfo.update(extra_plugin_options)
-            try:
-                new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
-                print("Job created with id {}".format(new_job['_id']))
-                return new_job['_id']
-            except Exception as _err:
-                print("Submission failed: %s" % _err)
-        else:
-            return
+        PluginInfo.update(extra_plugin_options)
+        try:
+            new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
+            print("Job created with id {}".format(new_job['_id']))
+            return new_job['_id']
+        except Exception as _err:
+            print("Submission failed: %s" % _err)
 
     def create_zip_job(self, aria_job_id):
         print "Creating RBZip Job "
@@ -127,6 +145,25 @@ class Submitter:
         output_directory = os.path.join(self.STORAGE_DIRECTORY, self.user_path, self.job_code)
         zip_file = os.path.join(output_directory, self.file_name)
         post_script = os.path.join(self.DEADLINE_REPO, "custom/plugins/RBZip/Post_RBZip_Script.py").replace("\\", "/")
+
+        def get_scene_file(scene_file, version_file):
+            scene_file_name = scene_file
+            base_job_dir = os.path.dirname(version_file)
+            scene_file_path = str()
+
+            for (dir_path, dir_names, file_names) in os.walk(base_job_dir):
+                print "Looking for scene file `%s` in `%s` " % (scene_file_name, base_job_dir)
+                scene_file_path = [os.path.join(dir_path, _file) for _file in file_names if _file == scene_file_name]
+                print "Scene file path result : %s " % scene_file_path
+            if os.path.isfile(scene_file_path[0]):
+                return str(scene_file_path[0])
+
+        if self.version_file :
+            scene_file = get_scene_file(self.find, self.version_file)
+            if scene_file:
+                self.scene_file = scene_file
+                print "Scene file found : %s " % scene_file
+                return
 
         JobInfo = {"Name": self.job_code + "_Extractor",
                    "Frames": "1",
@@ -178,6 +215,10 @@ class Submitter:
         extra_job_options = {"OutputDirectory0": output_directory}
 
         extra_plugin_options = {"OutputFile": os.path.join(output_directory, self.job_options["OutputFilename0"])}
+
+        # add scene file if it's already found
+        if self.scene_file:
+            extra_plugin_options["SceneFile"] = self.scene_file
 
         if self.job_options["Plugin"] == "RBKeyshot":
             return extra_job_options, extra_plugin_options
