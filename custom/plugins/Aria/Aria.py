@@ -124,7 +124,7 @@ class AriaPlugin(DeadlinePlugin):
         #         print "This file is already downloaded, returning the process. : %s" % file_name
         #         return False
 
-        with open(json_file, 'w') as json_file:
+        with open(json_file, 'w') as _json_file:
             print "Creating version file. : %s" % json_file
-            json.dumps(dict_version_info, json_file)
+            json.dumps(dict_version_info, _json_file)
 
