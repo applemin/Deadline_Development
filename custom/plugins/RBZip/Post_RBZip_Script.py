@@ -1,8 +1,17 @@
 import os
 import sys
-from System import TimeSpan
+import clr
+
+from System import *
+from System.Diagnostics import *
 from Deadline.Scripting import *
 from Deadline.Jobs import *
+from System.IO import *
+
+
+
+from Deadline.Plugins import *
+from Deadline.Scripting import *
 
 
 def get_scene_file(DeadlinePlugin):
