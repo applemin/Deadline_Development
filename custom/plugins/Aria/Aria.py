@@ -101,11 +101,11 @@ class AriaPlugin(DeadlinePlugin):
     def HandleJobCompleted(self):
         self.LogInfo("Running Job Completion Handler.")
 
-        file_date = self.GetIntegerPluginInfoEntry("FileDate")
-        file_name = self.GetIntegerPluginInfoEntry("FileName")
-        uid = self.GetIntegerPluginInfoEntry("UID")
-        user_name = self.GetIntegerPluginInfoEntry("UserName")
-        user_path = self.GetIntegerPluginInfoEntry("UserPath")
+        file_date = self.GetPluginInfoEntry("FileDate")
+        file_name = self.GetPluginInfoEntry("FileName")
+        uid = self.GetPluginInfoEntry("UID")
+        user_name = self.GetPluginInfoEntry("UserName")
+        user_path = self.GetPluginInfoEntry("UserPath")
         outputPath = self.GetPluginInfoEntry("OutputDirectory")
         json_file_name = "_version_" + os.path.splitext(file_name)[0] + ".json"
 
