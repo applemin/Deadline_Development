@@ -110,11 +110,12 @@ class AriaPlugin(DeadlinePlugin):
         json_file_name = "_version_" + os.path.splitext(file_name)[0] + ".version"
 
         json_file = os.path.join(outputPath, json_file_name)
-        dict_version_info = {"user_name": user_name,
-                             "uid": uid,
-                             "file_name": file_name,
-                             "file_date": file_date,
-                             "user_path": user_path}
+
+        dict_version_info = {"UserName": user_name,
+                             "UID": uid,
+                             "FileName": file_name,
+                             "FileDate": file_date,
+                             "UserPath": user_path}
 
         # if os.path.exists(json_file) and os.path.isfile(json_file):
         #     print "Version file is exists. : %s" % json_file
