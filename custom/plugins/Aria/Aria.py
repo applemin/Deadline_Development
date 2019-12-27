@@ -43,7 +43,7 @@ class AriaPlugin(DeadlinePlugin):
         self.version = int(self.GetPluginInfoEntryWithDefault("Version", "2"))
         
         self.AddStdoutHandlerCallback(r".*\(([0-9]+)%\).*").HandleCallback += self.HandleStdoutProgress
-        self.AddStdoutHandlerCallback(".*(OK):download completed..*").HandleCallback += self.HandleJobCompleted
+        self.AddStdoutHandlerCallback(".*(OK):download completed.*").HandleCallback += self.HandleJobCompleted
 
     def RenderExecutable(self):
 
@@ -99,6 +99,7 @@ class AriaPlugin(DeadlinePlugin):
         self.SetStatusMessage(self.GetRegexMatch(0))
 
     def HandleJobCompleted(self):
+        self.LogInfo("Running Job Completion Handler.")
 
         file_date = self.GetIntegerPluginInfoEntry("FileDate")
         file_name = self.GetIntegerPluginInfoEntry("FileName")
