@@ -218,7 +218,7 @@ class Submitter:
 
         # add scene file if it's already found
         if self.scene_file:
-            extra_plugin_options["SceneFile"] = self.scene_file
+            extra_plugin_options["SceneFile"] = self.scene_file.replace("\\", "/")
 
         if self.job_options["Plugin"] == "RBKeyshot":
             return extra_job_options, extra_plugin_options
