@@ -186,8 +186,8 @@ class Submitter:
         for (dir_path, dir_names, file_names) in os.walk(base_job_dir):
             print "Looking for scene file `%s` in `%s` " % (self.find, base_job_dir)
             scene_file_path = [os.path.join(dir_path, _file) for _file in file_names if _file == self.find]
-            print "Scene file path found : %s " % scene_file_path
-        if scene_file_path:
+            print "Scene file path result : %s " % scene_file_path
+        if os.path.isfile(scene_file_path):
             return scene_file_path[0]
         else:
             raise Exception("Scene file path not found. %s" % scene_file_path)
