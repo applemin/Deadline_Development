@@ -124,7 +124,7 @@ class Submitter:
                    "Whitelist": "S11",
                    "MachineLimit": 1,
                    "JobDependency0": str(aria_job_id),
-                   "PostJobScript": "A:/DeadlineRepository10/custom/plugins/Aria/Post_RBZip_Script.py"}
+                   "PostJobScript": "A:/DeadlineRepository10/custom/plugins/RBZip/Post_RBZip_Script.py"}
 
         PluginInfo = {'ZipFile': zip_file,
                       'OutputDirectory': output_directory}
