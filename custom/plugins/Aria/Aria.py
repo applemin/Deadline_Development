@@ -126,5 +126,5 @@ class AriaPlugin(DeadlinePlugin):
 
         with open(json_file, 'w') as _json_file:
             print "Creating version file. : %s" % json_file
-            json.dumps(dict_version_info, _json_file)
+            json.dump(dict_version_info, _json_file)
 
