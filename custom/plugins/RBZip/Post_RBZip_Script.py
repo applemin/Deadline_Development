@@ -5,11 +5,17 @@ from Deadline.Scripting import *
 from Deadline.Jobs import *
 
 def update_scene_file(DeadlinePlugin):
+
     current_job = DeadlinePlugin.GetJob()
+    target_job = None
     jobs = RepositoryUtils.GetJobs(True)
+
     for job in jobs:
-        if job.JobName == current_job.JobName:
-            print job.JobName
+        if job.JobName == current_job.JobName.split("_Extractor")[0]:
+            target_job = job.JobId
+            print "Target job ID : %s" % str(target_job)
+
+    target_job.SetJobPluginInfoKeyValue("SceneFile", "TestPath")
 #
 #
 # def __main__(*args):
