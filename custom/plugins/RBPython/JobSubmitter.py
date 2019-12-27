@@ -128,7 +128,8 @@ class Submitter:
 
         PluginInfo = {'ZipFile': zip_file,
                       'OutputDirectory': output_directory,
-                      'SceneFile': self.find}
+                      'SceneFile': self.find,
+                      'JobDirectory': os.path.join(self.STORAGE_DIRECTORY, self.user_path, self.job_code)}
 
         try:
             new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
