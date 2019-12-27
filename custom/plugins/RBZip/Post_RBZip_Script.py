@@ -30,7 +30,7 @@ def get_scene_file(DeadlinePlugin):
         scene_file_path=[os.path.join(dir_path, _file) for _file in file_names if _file == scene_file_name]
         print "Scene file path result : %s " % scene_file_path
     if os.path.isfile(scene_file_path):
-        return scene_file_path[0]
+        return str(scene_file_path[0])
     else:
         raise Exception("Scene file path not found. %s" % scene_file_path)
 
