@@ -40,7 +40,8 @@ def update_scene_file(DeadlinePlugin):
     for job in jobs:
         if job.JobName == current_job.JobName.split("_Extractor")[0]:
             target_job = RepositoryUtils.GetJob(job.JobId, True)
-            print "Target job ID : %s" % str(target_job)
+            print "Target job ID : %s" % str(target_job.JobId)
+            break
 
     target_job.SetJobPluginInfoKeyValue("SceneFile", get_scene_file(DeadlinePlugin))
     RepositoryUtils.SaveJob(target_job)
