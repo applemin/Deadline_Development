@@ -73,6 +73,8 @@ class PythonPlugin (DeadlinePlugin):
     def RenderArgument( self ):
         scriptFile = self.GetPluginInfoEntryWithDefault("ScriptFile", self.GetDataFilename())
         scriptFile = RepositoryUtils.CheckPathMapping(scriptFile)
+
+        JID = self.GetPluginInfoEntry("jid")
         
         arguments = self.GetPluginInfoEntryWithDefault("Arguments", "")
         arguments += " %s" % self.currentJob.JobId
@@ -96,7 +98,7 @@ class PythonPlugin (DeadlinePlugin):
         else:
             scriptFile = scriptFile.replace("\\", "/")
 
-        return "-u \"" + scriptFile + "\" " + arguments
+        return "-u \"" + scriptFile + "\" " + JID + arguments
 
     def ReplacePaddedFrame(self, arguments, pattern, frame):
         frameRegex = Regex(pattern)
