@@ -11,6 +11,7 @@ job_code = str()
 storage_directory = os.getenv("FILE_STORAGE")
 cloud_directory = os.getenv("CLOUD_DIRECTORY")
 
+
 def validate_version_info(username, uid, filename, filedate, filepath):
 
     json_file = os.path.join(filepath, '_version.json')
