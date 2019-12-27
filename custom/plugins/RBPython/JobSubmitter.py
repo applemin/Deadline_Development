@@ -159,12 +159,10 @@ class Submitter:
     def get_extra_options(self):
 
         output_directory = self.create_cloud_directory()
-        scene_file = self.get_scene_file()
 
         extra_job_options = {"OutputDirectory0": output_directory}
 
-        extra_plugin_options = {"OutputFile": os.path.join(output_directory, self.job_options["OutputFilename0"]),
-                                "SceneFile": scene_file}
+        extra_plugin_options = {"OutputFile": os.path.join(output_directory, self.job_options["OutputFilename0"])}
 
         if self.job_options["Plugin"] == "RBKeyshot":
             return extra_job_options, extra_plugin_options
