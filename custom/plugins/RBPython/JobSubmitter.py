@@ -187,8 +187,10 @@ class Submitter:
             print "Looking for scene file `%s` in `%s` " % (self.find, base_job_dir)
             scene_file_path = [os.path.join(dir_path, _file) for _file in file_names if _file == self.find]
             print "Scene file path found : %s " % scene_file_path
-
-        return scene_file_path
+        if scene_file_path:
+            return scene_file_path[0]
+        else:
+            raise Exception("Scene file path not found. %s" % scene_file_path)
 
     def create_cloud_directory(self):
 
