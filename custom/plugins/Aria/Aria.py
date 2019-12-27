@@ -115,7 +115,7 @@ class AriaPlugin(DeadlinePlugin):
                              "file_name": file_name,
                              "file_date": file_date,
                              "user_path": user_path,
-                             "package_path": os.path.join(outputPath, file_name)}
+                             "package_path": os.path.join(outputPath, file_name).replace("\\", "/")}
 
         # if os.path.exists(json_file) and os.path.isfile(json_file):
         #     print "Version file is exists. : %s" % json_file
