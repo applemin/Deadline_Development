@@ -16,7 +16,7 @@ from Deadline.Scripting import *
 from Deadline.Jobs import *
 
 
-def __main__():
+def __main__(*args):
 
     print("Script Started...")
 
