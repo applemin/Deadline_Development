@@ -45,7 +45,7 @@ def update_scene_file(DeadlinePlugin):
             target_job = RepositoryUtils.GetJob(job.JobId, True)
             print "Target job ID : %s" % str(target_job)
 
-    target_job.SetJobPluginInfoKeyValue("SceneFile", Path.GetFileName(get_scene_file(DeadlinePlugin)))
+    target_job.SetJobPluginInfoKeyValue("SceneFile", get_scene_file(DeadlinePlugin))
     RepositoryUtils.SaveJob(target_job)
 
 
