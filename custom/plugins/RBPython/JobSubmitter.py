@@ -12,6 +12,7 @@ class Submitter:
 
     STORAGE_DIRECTORY = os.getenv("FILE_STORAGE")
     CLOUD_DIRECTORY = os.getenv("CLOUD_DIRECTORY")
+    DEADLINE_REPO = os.getenv("DEADLINE_REPOSITORY")
 
     def __init__(self, *args):
 
@@ -80,6 +81,15 @@ class Submitter:
 
         if not os.path.exists(os.path.join(output_directory, self.file_name)):
 
+            extra_plugin_options = {"FileDate": self.file_date,
+                                    "FileName": self.file_name,
+                                    "UID": self.uid,
+                                    "UserName": self.user_name,
+                                    "UserPath": self.user_path}
+
+            pre_script = os.path.join(self.DEADLINE_REPO, "custom/plugins/Aria/Pre_Aria_Script.py").replace("\\", "/")
+            post_script = os.path.join(self.DEADLINE_REPO, "custom/plugins/Aria/Post_Aria_Script.py").replace("\\", "/")
+
             JobInfo = {"Name": self.job_code + "_Downloader",
                        "Frames": "1",
                        "Priority": 100,
@@ -88,7 +98,8 @@ class Submitter:
                        "Whitelist": "S11",
                        "MachineLimit": 1,
                        "JobDependency0": str(python_job_id),
-                       "PreJobScript": "A:/DeadlineRepository10/custom/plugins/Aria/Pre_Aria_Script.py"}
+                       "PreJobScript": pre_script,
+                       "PostJobScript": post_script}
 
             PluginInfo = {'OutputDirectory': output_directory,
                           'DownloadLink': self.download_link,
@@ -100,7 +111,8 @@ class Submitter:
                           'SplitConnections': 5,
                           'ServerTimeStamp': True,
                           'Timeout': 60}
-
+            PluginInfo.update(extra_plugin_options
+                              )
             try:
                 new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
                 print("Job created with id {}".format(new_job['_id']))
@@ -115,6 +127,7 @@ class Submitter:
         plugin = 'RBZip'
         output_directory = os.path.join(self.STORAGE_DIRECTORY, self.user_path, self.job_code)
         zip_file = os.path.join(output_directory, self.file_name)
+        post_script = os.path.join(self.DEADLINE_REPO, "custom/plugins/RBZip/Post_RBZip_Script.py").replace("\\", "/")
 
         JobInfo = {"Name": self.job_code + "_Extractor",
                    "Frames": "1",
@@ -124,7 +137,7 @@ class Submitter:
                    "Whitelist": "S11",
                    "MachineLimit": 1,
                    "JobDependency0": str(aria_job_id),
-                   "PostJobScript": "A:/DeadlineRepository10/custom/plugins/RBZip/Post_RBZip_Script.py"}
+                   "PostJobScript": post_script}
 
         PluginInfo = {'ZipFile': zip_file,
                       'OutputDirectory': output_directory,

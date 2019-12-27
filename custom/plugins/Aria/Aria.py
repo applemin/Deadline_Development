@@ -1,4 +1,5 @@
 import os
+import json
 
 from System import *
 from System.Diagnostics import *
@@ -42,6 +43,7 @@ class AriaPlugin(DeadlinePlugin):
         self.version = int(self.GetPluginInfoEntryWithDefault("Version", "2"))
         
         self.AddStdoutHandlerCallback(r".*\(([0-9]+)%\).*").HandleCallback += self.HandleStdoutProgress
+        self.AddStdoutHandlerCallback(".*(OK):download completed..*").HandleCallback += self.HandleJobCompleted
 
     def RenderExecutable(self):
 
@@ -95,3 +97,34 @@ class AriaPlugin(DeadlinePlugin):
     def HandleStdoutProgress(self):
         self.SetProgress(float(self.GetRegexMatch(1)))
         self.SetStatusMessage(self.GetRegexMatch(0))
+
+    def HandleJobCompleted(self):
+
+        file_date = self.GetIntegerPluginInfoEntry("FileDate")
+        file_name = self.GetIntegerPluginInfoEntry("FileName")
+        uid = self.GetIntegerPluginInfoEntry("UID")
+        user_name = self.GetIntegerPluginInfoEntry("UserName")
+        user_path = self.GetIntegerPluginInfoEntry("UserPath")
+        outputPath = self.GetPluginInfoEntry("OutputDirectory")
+        json_file_name = "_version_" + os.path.splitext(file_name)[0] + ".json"
+
+        json_file = os.path.join(outputPath, json_file_name)
+        dict_version_info = {"user_name": user_name,
+                             "uid": uid,
+                             "file_name": file_name,
+                             "file_date": file_date,
+                             "user_path": user_path}
+
+        # if os.path.exists(json_file) and os.path.isfile(json_file):
+        #     print "Version file is exists. : %s" % json_file
+        #     with open(json_file, 'r') as json_file:
+        #         loaded_data = json.load(json_file)
+        #     if sorted(dict_version_info) == sorted(loaded_data):
+        #         print "This file is already downloaded, returning the process. : %s" % file_name
+        #         return False
+
+        with open(json_file, 'w') as json_file:
+            print "Creating version file. : %s" % json_file
+            json.dumps(dict_version_info, json_file)
+
+        return True
