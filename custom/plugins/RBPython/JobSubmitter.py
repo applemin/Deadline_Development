@@ -127,7 +127,8 @@ class Submitter:
                    "PostJobScript": "A:/DeadlineRepository10/custom/plugins/RBZip/Post_RBZip_Script.py"}
 
         PluginInfo = {'ZipFile': zip_file,
-                      'OutputDirectory': output_directory}
+                      'OutputDirectory': output_directory,
+                      'SceneFile': self.find}
 
         try:
             new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
