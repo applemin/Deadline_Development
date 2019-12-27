@@ -98,8 +98,7 @@ class Submitter:
                        "Whitelist": "S11",
                        "MachineLimit": 1,
                        "JobDependency0": str(python_job_id),
-                       "PreJobScript": pre_script,
-                       "PostJobScript": post_script}
+                       "PreJobScript": pre_script}
 
             PluginInfo = {'OutputDirectory': output_directory,
                           'DownloadLink': self.download_link,
@@ -111,8 +110,8 @@ class Submitter:
                           'SplitConnections': 5,
                           'ServerTimeStamp': True,
                           'Timeout': 60}
-            PluginInfo.update(extra_plugin_options
-                              )
+
+            PluginInfo.update(extra_plugin_options)
             try:
                 new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
                 print("Job created with id {}".format(new_job['_id']))
