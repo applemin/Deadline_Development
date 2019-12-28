@@ -45,6 +45,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.OnMachineRestartCallback += self.OnMachineRestart
 
     def Cleanup(self):
+
         del self.OnJobSubmittedCallback
         del self.OnJobStartedCallback
         del self.OnJobFinishedCallback
