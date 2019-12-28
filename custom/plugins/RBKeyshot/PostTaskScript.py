@@ -53,3 +53,5 @@ def __main__(*args):
     DeadlinePlugin = args[0]
     current_job = DeadlinePlugin.GetJob()
     print current_job.JobName
+    print DeadlinePlugin.GetCurrentTaskId()
+
