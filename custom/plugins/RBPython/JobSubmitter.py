@@ -221,6 +221,9 @@ class Submitter:
             extra_plugin_options["SceneFile"] = self.scene_file.replace("\\", "/")
 
         if self.job_options["Plugin"] == "RBKeyshot":
+            post_script = os.path.join(self.DEADLINE_REPO,
+                                       "custom/plugins/RBKeyshot/PostTaskScript.py").replace("\\", "/")
+            extra_job_options.update({"PreJobScript": post_script})
             return extra_job_options, extra_plugin_options
         elif self.job_options["Plugin"] == "Keyshot":
             return extra_job_options, extra_plugin_options
