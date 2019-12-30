@@ -23,8 +23,6 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def __init__(self):
 
-        self.import_rb_callbacks()
-
         self.OnJobSubmittedCallback += self.OnJobSubmitted
         self.OnJobStartedCallback += self.OnJobStarted
         self.OnJobFinishedCallback += self.OnJobFinished
@@ -53,6 +51,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.OnThermalShutdownCallback += self.OnThermalShutdown
         self.OnMachineRestartCallback += self.OnMachineRestart
 
+        self.import_rb_callbacks()
 
 
     def Cleanup(self):
