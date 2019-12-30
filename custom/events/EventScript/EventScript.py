@@ -5,10 +5,7 @@ import requests
 import traceback
 from pprint import pprint
 
-from System import *
 from Deadline.Events import *
-from Deadline.Scripting import *
-
 
 def GetDeadlineEventListener():
     return EventScriptListener()
