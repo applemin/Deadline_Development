@@ -6,6 +6,7 @@ import traceback
 from pprint import pprint
 
 from Deadline.Events import *
+from Deadline.Scripting import *
 
 
 # _MAPPED_STATUSES = {
