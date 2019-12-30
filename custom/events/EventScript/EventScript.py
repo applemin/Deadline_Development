@@ -92,6 +92,17 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         socket_id = os.getenv("SOCKET_ID")
         self.API = RBCallbacks.APIController(socket_id)
 
+    def get_job_code(self, job_name):
+        if "_Submitter" in job_name:
+            return job_name.split("_Submitter")[0]
+        elif "_Extractor" in job_name:
+            return job_name.split("_Extractor")[0]
+        elif "_Downloader" in job_name:
+            return job_name.split("_Downloader")[0]
+        else:
+            return job_name
+
+
     def run_script(self, *args):
         print args
 
@@ -119,10 +130,10 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.run_script("OnJobSuspended", job)
 
     def OnJobResumed(self, job):
-        self.import_rb_callbacks()
-        self.API.set_job_code(self.GetPluginInfoEntry("jid"))
+        self.LogInfo("OnJobResumed : %s" % job)
+        job_name = self.get_job_code(str(job.JobName))
+        self.API.set_job_code(job_name)
         self.API.validate_job()
-        self.run_script("OnJobResumed", job)
 
     def OnJobPended(self, job):
 
