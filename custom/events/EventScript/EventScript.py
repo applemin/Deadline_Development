@@ -264,6 +264,9 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
             print path
         import RBCallbacks
 
+    def run_script(self, *args):
+        print args
+
     def OnJobSubmitted(self, job):
 
         self.run_script("OnJobSubmitted", job)
