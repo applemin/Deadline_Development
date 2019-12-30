@@ -20,7 +20,7 @@ def CleanupDeadlineEventListener(eventListener):
 class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def __init__(self):
-
+        self.LogInfo(self.GetPluginInfoEntry("jid"))
         self.OnJobSubmittedCallback += self.OnJobSubmitted
         self.OnJobStartedCallback += self.OnJobStarted
         self.OnJobFinishedCallback += self.OnJobFinished
