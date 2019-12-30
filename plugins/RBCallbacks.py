@@ -182,7 +182,6 @@ class APIController:
         print "Token: %s" % self.token
         print "Params: %s" % params
         headers = {'token': self.token}
-        time.sleep(5)
         request_data = requests.post(url, data=params, headers=headers)
         pprint(request_data.json())
         return request_data.json()

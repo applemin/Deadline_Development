@@ -110,11 +110,11 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
     def OnJobSubmitted(self, job):
 
         self.LogInfo("OnJobSubmitted : %s" % job.JobId)
-        job_name = self.get_job_code(str(job.JobName))
-        self.API.set_job_code(job_name)
-        self.API.set_token(SOCKET_ID)
-        self.API.validate_job()
-        self.API.update_status(self.RBStatus.initializing)
+        # job_name = self.get_job_code(str(job.JobName))
+        # self.API.set_job_code(job_name)
+        # self.API.set_token(SOCKET_ID)
+        # self.API.validate_job()
+        # self.API.update_status(self.RBStatus.initializing)
 
     def OnJobStarted(self, job):
         self.LogInfo("OnJobStarted : %s" % job.JobId)
