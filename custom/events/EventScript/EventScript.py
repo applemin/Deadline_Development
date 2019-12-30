@@ -6,6 +6,8 @@ import traceback
 from pprint import pprint
 
 import Deadline.Events
+import Deadline.Scripting
+import Deadline.Plugins
 
 def GetDeadlineEventListener():
     return EventScriptListener()
@@ -18,8 +20,6 @@ def CleanupDeadlineEventListener(eventListener):
 class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def __init__(self):
-
-        self.create_rb_callbacks()
 
         self.OnJobSubmittedCallback += self.OnJobSubmitted
         self.OnJobStartedCallback += self.OnJobStarted
@@ -81,11 +81,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         del self.OnThermalShutdownCallback
         del self.OnMachineRestartCallback
 
-    def create_rb_callbacks(self):
-
-        self.job_code = "ice_water17131"
-        self.LogInfo("%s" % self.job_code)
-
+    def import_rb_callbacks(self):
         print "Importing `RBCallbacks`"
         # rb_callbacks = Deadline.Plugins.DeadlinePlugin.GetPluginDirectory()
         rb_callbacks = r"A:\DeadlineRepository10\plugins"
@@ -95,9 +91,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         for path in sys.path:
             self.LogInfo(path)
         import RBCallbacks
-
-        self.API = RBCallbacks.APIController(os.getenv("SOCKET_ID", None), self.job_code)
-        self.API.validate_job()
+        self.LogInfo(str(RBCallbacks._MAPPED_STATUSES))
 
     def run_script(self, *args):
         print args
