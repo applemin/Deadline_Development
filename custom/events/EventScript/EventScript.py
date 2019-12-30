@@ -9,6 +9,17 @@ import Deadline.Events
 import Deadline.Scripting
 import Deadline.Plugins
 
+rb_callbacks = r"A:\DeadlineRepository10\plugins"
+print "rb_callbacks path : %s " % rb_callbacks
+sys.path.append(rb_callbacks)
+for path in sys.path: print path
+import RBCallbacks
+
+socket_id = os.getenv("SOCKET_ID")
+print "socket_id", socket_id
+RBStatus = RBCallbacks.RBStatus
+API = RBCallbacks.APIController(socket_id)
+
 def GetDeadlineEventListener():
     return EventScriptListener()
 
@@ -21,7 +32,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def __init__(self):
 
-        self.import_rb_callbacks()
+        # self.import_rb_callbacks()
 
         self.OnJobSubmittedCallback += self.OnJobSubmitted
         self.OnJobStartedCallback += self.OnJobStarted
@@ -83,16 +94,16 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         del self.OnThermalShutdownCallback
         del self.OnMachineRestartCallback
 
-    def import_rb_callbacks(self):
-        rb_callbacks = r"A:\DeadlineRepository10\plugins"
-        print "rb_callbacks path : %s " % rb_callbacks
-        sys.path.append(rb_callbacks)
-        for path in sys.path:print path
-        import RBCallbacks
-        socket_id = os.getenv("SOCKET_ID")
-        print "socket_id", socket_id
-        self.RBStatus = RBCallbacks.RBStatus
-        self.API = RBCallbacks.APIController(socket_id)
+    # def import_rb_callbacks(self):
+    #     rb_callbacks = r"A:\DeadlineRepository10\plugins"
+    #     print "rb_callbacks path : %s " % rb_callbacks
+    #     sys.path.append(rb_callbacks)
+    #     for path in sys.path:print path
+    #     import RBCallbacks
+    #     socket_id = os.getenv("SOCKET_ID")
+    #     print "socket_id", socket_id
+    #     self.RBStatus = RBCallbacks.RBStatus
+    #     self.API = RBCallbacks.APIController(socket_id)
 
     def get_job_code(self, job_name):
         if "_Submitter" in job_name:
@@ -115,8 +126,8 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
     def OnJobStarted(self, job):
         self.LogInfo("OnJobStarted : %s" % job.JobId)
         job_name = self.get_job_code(str(job.JobName))
-        self.API.set_job_code(job_name)
-        self.API.update_status(self.RBStatus.initializing)
+        API.set_job_code(job_name)
+        API.update_status(RBStatus.initializing)
 
     def OnJobFinished(self, job):
 
@@ -135,10 +146,10 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def OnJobResumed(self, job):
         self.LogInfo("OnJobResumed : %s" % job.JobId)
-        job_name = self.get_job_code(str(job.JobName))
-        self.API.set_job_code(job_name)
-        self.API.validate_job()
-        self.API.update_status(self.RBStatus.initializing)
+        # job_name = self.get_job_code(str(job.JobName))
+        # self.API.set_job_code(job_name)
+        # self.API.validate_job()
+        # self.API.update_status(self.RBStatus.initializing)
 
 
     def OnJobPended(self, job):
