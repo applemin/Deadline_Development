@@ -139,7 +139,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         job_name = self.get_job_code(str(job.JobName))
         self.API.set_job_code(job_name)
         self.API.validate_job()
-        self.API.update_status(self.RBStatus.initializing)
+        # self.API.update_status(self.RBStatus.initializing)
 
     def OnJobPended(self, job):
 
