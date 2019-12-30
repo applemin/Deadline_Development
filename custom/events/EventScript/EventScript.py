@@ -114,7 +114,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
             return job_name
 
     def run_script(self, *args):
-        print args
+        self.LogInfo(str(args))
 
     def OnJobSubmitted(self, job):
         self.LogInfo("OnJobSubmitted : %s" % job.JobId)
