@@ -5,9 +5,7 @@ import requests
 import traceback
 from pprint import pprint
 
-from System import *
-from Deadline.Events import *
-from Deadline.Scripting import *
+import Deadline.Events
 
 def GetDeadlineEventListener():
     return EventScriptListener()
@@ -17,7 +15,7 @@ def CleanupDeadlineEventListener(eventListener):
     eventListener.Cleanup()
 
 
-class EventScriptListener(DeadlineEventListener):
+class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def __init__(self):
 
