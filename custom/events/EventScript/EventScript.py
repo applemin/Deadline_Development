@@ -258,6 +258,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         del self.OnMachineRestartCallback
 
     def import_rb_callbacks(self):
+        print "Importing `RBCallbacks`"
         rb_callbacks = DeadlinePlugin.GetPluginDirectory()
         sys.path.append(DeadlinePlugin.GetPluginDirectory())
         for path in sys.path:
