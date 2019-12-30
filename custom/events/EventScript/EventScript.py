@@ -20,6 +20,9 @@ def CleanupDeadlineEventListener(eventListener):
 class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def __init__(self):
+
+        self.import_rb_callbacks()
+
         self.OnJobSubmittedCallback += self.OnJobSubmitted
         self.OnJobStartedCallback += self.OnJobStarted
         self.OnJobFinishedCallback += self.OnJobFinished
@@ -47,6 +50,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.OnMachineStartupCallback += self.OnMachineStartup
         self.OnThermalShutdownCallback += self.OnThermalShutdown
         self.OnMachineRestartCallback += self.OnMachineRestart
+
 
 
     def Cleanup(self):
@@ -79,21 +83,14 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         del self.OnThermalShutdownCallback
         del self.OnMachineRestartCallback
 
-    def SetBaseVars(self):
-        self.GetPluginInfoEntry("jid")
-
-    def import_rb_callbacks(self, job_code):
-        # rb_callbacks = Deadline.Plugins.DeadlinePlugin.GetPluginDirectory()
+    def import_rb_callbacks(self):
         rb_callbacks = r"A:\DeadlineRepository10\plugins"
-        self.LogInfo("rb_callbacks path : %s " % rb_callbacks)
+        print "rb_callbacks path : %s " % rb_callbacks
         sys.path.append(rb_callbacks)
-
-        for path in sys.path:
-            self.LogInfo(path)
-
+        for path in sys.path:print path
         import RBCallbacks
         socket_id = os.getenv("SOCKET_ID")
-        self.API = RBCallbacks.APIController(socket_id, job_code)
+        self.API = RBCallbacks.APIController(socket_id)
 
     def run_script(self, *args):
         print args
@@ -122,8 +119,8 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.run_script("OnJobSuspended", job)
 
     def OnJobResumed(self, job):
-        job_code = self.GetPluginInfoEntry("jid")
-        self.import_rb_callbacks(job_code)
+        self.import_rb_callbacks()
+        self.API.set_job_code(self.GetPluginInfoEntry("jid"))
         self.API.validate_job()
         self.run_script("OnJobResumed", job)
 
