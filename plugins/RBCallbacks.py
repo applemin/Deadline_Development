@@ -96,8 +96,8 @@ class APIController:
 
     def __init__(self):
 
-        self.token = None
-        self.job_code = None
+        self.token = str()
+        self.job_code = str()
 
     def set_token(self, token):
         self.token = token
