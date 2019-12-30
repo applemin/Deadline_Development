@@ -5,8 +5,8 @@ import requests
 import traceback
 from pprint import pprint
 
-import Deadline.Events
-import Deadline.Scripting
+from Deadline.Events import *
+from Deadline.Scripting import *
 
 #
 #
@@ -193,7 +193,7 @@ def CleanupDeadlineEventListener(eventListener):
     eventListener.Cleanup()
 
 
-class EventScriptListener(Deadline.Events.DeadlineEventListener):
+class EventScriptListener(DeadlineEventListener):
 
     def __init__(self):
 
@@ -259,13 +259,13 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def import_rb_callbacks(self):
         print "Importing `RBCallbacks`"
-        rb_callbacks = Deadline.Scripting.RepositoryUtils.GetPluginDirectory()
+        rb_callbacks = RepositoryUtils.GetPluginDirectory()
         self.LogInfo("rb_callbacks path : %s " % rb_callbacks)
 
         sys.path.append(rb_callbacks)
         for path in sys.path:
             self.LogInfo(path)
-        import RBCallbacks
+        #import RBCallbacks
 
     def run_script(self, *args):
         print args
