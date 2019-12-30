@@ -19,7 +19,7 @@ class EventScriptListener(DeadlineEventListener):
 
     def __init__(self):
 
-        self.job_code = self.GetPluginInfoEntry("jid")
+        self.job_code = "ice_water17131"
         self.LogInfo(str(self.job_code))
         self.create_rb_callbacks()
 
