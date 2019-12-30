@@ -178,7 +178,7 @@ class APIController:
         return request_data.json()
 
 
-api = APIController("194.225.172.50", "RENDERTEST51841")
+# api = APIController("194.225.172.50", "RENDERTEST51841")
 # print api.validate_job()
 # api.get_job_data()
 # api.update_status(RBStatus.deadline_rendering)

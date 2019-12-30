@@ -196,6 +196,8 @@ def CleanupDeadlineEventListener(eventListener):
 class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def __init__(self):
+        self.job_code
+        self.create_rb_callbacks()
 
         self.OnJobSubmittedCallback += self.OnJobSubmitted
         self.OnJobStartedCallback += self.OnJobStarted
@@ -257,7 +259,8 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         del self.OnThermalShutdownCallback
         del self.OnMachineRestartCallback
 
-    def import_rb_callbacks(self):
+    def create_rb_callbacks(self):
+
         print "Importing `RBCallbacks`"
         # rb_callbacks = Deadline.Plugins.DeadlinePlugin.GetPluginDirectory()
         rb_callbacks = r"A:\DeadlineRepository10\plugins"
@@ -267,7 +270,8 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         for path in sys.path:
             self.LogInfo(path)
         import RBCallbacks
-        self.LogInfo(str(RBCallbacks._MAPPED_STATUSES))
+
+        self.API = RBCallbacks.APIController(os.getenv("SOCKET_ID", None), "RENDERTEST51841")
 
     def run_script(self, *args):
         print args
