@@ -9,8 +9,7 @@ import Deadline.Events
 import Deadline.Scripting
 import Deadline.Plugins
 
-#
-#
+
 # _MAPPED_STATUSES = {
 #     0:  'system_unknown',
 #     1:  'deadline_rendering',
@@ -261,13 +260,14 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
     def import_rb_callbacks(self):
         print "Importing `RBCallbacks`"
         # rb_callbacks = Deadline.Plugins.DeadlinePlugin.GetPluginDirectory()
-        rb_callbacks = "A:/DeadlineRepository10/plugins"
+        rb_callbacks = r"A:\DeadlineRepository10\plugins"
         self.LogInfo("rb_callbacks path : %s " % rb_callbacks)
 
         sys.path.append(rb_callbacks)
         for path in sys.path:
             self.LogInfo(path)
-        #import RBCallbacks
+        import RBCallbacks
+        print RBCallbacks._MAPPED_STATUSES
 
     def run_script(self, *args):
         print args
