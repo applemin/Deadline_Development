@@ -94,9 +94,9 @@ class APIController:
     _get_job_data_link       = _api_base_link + "job-data"
     _anim_task_update_link   = _api_base_link + "animation_task_time"
 
-    def __init__(self, token):
+    def __init__(self):
 
-        self.token = token
+        self.token = None
         self.job_code = None
 
     def set_token(self, token):

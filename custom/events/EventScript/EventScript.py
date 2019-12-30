@@ -92,7 +92,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         for path in sys.path:print path
         import RBCallbacks
         self.RBStatus = RBCallbacks.RBStatus
-        self.API = RBCallbacks.APIController(socket_id)
+        self.API = RBCallbacks.APIController()
 
     def get_job_code(self, job_name):
         if "_Submitter" in job_name:
