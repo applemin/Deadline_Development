@@ -90,6 +90,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         for path in sys.path:print path
         import RBCallbacks
         socket_id = os.getenv("SOCKET_ID")
+        self.RBStatus = RBCallbacks.RBStatus
         self.API = RBCallbacks.APIController(socket_id)
 
     def get_job_code(self, job_name):
@@ -114,7 +115,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.LogInfo("OnJobStarted : %s" % job.JobId)
         job_name = self.get_job_code(str(job.JobName))
         self.API.set_job_code(job_name)
-        self.API.update_status(RBCallbacks.RBStatus.initializing)
+        self.API.update_status(self.RBStatus.initializing)
 
     def OnJobFinished(self, job):
 
