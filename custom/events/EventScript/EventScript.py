@@ -48,8 +48,6 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.OnThermalShutdownCallback += self.OnThermalShutdown
         self.OnMachineRestartCallback += self.OnMachineRestart
 
-        self.SetBaseVarsCallback += self.SetBaseVars
-
 
     def Cleanup(self):
 
@@ -84,17 +82,18 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
     def SetBaseVars(self):
         self.GetPluginInfoEntry("jid")
 
-    def import_rb_callbacks(self):
-        print "Importing `RBCallbacks`"
+    def import_rb_callbacks(self, job_code):
         # rb_callbacks = Deadline.Plugins.DeadlinePlugin.GetPluginDirectory()
         rb_callbacks = r"A:\DeadlineRepository10\plugins"
         self.LogInfo("rb_callbacks path : %s " % rb_callbacks)
-
         sys.path.append(rb_callbacks)
+
         for path in sys.path:
             self.LogInfo(path)
+
         import RBCallbacks
-        self.LogInfo(str(RBCallbacks._MAPPED_STATUSES))
+        socket_id = os.getenv("SOCKET_ID")
+        self.API = RBCallbacks.APIController(socket_id, job_code)
 
     def run_script(self, *args):
         print args
@@ -125,6 +124,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
     def OnJobResumed(self, job):
         print self.GetPluginInfoEntry("jid")
         self.import_rb_callbacks()
+        self.API.validate_job()
         self.run_script("OnJobResumed", job)
 
     def OnJobPended(self, job):
