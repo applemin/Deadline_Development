@@ -6,6 +6,7 @@ import traceback
 from pprint import pprint
 
 import Deadline.Events
+from Deadline.Plugins import *
 
 
 
@@ -195,6 +196,9 @@ def CleanupDeadlineEventListener(eventListener):
 class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def __init__(self):
+
+        self.import_rb_callbacks()
+
         self.OnJobSubmittedCallback += self.OnJobSubmitted
         self.OnJobStartedCallback += self.OnJobStarted
         self.OnJobFinishedCallback += self.OnJobFinished
@@ -252,6 +256,13 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         del self.OnMachineStartupCallback
         del self.OnThermalShutdownCallback
         del self.OnMachineRestartCallback
+
+    def import_rb_callbacks(self):
+        rb_callbacks = DeadlinePlugin.GetPluginDirectory()
+        sys.path.append(DeadlinePlugin.GetPluginDirectory())
+        for path in sys.path:
+            print path
+        import RBCallbacks
 
     def OnJobSubmitted(self, job):
 
