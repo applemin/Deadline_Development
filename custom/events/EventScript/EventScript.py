@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+import time
 import requests
 import traceback
 from pprint import pprint
@@ -109,6 +110,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
     def OnJobSubmitted(self, job):
 
         self.LogInfo("OnJobSubmitted : %s" % job.JobId)
+        time.sleep(5)
         job_name = self.get_job_code(str(job.JobName))
         self.API.set_job_code(job_name)
         self.API.set_token(SOCKET_ID)

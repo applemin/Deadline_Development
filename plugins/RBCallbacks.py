@@ -111,7 +111,7 @@ class APIController:
         response = self.call_post(url, params)
 
         if not response["status"]:
-            raise ValueError(response["msg"])
+            raise ValueError("Job is `Unknown`.")
         print _MAPPED_STATUSES[response["status"]]
         return _MAPPED_STATUSES[response["status"]]
 
