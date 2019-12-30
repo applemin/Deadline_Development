@@ -267,7 +267,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         for path in sys.path:
             self.LogInfo(path)
         import RBCallbacks
-        self.LogInfo(RBCallbacks._MAPPED_STATUSES)
+        self.LogInfo(str(RBCallbacks._MAPPED_STATUSES))
 
     def run_script(self, *args):
         print args
