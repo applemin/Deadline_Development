@@ -259,8 +259,8 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def import_rb_callbacks(self):
         print "Importing `RBCallbacks`"
-        rb_callbacks = DeadlinePlugin.GetPluginDirectory()
-        sys.path.append(DeadlinePlugin.GetPluginDirectory())
+        rb_callbacks = RepositoryUtils.GetPluginDirectory()
+        sys.path.append(rb_callbacks)
         for path in sys.path:
             print path
         import RBCallbacks
