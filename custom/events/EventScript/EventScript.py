@@ -283,7 +283,6 @@ class EventScriptListener(DeadlineEventListener):
         self.run_script("OnJobFinished", job)
 
     def OnJobRequeued(self, job):
-        self.import_rb_callbacks()
         self.run_script("OnJobRequeued", job)
 
     def OnJobFailed(self, job):
@@ -295,7 +294,7 @@ class EventScriptListener(DeadlineEventListener):
         self.run_script("OnJobSuspended", job)
 
     def OnJobResumed(self, job):
-
+        self.import_rb_callbacks()
         self.run_script("OnJobResumed", job)
 
     def OnJobPended(self, job):
