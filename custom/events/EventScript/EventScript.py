@@ -225,7 +225,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.OnThermalShutdownCallback += self.OnThermalShutdown
         self.OnMachineRestartCallback += self.OnMachineRestart
 
-        # self.import_rb_callbacks()
+        self.import_rb_callbacks()
 
     def Cleanup(self):
 
