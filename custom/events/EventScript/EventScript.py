@@ -225,7 +225,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.OnThermalShutdownCallback += self.OnThermalShutdown
         self.OnMachineRestartCallback += self.OnMachineRestart
 
-        self.import_rb_callbacks()
+
 
     def Cleanup(self):
 
@@ -281,7 +281,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.run_script("OnJobFinished", job)
 
     def OnJobRequeued(self, job):
-
+        self.import_rb_callbacks()
         self.run_script("OnJobRequeued", job)
 
     def OnJobFailed(self, job):
