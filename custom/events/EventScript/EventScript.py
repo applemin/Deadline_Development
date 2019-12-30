@@ -90,6 +90,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         for path in sys.path:print path
         import RBCallbacks
         socket_id = os.getenv("SOCKET_ID")
+        print "socket_id", socket_id
         self.RBStatus = RBCallbacks.RBStatus
         self.API = RBCallbacks.APIController(socket_id)
 
