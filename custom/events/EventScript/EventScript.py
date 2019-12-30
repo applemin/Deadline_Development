@@ -5,9 +5,7 @@ import requests
 import traceback
 from pprint import pprint
 
-import Deadline.Events
-import Deadline.Scripting
-import Deadline.Plugins
+from Deadline.Events import *
 
 
 # _MAPPED_STATUSES = {
@@ -193,7 +191,7 @@ def CleanupDeadlineEventListener(eventListener):
     eventListener.Cleanup()
 
 
-class EventScriptListener(Deadline.Events.DeadlineEventListener):
+class EventScriptListener(DeadlineEventListener):
 
     def __init__(self):
         self.job_code = self.GetPluginInfoEntry("jid")
