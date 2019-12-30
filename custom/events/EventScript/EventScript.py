@@ -196,7 +196,8 @@ def CleanupDeadlineEventListener(eventListener):
 class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def __init__(self):
-        self.job_code
+        self.job_code = self.GetPluginInfoEntry("jid")
+        self.LogInfo(str(self.job_code))
         self.create_rb_callbacks()
 
         self.OnJobSubmittedCallback += self.OnJobSubmitted
@@ -271,7 +272,8 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
             self.LogInfo(path)
         import RBCallbacks
 
-        self.API = RBCallbacks.APIController(os.getenv("SOCKET_ID", None), "RENDERTEST51841")
+        self.API = RBCallbacks.APIController(os.getenv("SOCKET_ID", None), self.job_code)
+        self.API.validate_job()
 
     def run_script(self, *args):
         print args

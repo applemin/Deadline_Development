@@ -106,7 +106,7 @@ class APIController:
 
         if not response["status"]:
             raise ValueError(response["msg"])
-
+        print _MAPPED_STATUSES[response["status"]]
         return _MAPPED_STATUSES[response["status"]]
 
     def get_job_data(self):
