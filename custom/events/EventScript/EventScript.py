@@ -120,6 +120,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.run_script("OnJobSuspended", job)
 
     def OnJobResumed(self, job):
+        print self.GetPluginInfoEntry("jid")
         self.import_rb_callbacks()
         self.run_script("OnJobResumed", job)
 
