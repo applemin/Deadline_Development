@@ -21,8 +21,6 @@ class EventScriptListener(DeadlineEventListener):
 
     def __init__(self):
 
-        self.job_code = "ice_water17131"
-        self.LogInfo(str(self.job_code))
         self.create_rb_callbacks()
 
         self.OnJobSubmittedCallback += self.OnJobSubmitted
@@ -86,6 +84,9 @@ class EventScriptListener(DeadlineEventListener):
         del self.OnMachineRestartCallback
 
     def create_rb_callbacks(self):
+
+        self.job_code = "ice_water17131"
+        self.LogInfo(str(self.job_code))
 
         print "Importing `RBCallbacks`"
         # rb_callbacks = Deadline.Plugins.DeadlinePlugin.GetPluginDirectory()
