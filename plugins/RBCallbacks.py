@@ -100,6 +100,10 @@ class APIController:
         self.token = str()
         self.job_code = str()
 
+    def set_data(self, token, job):
+        self.token = token
+        self.job_code = job
+
     def set_token(self, token):
         self.token = token
 
