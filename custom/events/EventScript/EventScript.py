@@ -6,7 +6,6 @@ import traceback
 from pprint import pprint
 
 import Deadline.Events
-from Deadline.Plugins import *
 from Deadline.Scripting import *
 
 #
