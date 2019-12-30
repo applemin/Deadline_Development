@@ -111,8 +111,10 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.run_script("OnJobSubmitted", job)
 
     def OnJobStarted(self, job):
-
-        self.run_script("OnJobStarted", job)
+        self.LogInfo("OnJobStarted : %s" % job.JobId)
+        job_name = self.get_job_code(str(job.JobName))
+        self.API.set_job_code(job_name)
+        self.API.update_status(RBCallbacks.RBStatus.initializing)
 
     def OnJobFinished(self, job):
 
@@ -130,7 +132,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.run_script("OnJobSuspended", job)
 
     def OnJobResumed(self, job):
-        self.LogInfo("OnJobResumed : %s" % job)
+        self.LogInfo("OnJobResumed : %s" % job.JobId)
         job_name = self.get_job_code(str(job.JobName))
         self.API.set_job_code(job_name)
         self.API.validate_job()
