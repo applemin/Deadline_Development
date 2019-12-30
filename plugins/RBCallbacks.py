@@ -179,6 +179,7 @@ class APIController:
 
     def call_post(self, url, params):
         print "Token: %s" % self.token
+        print "Params: %s" % params
         headers = {'token': self.token}
         request_data = requests.post(url, data=params, headers=headers)
         pprint(request_data.json())

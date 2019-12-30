@@ -103,7 +103,6 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         else:
             return job_name
 
-
     def run_script(self, *args):
         print args
 
