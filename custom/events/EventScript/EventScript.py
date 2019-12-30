@@ -48,7 +48,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.OnThermalShutdownCallback += self.OnThermalShutdown
         self.OnMachineRestartCallback += self.OnMachineRestart
 
-        self.set_base_vars()
+        self.SetBaseVarsCallback += self.SetBaseVars
 
 
     def Cleanup(self):
@@ -81,8 +81,8 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         del self.OnThermalShutdownCallback
         del self.OnMachineRestartCallback
 
-    def set_base_vars(self):
-        self.job_code = self.GetPluginInfoEntry("jid")
+    def SetBaseVars(self):
+        self.GetPluginInfoEntry("jid")
 
     def import_rb_callbacks(self):
         print "Importing `RBCallbacks`"
