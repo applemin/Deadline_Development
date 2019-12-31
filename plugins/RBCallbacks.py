@@ -4,7 +4,7 @@ import json
 import time
 import requests
 from pprint import pprint
-sys.path.append(r"A:\DeadlineRepository10\api\python")
+sys.path.append(r"A:\DeadlineRepository10\api\python\Deadline")
 for path in sys.path:print path
 import Deadline.DeadlineConnect as Connect
 conn = Connect.DeadlineCon('localhost', 1234)
