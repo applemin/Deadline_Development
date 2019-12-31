@@ -4,6 +4,7 @@ import json
 import time
 import requests
 from pprint import pprint
+for path in sys.path:print path
 
 import Deadline.DeadlineConnect as Connect
 conn = Connect.DeadlineCon('localhost', 1234)
