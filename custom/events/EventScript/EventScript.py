@@ -75,20 +75,20 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def run_script(self, *args):
 
-        try:
-            job = args[1]
-            script = job.GetJobExtraInfoKeyValueWithDefault("EventScript", "")
+        job = args[1]
+        print args
+        self.LogInfo("%" % args)
+        # script = job.GetJobExtraInfoKeyValueWithDefault("EventScript", "")
 
-            # Make arguments available to script with sys.argv
-            sys.argv = args
+        # # Make arguments available to script with sys.argv
+        # sys.argv = args
+        #
+        # # Add script directory to sys.path
+        # sys.path.append(os.path.dirname(script))
+        #
+        # # Execute script
+        # execfile(script)
 
-            # Add script directory to sys.path
-            sys.path.append(os.path.dirname(script))
-
-            # Execute script
-            execfile(script)
-        except:
-            print(traceback.format_exc())
 
     def OnJobSubmitted(self, job):
 
