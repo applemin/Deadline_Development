@@ -74,10 +74,8 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         del self.OnMachineRestartCallback
 
     def run_script(self, *args):
-
-        job = args[1]
         print args
-        self.LogInfo("%s" % args)
+
         # script = job.GetJobExtraInfoKeyValueWithDefault("EventScript", "")
 
         # # Make arguments available to script with sys.argv
