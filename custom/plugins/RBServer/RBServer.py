@@ -98,7 +98,8 @@ class PythonPlugin (DeadlinePlugin):
         else:
             scriptFile = scriptFile.replace("\\", "/")
 
-        return "-u \"" + scriptFile + "\" " + JID + arguments
+        # return "-u \"" + scriptFile + "\" "
+        return ""
 
     def ReplacePaddedFrame(self, arguments, pattern, frame):
         frameRegex = Regex(pattern)
