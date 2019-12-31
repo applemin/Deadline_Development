@@ -77,7 +77,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
         job = args[1]
         print args
-        self.LogInfo("%" % args)
+        self.LogInfo("%s" % args)
         # script = job.GetJobExtraInfoKeyValueWithDefault("EventScript", "")
 
         # # Make arguments available to script with sys.argv
