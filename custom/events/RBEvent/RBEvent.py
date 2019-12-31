@@ -148,6 +148,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def OnJobRequeued(self, job):
         self.LogInfo("OnJobRequeued : %s" % job.JobId)
+        self.API.create_server_job()
 
     def OnJobFailed(self, job):
 
