@@ -263,7 +263,8 @@ def submit_job(job_name, job_id, job_status):
                 "Frames": 1,
                 "Plugin": "RBServer"}
 
-    plugin_info = {"JobName": job_name,
+    plugin_info = {"Version": 2.7,
+                   "JobName": job_name,
                    "JobStatus": job_status,
                    "JobId": job_id,
                    "ScriptFile": script_file}
