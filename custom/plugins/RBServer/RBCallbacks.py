@@ -197,3 +197,7 @@ class APIController:
 # api.update_status(RBStatus.deadline_rendering)
 # api.update_progress(40)
 # api.update_line_id("5e075140e273ec2bf4a5a8b20")  # 5e075140e273ec2bf4a5a8b8
+
+if __name__ == "__main__":
+    # submitter = Submitter(sys.argv)
+    print sys.argv

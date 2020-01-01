@@ -148,7 +148,8 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def OnJobRequeued(self, job):
         self.LogInfo("OnJobRequeued : %s" % job.JobId)
-        submit_job()
+        submit_job(job.JobName, job.JobId, job.JobStatus)
+
     def OnJobFailed(self, job):
 
         self.LogInfo("OnJobFailed : %s" % job.JobId)
@@ -249,16 +250,24 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.run_script("OnMachineRestart", job)
 
 
-def submit_job():
+def submit_job(job_name, job_id, job_status):
+
     hostname = "192.168.1.111"
     portnumber = "1234"
     url = 'http://{hostname}:{portnumber}/api/jobs'.format(hostname=hostname, portnumber=portnumber)
-    job_info = {"Name": "Laptop Animation_NORMAL",
-                "Frames": 1,
-                "Plugin": "Aria"}
-    plugin_info = {"Timeout": 60}
-    aux = list()
 
+    deadline_repo = os.getenv("DEADLINE_REPOSITORY")
+
+    script_file = deadline_repo + r"\plugins\RBServer\RBCallbacks.py"
+    job_info = {"Name": "test_callback",
+                "Frames": 1,
+                "Plugin": "RBServer"}
+
+    plugin_info = {"JobName": job_name,
+                   "JobStatus": job_status,
+                   "JobId": job_id,
+                   "ScriptFile": script_file}
+    aux = list()
     body = '{"JobInfo":' + json.dumps(job_info) + ',"PluginInfo":' + json.dumps(plugin_info) + ',"AuxFiles":' + json.dumps(aux) + ',"IdOnly":true}'
 
     request_data = requests.post(url, data=body)
