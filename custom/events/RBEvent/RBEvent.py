@@ -250,9 +250,17 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
 
 def submit_job():
+    hostname = "192.168.1.111"
+    portnumber = "1234"
+    url = 'http://{hostname}:{portnumber}/api/jobs'.format(hostname=hostname, portnumber=portnumber)
+    job_info = {"Name": "Laptop Animation_NORMAL",
+                "Frames": 1,
+                "Plugin": "Aria"}
+    plugin_info = {"Timeout": 60}
+    aux = list()
 
-    job_info = "Name=Laptop Animation_NORMAL\nFrames=1\nPlugin=Aria"
-    plugin_info = "Timeout=60"
+    body = '{"JobInfo":' + json.dumps(job_info) + ',"PluginInfo":' + json.dumps(plugin_info) + ',"AuxFiles":' + json.dumps(aux) + ',"IdOnly":true}'
 
-    submission_data = [job_info, plugin_info]
-    Deadline.Scripting.RepositoryUtils.SubmitJob(submission_data)
+    request_data = requests.post(url, data=body)
+    pprint(request_data.json())
+
