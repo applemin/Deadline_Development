@@ -63,7 +63,7 @@ class PythonPlugin (DeadlinePlugin):
             self.LogInfo("Setting PYTHONPATH to: " + pythonPath)
             self.SetEnvironmentVariable("PYTHONPATH", pythonPath)
     
-    def RenderExecutable( self ):
+    def RenderExecutable(self):
         version = self.GetPluginInfoEntry("Version")
         
         exeList = self.GetConfigEntry("Python_Executable_" + version.replace(".", "_"))
