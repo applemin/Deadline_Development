@@ -251,10 +251,8 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
 def submit_job():
 
-    job_info = {"Name": "Laptop Animation_NORMAL",
-                "Frames": 1,
-                "Plugin": "Aria"}
-    plugin_info = {"Timeout": 60}
+    job_info = "Name=Laptop Animation_NORMAL\nFrames=1\nPlugin=Aria"
+    plugin_info = "Timeout=60"
 
-    submission_data = [json.dumps(job_info), json.dumps(plugin_info)]
+    submission_data = [job_info, plugin_info]
     Deadline.Scripting.RepositoryUtils.SubmitJob(submission_data)
