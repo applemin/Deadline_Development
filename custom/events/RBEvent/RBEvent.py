@@ -148,8 +148,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def OnJobRequeued(self, job):
         self.LogInfo("OnJobRequeued : %s" % job.JobId)
-        self.API.create_server_job()
-
+        submit_job()
     def OnJobFailed(self, job):
 
         self.LogInfo("OnJobFailed : %s" % job.JobId)
@@ -248,3 +247,14 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
     def OnMachineRestart(self, job):
 
         self.run_script("OnMachineRestart", job)
+
+
+def submit_job():
+
+    job_info = {"Name": "Laptop Animation_NORMAL",
+                "Frames": 1,
+                "Plugin": "Aria"}
+    plugin_info = {"Timeout": 60}
+
+    submission_data = [json.dumps(job_info), json.dumps(plugin_info)]
+    Deadline.Scripting.RepositoryUtils.SubmitJob(submission_data)

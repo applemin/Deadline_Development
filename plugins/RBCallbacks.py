@@ -4,10 +4,6 @@ import json
 import time
 import requests
 from pprint import pprint
-sys.path.append(r"A:\DeadlineRepository10\api\python\Deadline")
-for path in sys.path:print path
-import Deadline.DeadlineConnect as Connect
-conn = Connect.DeadlineCon('localhost', 1234)
 
 
 _MAPPED_STATUSES = {
@@ -194,16 +190,6 @@ class APIController:
         pprint(request_data.json())
         return request_data.json()
 
-    def create_server_job(self):
-        JobInfo={"Name": "sample_server_job",
-                 "Frames": "1",
-                 "Priority": 100,
-                 "Plugin": "RBPython",
-                 "Whitelist": "S11",
-                 "MachineLimit": 1}
-
-        PluginInfo={'Timeout': 60}
-        new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
 
 # api = APIController("194.225.172.50", "RENDERTEST51841")
 # print api.validate_job()
