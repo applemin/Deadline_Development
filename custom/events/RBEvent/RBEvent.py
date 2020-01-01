@@ -258,7 +258,7 @@ def submit_job(job_name, job_id, job_status):
 
     deadline_repo = os.getenv("DEADLINE_REPOSITORY")
 
-    script_file = deadline_repo + r"\plugins\custom\RBServer\RBCallbacks.py"
+    script_file = deadline_repo + r"\custom\plugins\RBServer\RBCallbacks.py"
     job_info = {"Name": "test_callback",
                 "Frames": 1,
                 "Plugin": "RBServer"}
