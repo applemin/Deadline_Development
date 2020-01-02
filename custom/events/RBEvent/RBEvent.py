@@ -86,7 +86,6 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def OnJobStarted(self, job):
         self.LogInfo("%s : %s" % (self.OnJobStarted.__name__, job.JobId))
-        submit_job(self.OnJobStarted.__name__, job.JobName, job.JobId, job.JobStatus)
 
     def OnJobFinished(self, job):
         self.LogInfo("%s : %s" % (self.OnJobFinished.__name__, job.JobId))
