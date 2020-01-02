@@ -169,11 +169,16 @@ def submit_job(operation, job_name, job_id, job_status):
     deadline_repo = os.getenv("DEADLINE_REPOSITORY")
     deadline_master = os.getenv("DEADLINE_MASTER")
 
+    print "host_name: %s, port_number: %s, deadline_repo: %s, deadline_master: %s," % (host_name,
+                                                                                       port_number,
+                                                                                       deadline_repo,
+                                                                                       deadline_master)
+
     url = 'http://{hostname}:{portnumber}/api/jobs'.format(hostname=host_name, portnumber=port_number)
     script_file = deadline_repo + r"\custom\plugins\RBServer\RBCallbacks.py"
 
     job_info = {"BatchName": "System_Callbacks",
-                "Name": job_name + operation + "callback",
+                "Name": job_name + str(operation) + "callback",
                 "Frames": 1,
                 "Priority": 90,
                 "Whitelist": deadline_master,
