@@ -201,3 +201,29 @@ class APIController:
 if __name__ == "__main__":
     # submitter = Submitter(sys.argv)
     print sys.argv
+
+# self.LogInfo("OnJobFinished : %s" % job.JobId)
+# job_name=self.get_job_code(str(job.JobName))
+# self.API.set_data(SOCKET_ID, job_name)
+# if self.API.validate_job():
+#     if self.is_initializing_job(job):
+#         self.LogInfo("Initializing job : `%s` with ID : `%s` finished." % (str(job.JobName), job.JobId))
+#     else:
+#         self.API.update_status(self.RBStatus.deadline_completed)
+# else:
+#     self.LogWarning("Job could not be found on online system : %s" % job_name)
+
+
+# def is_initializing_job(self, job):
+#     return job.JobName.endswith(self._initializing_job)
+#
+# def get_job_code(self, job_name):
+#
+#     if "_Submitter" in job_name:
+#         return job_name.split("_Submitter")[0]
+#     elif "_Extractor" in job_name:
+#         return job_name.split("_Extractor")[0]
+#     elif "_Downloader" in job_name:
+#         return job_name.split("_Downloader")[0]
+#     else:
+#         return job_name

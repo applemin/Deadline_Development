@@ -10,8 +10,6 @@ import Deadline.Events
 import Deadline.Scripting
 import Deadline.Plugins
 
-SOCKET_ID = os.getenv("SOCKET_ID")
-
 
 def GetDeadlineEventListener():
     return EventScriptListener()
@@ -88,189 +86,115 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         del self.OnThermalShutdownCallback
         del self.OnMachineRestartCallback
 
-    def is_initializing_job(self, job):
-        return job.JobName.endswith(self._initializing_job)
-
-    def _import_rb_callbacks(self):
-
-        deadline_repo = os.getenv("DEADLINE_REPOSITORY")
-        rb_callbacks = deadline_repo + r"\plugins"
-        sys.path.append(rb_callbacks)
-        for path in sys.path:print path
-        import RBCallbacks
-        RBStatus = RBCallbacks.RBStatus
-        API = RBCallbacks.APIController()
-        return API, RBStatus
-
-    def get_job_code(self, job_name):
-
-        if "_Submitter" in job_name:
-            return job_name.split("_Submitter")[0]
-        elif "_Extractor" in job_name:
-            return job_name.split("_Extractor")[0]
-        elif "_Downloader" in job_name:
-            return job_name.split("_Downloader")[0]
-        else:
-            return job_name
-
     def run_script(self, *args):
         self.LogInfo(str(args))
 
     def OnJobSubmitted(self, job):
-        self.LogInfo("OnJobSubmitted : %s" % job.JobId)
+        self.LogInfo("%s : %s" % (self.OnJobSubmitted.__name__, job.JobId))
 
     def OnJobStarted(self, job):
-
-        self.LogInfo("OnJobStarted : %s" % job.JobId)
-        job_name = self.get_job_code(str(job.JobName))
-        self.API.set_data(SOCKET_ID, job_name)
-        if self.API.validate_job():
-            if self.is_initializing_job(job):
-                self.API.update_status(self.RBStatus.initializing)
-                self.LogInfo("Initializing job : `%s` with ID : `%s` started." % (str(job.JobName), job.JobId))
-            else:
-                self.API.update_status(self.RBStatus.deadline_rendering)
-        else:
-            self.LogWarning("Job could not be found on online system : %s" % job_name)
+        self.LogInfo("%s : %s" % (self.OnJobStarted.__name__, job.JobId))
+        submit_job(self.OnJobStarted.__name__, job.JobName, job.JobId, job.JobStatus)
 
     def OnJobFinished(self, job):
-
-        self.LogInfo("OnJobFinished : %s" % job.JobId)
-        job_name = self.get_job_code(str(job.JobName))
-        self.API.set_data(SOCKET_ID, job_name)
-        if self.API.validate_job():
-            if self.is_initializing_job(job):
-                self.LogInfo("Initializing job : `%s` with ID : `%s` finished." % (str(job.JobName), job.JobId))
-            else:
-                self.API.update_status(self.RBStatus.deadline_completed)
-        else:
-            self.LogWarning("Job could not be found on online system : %s" % job_name)
+        self.LogInfo("%s : %s" % (self.OnJobFinished.__name__, job.JobId))
+        submit_job(self.OnJobFinished.__name__, job.JobName, job.JobId, job.JobStatus)
 
     def OnJobRequeued(self, job):
-        self.LogInfo("OnJobRequeued : %s" % job.JobId)
-        submit_job(job.JobName, job.JobId, job.JobStatus)
+        self.LogInfo("%s : %s" % (self.OnJobRequeued.__name__, job.JobId))
+        submit_job(self.OnJobRequeued.__name__, job.JobName, job.JobId, job.JobStatus)
 
     def OnJobFailed(self, job):
-
-        self.LogInfo("OnJobFailed : %s" % job.JobId)
-        job_name = self.get_job_code(str(job.JobName))
-        self.API.set_data(SOCKET_ID, job_name)
-        if self.API.validate_job():
-            if self.is_initializing_job(job):
-                self.LogWarning("Initializing job : `%s` with ID : `%s` failed." % (str(job.JobName), job.JobId))
-                self.API.update_status(self.RBStatus.deadline_failed)
-            else:
-                self.API.update_status(self.RBStatus.deadline_failed)
-        else:
-            self.LogWarning("Job could not be found on online system : %s" % job_name)
+        self.LogInfo("%s : %s" % (self.OnJobFailed.__name__, job.JobId))
+        submit_job(self.OnJobFailed.__name__, job.JobName, job.JobId, job.JobStatus)
 
     def OnJobSuspended(self, job):
-
-        self.LogInfo("OnJobSuspended : %s" % job.JobId)
-        job_name = self.get_job_code(str(job.JobName))
-        self.API.set_data(SOCKET_ID, job_name)
-        if self.API.validate_job():
-            if self.is_initializing_job(job):
-                self.LogWarning("Initializing job : `%s` with ID : `%s` suspended." % (str(job.JobName), job.JobId))
-                self.API.update_status(self.RBStatus.deadline_suspended)
-            else:
-                self.API.update_status(self.RBStatus.deadline_suspended)
-        else:
-            self.LogWarning("Job could not be found on online system : %s" % job_name)
+        self.LogInfo("%s : %s" % (self.OnJobSuspended.__name__, job.JobId))
+        submit_job(self.OnJobSuspended.__name__, job.JobName, job.JobId, job.JobStatus)
 
     def OnJobResumed(self, job):
-        self.LogInfo("OnJobResumed : %s" % job.JobId)
+        self.LogInfo("%s : %s" % (self.OnJobResumed.__name__, job.JobId))
 
     def OnJobPended(self, job):
-
-        self.run_script("OnJobPended", job)
+        self.LogInfo("%s : %s" % (self.OnJobPended.__name__, job.JobId))
 
     def OnJobReleased(self, job):
-
-        self.run_script("OnJobReleased", job)
+        self.LogInfo("%s : %s" % (self.OnJobReleased.__name__, job.JobId))
 
     def OnJobDeleted(self, job):
-
-        self.run_script("OnJobDeleted", job)
+        self.LogInfo("%s : %s" % (self.OnJobDeleted.__name__, job.JobId))
 
     def OnJobError(self, job, task, report):
-
-        self.run_script("OnJobError", job, task, report)
+        self.LogInfo("%s : %s : %s : %s : %s" % (self.OnJobDeleted.__name__, job.JobId, job, task, report))
 
     def OnJobPurged(self, job):
-
-        self.run_script("OnJobPurged", job)
+        self.LogInfo("%s : %s" % (self.OnJobPurged.__name__, job.JobId))
 
     def OnHouseCleaning(self):
-
-        self.run_script("OnHouseCleaning")
+        self.LogInfo("%s" % self.OnJobPurged.__name__)
 
     def OnRepositoryRepair(self, job):
-
-        self.run_script("OnRepositoryRepair", job)
+        self.LogInfo("%s : %s" % (self.OnRepositoryRepair.__name__, job.JobId))
 
     def OnSlaveStarted(self, job):
-
-        self.run_script("OnSlaveStarted", job)
+        self.LogInfo("%s : %s" % (self.OnSlaveStarted.__name__, job.JobId))
 
     def OnSlaveStopped(self, job):
-
-        self.run_script("OnSlaveStopped", job)
+        self.LogInfo("%s : %s" % (self.OnSlaveStopped.__name__, job.JobId))
 
     def OnSlaveIdle(self, job):
-
-        self.run_script("OnSlaveIdle", job)
+        self.LogInfo("%s : %s" % (self.OnSlaveIdle.__name__, job.JobId))
 
     def OnSlaveRendering(self, slaveName, job):
-
-        self.run_script("OnSlaveRendering", job, slaveName)
+        self.LogInfo("%s : %s : %s" % (self.OnSlaveRendering.__name__, job.JobId, slaveName))
 
     def OnSlaveStartingJob(self, slaveName, job):
-
-        self.run_script("OnSlaveStartingJob", job, slaveName)
+        self.LogInfo("%s : %s : %s" % (self.OnSlaveStartingJob.__name__, job.JobId, slaveName))
 
     def OnSlaveStalled(self, slaveName, job):
-
-        self.run_script("OnSlaveStalled", job, slaveName)
+        self.LogInfo("%s : %s : %s" % (self.OnSlaveStalled.__name__, job.JobId, slaveName))
 
     def OnIdleShutdown(self, job):
-
-        self.run_script("OnIdleShutdown", job)
+        self.LogInfo("%s : %s" % (self.OnIdleShutdown.__name__, job.JobId))
 
     def OnMachineStartup(self, job):
-
-        self.run_script("OnMachineStartup", job)
+        self.LogInfo("%s : %s" % (self.OnMachineStartup.__name__, job.JobId))
 
     def OnThermalShutdown(self, job):
-
-        self.run_script("OnThermalShutdown", job)
+        self.LogInfo("%s : %s" % (self.OnThermalShutdown.__name__, job.JobId))
 
     def OnMachineRestart(self, job):
+        self.LogInfo("%s : %s" % (self.OnMachineRestart.__name__, job.JobId))
 
-        self.run_script("OnMachineRestart", job)
 
+def submit_job(operation, job_name, job_id, job_status):
 
-def submit_job(job_name, job_id, job_status):
-
-    hostname = "192.168.1.111"
-    portnumber = "1234"
-    url = 'http://{hostname}:{portnumber}/api/jobs'.format(hostname=hostname, portnumber=portnumber)
-
+    host_name = os.getenv("DEADLINE_SERVER")
+    port_number = os.getenv("DEADLIN_PORT")
     deadline_repo = os.getenv("DEADLINE_REPOSITORY")
+    deadline_master = os.getenv("DEADLINE_MASTER")
 
+    url = 'http://{hostname}:{portnumber}/api/jobs'.format(hostname=host_name, portnumber=port_number)
     script_file = deadline_repo + r"\custom\plugins\RBServer\RBCallbacks.py"
-    job_info = {"Name": "test_callback",
+
+    job_info = {"BatchName": "System_Callbacks",
+                "Name": job_name + operation + "callback",
                 "Frames": 1,
+                "Priority": 90,
+                "Whitelist": deadline_master,
                 "Plugin": "RBServer"}
 
     plugin_info = {"Version": 2.7,
                    "JobName": job_name,
                    "JobStatus": job_status,
                    "JobId": job_id,
+                   "Operation": operation,
                    "ScriptFile": script_file}
-    aux = list()
-    body = '{"JobInfo":' + json.dumps(job_info) + ',"PluginInfo":' + json.dumps(plugin_info) + ',"AuxFiles":' + json.dumps(aux) + ',"IdOnly":true}'
+
+    body  = '{"JobInfo":' + json.dumps(job_info)
+    body += ',"PluginInfo":' + json.dumps(plugin_info)
+    body += ',"AuxFiles":' + json.dumps(list())
+    body += ',"IdOnly":true}'
 
     request_data = requests.post(url, data=body)
     pprint(request_data.json())
-
