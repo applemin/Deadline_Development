@@ -213,7 +213,7 @@ if __name__ == "__main__":
 # else:
 #     self.LogWarning("Job could not be found on online system : %s" % job_name)
 
-
+# _initializing_job = ("_Submitter", "_Extractor", "_Downloader")
 # def is_initializing_job(self, job):
 #     return job.JobName.endswith(self._initializing_job)
 #
