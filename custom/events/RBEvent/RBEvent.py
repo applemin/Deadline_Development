@@ -81,9 +81,6 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         del self.OnThermalShutdownCallback
         del self.OnMachineRestartCallback
 
-    def run_script(self, *args):
-        self.LogInfo(str(args))
-
     def OnJobSubmitted(self, job):
         self.LogInfo("%s : %s" % (self.OnJobSubmitted.__name__, job.JobId))
 
@@ -112,6 +109,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def OnJobPended(self, job):
         self.LogInfo("%s : %s" % (self.OnJobPended.__name__, job.JobId))
+        submit_job(self.OnJobStarted.__name__, job.JobName, job.JobId, job.JobStatus)
 
     def OnJobReleased(self, job):
         self.LogInfo("%s : %s" % (self.OnJobReleased.__name__, job.JobId))
@@ -178,7 +176,7 @@ def submit_job(operation, job_name, job_id, job_status):
     script_file = deadline_repo + r"\custom\plugins\RBServer\RBCallbacks.py"
 
     job_info = {"BatchName": "System_Callbacks",
-                "Name": "%s_%s_%s" % (job_name + operation + "callback"),
+                "Name": "%s_%s_callback" % (job_name, operation),
                 "Frames": 1,
                 "Priority": 90,
                 "Whitelist": deadline_master,

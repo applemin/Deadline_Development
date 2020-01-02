@@ -5,6 +5,7 @@ import time
 import requests
 from pprint import pprint
 
+SOCKET_ID = os.getenv("SOCKET_ID")
 
 _MAPPED_STATUSES = {
     0:  'system_unknown',
@@ -30,7 +31,37 @@ _MAPPED_STATUSES = {
     50: 'system_deleted',
 }
 
-class RBStatus:
+class Operations:
+
+    OnJobSubmitted      = "OnJobSubmitted"
+    OnJobStarted        = "OnJobStarted"
+    OnJobFinished       = "OnJobFinished"
+    OnJobRequeued       = "OnJobRequeued"
+    OnJobFailed         = "OnJobFailed"
+    OnJobSuspended      = "OnJobSuspended"
+    OnJobResumed        = "OnJobResumed"
+    OnJobPended         = "OnJobPended"
+    OnJobReleased       = "OnJobReleased"
+    OnJobDeleted        = "OnJobDeleted"
+    OnJobError          = "OnJobError"
+    OnJobPurged         = "OnJobPurged"
+
+    OnHouseCleaning     = "OnHouseCleaning"
+    OnRepositoryRepair  = "OnRepositoryRepair"
+
+    OnSlaveStarted      = "OnSlaveStarted"
+    OnSlaveStopped      = "OnSlaveStopped"
+    OnSlaveIdle         = "OnSlaveIdle"
+    OnSlaveRendering    = "OnSlaveRendering"
+    OnSlaveStartingJob  = "OnSlaveStartingJob"
+    OnSlaveStalled      = "OnSlaveStalled"
+
+    OnIdleShutdown      = "OnIdleShutdown"
+    OnMachineStartup    = "OnMachineStartup"
+    OnThermalShutdown   = "OnThermalShutdown"
+    OnMachineRestart    = "OnMachineRestart"
+
+class Status:
 
     system_unknown      = 0
     deadline_rendering  = 1
@@ -95,20 +126,26 @@ class APIController:
     _get_job_data_link       = _api_base_link + "job-data"
     _anim_task_update_link   = _api_base_link + "animation_task_time"
 
-    def __init__(self):
+    def __init__(self, token, job_code):
 
-        self.token = str()
-        self.job_code = str()
-
-    def set_data(self, token, job):
+        self._initializing_job = ("_Submitter", "_Extractor", "_Downloader")
         self.token = token
-        self.job_code = job
+        self._job_code = job_code
 
-    def set_token(self, token):
-        self.token = token
+    @property
+    def is_initializing_job(self):
+        return self.job_code.endswith(self._initializing_job)
 
-    def set_job_code(self, job_code):
-        self.job_code = job_code
+    @property
+    def job_code(self):
+        if "_Submitter" in self._job_code:
+            return self._job_code.split("_Submitter")[0]
+        elif "_Extractor" in self._job_code:
+            return self._job_code.split("_Extractor")[0]
+        elif "_Downloader" in self._job_code:
+            return self._job_code.split("_Downloader")[0]
+        else:
+            return self._job_code
 
     def validate_job(self):
         url = self._validate_job_link
@@ -191,39 +228,56 @@ class APIController:
         return request_data.json()
 
 
-# api = APIController("194.225.172.50", "RENDERTEST51841")
-# print api.validate_job()
-# api.get_job_data()
-# api.update_status(RBStatus.deadline_rendering)
-# api.update_progress(40)
-# api.update_line_id("5e075140e273ec2bf4a5a8b20")  # 5e075140e273ec2bf4a5a8b8
-
 if __name__ == "__main__":
-    # submitter = Submitter(sys.argv)
-    print sys.argv
 
-# self.LogInfo("OnJobFinished : %s" % job.JobId)
-# job_name=self.get_job_code(str(job.JobName))
-# self.API.set_data(SOCKET_ID, job_name)
-# if self.API.validate_job():
-#     if self.is_initializing_job(job):
-#         self.LogInfo("Initializing job : `%s` with ID : `%s` finished." % (str(job.JobName), job.JobId))
-#     else:
-#         self.API.update_status(self.RBStatus.deadline_completed)
-# else:
-#     self.LogWarning("Job could not be found on online system : %s" % job_name)
+    _, job_id, job_name, job_status, operation = sys.argv
 
-# _initializing_job = ("_Submitter", "_Extractor", "_Downloader")
-# def is_initializing_job(self, job):
-#     return job.JobName.endswith(self._initializing_job)
-#
-# def get_job_code(self, job_name):
-#
-#     if "_Submitter" in job_name:
-#         return job_name.split("_Submitter")[0]
-#     elif "_Extractor" in job_name:
-#         return job_name.split("_Extractor")[0]
-#     elif "_Downloader" in job_name:
-#         return job_name.split("_Downloader")[0]
-#     else:
-#         return job_name
+    API = APIController(SOCKET_ID, job_name)
+
+    if API.validate_job():
+        if operation == Operations.OnJobStarted:
+            if API.is_initializing_job:
+                print "Initializing job : `%s` with ID : `%s` is started." % (job_name, job_id)
+            else:
+                API.update_status(Status.deadline_rendering)
+        elif operation == Operations.OnJobDeleted:
+            pass
+        elif operation == Operations.OnJobDeleted:
+            pass
+        elif operation == Operations.OnJobError:
+            pass
+        elif operation == Operations.OnJobFailed:
+            if API.is_initializing_job:
+                print "Initializing job : `%s` with ID : `%s` is failed." % (job_name, job_id)
+            else:
+                API.update_status(Status.deadline_failed)
+        elif operation == Operations.OnJobFinished:
+            if API.is_initializing_job:
+                print "Initializing job : `%s` with ID : `%s` is completed." % (job_name, job_id)
+            else:
+                API.update_status(Status.deadline_completed)
+        elif operation == Operations.OnJobPended:
+            if API.is_initializing_job:
+                print "Initializing job : `%s` with ID : `%s` is pended." % (job_name, job_id)
+            else:
+                API.update_status(Status.deadline_pending)
+        elif operation == Operations.OnJobPurged:
+            pass
+        elif operation == Operations.OnJobReleased:
+            pass
+        elif operation == Operations.OnJobRequeued:
+            if API.is_initializing_job:
+                print "Initializing job : `%s` with ID : `%s` is re-queued." % (job_name, job_id)
+            else:
+                API.update_status(Status.deadline_queued)
+        elif operation == Operations.OnJobResumed:
+            pass
+        elif operation == Operations.OnJobSubmitted:
+            pass
+        elif operation == Operations.OnJobSuspended:
+            if API.is_initializing_job:
+                print "Initializing job : `%s` with ID : `%s` is suspended." % (job_name, job_id)
+            else:
+                API.update_status(Status.deadline_suspended)
+        else:
+            print "Job could not be found on online system : %s" % job_name
