@@ -178,7 +178,7 @@ def submit_job(operation, job_name, job_id, job_status):
     script_file = deadline_repo + r"\custom\plugins\RBServer\RBCallbacks.py"
 
     job_info = {"BatchName": "System_Callbacks",
-                "Name": job_name + str(operation) + "callback",
+                "Name": "%s_%s_%s" % (job_name + operation + "callback"),
                 "Frames": 1,
                 "Priority": 90,
                 "Whitelist": deadline_master,
