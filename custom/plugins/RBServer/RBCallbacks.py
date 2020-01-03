@@ -238,10 +238,9 @@ if __name__ == "__main__":
         if operation == Operations.OnJobStarted:
             if API.is_initializing_job:
                 print "Initializing job : `%s` with ID : `%s` is started." % (job_name, job_id)
+                API.update_status(Status.initializing)
             else:
                 API.update_status(Status.deadline_rendering)
-        elif operation == Operations.OnJobDeleted:
-            pass
         elif operation == Operations.OnJobDeleted:
             pass
         elif operation == Operations.OnJobError:
@@ -249,6 +248,8 @@ if __name__ == "__main__":
         elif operation == Operations.OnJobFailed:
             if API.is_initializing_job:
                 print "Initializing job : `%s` with ID : `%s` is failed." % (job_name, job_id)
+                #   TODO :need to send error to API
+                API.update_status(Status.deadline_failed)
             else:
                 API.update_status(Status.deadline_failed)
         elif operation == Operations.OnJobFinished:
@@ -268,15 +269,21 @@ if __name__ == "__main__":
         elif operation == Operations.OnJobRequeued:
             if API.is_initializing_job:
                 print "Initializing job : `%s` with ID : `%s` is re-queued." % (job_name, job_id)
+                API.update_status(Status.deadline_queued)
             else:
                 API.update_status(Status.deadline_queued)
         elif operation == Operations.OnJobResumed:
-            pass
+            if API.is_initializing_job:
+                print "Initializing job : `%s` with ID : `%s` is re-queued." % (job_name, job_id)
+                API.update_status(Status.initializing)
+            else:
+                API.update_status(Status.deadline_rendering)
         elif operation == Operations.OnJobSubmitted:
             pass
         elif operation == Operations.OnJobSuspended:
             if API.is_initializing_job:
                 print "Initializing job : `%s` with ID : `%s` is suspended." % (job_name, job_id)
+                API.update_status(Status.deadline_suspended)
             else:
                 API.update_status(Status.deadline_suspended)
         else:
