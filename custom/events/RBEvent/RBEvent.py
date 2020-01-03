@@ -86,6 +86,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def OnJobStarted(self, job):
         self.LogInfo("%s : %s" % (self.OnJobStarted.__name__, job.JobId))
+        submit_job(self.OnJobStarted.__name__, job.JobName, job.JobId, job.JobStatus)
 
     def OnJobFinished(self, job):
         self.LogInfo("%s : %s" % (self.OnJobFinished.__name__, job.JobId))
@@ -105,10 +106,11 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def OnJobResumed(self, job):
         self.LogInfo("%s : %s" % (self.OnJobResumed.__name__, job.JobId))
+        submit_job(self.OnJobResumed.__name__, job.JobName, job.JobId, job.JobStatus)
 
     def OnJobPended(self, job):
         self.LogInfo("%s : %s" % (self.OnJobPended.__name__, job.JobId))
-        submit_job(self.OnJobStarted.__name__, job.JobName, job.JobId, job.JobStatus)
+        submit_job(self.OnJobPended.__name__, job.JobName, job.JobId, job.JobStatus)
 
     def OnJobReleased(self, job):
         self.LogInfo("%s : %s" % (self.OnJobReleased.__name__, job.JobId))
@@ -174,7 +176,17 @@ def submit_job(operation, job_name, job_id, job_status):
     url = 'http://{hostname}:{portnumber}/api/jobs'.format(hostname=host_name, portnumber=port_number)
     script_file = deadline_repo + r"\custom\plugins\RBServer\RBCallbacks.py"
 
-    job_info = {"BatchName": "%s_system_callbacks" % job_name,
+    def job_code(_job_name):
+        if "_Submitter" in _job_name:
+            return _job_name.split("_Submitter")[0]
+        elif "_Extractor" in _job_name:
+            return _job_name.split("_Extractor")[0]
+        elif "_Downloader" in _job_name:
+            return _job_name.split("_Downloader")[0]
+        else:
+            return _job_name
+
+    job_info = {"BatchName": "%s_system_callbacks" % job_code(job_name),
                 "Name": "%s_%s_callback" % (job_name, operation),
                 "Frames": 1,
                 "Priority": 90,
