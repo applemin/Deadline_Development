@@ -134,7 +134,7 @@ class APIController:
 
     @property
     def is_initializing_job(self):
-        return self.job_code.endswith(self._initializing_job)
+        return self._job_code.endswith(self._initializing_job)
 
     @property
     def job_code(self):
