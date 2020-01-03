@@ -174,7 +174,7 @@ def submit_job(operation, job_name, job_id, job_status):
     url = 'http://{hostname}:{portnumber}/api/jobs'.format(hostname=host_name, portnumber=port_number)
     script_file = deadline_repo + r"\custom\plugins\RBServer\RBCallbacks.py"
 
-    job_info = {"BatchName": "System_Callbacks",
+    job_info = {"BatchName": "%s_system_callbacks" % job_name,
                 "Name": "%s_%s_callback" % (job_name, operation),
                 "Frames": 1,
                 "Priority": 90,
