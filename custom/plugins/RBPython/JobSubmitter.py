@@ -115,10 +115,11 @@ class Submitter:
                    "Priority": 100,
                    "Plugin": plugin,
                    "BatchName": self.job_code + "_Batch",
-                   "Whitelist": "S11",
+                   "Whitelist": "S11-downloader",
                    "MachineLimit": 1,
                    "JobDependency0": str(python_job_id),
-                   "PreJobScript": pre_script}
+                   "PreJobScript": pre_script,
+                   "EventOptIns": "RBEvent"}
 
         PluginInfo = {'OutputDirectory': output_directory,
                       'DownloadLink': self.download_link,
@@ -170,10 +171,11 @@ class Submitter:
                    "Priority": 100,
                    "Plugin": plugin,
                    "BatchName": self.job_code + "_Batch",
-                   "Whitelist": "S11",
+                   "Whitelist": "S11-downloader",
                    "MachineLimit": 1,
                    "JobDependency0": str(aria_job_id),
-                   "PostJobScript": post_script}
+                   "PostJobScript": post_script,
+                   "EventOptIns": "RBEvent"}
 
         PluginInfo = {'ZipFile': zip_file,
                       'OutputDirectory': output_directory,
@@ -212,7 +214,8 @@ class Submitter:
 
         output_directory = self.create_cloud_directory()
 
-        extra_job_options = {"OutputDirectory0": output_directory}
+        extra_job_options = {"OutputDirectory0": output_directory,
+                             "EventOptIns": "RBEvent"}
 
         extra_plugin_options = {"OutputFile": os.path.join(output_directory, self.job_options["OutputFilename0"])}
 
