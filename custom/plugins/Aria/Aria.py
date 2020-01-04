@@ -102,11 +102,13 @@ class AriaPlugin(DeadlinePlugin):
         return renderArguments
 
     def HandleStdoutProgress(self):
-        self.SetProgress(float(self.GetRegexMatch(1)))
+        value = float(self.GetRegexMatch(1))
+        self.SetProgress(value)
         self.SetStatusMessage(self.GetRegexMatch(0))
 
         API = RBCallbacks.APIController(_socket_id, self.GetJobInfoEntry("Name"))
-        if int(self.GetRegexMatch(1)):
+
+        if value and not int(value) % 10:
             API.update_progress(int(self.GetRegexMatch(1)))
 
     def HandleJobCompleted(self):
