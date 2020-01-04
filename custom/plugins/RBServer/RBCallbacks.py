@@ -237,7 +237,8 @@ if __name__ == "__main__":
     #   TODO:need to verify line id
     if API.validate_job():
         if operation == Operations.OnJobStarted:
-            #   TODO:need to update job ID
+            # register new job ID to integrate server side controllers
+            API.update_line_id(job_id)
             if API.is_initializing_job:
                 print "Initializing job : `%s` with ID : `%s` is started." % (job_name, job_id)
                 API.update_status(Status.initializing)
