@@ -7,6 +7,12 @@ from pprint import pprint
 import Deadline.DeadlineConnect as Connect
 conn = Connect.DeadlineCon('localhost', 1234)
 
+_deadline_repo = os.getenv("DEADLINE_REPOSITORY")
+_socket_id = os.getenv("SOCKET_ID")
+_callback_module = os.path.join(_deadline_repo, "custom/plugins/RBServer").replace("\\", "/")
+sys.path.append(_callback_module)
+
+import RBCallbacks
 
 class Submitter:
 
@@ -260,6 +266,10 @@ class Submitter:
         if not os.path.exists(cloud_job_folder):
             os.makedirs(cloud_job_folder)
             print "Job folder created in cloud : %s" % cloud_job_folder
+
+        print "Sharing cloud folder from submitter for job : %s" % self.job_code
+        API = RBCallbacks.APIController(_socket_id, self.job_code)
+        API.cloud_share()
 
         return cloud_job_folder
 
