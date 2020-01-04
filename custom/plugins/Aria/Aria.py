@@ -1,5 +1,6 @@
 import os
 import json
+import sys
 
 from System import *
 from System.Diagnostics import *
@@ -9,6 +10,12 @@ from System.Text import *
 from Deadline.Plugins import *
 from Deadline.Scripting import *
 
+_deadline_repo = os.getenv("DEADLINE_REPOSITORY")
+_socket_id = os.getenv("SOCKET_ID")
+_callback_module = os.path.join(_deadline_repo, "custom/plugins/RBServer").replace("\\", "/")
+sys.path.append(_callback_module)
+
+import RBCallbacks
 
 def GetDeadlinePlugin():
     return AriaPlugin()
@@ -97,6 +104,9 @@ class AriaPlugin(DeadlinePlugin):
     def HandleStdoutProgress(self):
         self.SetProgress(float(self.GetRegexMatch(1)))
         self.SetStatusMessage(self.GetRegexMatch(0))
+
+        API = RBCallbacks.APIController(_socket_id, self.GetJobInfoEntry("Name"))
+        API.update_progress(float(self.GetRegexMatch(1)))
 
     def HandleJobCompleted(self):
         self.LogInfo("Running Job Completion Handler.")
