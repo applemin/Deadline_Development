@@ -106,7 +106,7 @@ class AriaPlugin(DeadlinePlugin):
         self.SetStatusMessage(self.GetRegexMatch(0))
 
         API = RBCallbacks.APIController(_socket_id, self.GetJobInfoEntry("Name"))
-        API.update_progress(float(self.GetRegexMatch(1)))
+        API.update_progress(int(self.GetRegexMatch(1)))
 
     def HandleJobCompleted(self):
         self.LogInfo("Running Job Completion Handler.")
