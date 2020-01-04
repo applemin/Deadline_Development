@@ -118,7 +118,6 @@ class Submitter:
                    "Whitelist": "S11-downloader",
                    "MachineLimit": 1,
                    "JobDependency0": str(python_job_id),
-                   "PreJobScript": pre_script,
                    "EventOptIns": "RBEvent"}
 
         PluginInfo = {'OutputDirectory': output_directory,
@@ -194,8 +193,11 @@ class Submitter:
         print "Creating Render Job "
         extra_job_options, extra_plugin_options = self.get_extra_options()
 
-        JobInfo = {"BatchName": self.job_code + "_Batch",
-                   "JobDependency0": str(zip_job_id)}
+        JobInfo = {"BatchName": self.job_code + "_Batch"}
+
+        # do not add dependency job when file is already downloaded
+        if not self.scene_file:
+            JobInfo.update({"JobDependency0": str(zip_job_id)})
         JobInfo.update(self.job_options)
         JobInfo.update(extra_job_options)
 
@@ -226,7 +228,7 @@ class Submitter:
         if self.job_options["Plugin"] == "RBKeyshot":
             post_script = os.path.join(self.DEADLINE_REPO,
                                        "custom/plugins/RBKeyshot/PostTaskScript.py").replace("\\", "/")
-            extra_job_options.update({"PreJobScript": post_script})
+            extra_job_options.update({"PostJobScript": post_script})
             return extra_job_options, extra_plugin_options
         elif self.job_options["Plugin"] == "Keyshot":
             return extra_job_options, extra_plugin_options
