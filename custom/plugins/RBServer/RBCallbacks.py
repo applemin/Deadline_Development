@@ -125,6 +125,7 @@ class APIController:
     _submit_error_link       = _api_base_link + "set-error"
     _get_job_data_link       = _api_base_link + "job-data"
     _anim_task_update_link   = _api_base_link + "animation_task_time"
+    _cloud_share_link        = _api_base_link + "share-folder"
 
     def __init__(self, token, job_code):
 
@@ -156,6 +157,18 @@ class APIController:
             raise ValueError("Job is `Unknown`.")
         print _MAPPED_STATUSES[response["status"]]
         return _MAPPED_STATUSES[response["status"]]
+
+    def cloud_share(self):
+        url = self._cloud_share_link
+        params = {'jobcode': self.job_code}
+        response = self.call_post(url, params)
+
+        if response["status"]:
+            print "Cloud folder for job `%s` has been shared successfully." % self.job_code
+        else:
+            raise ValueError("Could not share cloud folder for job `%s` : `%s`" % (self.job_code, response["msg"]))
+
+        return response["status"]
 
     def get_job_data(self):
         url = self._get_job_data_link
@@ -216,8 +229,30 @@ class APIController:
     def submit_error(self):
         pass
 
-    def update_anim_task(self):
-        pass
+    def update_anim_task(self, task_id, frame_number, render_time, cpu_usage):
+        url = self._anim_task_update_link
+        params = {'jobcode': self.job_code,
+                  'task_id': task_id,
+                  'frame': frame_number,
+                  'minutes': render_time,
+                  'cpu': cpu_usage
+                  }
+        response = self.call_post(url, params)
+
+        if response["status"]:
+            print "Animation task updated successfully for job `%s`." % self.job_code
+            print "Task ID : %s | Frame Number : %s | Render Time : %s | CPU Usage : %s" % (task_id,
+                                                                                            frame_number,
+                                                                                            render_time,
+                                                                                            cpu_usage)
+        else:
+            print "Task ID : %s | Frame Number : %s | Render Time : %s | CPU Usage : %s" % (task_id,
+                                                                                            frame_number,
+                                                                                            render_time,
+                                                                                            cpu_usage)
+            raise ValueError("Animation task could not be updated : `%s`" % response["msg"])
+
+        return response["status"]
 
     def call_post(self, url, params):
         print "Token: %s" % self.token
