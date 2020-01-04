@@ -228,7 +228,7 @@ class Submitter:
         if self.job_options["Plugin"] == "RBKeyshot":
             post_script = os.path.join(self.DEADLINE_REPO,
                                        "custom/plugins/RBKeyshot/PostTaskScript.py").replace("\\", "/")
-            extra_job_options.update({"PostJobScript": post_script})
+            extra_job_options.update({"PostTaskScript": post_script})
             return extra_job_options, extra_plugin_options
         elif self.job_options["Plugin"] == "Keyshot":
             return extra_job_options, extra_plugin_options
