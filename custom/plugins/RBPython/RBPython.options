@@ -39,3 +39,113 @@ Description=If enabled, the plugin will only render one frame at a time even if 
 Required=true
 DisableIfBlank=true
 Default=false
+
+[EnvironmentKeyValue0]
+Type=string
+Label=Environment Key
+Category=Environment Variables
+CategoryOrder=1
+Index=1
+Description=system environment variable
+Required=false
+DisableIfBlank=false
+
+[EnvironmentKeyValue1]
+Type=string
+Label=Environment Key
+Category=Environment Variables
+CategoryOrder=1
+Index=2
+Description=system environment variable
+Required=false
+DisableIfBlank=false
+
+[EnvironmentKeyValue2]
+Type=string
+Label=Environment Key
+Category=Environment Variables
+CategoryOrder=1
+Index=3
+Description=system environment variable
+Required=false
+DisableIfBlank=false
+
+[EnvironmentKeyValue3]
+Type=string
+Label=Environment Key
+Category=Environment Variables
+CategoryOrder=1
+Index=3
+Description=system environment variable
+Required=false
+DisableIfBlank=false
+
+[EnvironmentKeyValue4]
+Type=string
+Label=Environment Key
+Category=Environment Variables
+CategoryOrder=1
+Index=3
+Description=system environment variable
+Required=false
+DisableIfBlank=false
+
+[EnvironmentKeyValue5]
+Type=string
+Label=Environment Key
+Category=Environment Variables
+CategoryOrder=1
+Index=3
+Description=system environment variable
+Required=false
+DisableIfBlank=false
+
+[EnvironmentKeyValue6]
+Type=string
+Label=Environment Key
+Category=Environment Variables
+CategoryOrder=1
+Index=3
+Description=system environment variable
+Required=false
+DisableIfBlank=false
+
+[EnvironmentKeyValue7]
+Type=string
+Label=Environment Key
+Category=Environment Variables
+CategoryOrder=1
+Index=3
+Description=system environment variable
+Required=false
+DisableIfBlank=false
+
+[EnvironmentKeyValue8]
+Type=string
+Label=Environment Key
+Category=Environment Variables
+CategoryOrder=1
+Index=3
+Description=system environment variable
+Required=false
+DisableIfBlank=false
+
+[EnvironmentKeyValue9]
+Type=string
+Label=Environment Key
+Category=Environment Variables
+CategoryOrder=1
+Index=3
+Description=system environment variable
+Required=false
+DisableIfBlank=false
+
+[EnvironmentKeyValue10]
+Type=string
+Label=Environment Key
+Category=Environment Variables
+CategoryOrder=1
+Index=3
+Description=system environment variable
+Required=false
+DisableIfBlank=false
