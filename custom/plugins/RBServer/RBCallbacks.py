@@ -4,6 +4,7 @@ import json
 import time
 import requests
 from pprint import pprint
+from datetime import datetime
 for path in sys.path: print path
 
 SOCKET_ID = os.getenv("SOCKET_ID")
@@ -127,7 +128,7 @@ class APIController:
     _update_line_id_link     = _api_base_link + "change-job-id"
     _submit_error_link       = _api_base_link + "set-error"
     _get_job_data_link       = _api_base_link + "job-data"
-    _anim_task_update_link   = _api_base_link + "animation_task_time"
+    _anim_task_update_link   = _api_base_link + "animation-task-time"
     _cloud_share_link        = _api_base_link + "share-folder"
 
     def __init__(self, token, job_code):
@@ -267,7 +268,44 @@ class APIController:
 
 
 def get_task_data():
-    pass
+
+    import Deadline.DeadlineConnect as Connect
+
+    host_name = os.getenv("DEADLINE_SERVER")
+    port_number = os.getenv("DEADLIN_PORT")
+
+    print "DEADLINE_SERVER", host_name, "DEADLIN_PORT", port_number
+
+    Deadline = Connect.DeadlineCon(host_name, port_number)
+    task_data = Deadline.Tasks.GetJobTask(job_id, task_id)
+
+    print "Printing task data from deadline "
+    pprint(task_data)
+
+    # export render time from task times
+    time_format = "%Y-%m-%dT%H:%M:%S"
+    start_time = task_data["StartRen"]
+    o_start = datetime.strptime(start_time.split(".")[0], time_format)
+    comp_time = task_data["Comp"]
+    o_comp = datetime.strptime(comp_time.split(".")[0], time_format)
+    delta_time = o_comp - o_start
+    render_time = round(float(delta_time.seconds)/60, 2)
+    print "Extracted task render time, start : %s | comp : %s result : %s" % (start_time, comp_time, delta_time)
+
+    # export frame number
+    start_frame, end_frame = task_data["Frames"].split("-")
+
+    if start_frame == end_frame:
+        _frames = start_frame
+    else:
+        _frames = task_data["Frames"]
+    print "Extracted task frames : %s " % _frames
+
+    # export cpu usage
+    cpu_usage = task_data["Cpu"]
+    print "Extracted task cpu usage : %s" % cpu_usage
+
+    return _frames, render_time, cpu_usage
 
 
 if __name__ == "__main__":
@@ -279,18 +317,9 @@ if __name__ == "__main__":
     #   TODO:need to verify line id
     if API.validate_job():
         if operation == Operations.OnTaskFinished:
-            import Deadline.DeadlineConnect as Connect
 
-            host_name = os.getenv("DEADLINE_SERVER")
-            port_number = os.getenv("DEADLIN_PORT")
-
-            Deadline = Connect.DeadlineCon(host_name, port_number)
-            task_data = Deadline.Tasks.GetJobTask(job_id, task_id)
-            frame_number = None
-            render_time = None
-            cpu_usage = None
-            print task_data
-            #API.update_anim_task(task_id, frame_number, render_time, cpu_usage)
+            frames, render_time, cpu_usage = get_task_data()
+            API.update_anim_task(task_id, frames, render_time, cpu_usage)
 
         if operation == Operations.OnJobStarted:
             # register new job ID to integrate server side controllers
