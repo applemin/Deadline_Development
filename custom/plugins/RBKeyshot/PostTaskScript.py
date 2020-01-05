@@ -37,7 +37,7 @@ def submit_job(DeadlinePlugin, job):
     job_info = {"BatchName": "%s_system_callbacks" % job_name,
                 "Name": "%s_%s_callback" % (job_name, operation),
                 "Frames": 1,
-                "Priority": 90,
+                "Priority": 80,
                 "Whitelist": deadline_master,
                 "Plugin": "RBServer"}
 

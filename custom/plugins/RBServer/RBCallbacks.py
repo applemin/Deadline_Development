@@ -269,8 +269,6 @@ class APIController:
 
 def get_task_data():
 
-    import Deadline.DeadlineConnect as Connect
-
     host_name = os.getenv("DEADLINE_SERVER")
     port_number = os.getenv("DEADLIN_PORT")
 
@@ -308,6 +306,26 @@ def get_task_data():
     return _frames, render_time, cpu_usage
 
 
+def get_job_progress():
+
+    host_name = os.getenv("DEADLINE_SERVER")
+    port_number = os.getenv("DEADLIN_PORT")
+
+    print "DEADLINE_SERVER", host_name, "DEADLIN_PORT", port_number
+
+    Deadline = Connect.DeadlineCon(host_name, port_number)
+    job_data = Deadline.Jobs.GetJob(job_id)
+
+    total_tasks = job_data["Props"]["Tasks"]
+    completed_tasks = job_data["CompletedChunks"]
+    progress_percent = (int(completed_tasks) * 100)/int(total_tasks)
+    print "Number of Tasks : %s " % total_tasks
+    print "Number of Completed Tasks : %s " % completed_tasks
+    print "Job Completion in Percent : %s " % progress_percent
+
+    return progress_percent
+
+
 if __name__ == "__main__":
 
     _, job_id, job_name, job_status, operation, task_id = sys.argv
@@ -317,12 +335,20 @@ if __name__ == "__main__":
     #   TODO:need to verify line id
     if API.validate_job():
         if operation == Operations.OnTaskFinished:
+
+            import Deadline.DeadlineConnect as Connect
+
             print "Updating task : `%s` for job ID : `%s`." % (task_id, job_name)
             frames, render_time, cpu_usage = get_task_data()
             # incrementing task id by one as online data base is not zero index
             API.update_anim_task(str(int(task_id) + 1), frames, render_time, cpu_usage)
+
+            print "Updating job progress for: `%s`." % job_name
+            value = get_job_progress()
+            API.update_progress(value)
+
         else:
-            print "Task update could not be completed task : `%s` for job ID : `%s`." % (task_id, job_name)
+            print "Task update or job progress could not be completed task."
         if operation == Operations.OnJobStarted:
             # register new job ID to integrate server side controllers
             API.update_line_id(job_id)
