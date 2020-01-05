@@ -267,7 +267,7 @@ class APIController:
 
 if __name__ == "__main__":
 
-    _, job_id, job_name, job_status, operation, task_id, frame_number = sys.argv
+    _, job_id, job_name, job_status, operation, task_id = sys.argv
 
     API = APIController(SOCKET_ID, job_name)
 
