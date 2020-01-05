@@ -63,9 +63,9 @@ def __main__(*args):
     # TODO:update job progress based on completed tasks
 
 
-    args = StringCollection()
-    args.Add("GetJobTaskTotalTime")
-    args.Add(job.ID)
-
-    totalTimeString = ClientUtils.ExecuteCommandAndGetOutput(args)
-    print totalTimeString
+    # args = StringCollection()
+    # args.Add("GetJobTaskTotalTime")
+    # args.Add(job.ID)
+    #
+    # totalTimeString = ClientUtils.ExecuteCommandAndGetOutput(args)
+    # print totalTimeString
