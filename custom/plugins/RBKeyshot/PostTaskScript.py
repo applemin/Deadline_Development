@@ -34,7 +34,7 @@ def __main__(*args):
     for task in tasks_collection:
         print "tasks_collection", task, type(task)
 
-    target_task = tasks_collection[DeadlinePlugin.GetCurrentTaskId()]
+    target_task = tasks_collection[int(DeadlinePlugin.GetCurrentTaskId())]
     print "TaskFrameList", target_task.TaskFrameList, type(target_task.TaskFrameList)
     print "TaskFrameString", target_task.TaskFrameString, type(target_task.TaskFrameString)
     print "TaskStatus", target_task.TaskStatus, type(target_task.TaskStatus)
