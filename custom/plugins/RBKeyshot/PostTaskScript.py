@@ -8,6 +8,7 @@ from Deadline.Scripting import *
 from Deadline.Jobs import *
 from System.IO import *
 from Deadline.Plugins import *
+from System.Collections.Specialized import StringCollection
 
 _deadline_repo = os.getenv("DEADLINE_REPOSITORY")
 _socket_id = os.getenv("SOCKET_ID")
@@ -59,3 +60,12 @@ def __main__(*args):
     # timeSpan = jobAverageFrameRenderTime
     # timeSpan = "%02dd:%02dh:%02dm:%02ds" % (timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds)
 
+    # TODO:update job progress based on completed tasks
+
+
+    args = StringCollection()
+    args.Add("GetJobTaskTotalTime")
+    args.Add(job.ID)
+
+    totalTimeString = ClientUtils.ExecuteCommandAndGetOutput(args)
+    print totalTimeString
