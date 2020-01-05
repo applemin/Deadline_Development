@@ -320,7 +320,7 @@ if __name__ == "__main__":
 
             frames, render_time, cpu_usage = get_task_data()
             # incrementing task id by one as online data base is not zero index
-            API.update_anim_task(task_id + 1, frames, render_time, cpu_usage)
+            API.update_anim_task(str(int(task_id) + 1), frames, render_time, cpu_usage)
 
         if operation == Operations.OnJobStarted:
             # register new job ID to integrate server side controllers
