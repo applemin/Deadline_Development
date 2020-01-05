@@ -87,6 +87,12 @@ class AriaPlugin(DeadlinePlugin):
         timeOut = self.GetIntegerPluginInfoEntryWithDefault("Timeout", 60)
         dryRun = self.GetBooleanPluginInfoEntryWithDefault("DryRun", False)
 
+        # deleting file if it's already downloaded
+        dl_file = os.path.join(outputPath, outputFilename).replace("\\", "/")
+        if os.path.exists(dl_file) and os.path.isfile(dl_file):
+            self.LogWarning("File is already exists ,removing it. %s" % dl_file)
+            os.remove(dl_file)
+
         renderArguments = " %s " % downloadFile
         if outputFilename:
             renderArguments += "--out=%s " % outputFilename
