@@ -5,6 +5,8 @@ import time
 import requests
 from pprint import pprint
 
+import Deadline.DeadlineConnect as Connect
+
 SOCKET_ID = os.getenv("SOCKET_ID")
 
 _MAPPED_STATUSES = {
@@ -264,6 +266,8 @@ class APIController:
         pprint(request_data.json())
         return request_data.json()
 
+def get_task_data():
+    pass
 
 if __name__ == "__main__":
 
@@ -274,7 +278,14 @@ if __name__ == "__main__":
     #   TODO:need to verify line id
     if API.validate_job():
         if operation == Operations.OnTaskFinished:
-            API.update_anim_task(Status.deadline_rendering)
+            Deadline = Connect.DeadlineCon('PulseName', 8080)
+            task_data = Deadline.Tasks.GetJobTask(job_id, task_id)
+            frame_number = None
+            render_time = None
+            cpu_usage = None
+            print task_data
+            #API.update_anim_task(task_id, frame_number, render_time, cpu_usage)
+
         if operation == Operations.OnJobStarted:
             # register new job ID to integrate server side controllers
             API.update_line_id(job_id)
