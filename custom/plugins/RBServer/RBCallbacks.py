@@ -6,9 +6,6 @@ import requests
 from pprint import pprint
 for path in sys.path: print path
 
-import Deadline.DeadlineConnect as Connect
-
-
 SOCKET_ID = os.getenv("SOCKET_ID")
 
 _MAPPED_STATUSES = {
@@ -282,6 +279,7 @@ if __name__ == "__main__":
     #   TODO:need to verify line id
     if API.validate_job():
         if operation == Operations.OnTaskFinished:
+            import Deadline.DeadlineConnect as Connect
             Deadline = Connect.DeadlineCon('PulseName', 8080)
             task_data = Deadline.Tasks.GetJobTask(job_id, task_id)
             frame_number = None
