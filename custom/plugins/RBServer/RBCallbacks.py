@@ -7,6 +7,8 @@ from pprint import pprint
 
 import Deadline.DeadlineConnect as Connect
 
+for path in sys.path: print path
+
 SOCKET_ID = os.getenv("SOCKET_ID")
 
 _MAPPED_STATUSES = {
