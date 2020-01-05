@@ -280,7 +280,11 @@ if __name__ == "__main__":
     if API.validate_job():
         if operation == Operations.OnTaskFinished:
             import Deadline.DeadlineConnect as Connect
-            Deadline = Connect.DeadlineCon('PulseName', 8080)
+
+            host_name = os.getenv("DEADLINE_SERVER")
+            port_number = os.getenv("DEADLIN_PORT")
+
+            Deadline = Connect.DeadlineCon(host_name, port_number)
             task_data = Deadline.Tasks.GetJobTask(job_id, task_id)
             frame_number = None
             render_time = None
