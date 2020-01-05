@@ -5,7 +5,9 @@ import requests
 from pprint import pprint
 
 import Deadline.DeadlineConnect as Connect
-conn = Connect.DeadlineCon('localhost', 1234)
+_deadline_port = os.getenv("DEADLIN_PORT")
+_deadline_host = os.getenv("DEADLINE_SERVER")
+conn = Connect.DeadlineCon(_deadline_host, _deadline_port)
 
 _deadline_repo = os.getenv("DEADLINE_REPOSITORY")
 _socket_id = os.getenv("SOCKET_ID")
@@ -79,7 +81,13 @@ class Submitter:
 
         print "Creating Aria Job "
         plugin = "Aria"
-        user_root_folder = os.path.join(self.STORAGE_DIRECTORY, self.user_path)
+        user_root_folder = os.path.join(self.STORAGE_DIRECTORY, self.user_path).replace("\\", "/")
+
+        if not os.path.exists(user_root_folder):
+            print "User directory is not exist : %s" % user_root_folder
+            print "Creating user directory"
+            os.makedirs(user_root_folder)
+
         output_directory = os.path.join(user_root_folder, self.job_code)
 
         extra_plugin_options = {"FileDate": self.file_date,
