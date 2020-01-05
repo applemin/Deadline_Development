@@ -34,6 +34,14 @@ def __main__(*args):
     for task in tasks_collection:
         print "tasks_collection", task, type(task)
 
+    target_task = tasks[DeadlinePlugin.GetCurrentTaskId()]
+    print "TaskFrameList", target_task.TaskFrameList, type(target_task.TaskFrameList)
+    print "TaskFrameString", target_task.TaskFrameString, type(target_task.TaskFrameString)
+    print "TaskStatus", target_task.TaskStatus, type(target_task.TaskStatus)
+    print "TaskCpuUtilisation", target_task.TaskCpuUtilisation, type(target_task.TaskCpuUtilisation)
+    print "TaskNormalizedRenderTime", target_task.TaskNormalizedRenderTime, type(target_task.TaskNormalizedRenderTime)
+    print "TaskRenderTime", target_task.TaskRenderTime, type(target_task.TaskRenderTime)
+
     # stats = JobUtils.CalculateJobStatistics(job, tasks)
 
     job_name = job.JobName
