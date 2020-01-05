@@ -46,7 +46,7 @@ def submit_job(DeadlinePlugin, job):
                    "JobId": job_id,
                    "Operation": operation,
                    "ScriptFile": script_file,
-                   "TaskID": task_id,
+                   "TaskID": task_id
                    }
 
     body  = '{"JobInfo":' + json.dumps(job_info)

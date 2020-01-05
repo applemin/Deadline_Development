@@ -198,7 +198,8 @@ def submit_job(operation, job_name, job_id, job_status):
                    "JobStatus": job_status,
                    "JobId": job_id,
                    "Operation": operation,
-                   "ScriptFile": script_file}
+                   "ScriptFile": script_file,
+                   "TaskID": -1}
 
     body  = '{"JobInfo":' + json.dumps(job_info)
     body += ',"PluginInfo":' + json.dumps(plugin_info)
