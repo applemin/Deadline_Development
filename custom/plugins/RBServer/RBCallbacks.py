@@ -317,11 +317,12 @@ if __name__ == "__main__":
     #   TODO:need to verify line id
     if API.validate_job():
         if operation == Operations.OnTaskFinished:
-
+            print "Updating task : `%s` for job ID : `%s`." % (task_id, job_name)
             frames, render_time, cpu_usage = get_task_data()
             # incrementing task id by one as online data base is not zero index
             API.update_anim_task(str(int(task_id) + 1), frames, render_time, cpu_usage)
-
+        else:
+            print "Task update could not be completed task : `%s` for job ID : `%s`." % (task_id, job_name)
         if operation == Operations.OnJobStarted:
             # register new job ID to integrate server side controllers
             API.update_line_id(job_id)
