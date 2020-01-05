@@ -57,7 +57,8 @@ class Submitter:
 
     def get_job_data(self):
 
-        token_id = os.getenv("SOCKET_ID", str())
+        # token_id = os.getenv("SOCKET_ID", str())
+        token_id = "bee66946449a"
         print "Socket ID : %s" % token_id
 
         url = 'https://api.renderboost.com/node/demand/job-data'
