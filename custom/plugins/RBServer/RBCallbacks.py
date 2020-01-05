@@ -402,5 +402,5 @@ if __name__ == "__main__":
                 API.update_status(Status.deadline_suspended)
             else:
                 API.update_status(Status.deadline_suspended)
-        else:
-            print "Job could not be found on online system : %s" % job_name
+    else:
+        print "Job could not be found on online system : %s" % job_name
