@@ -77,15 +77,17 @@ class PythonPlugin (DeadlinePlugin):
         scriptFile = self.GetPluginInfoEntryWithDefault("ScriptFile", self.GetDataFilename())
         scriptFile = RepositoryUtils.CheckPathMapping(scriptFile)
 
-        job_name = self.GetPluginInfoEntry("JobName")
-        job_status = self.GetPluginInfoEntry("JobStatus")
-        job_id = self.GetPluginInfoEntry("JobId")
-        operation = self.GetPluginInfoEntry("Operation")
-        
+        job_name = self.GetPluginInfoEntryWithDefault("JobName", str())
+        job_status = self.GetPluginInfoEntryWithDefault("JobStatus", str())
+        job_id = self.GetPluginInfoEntryWithDefault("JobId", str())
+        operation = self.GetPluginInfoEntryWithDefault("Operation", str())
+        task_id = self.GetPluginInfoEntryWithDefault("TaskID", str())
+        frame_number = self.GetPluginInfoEntryWithDefault("FrameNumber", str())
+
         arguments = self.GetPluginInfoEntryWithDefault("Arguments", "")
         arguments = RepositoryUtils.CheckPathMapping(arguments)
 
-        arguments += " %s  %s %s %s " % (job_id, job_name, job_status, operation)
+        arguments += " %s  %s %s %s " % (job_id, job_name, job_status, operation, task_id, frame_number)
 
         if SystemUtils.IsRunningOnWindows():
             scriptFile = scriptFile.replace("/", "\\")

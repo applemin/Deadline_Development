@@ -61,6 +61,8 @@ class Operations:
     OnThermalShutdown   = "OnThermalShutdown"
     OnMachineRestart    = "OnMachineRestart"
 
+    OnTaskFinished      = "OnTaskFinished"
+
 class Status:
 
     system_unknown      = 0
@@ -265,12 +267,14 @@ class APIController:
 
 if __name__ == "__main__":
 
-    _, job_id, job_name, job_status, operation = sys.argv
+    _, job_id, job_name, job_status, operation, task_id, frame_number = sys.argv
 
     API = APIController(SOCKET_ID, job_name)
 
     #   TODO:need to verify line id
     if API.validate_job():
+        if operation == Operations.OnTaskFinished:
+            API.update_anim_task(Status.deadline_rendering)
         if operation == Operations.OnJobStarted:
             # register new job ID to integrate server side controllers
             API.update_line_id(job_id)
