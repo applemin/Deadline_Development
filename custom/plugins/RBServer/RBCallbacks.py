@@ -4,10 +4,10 @@ import json
 import time
 import requests
 from pprint import pprint
+for path in sys.path: print path
 
 import Deadline.DeadlineConnect as Connect
 
-for path in sys.path: print path
 
 SOCKET_ID = os.getenv("SOCKET_ID")
 
