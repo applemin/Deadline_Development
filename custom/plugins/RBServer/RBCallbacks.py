@@ -302,7 +302,7 @@ def get_task_data():
     print "Extracted task frames : %s " % _frames
 
     # export cpu usage
-    cpu_usage = task_data["Cpu"]
+    cpu_usage = task_data["CpuPer"]
     print "Extracted task cpu usage : %s" % cpu_usage
 
     return _frames, render_time, cpu_usage
@@ -319,7 +319,8 @@ if __name__ == "__main__":
         if operation == Operations.OnTaskFinished:
 
             frames, render_time, cpu_usage = get_task_data()
-            API.update_anim_task(task_id, frames, render_time, cpu_usage)
+            # incrementing task id by one as online data base is not zero index
+            API.update_anim_task(task_id + 1, frames, render_time, cpu_usage)
 
         if operation == Operations.OnJobStarted:
             # register new job ID to integrate server side controllers
