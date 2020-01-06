@@ -132,7 +132,8 @@ class Submitter:
                    "Whitelist": "S11-downloader",
                    "MachineLimit": 1,
                    "JobDependency0": str(python_job_id),
-                   "EventOptIns": "RBEvent"}
+                   "EventOptIns": "RBEvent",
+                   "OutputDirectory0": output_directory}
 
         PluginInfo = {'OutputDirectory': output_directory,
                       'DownloadLink': self.download_link,
@@ -188,7 +189,8 @@ class Submitter:
                    "MachineLimit": 1,
                    "JobDependency0": str(aria_job_id),
                    "PostJobScript": post_script,
-                   "EventOptIns": "RBEvent"}
+                   "EventOptIns": "RBEvent",
+                   "OutputDirectory0": output_directory}
 
         PluginInfo = {'ZipFile': zip_file,
                       'OutputDirectory': output_directory,
