@@ -280,11 +280,17 @@ def get_task_data():
     print "Printing task data from deadline "
     pprint(task_data)
 
+    def parse_time(_time):
+        _time = "-".join(_time.split("-")[:-1])
+        if "." in _time:
+            _time.split(".")[0]
+        return _time
+
     # export render time from task times
     time_format = "%Y-%m-%dT%H:%M:%S"
-    start_time = task_data["StartRen"]
+    start_time = parse_time(task_data["StartRen"])
     o_start = datetime.strptime(start_time.split(".")[0], time_format)
-    comp_time = task_data["Comp"]
+    comp_time = parse_time(task_data["Comp"])
     o_comp = datetime.strptime(comp_time.split(".")[0], time_format)
     delta_time = o_comp - o_start
     render_time = round(float(delta_time.seconds)/60, 2)
