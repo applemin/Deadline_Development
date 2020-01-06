@@ -75,7 +75,7 @@ class ZipPlugin(DeadlinePlugin):
         acceptQueries = self.GetBooleanPluginInfoEntryWithDefault("AcceptQueries", True)
 
         renderArguments = " x "
-        renderArguments += "%s " % zipFile
+        renderArguments += '"%s" ' % zipFile
         renderArguments += "-o%s " % outputPath
         if acceptQueries:
             renderArguments += "-y "
