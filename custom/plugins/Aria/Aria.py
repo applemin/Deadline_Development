@@ -77,6 +77,7 @@ class AriaPlugin(DeadlinePlugin):
     def RenderArgument(self):
 
         downloadFile = self.GetPluginInfoEntryWithDefault("DownloadLink", str())
+        downloadFile = downloadFile.replace(" ", "%20")
         outputPath = self.GetPluginInfoEntryWithDefault("OutputDirectory", str())
         outputPath = self.HandlePathSeparators(outputPath)
         outputFilename = self.GetPluginInfoEntryWithDefault("OutputFilename", str())
