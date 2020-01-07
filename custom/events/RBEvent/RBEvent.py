@@ -112,54 +112,54 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.LogInfo("%s : %s" % (self.OnJobPended.__name__, job.JobId))
         submit_job(self.OnJobPended.__name__, job.JobName, job.JobId, job.JobStatus)
 
-    def OnJobReleased(self, job):
-        self.LogInfo("%s : %s" % (self.OnJobReleased.__name__, job.JobId))
+    # def OnJobReleased(self, job):
+    #     self.LogInfo("%s : %s" % (self.OnJobReleased.__name__, job.JobId))
 
-    def OnJobDeleted(self, job):
-        self.LogInfo("%s : %s" % (self.OnJobDeleted.__name__, job.JobId))
+    # def OnJobDeleted(self, job):
+    #     self.LogInfo("%s : %s" % (self.OnJobDeleted.__name__, job.JobId))
 
-    def OnJobError(self, job, task, report):
-        self.LogInfo("%s : %s : %s : %s : %s" % (self.OnJobError.__name__, job.JobId, job, task, report))
+    # def OnJobError(self, job, task, report):
+    #     self.LogInfo("%s : %s : %s : %s : %s" % (self.OnJobError.__name__, job.JobId, job, task, report))
 
-    def OnJobPurged(self, job):
-        self.LogInfo("%s : %s" % (self.OnJobPurged.__name__, job.JobId))
+    # def OnJobPurged(self, job):
+    #     self.LogInfo("%s : %s" % (self.OnJobPurged.__name__, job.JobId))
 
     def OnHouseCleaning(self):
         self.LogInfo("%s" % self.OnHouseCleaning.__name__)
         still_frame_updater()
 
-    def OnRepositoryRepair(self, job):
-        self.LogInfo("%s : %s" % (self.OnRepositoryRepair.__name__, job.JobId))
-
-    def OnSlaveStarted(self, job):
-        self.LogInfo("%s : %s" % (self.OnSlaveStarted.__name__, job.JobId))
-
-    def OnSlaveStopped(self, job):
-        self.LogInfo("%s : %s" % (self.OnSlaveStopped.__name__, job.JobId))
+    # def OnRepositoryRepair(self, job):
+    #     self.LogInfo("%s : %s" % (self.OnRepositoryRepair.__name__, job.JobId))
+    #
+    # def OnSlaveStarted(self, job):
+    #     self.LogInfo("%s : %s" % (self.OnSlaveStarted.__name__, job.JobId))
+    #
+    # def OnSlaveStopped(self, job):
+    #     self.LogInfo("%s : %s" % (self.OnSlaveStopped.__name__, job.JobId))
 
     # def OnSlaveIdle(self, job):
     #     self.LogInfo("%s : %s" % (self.OnSlaveIdle.__name__, job.JobId))
 
-    def OnSlaveRendering(self, slaveName, job):
-        self.LogInfo("%s : %s : %s" % (self.OnSlaveRendering.__name__, job.JobId, slaveName))
-
-    def OnSlaveStartingJob(self, slaveName, job):
-        self.LogInfo("%s : %s : %s" % (self.OnSlaveStartingJob.__name__, job.JobId, slaveName))
-
-    def OnSlaveStalled(self, slaveName, job):
-        self.LogInfo("%s : %s : %s" % (self.OnSlaveStalled.__name__, job.JobId, slaveName))
-
-    def OnIdleShutdown(self, job):
-        self.LogInfo("%s : %s" % (self.OnIdleShutdown.__name__, job.JobId))
-
-    def OnMachineStartup(self, job):
-        self.LogInfo("%s : %s" % (self.OnMachineStartup.__name__, job.JobId))
-
-    def OnThermalShutdown(self, job):
-        self.LogInfo("%s : %s" % (self.OnThermalShutdown.__name__, job.JobId))
-
-    def OnMachineRestart(self, job):
-        self.LogInfo("%s : %s" % (self.OnMachineRestart.__name__, job.JobId))
+    # def OnSlaveRendering(self, slaveName, job):
+    #     self.LogInfo("%s : %s : %s" % (self.OnSlaveRendering.__name__, job.JobId, slaveName))
+    #
+    # def OnSlaveStartingJob(self, slaveName, job):
+    #     self.LogInfo("%s : %s : %s" % (self.OnSlaveStartingJob.__name__, job.JobId, slaveName))
+    #
+    # def OnSlaveStalled(self, slaveName, job):
+    #     self.LogInfo("%s : %s : %s" % (self.OnSlaveStalled.__name__, job.JobId, slaveName))
+    #
+    # def OnIdleShutdown(self, job):
+    #     self.LogInfo("%s : %s" % (self.OnIdleShutdown.__name__, job.JobId))
+    #
+    # def OnMachineStartup(self, job):
+    #     self.LogInfo("%s : %s" % (self.OnMachineStartup.__name__, job.JobId))
+    #
+    # def OnThermalShutdown(self, job):
+    #     self.LogInfo("%s : %s" % (self.OnThermalShutdown.__name__, job.JobId))
+    #
+    # def OnMachineRestart(self, job):
+    #     self.LogInfo("%s : %s" % (self.OnMachineRestart.__name__, job.JobId))
 
 
 def still_frame_updater():
