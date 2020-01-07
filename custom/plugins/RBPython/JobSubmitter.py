@@ -46,6 +46,7 @@ class Submitter:
         self.uid = jobs_data["data"]["SystemInfo"]["uid"]
         self.user_name = jobs_data["data"]["SystemInfo"]["username"]
         self.user_path = jobs_data["data"]["SystemInfo"]["userpath"]
+        self.comment = jobs_data["data"]["JobInfo"]["Comment"]
 
         self.validate_system_options()
         # create aria job
@@ -133,7 +134,8 @@ class Submitter:
                    "MachineLimit": 1,
                    "JobDependency0": str(python_job_id),
                    "EventOptIns": "RBEvent",
-                   "OutputDirectory0": output_directory}
+                   "OutputDirectory0": output_directory,
+                   "Comment": self.comment}
 
         PluginInfo = {'OutputDirectory': output_directory,
                       'DownloadLink': self.download_link,
@@ -190,7 +192,8 @@ class Submitter:
                    "JobDependency0": str(aria_job_id),
                    "PostJobScript": post_script,
                    "EventOptIns": "RBEvent",
-                   "OutputDirectory0": output_directory}
+                   "OutputDirectory0": output_directory,
+                   "Comment": self.comment}
 
         PluginInfo = {'ZipFile': zip_file,
                       'OutputDirectory': output_directory,
@@ -209,7 +212,8 @@ class Submitter:
         print "Creating Render Job "
         extra_job_options, extra_plugin_options = self.get_extra_options()
 
-        JobInfo = {"BatchName": self.job_code + "_Batch"}
+        JobInfo = {"BatchName": self.job_code + "_Batch",
+                   "Comment": self.comment}
 
         # do not add dependency job when file is already downloaded
         if not self.scene_file:
