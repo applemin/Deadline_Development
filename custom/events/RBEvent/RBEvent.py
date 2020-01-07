@@ -125,7 +125,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
     #     self.LogInfo("%s : %s" % (self.OnJobPurged.__name__, job.JobId))
 
     def OnHouseCleaning(self):
-        self.LogInfo("%s" % self.OnHouseCleaning.__name__)
+        self.LogInfo("OnHouseCleaning")
         still_frame_updater()
 
     # def OnRepositoryRepair(self, job):
