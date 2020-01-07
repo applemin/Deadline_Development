@@ -121,15 +121,16 @@ class Status:
 class APIController:
 
     # API Links
-    _api_base_link           = "https://api.renderboost.com/node/demand/"
-    _update_status_link      = _api_base_link + "change-state"
-    _update_progress_link    = _api_base_link + "percent"
-    _validate_job_link       = _api_base_link + "valid-job"
-    _update_line_id_link     = _api_base_link + "change-job-id"
-    _submit_error_link       = _api_base_link + "set-error"
-    _get_job_data_link       = _api_base_link + "job-data"
-    _anim_task_update_link   = _api_base_link + "animation-task-time"
-    _cloud_share_link        = _api_base_link + "share-folder"
+    _api_base_link              = "https://api.renderboost.com/node/demand/"
+    _update_status_link         = _api_base_link + "change-state"
+    _update_progress_link       = _api_base_link + "percent"
+    _validate_job_link          = _api_base_link + "valid-job"
+    _update_line_id_link        = _api_base_link + "change-job-id"
+    _submit_error_link          = _api_base_link + "set-error"
+    _get_job_data_link          = _api_base_link + "job-data"
+    _anim_task_update_link      = _api_base_link + "animation-task-time"
+    _still_task_update_link     = _api_base_link + "still-frame-task-time"
+    _cloud_share_link           = _api_base_link + "share-folder"
 
     def __init__(self, token, job_code):
 
@@ -258,6 +259,32 @@ class APIController:
 
         return response["status"]
 
+    def update_still_task(self, task_id, frame_number, render_time, cpu_usage):
+
+        url = self._still_task_update_link
+        params = {'jobcode': self.job_code,
+                  'task_id': task_id,
+                  'frame': frame_number,
+                  'minutes': render_time,
+                  'cpu': cpu_usage
+                  }
+        response = self.call_post(url, params)
+
+        if response["status"]:
+            print "Animation task updated successfully for job `%s`." % self.job_code
+            print "Task ID : %s | Frame Number : %s | Render Time : %s | CPU Usage : %s" % (task_id,
+                                                                                            frame_number,
+                                                                                            render_time,
+                                                                                            cpu_usage)
+        else:
+            print "Task ID : %s | Frame Number : %s | Render Time : %s | CPU Usage : %s" % (task_id,
+                                                                                            frame_number,
+                                                                                            render_time,
+                                                                                            cpu_usage)
+            raise ValueError("Animation task could not be updated : `%s`" % response["msg"])
+
+        return response["status"]
+
     def call_post(self, url, params):
         print "Token: %s" % self.token
         print "Params: %s" % params
@@ -329,7 +356,7 @@ def get_job_progress():
     print "Number of Completed Tasks : %s " % completed_tasks
     print "Job Completion in Percent : %s " % progress_percent
 
-    return progress_percent
+    return progress_percent, total_tasks
 
 
 if __name__ == "__main__":
@@ -344,14 +371,24 @@ if __name__ == "__main__":
 
             import Deadline.DeadlineConnect as Connect
 
-            print "Updating task : `%s` for job ID : `%s`." % (task_id, job_name)
-            frames, render_time, cpu_usage = get_task_data()
-            # incrementing task id by one as online data base is not zero index
-            API.update_anim_task(str(int(task_id) + 1), frames, render_time, cpu_usage)
-
             print "Updating job progress for: `%s`." % job_name
-            value = get_job_progress()
+            value,  number_of_tasks = get_job_progress()
             API.update_progress(value)
+
+            if number_of_tasks > 1:
+                print "Updating animation task : `%s` for job ID : `%s`." % (task_id, job_name)
+                frames, render_time, cpu_usage = get_task_data()
+                # incrementing task id by one as online data base is not zero index
+                API.update_anim_task(str(int(task_id) + 1), frames, render_time, cpu_usage)
+            else:
+                print "Updating still frame task : `%s` for job ID : `%s`." % (task_id, job_name)
+                frames, render_time, cpu_usage = get_task_data()
+                #   TODO:update still frame time
+                print "Updating still frame task : `%s` for job ID : `%s`." % (task_id, job_name)
+
+                # incrementing task id by one as online data base is not zero index
+                #API.update_anim_task(str(int(task_id) + 1), frames, render_time, cpu_usage)
+
 
         else:
             print "Task update or job progress could not be completed task."
