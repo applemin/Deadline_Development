@@ -119,7 +119,7 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.LogInfo("%s : %s" % (self.OnJobDeleted.__name__, job.JobId))
 
     def OnJobError(self, job, task, report):
-        self.LogInfo("%s : %s : %s : %s : %s" % (self.OnJobDeleted.__name__, job.JobId, job, task, report))
+        self.LogInfo("%s : %s : %s : %s : %s" % (self.OnJobError.__name__, job.JobId, job, task, report))
 
     def OnJobPurged(self, job):
         self.LogInfo("%s : %s" % (self.OnJobPurged.__name__, job.JobId))
@@ -137,8 +137,8 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
     def OnSlaveStopped(self, job):
         self.LogInfo("%s : %s" % (self.OnSlaveStopped.__name__, job.JobId))
 
-    def OnSlaveIdle(self, job):
-        self.LogInfo("%s : %s" % (self.OnSlaveIdle.__name__, job.JobId))
+    # def OnSlaveIdle(self, job):
+    #     self.LogInfo("%s : %s" % (self.OnSlaveIdle.__name__, job.JobId))
 
     def OnSlaveRendering(self, slaveName, job):
         self.LogInfo("%s : %s : %s" % (self.OnSlaveRendering.__name__, job.JobId, slaveName))
