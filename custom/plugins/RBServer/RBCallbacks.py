@@ -367,20 +367,23 @@ if __name__ == "__main__":
 
     #   TODO:need to verify line id
     if API.validate_job():
-        if operation == Operations.OnTaskFinished:
+        if operation in [Operations.OnTaskFinished, Operations.OnHouseCleaning]:
 
             import Deadline.DeadlineConnect as Connect
 
-            print "Updating job progress for: `%s`." % job_name
             value,  number_of_tasks = get_job_progress()
+            print "Updating job progress for: `%s` with value : `%s`." % (job_name, value)
             API.update_progress(value)
 
-            if number_of_tasks > 1:
-                print "Updating animation task : `%s` for job ID : `%s`." % (task_id, job_name)
-                frames, render_time, cpu_usage = get_task_data()
-                # incrementing task id by one as online data base is not zero index
-                API.update_anim_task(str(int(task_id) + 1), frames, render_time, cpu_usage)
-            else:
+            if operation == Operations.OnTaskFinished:
+                if number_of_tasks > 1:
+                    print "Updating animation task : `%s` for job ID : `%s`." % (task_id, job_name)
+                    frames, render_time, cpu_usage = get_task_data()
+                    # incrementing task id by one as online data base is not zero index
+                    API.update_anim_task(str(int(task_id) + 1), frames, render_time, cpu_usage)
+                else:
+                    "This is still frame job , skipping animation task update."
+            elif operation == Operations.OnHouseCleaning:
                 print "Updating still frame task : `%s` for job ID : `%s`." % (task_id, job_name)
                 frames, render_time, cpu_usage = get_task_data()
                 #   TODO:update still frame time
@@ -389,10 +392,7 @@ if __name__ == "__main__":
                 # incrementing task id by one as online data base is not zero index
                 #API.update_anim_task(str(int(task_id) + 1), frames, render_time, cpu_usage)
 
-
-        else:
-            print "Task update or job progress could not be completed task."
-        if operation == Operations.OnJobStarted:
+        elif operation == Operations.OnJobStarted:
             # register new job ID to integrate server side controllers
             API.update_line_id(job_id)
             if API.is_initializing_job:
