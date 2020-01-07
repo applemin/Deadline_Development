@@ -125,7 +125,8 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.LogInfo("%s : %s" % (self.OnJobPurged.__name__, job.JobId))
 
     def OnHouseCleaning(self):
-        self.LogInfo("%s" % self.OnJobPurged.__name__)
+        self.LogInfo("%s" % self.OnHouseCleaning.__name__)
+        still_frame_updater()
 
     def OnRepositoryRepair(self, job):
         self.LogInfo("%s : %s" % (self.OnRepositoryRepair.__name__, job.JobId))
@@ -159,6 +160,10 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
     def OnMachineRestart(self, job):
         self.LogInfo("%s : %s" % (self.OnMachineRestart.__name__, job.JobId))
+
+
+def still_frame_updater():
+    print "Here we need to run still frame checker"
 
 
 def submit_job(operation, job_name, job_id, job_status):
