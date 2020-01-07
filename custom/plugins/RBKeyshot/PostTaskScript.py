@@ -38,7 +38,7 @@ def submit_job(DeadlinePlugin, job):
                 "Name": "%s_%s_callback" % (job_name, operation),
                 "Frames": 1,
                 "Priority": 80,
-                "Whitelist": deadline_master,
+                "Group": "callbacks",
                 "Plugin": "RBServer"}
 
     plugin_info = {"Version": 2.7,
