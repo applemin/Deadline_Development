@@ -44,7 +44,7 @@ def submit_job(DeadlinePlugin, job):
     script_file = deadline_repo + r"\custom\plugins\RBServer\RBCallbacks.py"
 
     operation = "OnTaskFinished"
-    job_info = {"BatchName": "%s_system_Batch" % job_name,
+    job_info = {"BatchName": "%s_Batch" % job_name,
                 "Name": "%s_Callback" % job_name,
                 "Frames": job.GetJobInfoKeyValue("Frames"),
                 "Priority": 80,
@@ -69,7 +69,7 @@ def submit_job(DeadlinePlugin, job):
     pprint(request_data.json())
 
     # register callback job id in current render job
-    job.SetJobPluginInfoKeyValue("CallbackID", request_data["_id"])
+    job.SetJobPluginInfoKeyValue("CallbackID", request_data.json()["_id"])
     RepositoryUtils.SaveJob(job)
 
 
