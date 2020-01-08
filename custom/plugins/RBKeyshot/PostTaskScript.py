@@ -20,6 +20,16 @@ def submit_job(DeadlinePlugin, job):
     job_id = job.JobId
     task_id = DeadlinePlugin.GetCurrentTaskId()
 
+    # do not create callback job if it's already submitted
+    callback_job_id = job.GetJobPluginInfoKeyValue("CallbackID")
+    print "callback_job_id: %s" % callback_job_id
+    if job.GetJobPluginInfoKeyValue("CallbackID"):
+        print "Callback job has already been created with ID : %s" % callback_job_id
+        callback_job = RepositoryUtils.GetJob(callback_job_id, True)
+        print "Resume taks ID : %s" % task_id
+        RepositoryUtils.ResumeTasks(callback_job, [task_id])
+        return
+
     host_name = os.getenv("DEADLINE_SERVER")
     port_number = os.getenv("DEADLIN_PORT")
     deadline_repo = os.getenv("DEADLINE_REPOSITORY")
@@ -34,9 +44,9 @@ def submit_job(DeadlinePlugin, job):
     script_file = deadline_repo + r"\custom\plugins\RBServer\RBCallbacks.py"
 
     operation = "OnTaskFinished"
-    job_info = {"BatchName": "%s_system_callbacks" % job_name,
-                "Name": "%s_%s_callback" % (job_name, operation),
-                "Frames": 1,
+    job_info = {"BatchName": "%s_system_Batch" % job_name,
+                "Name": "%s_Callback" % job_name,
+                "Frames": job.GetJobInfoKeyValue("Frames"),
                 "Priority": 80,
                 "Group": "callbacks",
                 "Plugin": "RBServer"}
@@ -57,6 +67,11 @@ def submit_job(DeadlinePlugin, job):
 
     request_data = requests.post(url, data=body)
     pprint(request_data.json())
+
+    # register callback job id in current render job
+    job.SetJobPluginInfoKeyValue("CallbackID", request_data["_id"])
+    RepositoryUtils.SaveJob(job)
+
 
 
 def __main__(*args):
