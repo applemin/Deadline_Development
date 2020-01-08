@@ -67,12 +67,19 @@ def submit_job(DeadlinePlugin, job):
 
     request_data = requests.post(url, data=body)
     pprint(request_data.json())
+    _id = request_data.json()["_id"]
+
+    # suspend submitted callback job to make sure it's not send any task data
+    callback_job = RepositoryUtils.GetJob(_id, True)
+    RepositoryUtils.SuspendJob(callback_job)
 
     # register callback job id in current render job
-    job.SetJobPluginInfoKeyValue("CallbackID", request_data.json()["_id"])
+    job.SetJobPluginInfoKeyValue("CallbackID", _id)
     RepositoryUtils.SaveJob(job)
 
-
+    # TODO:this needs to be re implemented in main job
+    # resume current task
+    RepositoryUtils.ResumeTasks(callback_job, [task_id])
 
 def __main__(*args):
 
