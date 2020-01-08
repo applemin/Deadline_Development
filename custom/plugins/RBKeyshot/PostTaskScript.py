@@ -20,6 +20,8 @@ def submit_job(DeadlinePlugin, job):
     job_id = job.JobId
     task_id = DeadlinePlugin.GetCurrentTaskId()
 
+    tasks = list(RepositoryUtils.GetJobTasks(job, True).TaskCollectionAllTasks)
+
     # do not create callback job if it's already submitted
     callback_job_id = job.GetJobExtraInfoKeyValueWithDefault("CallbackID", str())
     print "callback_job_id: %s" % callback_job_id
@@ -27,7 +29,7 @@ def submit_job(DeadlinePlugin, job):
         print "Callback job has already been created with ID : %s" % callback_job_id
         callback_job = RepositoryUtils.GetJob(callback_job_id, True)
         print "Resume taks ID : %s" % task_id
-        RepositoryUtils.ResumeTasks(callback_job, [task_id])
+        RepositoryUtils.ResumeTasks(callback_job, tasks[task_id])
         return
 
     host_name = os.getenv("DEADLINE_SERVER")
@@ -79,7 +81,7 @@ def submit_job(DeadlinePlugin, job):
 
     # TODO:this needs to be re implemented in main job
     # resume current task
-    RepositoryUtils.ResumeTasks(callback_job, [task_id])
+    RepositoryUtils.ResumeTasks(callback_job, tasks[task_id])
 
 def __main__(*args):
 
