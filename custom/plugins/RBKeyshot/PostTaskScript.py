@@ -26,7 +26,7 @@ def get_callback_job(current_job):
     else:
         jobs = RepositoryUtils.GetJobs(True)
         for job in jobs:
-            if job.JobName == current_job.JobName.split("_Callback")[0]:
+            if job.JobName == current_job.JobName + "_Callback":
                 callback_job = RepositoryUtils.GetJob(job.JobId, True)
                 callback_job_id = callback_job.JobId
                 print "Target job found in database with ID : %s" % str(callback_job.JobId)

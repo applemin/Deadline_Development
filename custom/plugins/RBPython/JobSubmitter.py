@@ -250,7 +250,7 @@ class Submitter:
 
         print "Creating Callback Job "
 
-        callback_script = os.path.join(self.DEADLINE_REPO, "custom/plugins/BServer/BCallbacks.py").replace("\\", "/")
+        callback_script = os.path.join(self.DEADLINE_REPO, "custom/plugins/RBServer/RBCallbacks.py").replace("\\", "/")
         JobInfo = {"Name": self.job_code + "_Callback",
                    "Group": "callbacks",
                    "Frames": self.frames,
