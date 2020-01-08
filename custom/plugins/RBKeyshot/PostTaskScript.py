@@ -13,15 +13,13 @@ from System.IO import *
 from Deadline.Plugins import *
 from System.Collections.Specialized import StringCollection
 
+
 def submit_job(DeadlinePlugin, job):
 
     job_name = job.JobName
     job_status = job.JobStatus
     job_id = job.JobId
     task_id = DeadlinePlugin.GetCurrentTaskId()
-
-    target_callback_job = RepositoryUtils.GetJob(callback_job_id, True)
-    tasks = list(RepositoryUtils.GetJobTasks(job, True).TaskCollectionAllTasks)
 
     # do not create callback job if it's already submitted
     callback_job_id = job.GetJobExtraInfoKeyValueWithDefault("CallbackID", str())
