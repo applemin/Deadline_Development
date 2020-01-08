@@ -18,10 +18,10 @@ import RBCallbacks
 
 
 class JobType:
-    animation    = 1
-    still_frame  = 2
-    multi_task   = 3
-    free_service = 4
+    animation    = "1"
+    still_frame  = "2"
+    multi_task   = "3"
+    free_service = "4"
 
 class Submitter:
 
