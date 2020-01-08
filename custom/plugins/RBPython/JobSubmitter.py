@@ -35,7 +35,7 @@ class Submitter:
         for idx, arg in enumerate(args[0]):
             print "Index : %s | Arg : %s" % (idx, arg)
 
-        self.job_type = args[3]
+        self.job_type = args[0][3]
         # get jobs data from API
         self.job_code = args[0][1]
         self.python_job_id = args[0][2]
