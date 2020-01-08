@@ -20,6 +20,7 @@ def submit_job(DeadlinePlugin, job):
     job_id = job.JobId
     task_id = DeadlinePlugin.GetCurrentTaskId()
 
+    target_callback_job = RepositoryUtils.GetJob(callback_job_id, True)
     tasks = list(RepositoryUtils.GetJobTasks(job, True).TaskCollectionAllTasks)
 
     # do not create callback job if it's already submitted
@@ -28,6 +29,7 @@ def submit_job(DeadlinePlugin, job):
     if callback_job_id:
         print "Callback job has already been created with ID : %s" % callback_job_id
         callback_job = RepositoryUtils.GetJob(callback_job_id, True)
+        tasks = list(RepositoryUtils.GetJobTasks(callback_job, True).TaskCollectionAllTasks)
         print "Resume taks ID : %s" % task_id
         RepositoryUtils.ResumeTasks(callback_job, [tasks[int(task_id)]])
         return
@@ -81,7 +83,8 @@ def submit_job(DeadlinePlugin, job):
 
     # TODO:this needs to be re implemented in main job
     # resume current task
-    RepositoryUtils.ResumeTasks(callback_job, [tasks[int(task_id)]])
+    _tasks = list(RepositoryUtils.GetJobTasks(callback_job, True).TaskCollectionAllTasks)
+    RepositoryUtils.ResumeTasks(callback_job, [_tasks[int(task_id)]])
 
 def __main__(*args):
 
