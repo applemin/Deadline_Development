@@ -21,7 +21,7 @@ def submit_job(DeadlinePlugin, job):
     task_id = DeadlinePlugin.GetCurrentTaskId()
 
     # do not create callback job if it's already submitted
-    callback_job_id = job.GetJobPluginInfoKeyValue("CallbackID")
+    callback_job_id = job.GetJobExtraInfoKeyValueWithDefault("CallbackID", False)
     print "callback_job_id: %s" % callback_job_id
     if job.GetJobPluginInfoKeyValue("CallbackID"):
         print "Callback job has already been created with ID : %s" % callback_job_id
@@ -74,7 +74,7 @@ def submit_job(DeadlinePlugin, job):
     RepositoryUtils.SuspendJob(callback_job)
 
     # register callback job id in current render job
-    job.SetJobPluginInfoKeyValue("CallbackID", _id)
+    job.SetJobExtraInfoKeyValue("CallbackID", _id)
     RepositoryUtils.SaveJob(job)
 
     # TODO:this needs to be re implemented in main job
