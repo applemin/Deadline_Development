@@ -154,6 +154,7 @@ class APIController:
             return self._job_code
 
     def validate_job(self):
+        print "calling %s" % self.validate_job.__name__
         url = self._validate_job_link
         params = {'jobcode': self.job_code}
         response = self.call_post(url, params)
@@ -164,6 +165,7 @@ class APIController:
         return _MAPPED_STATUSES[response["status"]]
 
     def cloud_share(self):
+        print "calling %s" % self.cloud_share.__name__
         url = self._cloud_share_link
         params = {'jobcode': self.job_code}
         response = self.call_post(url, params)
@@ -176,6 +178,7 @@ class APIController:
         return response["status"]
 
     def get_job_data(self):
+        print "calling %s" % self.get_job_data.__name__
         url = self._get_job_data_link
         params = {'jobcode': self.job_code}
         response = self.call_post(url, params)
@@ -186,6 +189,7 @@ class APIController:
         return response["data"]
 
     def update_status(self, new_status):
+        print "calling %s" % self.update_status.__name__
         url = self._update_status_link
         params = {'jobcode': self.job_code,
                   'state': new_status}
@@ -202,6 +206,7 @@ class APIController:
         return response["status"]
 
     def update_progress(self, value):
+        print "calling %s" % self.update_progress.__name__
         url = self._update_progress_link
         params = {'jobcode': self.job_code,
                   'percent': value}
@@ -218,7 +223,7 @@ class APIController:
         return response["status"]
 
     def update_line_id(self, _id):
-
+        print "calling %s" % self.update_line_id.__name__
         url = self._update_line_id_link
         params = {'jobcode': self.job_code,
                   'lineid': _id}
@@ -235,6 +240,7 @@ class APIController:
         pass
 
     def update_anim_task(self, task_id, frame_number, render_time, cpu_usage):
+        print "calling %s" % self.update_anim_task.__name__
         url = self._anim_task_update_link
         params = {'jobcode': self.job_code,
                   'task_id': task_id,
@@ -260,7 +266,7 @@ class APIController:
         return response["status"]
 
     def update_still_task(self, task_id, frame_number, render_time, cpu_usage):
-
+        print "calling %s" % self.update_still_task.__name__
         url = self._still_task_update_link
         params = {'jobcode': self.job_code,
                   'task_id': task_id,
