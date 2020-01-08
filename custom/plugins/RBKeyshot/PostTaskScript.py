@@ -23,7 +23,7 @@ def submit_job(DeadlinePlugin, job):
     # do not create callback job if it's already submitted
     callback_job_id = job.GetJobExtraInfoKeyValueWithDefault("CallbackID", str())
     print "callback_job_id: %s" % callback_job_id
-    if job.GetJobPluginInfoKeyValue("CallbackID"):
+    if callback_job_id:
         print "Callback job has already been created with ID : %s" % callback_job_id
         callback_job = RepositoryUtils.GetJob(callback_job_id, True)
         print "Resume taks ID : %s" % task_id
