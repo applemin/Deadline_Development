@@ -16,6 +16,13 @@ sys.path.append(_callback_module)
 
 import RBCallbacks
 
+
+class JobType:
+    animation    = 1
+    still_frame  = 2
+    multi_task   = 3
+    free_service = 4
+
 class Submitter:
 
     STORAGE_DIRECTORY = os.getenv("FILE_STORAGE")
@@ -28,6 +35,7 @@ class Submitter:
         for idx, arg in enumerate(args[0]):
             print "Index : %s | Arg : %s" % (idx, arg)
 
+        self.job_type = args[3]
         # get jobs data from API
         self.job_code = args[0][1]
         self.python_job_id = args[0][2]
@@ -47,6 +55,7 @@ class Submitter:
         self.user_name = jobs_data["data"]["SystemInfo"]["username"]
         self.user_path = jobs_data["data"]["SystemInfo"]["userpath"]
         self.comment = jobs_data["data"]["JobInfo"]["Comment"]
+        self.frames = jobs_data["data"]["JobInfo"]["Frames"]
 
         self.validate_system_options()
         # create aria job
@@ -55,6 +64,11 @@ class Submitter:
         zip_job_id = self.create_zip_job(aria_job_id)
         # create render job
         render_job_id = self.create_render_job(zip_job_id)
+
+        # submit callback job if this is an animation job
+        if self.job_type == JobType.animation:
+            print "This is an animation job , submitting callback job"
+            callback_job_id = self.create_callback_job(render_job_id)
 
     def get_job_data(self):
 
@@ -151,7 +165,7 @@ class Submitter:
         PluginInfo.update(extra_plugin_options)
         try:
             new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
-            print("Job created with id {}".format(new_job['_id']))
+            print("Aria job created with id {}".format(new_job['_id']))
             return new_job['_id']
         except Exception as _err:
             print("Submission failed: %s" % _err)
@@ -202,7 +216,7 @@ class Submitter:
 
         try:
             new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
-            print("Job created with id {}".format(new_job['_id']))
+            print("7Zip job created with id {}".format(new_job['_id']))
             return new_job['_id']
         except Exception as _err:
             print("Submission failed: %s" % _err)
@@ -227,10 +241,41 @@ class Submitter:
 
         try:
             new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
-            print("Job created with id {}".format(new_job['_id']))
+            print("Render ob created with id {}".format(new_job['_id']))
             return new_job['_id']
         except Exception as _err:
             print("Submission failed: %s" % _err)
+
+    def create_callback_job(self, render_job_id):
+
+        print "Creating Callback Job "
+
+        callback_script = os.path.join(self.DEADLINE_REPO, "custom/plugins/BServer/BCallbacks.py").replace("\\", "/")
+        JobInfo = {"Name": self.job_code + "_Callback",
+                   "Group": "callbacks",
+                   "Frames": self.frames,
+                   "Priority": 80,
+                   "Plugin": "RBServer",
+                   "BatchName": self.job_code + "_Batch",
+                   "Comment": self.comment}
+
+        PluginInfo = {'JobId': render_job_id,
+                      'JobName': self.job_code,
+                      'Operation': "OnTaskFinished",
+                      'JobStatus': "Active",
+                      'ScriptFile': callback_script,
+                      'Version': "2.7"}
+
+        try:
+            new_job = conn.Jobs.SubmitJob(JobInfo, PluginInfo)
+            print("Callback job created with id {}".format(new_job['_id']))
+            print("Suspending callback job")
+            conn.Jobs.SuspendJob(new_job['_id'])
+            return new_job['_id']
+
+        except Exception as _err:
+            print("Submission failed: %s" % _err)
+
 
     def get_extra_options(self):
 

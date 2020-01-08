@@ -75,23 +75,12 @@ class PythonPlugin (DeadlinePlugin):
         scriptFile = RepositoryUtils.CheckPathMapping(scriptFile)
 
         JID = self.GetPluginInfoEntry("jid")
+        job_type = self.GetJobInfoEntry("ExtraInfo0")
         
         arguments = self.GetPluginInfoEntryWithDefault("Arguments", "")
         arguments += " %s" % self.currentJob.JobId
+        arguments += " %s" % job_type
         arguments = RepositoryUtils.CheckPathMapping(arguments)
-
-        arguments = re.sub(r"<(?i)STARTFRAME>", str(self.GetStartFrame()), arguments)
-        arguments = re.sub(r"<(?i)ENDFRAME>", str(self.GetEndFrame()), arguments)
-        arguments = re.sub(r"<(?i)QUOTE>", "\"", arguments)
-
-        arguments = self.ReplacePaddedFrame(arguments, "<(?i)STARTFRAME%([0-9]+)>", self.GetStartFrame())
-        arguments = self.ReplacePaddedFrame(arguments, "<(?i)ENDFRAME%([0-9]+)>", self.GetEndFrame())
-
-        count = 0
-        for filename in self.GetAuxiliaryFilenames():
-            localAuxFile = Path.Combine(self.GetJobsDataDirectory(), filename)
-            arguments = re.sub( r"<(?i)AUXFILE" + str(count) + r">", localAuxFile.replace("\\", "/"), arguments)
-            count += 1
 
         if SystemUtils.IsRunningOnWindows():
             scriptFile = scriptFile.replace("/", "\\")
