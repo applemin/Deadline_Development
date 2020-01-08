@@ -31,25 +31,26 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         self.OnJobSuspendedCallback += self.OnJobSuspended
         self.OnJobResumedCallback += self.OnJobResumed
         self.OnJobPendedCallback += self.OnJobPended
-        self.OnJobReleasedCallback += self.OnJobReleased
-        self.OnJobDeletedCallback += self.OnJobDeleted
-        self.OnJobErrorCallback += self.OnJobError
-        self.OnJobPurgedCallback += self.OnJobPurged
+
+        # self.OnJobReleasedCallback += self.OnJobReleased
+        # self.OnJobDeletedCallback += self.OnJobDeleted
+        # self.OnJobErrorCallback += self.OnJobError
+        # self.OnJobPurgedCallback += self.OnJobPurged
 
         self.OnHouseCleaningCallback += self.OnHouseCleaning
-        self.OnRepositoryRepairCallback += self.OnRepositoryRepair
-
-        self.OnSlaveStartedCallback += self.OnSlaveStarted
-        self.OnSlaveStoppedCallback += self.OnSlaveStopped
-        self.OnSlaveIdleCallback += self.OnSlaveIdle
-        self.OnSlaveRenderingCallback += self.OnSlaveRendering
-        self.OnSlaveStartingJobCallback += self.OnSlaveStartingJob
-        self.OnSlaveStalledCallback += self.OnSlaveStalled
-
-        self.OnIdleShutdownCallback += self.OnIdleShutdown
-        self.OnMachineStartupCallback += self.OnMachineStartup
-        self.OnThermalShutdownCallback += self.OnThermalShutdown
-        self.OnMachineRestartCallback += self.OnMachineRestart
+        # self.OnRepositoryRepairCallback += self.OnRepositoryRepair
+        #
+        # self.OnSlaveStartedCallback += self.OnSlaveStarted
+        # self.OnSlaveStoppedCallback += self.OnSlaveStopped
+        # self.OnSlaveIdleCallback += self.OnSlaveIdle
+        # self.OnSlaveRenderingCallback += self.OnSlaveRendering
+        # self.OnSlaveStartingJobCallback += self.OnSlaveStartingJob
+        # self.OnSlaveStalledCallback += self.OnSlaveStalled
+        #
+        # self.OnIdleShutdownCallback += self.OnIdleShutdown
+        # self.OnMachineStartupCallback += self.OnMachineStartup
+        # self.OnThermalShutdownCallback += self.OnThermalShutdown
+        # self.OnMachineRestartCallback += self.OnMachineRestart
 
     def Cleanup(self):
 
@@ -61,25 +62,26 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
         del self.OnJobSuspendedCallback
         del self.OnJobResumedCallback
         del self.OnJobPendedCallback
-        del self.OnJobReleasedCallback
-        del self.OnJobDeletedCallback
-        del self.OnJobErrorCallback
-        del self.OnJobPurgedCallback
-
         del self.OnHouseCleaningCallback
-        del self.OnRepositoryRepairCallback
 
-        del self.OnSlaveStartedCallback
-        del self.OnSlaveStoppedCallback
-        del self.OnSlaveIdleCallback
-        del self.OnSlaveRenderingCallback
-        del self.OnSlaveStartingJobCallback
-        del self.OnSlaveStalledCallback
-
-        del self.OnIdleShutdownCallback
-        del self.OnMachineStartupCallback
-        del self.OnThermalShutdownCallback
-        del self.OnMachineRestartCallback
+        # del self.OnJobReleasedCallback
+        # del self.OnJobDeletedCallback
+        # del self.OnJobErrorCallback
+        # del self.OnJobPurgedCallback
+        #
+        # del self.OnRepositoryRepairCallback
+        #
+        # del self.OnSlaveStartedCallback
+        # del self.OnSlaveStoppedCallback
+        # del self.OnSlaveIdleCallback
+        # del self.OnSlaveRenderingCallback
+        # del self.OnSlaveStartingJobCallback
+        # del self.OnSlaveStalledCallback
+        #
+        # del self.OnIdleShutdownCallback
+        # del self.OnMachineStartupCallback
+        # del self.OnThermalShutdownCallback
+        # del self.OnMachineRestartCallback
 
     def OnJobSubmitted(self, job):
         self.LogInfo("%s : %s" % (self.OnJobSubmitted.__name__, job.JobId))
