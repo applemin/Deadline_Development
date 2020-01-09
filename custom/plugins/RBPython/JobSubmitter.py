@@ -282,7 +282,8 @@ class Submitter:
         output_directory = self.create_cloud_directory()
 
         extra_job_options = {"OutputDirectory0": output_directory,
-                             "EventOptIns": "RBEvent"}
+                             "EventOptIns": "RBEvent",
+                             "ExtraInfoKeyValue1": "Job_Type=%s" % self.job_type}
 
         extra_plugin_options = {"OutputFile": os.path.join(output_directory, self.job_options["OutputFilename0"])}
 
@@ -290,12 +291,13 @@ class Submitter:
         if self.scene_file:
             extra_plugin_options["SceneFile"] = self.scene_file.replace("\\", "/")
 
-        if self.job_options["Plugin"] == "RBKeyshot" and self.job_type in [JobType.animation,
-                                                                           JobType.multi_task,
-                                                                           JobType.free_service]:
-            post_script = os.path.join(self.DEADLINE_REPO,
-                                       "custom/plugins/RBKeyshot/PostTaskScript.py").replace("\\", "/")
-            extra_job_options.update({"PostTaskScript": post_script})
+        if self.job_options["Plugin"] == "RBKeyshot" :
+            if self.job_type in [JobType.animation, JobType.multi_task, JobType.free_service]:
+                post_script = os.path.join(self.DEADLINE_REPO,
+                                           "custom/plugins/RBKeyshot/PostTaskScript.py").replace("\\", "/")
+                extra_job_options.update({"PostTaskScript": post_script})
+            elif self.job_type == JobType.still_frame:
+                pass
             return extra_job_options, extra_plugin_options
         elif self.job_options["Plugin"] == "Keyshot":
             return extra_job_options, extra_plugin_options

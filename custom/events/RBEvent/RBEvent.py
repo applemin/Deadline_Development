@@ -175,14 +175,14 @@ def still_frame_updater():
     jobs = Deadline.Scripting.RepositoryUtils.GetJobs(True)
     print "%s Jobs found in deadline" % len(jobs)
     for job in jobs:
-        if job.JobExtraInfo0 == RBCallbacks.JobType.still_frame:
-            print "JobExtraInfo0", job.JobExtraInfo0, type(job.JobExtraInfo0)
+        if job.GetJobExtraInfoKeyValue("Job_Type") == RBCallbacks.JobType.still_frame:
+            print "GetJobExtraInfoKeyValue", job.GetJobExtraInfoKeyValue("Job_Type")
             job_id = job.JobId
             job_name = job.JobName
             print "Active still frame job found %s with ID : %s" % (job_name, job_id)
 
-    # API = RBCallbacks.APIController(_socket_id, job_name)
-    # API.update_still_task("1", "1", "1", cpu_usage)
+            # API = RBCallbacks.APIController(_socket_id, job_name)
+            # API.update_still_task("1", "1", "1", cpu_usage)
 
 def submit_job(operation, job_name, job_id, job_status):
 
