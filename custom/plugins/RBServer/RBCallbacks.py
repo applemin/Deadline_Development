@@ -9,6 +9,12 @@ for path in sys.path: print path
 
 SOCKET_ID = os.getenv("SOCKET_ID")
 
+class JobType:
+    animation    = u"1"
+    still_frame  = u"2"
+    multi_task   = u"3"
+    free_service = u"4"
+
 _MAPPED_STATUSES = {
     0:  'system_unknown',
     1:  'deadline_rendering',
