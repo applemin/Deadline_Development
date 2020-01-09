@@ -10,7 +10,6 @@ import Deadline.Events
 import Deadline.Scripting
 import Deadline.Plugins
 
-
 def GetDeadlineEventListener():
     return EventScriptListener()
 
@@ -173,7 +172,7 @@ def still_frame_updater():
     sys.path.append(_callback_module)
     import RBCallbacks
 
-    jobs = RepositoryUtils.GetJobs(True)
+    jobs = Deadline.Scripting.RepositoryUtils.GetJobs(True)
     for job in jobs:
         if job.JobExtraInfo0 == "2" and job.Status == "Active":
             job_id = job.JobId
