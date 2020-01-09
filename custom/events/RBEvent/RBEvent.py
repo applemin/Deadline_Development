@@ -174,8 +174,8 @@ def still_frame_updater():
 
     jobs = Deadline.Scripting.RepositoryUtils.GetJobs(True)
     for job in jobs:
-        print job.JobName
-        if job.JobExtraInfo0 == "2" and job.Status == "Active":
+        if job.GetJobExtraInfoKeyValueWithDefault("JobExtraInfo0", str()) == "2" and job.Status == "Active":
+            print job.JobName
             job_id = job.JobId
             job_name = job.JobName
             print "Active still frame job found %s with ID : %s" % (job_name, job_id)
