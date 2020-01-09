@@ -186,8 +186,8 @@ def still_frame_updater():
             Deadline.Plugins.DeadlinePlugin.LogInfo("Task Cpu Utilisation : %s" % cpu_usage)
 
             Deadline.Plugins.DeadlinePlugin.LogInfo("Calling single frame update API")
-            API = RBCallbacks.APIController(_socket_id, job_name)
-            API.update_still_task("1", "1", "1", cpu_usage)
+            # API = RBCallbacks.APIController(_socket_id, job_name)
+            # API.update_still_task("1", "1", "1", cpu_usage)
 
 def submit_job(operation, job_name, job_id, job_status):
 
