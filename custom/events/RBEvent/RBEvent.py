@@ -174,6 +174,7 @@ def still_frame_updater():
 
     jobs = Deadline.Scripting.RepositoryUtils.GetJobs(True)
     for job in jobs:
+        print job.GetJobExtraInfoKeyValueWithDefault("JobExtraInfo0", str())
         if job.GetJobExtraInfoKeyValueWithDefault("JobExtraInfo0", str()) == "2" and job.Status == "Active":
             print job.JobName
             job_id = job.JobId
