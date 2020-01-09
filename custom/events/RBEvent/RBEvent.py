@@ -181,6 +181,9 @@ def still_frame_updater():
             job_name = job.JobName
             job_status = job.JobStatus
             print "Still frame job found Job: %s ID: %s Status: %s" % (job_name, job_id,job_status)
+            tasks = list(Deadline.Scripting.RepositoryUtils.GetJobTasks(job, True).TaskCollectionAllTasks)
+            cpu_usage = [tasks[0]].TaskCpuUtilisation
+            print "Task Cpu Utilisation : %s" % cpu_usage
 
             # API = RBCallbacks.APIController(_socket_id, job_name)
             # API.update_still_task("1", "1", "1", cpu_usage)
