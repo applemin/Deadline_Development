@@ -228,7 +228,7 @@ class Submitter:
 
         JobInfo = {"BatchName": self.job_code + "_Batch",
                    "Comment": self.comment,
-                   "ExtraInfoKeyValue1": "Job_Type={}".format(self.job_type)}
+                   "ExtraInfoKeyValue1": {"Job_Type": self.job_type}}
 
         # do not add dependency job when file is already downloaded
         if not self.scene_file:
