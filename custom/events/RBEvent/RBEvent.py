@@ -177,7 +177,7 @@ def still_frame_updater():
         if job.JobExtraInfo0 == "2" and job.Status == "Active":
             job_id = job.JobId
             job_name = job.JobName
-            print "Acrive still frame job found %s with ID : %s" % (job_name, job_id)
+            print "Active still frame job found %s with ID : %s" % (job_name, job_id)
 
     # API = RBCallbacks.APIController(_socket_id, job_name)
     # API.update_still_task("1", "1", "1", cpu_usage)
