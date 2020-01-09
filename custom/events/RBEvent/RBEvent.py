@@ -165,8 +165,23 @@ class EventScriptListener(Deadline.Events.DeadlineEventListener):
 
 
 def still_frame_updater():
-    print "Here we need to run still frame checker"
+    print "Running still frame updater"
 
+    _deadline_repo = os.getenv("DEADLINE_REPOSITORY")
+    _socket_id = os.getenv("SOCKET_ID")
+    _callback_module = os.path.join(_deadline_repo, "custom/plugins/RBServer").replace("\\", "/")
+    sys.path.append(_callback_module)
+    import RBCallbacks
+
+    jobs = RepositoryUtils.GetJobs(True)
+    for job in jobs:
+        if job.JobExtraInfo0 == "2" and job.Status == "Active":
+            job_id = job.JobId
+            job_name = job.JobName
+            print "Acrive still frame job found %s with ID : %s" % (job_name, job_id)
+
+    # API = RBCallbacks.APIController(_socket_id, job_name)
+    # API.update_still_task("1", "1", "1", cpu_usage)
 
 def submit_job(operation, job_name, job_id, job_status):
 
