@@ -173,9 +173,10 @@ def still_frame_updater():
     import RBCallbacks
 
     jobs = Deadline.Scripting.RepositoryUtils.GetJobs(True)
+    print "%s Jobs found in deadline" % len(jobs)
     for job in jobs:
-        print job.GetJobExtraInfoKeyValueWithDefault("JobExtraInfo0", str())
-        if job.GetJobExtraInfoKeyValueWithDefault("JobExtraInfo0", str()) == "2" and job.Status == "Active":
+        print job.GetJobInfoKeyValue("JobExtraInfo0")
+        if job.GetJobInfoKeyValue("JobExtraInfo0") == "2" and job.Status == "Active":
             print job.JobName
             job_id = job.JobId
             job_name = job.JobName
