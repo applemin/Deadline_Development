@@ -42,6 +42,8 @@ def update_callback_job(DeadlinePlugin, job):
 
     current_job = DeadlinePlugin.GetJob()
     current_task = DeadlinePlugin.GetCurrentTaskId()
+    print "current_job : %s  | current_task : %s" % (current_job, current_task)
+
     callback_job, callback_job_id = get_callback_job(current_job)
 
     tasks = list(RepositoryUtils.GetJobTasks(callback_job, True).TaskCollectionAllTasks)
