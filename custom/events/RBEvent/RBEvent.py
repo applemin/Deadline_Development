@@ -176,7 +176,7 @@ def still_frame_updater():
     print "%s Jobs found in deadline" % len(jobs)
     for job in jobs:
         if job.JobName == "Untitled":
-            print job.JobName
+            print "JobExtraInfo0", job.JobExtraInfo0
             job_id = job.JobId
             job_name = job.JobName
             print "Active still frame job found %s with ID : %s" % (job_name, job_id)
