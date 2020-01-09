@@ -173,20 +173,21 @@ def still_frame_updater():
     import RBCallbacks
 
     jobs = Deadline.Scripting.RepositoryUtils.GetJobs(True)
-    print "%s Jobs found in deadline" % len(jobs)
+    Deadline.Plugins.DeadlinePlugin.LogInfo("%s Jobs found in deadline" % len(jobs))
     for job in jobs:
         if job.GetJobExtraInfoKeyValue("Job_Type") == RBCallbacks.JobType.still_frame:
-            print "GetJobExtraInfoKeyValue", job.GetJobExtraInfoKeyValue("Job_Type")
+            Deadline.Plugins.DeadlinePlugin.LogInfo("GetJobExtraInfoKeyValue", job.GetJobExtraInfoKeyValue("Job_Type"))
             job_id = job.JobId
             job_name = job.JobName
             job_status = job.JobStatus
-            print "Still frame job found Job: %s ID: %s Status: %s" % (job_name, job_id,job_status)
+            Deadline.Plugins.DeadlinePlugin.LogInfo("Still frame job found Job: %s ID: %s Status: %s" % (job_name, job_id,job_status))
             tasks = list(Deadline.Scripting.RepositoryUtils.GetJobTasks(job, True).TaskCollectionAllTasks)
             cpu_usage = tasks[0].TaskCpuUtilisation
-            print "Task Cpu Utilisation : %s" % cpu_usage
+            Deadline.Plugins.DeadlinePlugin.LogInfo("Task Cpu Utilisation : %s" % cpu_usage)
 
-            # API = RBCallbacks.APIController(_socket_id, job_name)
-            # API.update_still_task("1", "1", "1", cpu_usage)
+            Deadline.Plugins.DeadlinePlugin.LogInfo("Calling single frame update API")
+            API = RBCallbacks.APIController(_socket_id, job_name)
+            API.update_still_task("1", "1", "1", cpu_usage)
 
 def submit_job(operation, job_name, job_id, job_status):
 
