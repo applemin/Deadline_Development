@@ -227,7 +227,8 @@ class Submitter:
         extra_job_options, extra_plugin_options = self.get_extra_options()
 
         JobInfo = {"BatchName": self.job_code + "_Batch",
-                   "Comment": self.comment}
+                   "Comment": self.comment,
+                   "ExtraInfoKeyValue1": "Job_Type={}".format(self.job_type)}
 
         # do not add dependency job when file is already downloaded
         if not self.scene_file:
@@ -282,8 +283,7 @@ class Submitter:
         output_directory = self.create_cloud_directory()
 
         extra_job_options = {"OutputDirectory0": output_directory,
-                             "EventOptIns": "RBEvent",
-                             "ExtraInfoKeyValue1": "Job_Type=%s" % self.job_type}
+                             "EventOptIns": "RBEvent"}
 
         extra_plugin_options = {"OutputFile": os.path.join(output_directory, self.job_options["OutputFilename0"])}
 
