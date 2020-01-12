@@ -58,7 +58,7 @@ from FranticX.Processes import *
 ## main DeadlinePlugin class.
 ######################################################################
 def GetDeadlinePlugin():
-    return KeyShotPlugin()
+    return RBOnKeyshotPlugin()
 
 def CleanupDeadlinePlugin( deadlinePlugin ):
     deadlinePlugin.Cleanup()
@@ -66,7 +66,7 @@ def CleanupDeadlinePlugin( deadlinePlugin ):
 ######################################################################
 ## This is the main DeadlinePlugin class for the KeyShot plugin.
 ######################################################################
-class KeyShotPlugin (DeadlinePlugin):
+class RBOnKeyshotPlugin (DeadlinePlugin):
 
     def __init__(self):
 
