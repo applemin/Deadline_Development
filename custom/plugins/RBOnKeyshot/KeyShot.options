@@ -1,0 +1,326 @@
+[Versions]
+Type=enum
+Values=6
+Label=Keyshot Version
+Category=Global Settings
+CategoryOrder=0
+Index=1
+Description=The version of Keyshot to use.
+Required=false
+DisableIfBlank=true
+
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Global Settings
+CategoryOrder=0
+Index=0
+Description=The scene filename as it exists on the network.
+Required=false
+DisableIfBlank=true
+
+[OutputFile]
+Type=filenamesave
+Label=Output Filename
+Category=Global Settings
+CategoryOrder=0
+Index=2
+Description=The filename of the file(s) to be rendered.
+Required=false
+DisableIfBlank=true
+
+[RenderWidth]
+Type=integer
+Label=Render Width
+Category=Global Settings
+CategoryOrder=0
+Index=3
+Description=The width of the rendered images.
+Required=false
+DisableIfBlank=true
+
+[RenderHeight]
+Type=integer
+Label=Render Height
+Category=Global Settings
+CategoryOrder=0
+Index=4
+Description=The height of the rendered images.
+Required=false
+DisableIfBlank=true
+
+[IncludeRenderLayers]
+Type=boolean
+Label=Include Render Layers
+Category=Layer Settings
+CategoryOrder=1
+Index=0
+Description=Enabled to render all render layers separately.
+Required=false
+DisableIfBlank=true
+
+[IncludeAlpha]
+Type=boolean
+Label=Include Alpha
+Category=Layer Settings
+CategoryOrder=1
+Index=1
+Description=Include the alpha layer in the final image.
+Required=false
+DisableIfBlank=true
+
+[OverrideRenderPasses]
+Type=boolean
+Label=Override Render Passes
+Category=Pass Settings
+CategoryOrder=2
+Index=0
+Description=Enable to override the pass settings in the scene.
+Required=false
+DisableIfBlank=true
+
+[IncludeDepthPass]
+Type=boolean
+Label=Include Depth Pass
+Category=Pass Settings
+CategoryOrder=2
+Index=1
+Description=Enable to output the depth pass.
+Required=false
+DisableIfBlank=true
+
+[IncludeGeometricNormalPass]
+Type=boolean
+Label=Include Geometric Normal Pass
+Category=Pass Settings
+CategoryOrder=2
+Index=2
+Description=Enable to output the geometric normal pass.
+Required=false
+DisableIfBlank=true
+
+[IncludeClownPass]
+Type=boolean
+Label=Include Clown Pass
+Category=Pass Settings
+CategoryOrder=2
+Index=3
+Description=Enable to output the clown pass.
+Required=false
+DisableIfBlank=true
+
+[QualityType]
+Type=enum
+Values=Maximum Samples;Maximum Time;Advanced Control
+Label=Quality to Render By
+Category=Quality Settings
+CategoryOrder=3
+Index=0
+Description=The type of quality to render by.
+Required=false
+DisableIfBlank=true
+
+[MaxTime]
+Type=float
+Label=Maximum Time (s)
+Category=Quality Settings
+CategoryOrder=3
+Index=1
+Description=Maximum time spent rendering (in seconds).
+DisableIfBlank=true
+DefaultValue=30
+Maximum=86400
+Minimum=1
+DecimalPlaces=2
+
+[ProgressiveMaxSamples]
+Type=integer
+Label=Maximum Samples
+Category=Quality Settings
+CategoryOrder=3
+Index=2
+Description=Maximum number of samples to render.
+DisableIfBlank=true
+DefaultValue=16
+Maximum=9999
+Minimum=1
+
+[RayBounces]
+Type=integer
+Label=Ray Bounces
+Category=Quality Settings
+CategoryOrder=3
+Index=3
+Description=Number of times light is reflected/refracted as it passes through a scene.
+DisableIfBlank=true
+DefaultValue=6
+Maximum=9999
+Minimum=0
+
+[IndirectBounces]
+Type=integer
+Label=Indirect Bounces
+Category=Quality Settings
+CategoryOrder=3
+Index=4
+Description=Number of times light is reflected diffusely as it passes through a scene.
+DisableIfBlank=true
+DefaultValue=0
+Maximum=9999
+Minimum=0
+
+[Shadows]
+Type=float
+Label=Shadows
+Category=Quality Settings
+CategoryOrder=3
+Index=5
+Description=Shadows
+DisableIfBlank=true
+DecimalPlaces=3
+
+[AntiAliasing]
+Type=integer
+Label=AntiAliasing
+Category=Quality Settings
+CategoryOrder=3
+Index=6
+Description=AntiAliasing
+DisableIfBlank=true
+DefaultValue=1
+
+
+
+# Camera Settings
+
+[MultiCameraRendering]
+Type=boolean
+Label=Multi Camera Rendering
+Category=Camera Settings
+CategoryOrder=3
+Index=0
+Description=Multi Camera Rendering.
+Required=false
+DisableIfBlank=true
+
+[CameraName]
+Type=string
+Label=CameraName
+Category=Camera Settings
+CategoryOrder=3
+Index=1
+Description=The height of the rendered images.
+Required=false
+DisableIfBlank=true
+
+[Camera0]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=2
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera1]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=3
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera2]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=4
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera3]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=5
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera4]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=6
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera5]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=7
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera6]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=8
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera7]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=9
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera8]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=10
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera9]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=11
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera10]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=12
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+
