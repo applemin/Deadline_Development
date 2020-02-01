@@ -166,8 +166,9 @@ def main():
         except AttributeError:
             print('Failed to set render pass attribute: %s' % pass_setting)
 
-    if d_data["DAT_REGION_DATA"]:
+    if len(d_data["DAT_REGION_DATA"]):
         renderOptions.setRegion(d_data["DAT_REGION_DATA"])
+        print('Set current region as: %s' % d_data["DAT_REGION_DATA"])
     if d_data["DAT_QUALITY_TYPE"] == "maximum_time":
         renderOptions.setMaxTimeRendering(d_data["DAT_MAXIMUM_TIME"])
     elif d_data["DAT_QUALITY_TYPE"] == "maximum_samples":

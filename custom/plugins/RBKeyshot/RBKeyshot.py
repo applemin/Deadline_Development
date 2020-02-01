@@ -52,13 +52,35 @@ from System.IO import *
 from Deadline.Plugins import *
 from Deadline.Scripting import *
 
+
+def get_tiles(_width, _height, num_tiles):
+
+    left = 0
+    top = 0
+    width = int(_width) / num_tiles
+    height = _height
+
+    regions = list()
+    regions.append([left, top, width, height])
+    for cnt in range(num_tiles):
+        left += width
+        if cnt == num_tiles-2:
+            regions.append([left, top, width + (_width-(left+width)), height])
+            break
+        regions.append([left, top, width, height])
+
+    return regions
+
+
 ######################################################################
 ## This is the function that Deadline calls to get an instance of the
 ## main DeadlinePlugin class.
 ######################################################################
 
+
 def GetDeadlinePlugin():
     return RB_KeyshotPlugin()
+
 
 def CleanupDeadlinePlugin( deadlinePlugin ):
     deadlinePlugin.Cleanup()
@@ -194,8 +216,11 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         b_multi_camera_rendering = self.GetBooleanPluginInfoEntryWithDefault("MultiCameraRendering", False)
         b_region_rendering       = self.GetBooleanPluginInfoEntryWithDefault("RegionRendering", False)
         s_render_mode            = self.GetPluginInfoEntryWithDefault("render_mode", "1")
-
         f_maximum_time           = self.GetFloatPluginInfoEntryWithDefault("progressive_max_time", 30)
+
+        # tile rendering data
+        b_tile_rendering         = self.GetBooleanPluginInfoEntryWithDefault("TileRendering", False)
+        i_tiles                  = self.GetIntegerPluginInfoEntryWithDefault("num_tiles", 5)
 
         i_width                  = self.GetIntegerPluginInfoEntryWithDefault("render_width", 1920)
         i_height                 = self.GetIntegerPluginInfoEntryWithDefault("render_height", 1080)
@@ -231,7 +256,6 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         setOutputAmbientOcclusionPass   = self.GetBooleanPluginInfoEntryWithDefault("output_ambient_occlusion_pass", False)
 
         # extract data from keys
-        l_region_data            = [int(s) for s in str(s_render_region).split('"') if s.isdigit()]
         s_quality_type           = self.d_render_mode[str(s_render_mode)]
 
         if b_multi_camera_rendering:
@@ -273,6 +297,10 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             s_camera_name       = self.GetPluginInfoEntryWithDefault("active_camera", str())
             s_model_set_name    = self.GetPluginInfoEntryWithDefault("active_model_set", str())
 
+
+        if b_tile_rendering:
+            region_sets = get_tiles()
+            l_region_data = region_sets[int(s_task_id)]
 
         s_scene_name, s_ext = os.path.splitext(os.path.basename(s_scene_file_name))
         s_temp_scene_file_name = s_scene_name + "_{}".format(self.s_random) + "_{}".format(str(i_start_frame)) + s_ext
@@ -326,7 +354,8 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             "setOutputNormalsPass":             setOutputNormalsPass,
             "setOutputCausticsPass":            setOutputCausticsPass,
             "setOutputShadowPass":              setOutputShadowPass,
-            "setOutputAmbientOcclusionPass":    setOutputAmbientOcclusionPass}
+            "setOutputAmbientOcclusionPass":    setOutputAmbientOcclusionPass,
+            "region_set":                       current_region if b_tile_rendering else list()}
 
         self.LogInfo("Contents of DEADLINE_KEYSHOT_INFO file:")
         self.LogInfo(self.infoFilePath)

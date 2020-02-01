@@ -395,7 +395,28 @@ Type=boolean
 Label=Render Layers
 Category=Extra Options
 CategoryOrder=10
-Index=0
+Index=1
 Description=output_render_layers
 Required=false
 DisableIfBlank=true
+
+[TileRendering]
+Type=boolean
+Label=Tile Rendering
+Category=Tile Options
+CategoryOrder=11
+Index=0
+Description=Tile Rendering
+Required=false
+DisableIfBlank=false
+
+[num_tiles]
+Type=integer
+Label=Number of Tiles
+Category=Tile Options
+CategoryOrder=11
+Index=1
+Description=Number of Tiles
+Required=false
+DisableIfBlank=false
+DefaultValue=5
