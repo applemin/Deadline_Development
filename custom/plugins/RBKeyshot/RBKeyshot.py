@@ -338,7 +338,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             "DAT_QUALITY_TYPE":                 s_quality_type,  # TODO: check for "advanced mode"
             "DAT_MULTI_CAMERA_RENDERING":       b_multi_camera_rendering,
             "DAT_MULTI_TASK_RENDERING":         b_multi_task_rendering,
-            "DAT_REGION_DATA":                  l_region_data,
+            "DAT_REGION_DATA":                  l_region_data if b_tile_rendering else list(),
             "setAdvancedRendering":             setAdvancedRendering,
             "setGlobalIllumination":            setGlobalIllumination,
             "setRayBounces":                    setRayBounces,
@@ -363,8 +363,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             "setOutputNormalsPass":             setOutputNormalsPass,
             "setOutputCausticsPass":            setOutputCausticsPass,
             "setOutputShadowPass":              setOutputShadowPass,
-            "setOutputAmbientOcclusionPass":    setOutputAmbientOcclusionPass,
-            "region_set":                       current_region if b_tile_rendering else list()}
+            "setOutputAmbientOcclusionPass":    setOutputAmbientOcclusionPass}
 
         self.LogInfo("Contents of DEADLINE_KEYSHOT_INFO file:")
         self.LogInfo(self.infoFilePath)
