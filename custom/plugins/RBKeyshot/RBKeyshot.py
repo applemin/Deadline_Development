@@ -299,7 +299,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
 
         if b_tile_rendering:
-            region_sets = get_tiles(int(i_width), int(i_height), i_tiles)
+            region_sets = get_tiles(int(i_width)-1, int(i_height)-1, i_tiles)
             l_region_data = region_sets[int(s_task_id)]
 
             s_output_directory  = os.path.dirname(s_output_file_name)
