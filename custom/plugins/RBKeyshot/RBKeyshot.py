@@ -302,6 +302,15 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             region_sets = get_tiles()
             l_region_data = region_sets[int(s_task_id)]
 
+            s_output_directory  = os.path.dirname(s_output_file_name)
+            s_file_name, s_ext  = os.path.splitext(os.path.basename(s_output_file_name))
+            s_output_file_name  = os.path.join(s_output_directory,
+                                               str(s_file_name + "_tile" + str(s_task_id) + s_ext))
+
+            s_output_file_name  = s_output_file_name.replace("\\", "/")
+            self.LogInfo("TileRendering : %s | Output path : %s" % (b_tile_rendering, s_output_file_name))
+
+
         s_scene_name, s_ext = os.path.splitext(os.path.basename(s_scene_file_name))
         s_temp_scene_file_name = s_scene_name + "_{}".format(self.s_random) + "_{}".format(str(i_start_frame)) + s_ext
 
