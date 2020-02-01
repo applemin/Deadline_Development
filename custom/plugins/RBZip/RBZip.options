@@ -1,0 +1,39 @@
+[ZipFile]
+Type=filename
+Label=Zip File
+Category=File Settings
+CategoryOrder=1
+Index=0
+Description=ZIP or RAR file
+Required=false
+DisableIfBlank=false
+
+[OutputDirectory]
+Type=string
+Label=Output Directory
+Category=File Settings
+CategoryOrder=1
+Index=1
+Description=The output directory to use.
+Required=false
+DisableIfBlank=false
+
+[AcceptQueries]
+Type=boolean
+Label=Accept Queries
+Category=Process Options
+CategoryOrder=2
+Index=0
+Description=Assume Yes on all queries.
+Required=false
+DisableIfBlank=false
+
+[AdditionalOptions]
+Type=string
+Label=Additional Options
+Category=Extra Setting
+CategoryOrder=3
+Index=0
+Description=Any additional options to use while rendering.
+Required=false
+DisableIfBlank=false

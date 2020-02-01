@@ -7,6 +7,7 @@ from Deadline.Scripting import *
 import os
 import sys
 import re
+import requests
 
 def GetDeadlinePlugin():
     return PythonPlugin()
@@ -15,11 +16,17 @@ def CleanupDeadlinePlugin( deadlinePlugin ):
     deadlinePlugin.Cleanup()
 
 class PythonPlugin (DeadlinePlugin):
-    
-    def __init__( self ):
+
+    def __init__(self):
+
+        self.currentJob = str()
+
         self.InitializeProcessCallback += self.InitializeProcess
         self.RenderExecutableCallback += self.RenderExecutable
         self.RenderArgumentCallback += self.RenderArgument
+        self.PreRenderTasksCallback += self.PreRenderTasks
+        self.PostRenderTasksCallback += self.PostRenderTasks
+
     
     def Cleanup(self):
         for stdoutHandler in self.StdoutHandlers:
@@ -28,6 +35,8 @@ class PythonPlugin (DeadlinePlugin):
         del self.InitializeProcessCallback
         del self.RenderExecutableCallback
         del self.RenderArgumentCallback
+        del self.PreRenderTasksCallback
+        del self.PostRenderTasksCallback
     
     def InitializeProcess(self):
         self.PluginType = PluginType.Simple
@@ -64,29 +73,21 @@ class PythonPlugin (DeadlinePlugin):
     def RenderArgument( self ):
         scriptFile = self.GetPluginInfoEntryWithDefault("ScriptFile", self.GetDataFilename())
         scriptFile = RepositoryUtils.CheckPathMapping(scriptFile)
+
+        JID = self.GetPluginInfoEntry("jid")
+        job_type = self.GetJobInfoEntry("ExtraInfo0")
         
         arguments = self.GetPluginInfoEntryWithDefault("Arguments", "")
+        arguments += " %s" % self.currentJob.JobId
+        arguments += " %s" % job_type
         arguments = RepositoryUtils.CheckPathMapping(arguments)
-
-        arguments = re.sub(r"<(?i)STARTFRAME>", str(self.GetStartFrame()), arguments)
-        arguments = re.sub(r"<(?i)ENDFRAME>", str(self.GetEndFrame()), arguments)
-        arguments = re.sub(r"<(?i)QUOTE>", "\"", arguments)
-
-        arguments = self.ReplacePaddedFrame(arguments, "<(?i)STARTFRAME%([0-9]+)>", self.GetStartFrame())
-        arguments = self.ReplacePaddedFrame(arguments, "<(?i)ENDFRAME%([0-9]+)>", self.GetEndFrame())
-
-        count = 0
-        for filename in self.GetAuxiliaryFilenames():
-            localAuxFile = Path.Combine(self.GetJobsDataDirectory(), filename)
-            arguments = re.sub( r"<(?i)AUXFILE" + str(count) + r">", localAuxFile.replace("\\", "/"), arguments)
-            count += 1
 
         if SystemUtils.IsRunningOnWindows():
             scriptFile = scriptFile.replace("/", "\\")
         else:
             scriptFile = scriptFile.replace("\\", "/")
 
-        return "-u \"" + scriptFile + "\" " + arguments
+        return "-u \"" + scriptFile + "\" " + JID + arguments
 
     def ReplacePaddedFrame(self, arguments, pattern, frame):
         frameRegex = Regex(pattern)
@@ -107,3 +108,12 @@ class PythonPlugin (DeadlinePlugin):
     def HandleProgress( self ):
         progress = float( self.GetRegexMatch(1) )
         self.SetProgress( progress )
+
+    def PreRenderTasks(self):
+        self.LogInfo("Running PreRenderTasks")
+        self.currentJob = self.GetJob()
+        self.LogInfo("Current Job ID : %s" % self.currentJob.JobId)
+
+
+    def PostRenderTasks(self):
+        self.LogInfo("Running PostRenderTasks")

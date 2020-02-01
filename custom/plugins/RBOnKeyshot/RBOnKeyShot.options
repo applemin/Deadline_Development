@@ -1,14 +1,4 @@
-[SceneFile]
-Type=filename
-Label=Scene Filename
-Category=Global Settings
-CategoryOrder=0
-Index=0
-Description=The scene filename as it exists on the network.
-Required=false
-DisableIfBlank=true
-
-[Version]
+[Versions]
 Type=enum
 Values=6
 Label=Keyshot Version
@@ -16,6 +6,16 @@ Category=Global Settings
 CategoryOrder=0
 Index=1
 Description=The version of Keyshot to use.
+Required=false
+DisableIfBlank=true
+
+[SceneFile]
+Type=filename
+Label=Scene Filename
+Category=Global Settings
+CategoryOrder=0
+Index=0
+Description=The scene filename as it exists on the network.
 Required=false
 DisableIfBlank=true
 
@@ -133,7 +133,7 @@ Maximum=86400
 Minimum=1
 DecimalPlaces=2
 
-[MaxSamples]
+[ProgressiveMaxSamples]
 Type=integer
 Label=Maximum Samples
 Category=Quality Settings
@@ -142,7 +142,7 @@ Index=2
 Description=Maximum number of samples to render.
 DisableIfBlank=true
 DefaultValue=16
-Maximum=256
+Maximum=9999
 Minimum=1
 
 [RayBounces]
@@ -154,7 +154,7 @@ Index=3
 Description=Number of times light is reflected/refracted as it passes through a scene.
 DisableIfBlank=true
 DefaultValue=6
-Maximum=64
+Maximum=9999
 Minimum=0
 
 [IndirectBounces]
@@ -166,5 +166,161 @@ Index=4
 Description=Number of times light is reflected diffusely as it passes through a scene.
 DisableIfBlank=true
 DefaultValue=0
-Maximum=64
+Maximum=9999
 Minimum=0
+
+[Shadows]
+Type=float
+Label=Shadows
+Category=Quality Settings
+CategoryOrder=3
+Index=5
+Description=Shadows
+DisableIfBlank=true
+DecimalPlaces=3
+
+[AntiAliasing]
+Type=integer
+Label=AntiAliasing
+Category=Quality Settings
+CategoryOrder=3
+Index=6
+Description=AntiAliasing
+DisableIfBlank=true
+DefaultValue=1
+
+
+
+# Camera Settings
+
+[MultiCameraRendering]
+Type=boolean
+Label=Multi Camera Rendering
+Category=Camera Settings
+CategoryOrder=3
+Index=0
+Description=Multi Camera Rendering.
+Required=false
+DisableIfBlank=true
+
+[CameraName]
+Type=string
+Label=CameraName
+Category=Camera Settings
+CategoryOrder=3
+Index=1
+Description=The height of the rendered images.
+Required=false
+DisableIfBlank=true
+
+[Camera0]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=2
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera1]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=3
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera2]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=4
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera3]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=5
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera4]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=6
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera5]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=7
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera6]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=8
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera7]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=9
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera8]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=10
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera9]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=11
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+[Camera10]
+Type=string
+Label=Camera0
+Category=Camera Settings
+CategoryOrder=3
+Index=12
+Description=camera name.
+Required=false
+DisableIfBlank=true
+
+

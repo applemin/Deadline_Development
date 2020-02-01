@@ -38,9 +38,11 @@
 
 import os
 import shutil
-import json
+import time
 import sys
-
+import subprocess
+import json
+import ast
 
 # get data file path and load data fom json file
 s_data_file = os.environ['DEADLINE_KEYSHOT_INFO']
@@ -112,28 +114,12 @@ def file_transfer(s_file_path):
 def main():
 
     l_advanced_render_options = ["setAdvancedRendering",
-                                 "setGlobalIllumination",
                                  "setRayBounces",
                                  "setAntiAliasing",
-                                 "setShadowQuality",
-                                 "setCausticsQuality",
-                                 "setSharpShadows",
-                                 "setSharperTextureFiltering",
-                                 "setGlobalIlluminationCache"]
+                                 "setShadowQuality"]
 
     l_render_pass_options = ["setOutputRenderLayers",
-                             "setOutputAlphaChannel",
-                             "setOutputDiffusePass",
-                             "setOutputReflectionPass",
-                             "setOutputClownPass",
-                             "setOutputDirectLightingPass",
-                             "setOutputRefractionPass",
-                             "setOutputDepthPass",
-                             "setOutputIndirectLightingPass",
-                             "setOutputNormalsPass",
-                             "setOutputCausticsPass",
-                             "setOutputShadowPass",
-                             "setOutputAmbientOcclusionPass"]
+                             "setOutputAlphaChannel"]
 
     s_file_p, s_new_file_p = file_transfer(s_file_path)
     b_reload = not any([d_data["DAT_MULTI_CAMERA_RENDERING"], d_data["DAT_MULTI_TASK_RENDERING"]])
@@ -142,13 +128,11 @@ def main():
 
     print("Contents of DEADLINE_KEYSHOT_INFO received in KeyShot :")
     for parameter, value in sorted(d_data.items()):
-
-        print('{0:35}{1:35}{2:35}'.format(str(parameter), str(type(value)), str(value)))
+        print('{0:20}{1:20}{2:20}'.format(str(parameter), str(type(value)), str(value)))
 
     lux.openFile(s_file_p)
     lux.pause()
     if d_data["DAT_CAMERA"]: lux.setCamera(d_data["DAT_CAMERA"])
-    if any(d_data["DAT_MODEL_SET"]): lux.setModelSets(d_data["DAT_MODEL_SET"])
     lux.setAnimationFrame(d_data["DAT_START_FRAME"])
 
     if b_reload:
@@ -166,12 +150,8 @@ def main():
         except AttributeError:
             print('Failed to set render pass attribute: %s' % pass_setting)
 
-    if d_data["DAT_REGION_DATA"]:
-        renderOptions.setRegion(d_data["DAT_REGION_DATA"])
-    if d_data["DAT_QUALITY_TYPE"] == "maximum_time":
-        renderOptions.setMaxTimeRendering(d_data["DAT_MAXIMUM_TIME"])
-    elif d_data["DAT_QUALITY_TYPE"] == "maximum_samples":
-        renderOptions.setMaxSamplesRendering(d_data["DAT_PROGRESSIVE_MAX_SAMPLES"])
+    if d_data["DAT_QUALITY_TYPE"] == "Maximum Time":renderOptions.setMaxTimeRendering(d_data["DAT_MAXIMUM_TIME"])
+    elif d_data["DAT_QUALITY_TYPE"] == "Maximum Samples":renderOptions.setMaxSamplesRendering(d_data["DAT_PROGRESSIVE_MAX_SAMPLES"])
     else:
         for quality_setting in l_advanced_render_options:
             try:
@@ -181,34 +161,15 @@ def main():
                 print('Failed to set custom quality attribute: %s' % quality_setting)
 
     for parameter, value in sorted(renderOptions.getDict().items()):
-        print('{0:35}{1:35}{2:35}'.format(str(parameter), str(type(value)), str(value)))
+        print('{0:20}{1:20}{2:20}'.format(str(parameter), str(type(value)), str(value)))
 
     for frame in range(d_data["DAT_START_FRAME"], d_data["DAT_END_FRAME"]+1):
-        print("Rendering Frame : %s" % frame)
-        print(d_data["DAT_OUTPUT_FILE_NAME"], type(d_data["DAT_OUTPUT_FILE_NAME"]))
-        print(d_data["DAT_WIDTH"], type(d_data["DAT_WIDTH"]))
-        print(d_data["DAT_HEIGHT"], type(d_data["DAT_HEIGHT"]))
-
+        print ("Rendering Frame : %s" % frame)
         lux.setAnimationFrame(frame)
-
-        if d_data["version"] == 8:
-            print("Rendering started with KeyShot%s" % d_data["version"])
-            lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
-                            width=d_data["DAT_WIDTH"],
-                            height=d_data["DAT_HEIGHT"],
-                            opts=renderOptions)
-
-        elif d_data["version"] == 9:
-            print("Rendering started with KeyShot%s" % d_data["version"])
-            lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
-                            width=d_data["DAT_WIDTH"],
-                            height=d_data["DAT_HEIGHT"],
-                            opts=renderOptions,
-                            format=int(d_data["output_id"]))
-        else:
-            print("Rendering started with KeyShot%s" % d_data["version"])
-            return sys.exit("KeyShot version : %s is not supported." % d_data["output_id"])
-
+        lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
+                        width=d_data["DAT_WIDTH"],
+                        height=d_data["DAT_HEIGHT"],
+                        opts=renderOptions)
         print("Rendered Image: %s" % d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)))
 
     if b_reload:

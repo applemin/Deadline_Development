@@ -40,8 +40,18 @@ Category=Render Executables
 CategoryOrder=0
 CategoryIndex=2
 Label=KeyShot 8 Render Executable
-Default=C:\Program Files\KeyShot8\bin\keyshot.exe;/Applications/Keyshot8.app/Contents/MacOS/keyshot
+Default=C:\Program Files\KeyShot8\bin\keyshot.exe
 Description=The path to the KeyShot 8 executable file used for rendering. Enter alternative paths on separate lines.
+
+[RenderExecutable9]
+Type=multilinemultifilename
+Category=Render Executables
+CategoryOrder=0
+CategoryIndex=3
+Label=KeyShot 9 Render Executable
+Default=C:\Program Files\KeyShot9\bin\keyshot.exe
+Description=The path to the KeyShot 9 executable file used for rendering. Enter alternative paths on separate lines.
+
 
 [UseRenderNodeLicenses]
 Type=boolean

@@ -1,0 +1,35 @@
+[About]
+Type=label
+Label=About
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=7Zip Plugin for Deadline
+Description=Not configurable
+
+[ConcurrentTasks]
+Type=label
+Label=ConcurrentTasks
+Category=About Plugin
+CategoryOrder=-1
+Index=0
+Default=True
+Description=Not configurable
+
+[Zip_RenderExecutable_]
+Type=multilinemultifilename
+Category=7Zip Executables
+CategoryOrder=0
+Index=0
+Label=7Zip Executable
+Description=The path to the 7Zip executable file used for rendering. Enter alternative paths on separate lines.
+Default=C:\aria2c.exe
+
+[EnablePathMapping]
+Type=boolean
+Category=Path Mapping (For Mixed Farms)
+CategoryOrder=1
+CategoryIndex=0
+Label=Enable Path Mapping
+Default=false
+Description=If enabled, a temporary Aria file will be created locally on the Slave for rendering because Deadline does the path mapping directly in the Aria file. This feature can be turned off if there are no Path Mapping entries defined in the Repository Options.
