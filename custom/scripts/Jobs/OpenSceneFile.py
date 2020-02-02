@@ -1,5 +1,5 @@
-import subprocess
 import os
+import subprocess
 
 from Deadline.Scripting import *
 
@@ -10,7 +10,7 @@ def __main__():
 
     for jobId in jobIds:
         job = RepositoryUtils.GetJob(jobId, True)
-        print "Job Name : " % job.JobName
+        print "Job Name : " % str(job.JobName)
         path = job.GetJobPluginInfoKeyValue("SceneFile").replace("\\", "/")
         path = os.path.dirname(path).replace("/", "\\")
         print "Scene File Path : %s" % path
