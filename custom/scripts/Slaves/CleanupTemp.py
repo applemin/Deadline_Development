@@ -8,7 +8,11 @@ def __main__():
     # Get the list of selected machine names from the slave info settings.
     machineNames = SlaveUtils.GetMachineNameOrIPAddresses(selectedSlaveInfoSettings)
 
-    temp_folder = r"C:\Users\mrb\Desktop\delete"
+    temp_folders = [r"C:\Users\mrb\Desktop\Temp",
+                   r"C:\Users\mrb\Desktop\TempRender"]
     for machineName in machineNames:
         print "Running on Machine : %s" % machineName
-        SlaveUtils.SendRemoteCommand(machineName, "Execute cmd /C rmdir /Q /S \"" + temp_folder + "\"")
+        for path in temp_folders:
+            cmd = "Execute cmd /C rmdir /s /q \"" + path + "\""
+            print "Removing Dir : %s with CMD Command : %s " % (path, cmd)
+            SlaveUtils.SendRemoteCommand(machineName, cmd)
