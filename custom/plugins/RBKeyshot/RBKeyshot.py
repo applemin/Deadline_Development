@@ -59,15 +59,16 @@ def get_tiles(_width, _height, num_tiles):
     top = 0
     width = int(_width) / num_tiles
     height = _height
-
+    tile_width = int(_width) / num_tiles
     regions = list()
     regions.append([left, top, width, height])
     for cnt in range(num_tiles):
-        left += width
+        left += tile_width
+        width += tile_width
         if cnt == num_tiles-2:
-            regions.append([left, top, width + (_width-(left+width)), height])
+            regions.append([left, top, width + (_width-(left+tile_width)), height])
             break
-        regions.append([left, top, width, height])
+        regions.append([left+1, top, width, height])
 
     return regions
 
