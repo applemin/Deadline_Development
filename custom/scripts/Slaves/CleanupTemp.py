@@ -11,4 +11,4 @@ def __main__():
     temp_folder = r"C:\Users\mrb\Desktop\delete"
     for machineName in machineNames:
         print "Running on Machine : %s" % machineName
-        SlaveUtils.SendRemoteCommand(machineName, "Execute cmd rmdir /Q /S \"" + temp_folder + "\"")
+        SlaveUtils.SendRemoteCommand(machineName, "Execute cmd /C rmdir /Q /S \"" + temp_folder + "\"")
