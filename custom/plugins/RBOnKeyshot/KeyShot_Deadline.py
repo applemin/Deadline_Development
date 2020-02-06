@@ -174,6 +174,16 @@ def main():
 
     if b_reload:
         print("\t Removing temp scene: %s" % s_new_file_p)
+        file_list = os.listdir(os.path.dirname(s_new_file_p))
+        for file in file_list:
+            render_file = os.path.basename(s_new_file_p)
+            render_file_name, ext = os.path.splitext(render_file)
+            print("\t Render file name without extension: %s" % render_file_name)
+            if render_file_name in file:
+                if not len(os.path.basename(s_new_file_p)) != len(file):
+                    if file.endswith(".bip"):
+                        print "Crrupted file found : %s" % file
+
         os.remove(s_new_file_p)
     print('Job Completed')
     exit()
