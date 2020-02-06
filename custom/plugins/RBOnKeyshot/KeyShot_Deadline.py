@@ -186,7 +186,7 @@ def main():
                     if _file.endswith(".bip"):
                         target_file = os.path.join(os.path.dirname(render_file), _file)
                         print ("corrupted file found : %s" % target_file)
-                        os.remove(target_file)
+                        # os.remove(target_file)
     print('Job Completed')
     exit()
 
