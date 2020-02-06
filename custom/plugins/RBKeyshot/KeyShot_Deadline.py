@@ -222,7 +222,7 @@ def main():
         for _file in file_list:
             if render_file_name in _file:
                 if not len(os.path.basename(s_file_path)) != len(_file):
-                    if file.endswith(".bip"):
+                    if _file.endswith(".bip"):
                         target_file = os.path.join(os.path.dirname(render_file), _file)
                         print ("corrupted file found : %s" % target_file)
                         os.remove(target_file)
