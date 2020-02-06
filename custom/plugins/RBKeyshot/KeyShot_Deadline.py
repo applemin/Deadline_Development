@@ -221,7 +221,7 @@ def main():
             if render_file_name in file:
                 if not len(os.path.basename(s_new_file_p)) != len(file):
                     if file.endswith(".bip"):
-                        print "Crrupted file found : %s" % file
+                        print ("corrupted file found : %s" % file)
 
         os.remove(s_new_file_p)
     print('Job Completed')
