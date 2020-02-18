@@ -68,6 +68,15 @@ Description=The height of the rendered images.
 Required=false
 DisableIfBlank=true
 
+[output_id]
+Type=integer
+Label=output_id
+Category=Image Resolution
+CategoryOrder=3
+Index=2
+Description=output_id
+Required=false
+DisableIfBlank=true
 
 [Camera0]
 Type=string
