@@ -257,14 +257,15 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             self.b_output_transfer = True
             s_camera_name       = self.GetPluginInfoEntryWithDefault("camera_batch" + str(s_task_id), str())
             s_model_set_name    = self.GetPluginInfoEntryWithDefault("moldelset_batch" + str(s_task_id), str())
+            s_studio            = self.GetPluginInfoEntryWithDefault("studio" + str(s_task_id), str())
             s_output_directory  = os.path.dirname(s_output_file_name)
             s_file_name, s_ext  = os.path.splitext(os.path.basename(s_output_file_name))
-            # s_output_file_name  = os.path.join(s_output_directory,
-            #                                    s_camera_name + "_" + s_model_set_name,
-            #                                    str(s_file_name + s_ext))
-            s_output_file_name  = os.path.join(s_temp_render_path,
-                                               s_camera_name + "_" + s_model_set_name,
-                                               str(s_file_name + s_ext))
+
+            if s_studio:
+                add_string = s_studio
+            else:
+                add_string = s_camera_name + "_" + s_model_set_name
+            s_output_file_name = os.path.join(s_temp_render_path, add_string, str(s_file_name + s_ext))
 
             self.d_transfer_data["src_path"] = os.path.dirname(s_output_file_name)
             self.d_transfer_data["out_path"] = s_output_directory
@@ -272,7 +273,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         if b_animation_batch:
             s_camera_name       = self.GetPluginInfoEntryWithDefault("active_camera", str())
             s_model_set_name    = self.GetPluginInfoEntryWithDefault("active_model_set", str())
-
+            s_studio            = self.GetPluginInfoEntryWithDefault("active_studio", str())
 
         s_scene_name, s_ext = os.path.splitext(os.path.basename(s_scene_file_name))
         s_temp_scene_file_name = s_scene_name + "_{}".format(self.s_random) + "_{}".format(str(i_start_frame)) + s_ext
@@ -291,6 +292,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             "DAT_TEMP_SCENE_BASE_FILE_NAME":    s_temp_scene_file_name,
             "DAT_CAMERA":                       s_camera_name,
             "DAT_MODEL_SET":                    [s_model_set_name],
+            "DAT_STUDIO":                       s_studio,
             "DAT_START_FRAME":                  i_start_frame,
             "DAT_END_FRAME":                    i_end_frame,
             "DAT_WIDTH":                        i_width,
