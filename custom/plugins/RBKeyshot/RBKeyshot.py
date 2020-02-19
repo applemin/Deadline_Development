@@ -362,6 +362,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         self.SetEnvironmentVariable("DEADLINE_KEYSHOT_INFO", self.infoFilePath)
         self.LogInfo('Setting DEADLINE_KEYSHOT_INFO environment variable to "%s"' % self.infoFilePath)
 
+        self.LogInfo(self.network_file_dir)
         self.localize_files()
 
     def PostRenderTasks(self):
