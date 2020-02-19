@@ -144,23 +144,6 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         self.PluginType = PluginType.Simple
         self.StdoutHandling = True
 
-        self.network_file_dir = "network_file_dir"
-
-    def RenderExecutable(self):
-        version = self.GetPluginInfoEntryWithDefault("version","7")
-
-        keyshotExeList = self.GetConfigEntry("RenderExecutable%s" % version)
-        keyshotExe = FileUtils.SearchFileList(keyshotExeList)
-        if (keyshotExe == ""):
-            self.FailRender("KeyShot "
-                            + version
-                            + " render executable was not found in the semicolon separated list \""
-                            + keyshotExeList)
-
-        return keyshotExe
-
-    def RenderArgument(self):
-
         currentJob = self.GetJob()
         self.s_job_name = str(currentJob.JobName)
         self.TempCleanup()
@@ -296,7 +279,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         ## Constructing ENV file
         ######################################################################
 
-        renderScript = os.path.join(self.GetPluginDirectory(), "KeyShot_Deadline.py")
+        self.renderScript = os.path.join(self.GetPluginDirectory(), "KeyShot_Deadline.py")
 
         self.d_data_file = {
             "version":                          i_version,
@@ -345,6 +328,21 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             "setOutputShadowPass":              setOutputShadowPass,
             "setOutputAmbientOcclusionPass":    setOutputAmbientOcclusionPass}
 
+    def RenderExecutable(self):
+        version = self.GetPluginInfoEntryWithDefault("version","7")
+
+        keyshotExeList = self.GetConfigEntry("RenderExecutable%s" % version)
+        keyshotExe = FileUtils.SearchFileList(keyshotExeList)
+        if (keyshotExe == ""):
+            self.FailRender("KeyShot "
+                            + version
+                            + " render executable was not found in the semicolon separated list \""
+                            + keyshotExeList)
+
+        return keyshotExe
+
+    def RenderArgument(self):
+
         self.LogInfo("Contents of DEADLINE_KEYSHOT_INFO file:")
         self.LogInfo(self.infoFilePath)
 
@@ -354,7 +352,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         for key, value in sorted(self.d_data_file.items()):
             self.LogInfo("\t%s=%s" % (key, value))
 
-        arguments = " -script \"%s\"" % renderScript
+        arguments = " -script \"%s\"" % self.renderScript
 
         return arguments
 
