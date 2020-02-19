@@ -233,10 +233,10 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             self.LogInfo("Multitask : %s | Output path : %s" % (b_multi_camera_rendering, s_output_file_name))
 
 
-        # if not b_single_frame:
-        #     # TODO : this needs testing
-        #     i_start_frame = self.GetStartFrame()
-        #     i_end_frame   = self.GetEndFrame()
+        if i_start_frame != i_end_frame:
+            # TODO : this needs testing
+            i_start_frame = self.GetStartFrame()
+            i_end_frame   = self.GetEndFrame()
 
 
         if b_still_batch:
