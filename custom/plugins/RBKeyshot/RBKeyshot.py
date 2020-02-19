@@ -394,9 +394,10 @@ class RB_KeyshotPlugin(DeadlinePlugin):
     def localize_files(self):
         self.LogInfo("Start Localization")
 
-        if os.path.exists(self.dest_path) and self.dir_update_check(self.network_file_dir, self.dest_path):
+        dir_check = self.dir_update_check()
+        if os.path.exists(self.dest_path) and dir_check:
             self.LogInfo('Render folder has already been transferred , returning immediately .')
-        elif os.path.exists(self.dest_path) and not self.dir_update_check(self.network_file_dir, self.dest_path):
+        elif os.path.exists(self.dest_path) and not dir_check:
             shutil.rmtree(self.dest_path)
             self.LogInfo('Render folder has been removed.')
 
@@ -409,10 +410,10 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         else:
             self.LogWarning('File transfer failed')
 
-    def dir_update_check(self, network_path, dest_path):
+    def dir_update_check(self):
 
-        NETWORK_FILE_DIR_LIST=os.listdir(network_path)
-        DESTINATION_PATH_LIST=os.listdir(dest_path)
+        NETWORK_FILE_DIR_LIST = os.listdir(self.network_file_dir)
+        DESTINATION_PATH_LIST = os.listdir(self.dest_path)
 
         if len(NETWORK_FILE_DIR_LIST) == len(DESTINATION_PATH_LIST) or len(NETWORK_FILE_DIR_LIST) < len(
                 DESTINATION_PATH_LIST):
