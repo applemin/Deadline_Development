@@ -179,8 +179,8 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         s_model_set_name         = self.GetPluginInfoEntryWithDefault("active_model_set", str())
         s_studio                 = self.GetPluginInfoEntryWithDefault("active_studio", str())
 
-        self.s_scene_file_name        = self.GetPluginInfoEntryWithDefault("SceneFile", self.GetDataFilename())
-        self.s_scene_file_name   = s_scene_file_name.replace("\\", "/")
+        self.s_scene_file_name   = self.GetPluginInfoEntryWithDefault("SceneFile", self.GetDataFilename())
+        self.s_scene_file_name   = self.s_scene_file_name.replace("\\", "/")
 
         s_output_file_name       = self.GetPluginInfoEntry("OutputFile")
         i_output_id              = self.GetPluginInfoEntryWithDefault("output_id", "-1")
