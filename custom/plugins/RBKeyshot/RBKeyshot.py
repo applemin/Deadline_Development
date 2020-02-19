@@ -413,6 +413,9 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
     def dir_update_check(self):
 
+        if not os.path.exists(self.network_file_dir) or not os.path.exists(self.dest_path):
+            return False
+
         NETWORK_FILE_DIR_LIST = os.listdir(self.network_file_dir)
         DESTINATION_PATH_LIST = os.listdir(self.dest_path)
 
