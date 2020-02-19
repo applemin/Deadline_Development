@@ -149,6 +149,8 @@ def main():
     lux.pause()
     if d_data["DAT_CAMERA"]: lux.setCamera(d_data["DAT_CAMERA"])
     if any(d_data["DAT_MODEL_SET"]): lux.setModelSets(d_data["DAT_MODEL_SET"])
+    if d_data["DAT_STUDIO"]: lux.setActiveStudio(d_data["DAT_STUDIO"])
+
     lux.setAnimationFrame(d_data["DAT_START_FRAME"])
 
     if b_reload:
