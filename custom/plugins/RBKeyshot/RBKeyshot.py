@@ -175,7 +175,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         b_still_batch            = self.GetBooleanPluginInfoEntryWithDefault("still_batch", False)
         b_animation_batch        = self.GetBooleanPluginInfoEntryWithDefault("animation_batch", False)
         b_animation_still        = self.GetBooleanPluginInfoEntryWithDefault("animation_still", False)
-        b_single_frame           = self.GetBooleanPluginInfoEntryWithDefault("single_frame", False)
+        # b_single_frame           = self.GetBooleanPluginInfoEntryWithDefault("single_frame", False)
         b_multi_task_rendering   = self.GetBooleanPluginInfoEntryWithDefault("multi_task_rendering", False)
         b_multi_camera_rendering = self.GetBooleanPluginInfoEntryWithDefault("MultiCameraRendering", False)
         b_region_rendering       = self.GetBooleanPluginInfoEntryWithDefault("RegionRendering", False)
@@ -233,10 +233,10 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             self.LogInfo("Multitask : %s | Output path : %s" % (b_multi_camera_rendering, s_output_file_name))
 
 
-        if not b_single_frame:
-            # TODO : this needs testing
-            i_start_frame = self.GetStartFrame()
-            i_end_frame   = self.GetEndFrame()
+        # if not b_single_frame:
+        #     # TODO : this needs testing
+        #     i_start_frame = self.GetStartFrame()
+        #     i_end_frame   = self.GetEndFrame()
 
 
         if b_still_batch:
