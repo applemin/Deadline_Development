@@ -135,6 +135,8 @@ def main():
         print(d_data["DAT_WIDTH"], type(d_data["DAT_WIDTH"]))
         print(d_data["DAT_HEIGHT"], type(d_data["DAT_HEIGHT"]))
 
+        lux.setAnimationFrame(frame)
+
         if d_data["version"] == 8:
             print("Rendering started with KeyShot%s" % d_data["version"])
             lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
