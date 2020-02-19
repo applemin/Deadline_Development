@@ -91,7 +91,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         self.infoFilePath = str()
 
     def TempCleanup(self):
-        s_temp_path = str(os.path.join(os.environ['HOMEPATH'], 'Desktop', 'Temp')).replace("\\", "/")
+        s_temp_path = r"C:\Temp"
         self.LogInfo("Default Temp Folder Dir : " + s_temp_path)
         self.LogInfo("Running TempCleanup System")
 
@@ -267,7 +267,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         # local/network/temp file operations
 
         s_file_name = os.path.basename(self.s_scene_file_name)
-        self.s_home_path = os.path.join(r"C:\Temp")
+        self.s_home_path = r"C:\Temp"
 
         self.network_file_dir = os.path.dirname(self.s_scene_file_name)
         network_dir_name = os.path.basename(self.network_file_dir)
