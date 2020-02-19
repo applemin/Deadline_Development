@@ -122,9 +122,9 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             try:
                 os.mkdir(render_dir)
             except OSError:
-                print ("Creation of the directory %s failed" % render_dir)
+                self.LogWarning("Creation of the directory %s failed" % render_dir)
             else:
-                print ("Successfully created the directory %s " % render_dir)
+                self.LogInfo("Successfully created the directory %s " % render_dir)
 
         return render_dir
 
@@ -179,8 +179,8 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         s_model_set_name         = self.GetPluginInfoEntryWithDefault("active_model_set", str())
         s_studio                 = self.GetPluginInfoEntryWithDefault("active_studio", str())
 
-        s_scene_file_name        = self.GetPluginInfoEntryWithDefault("SceneFile", self.GetDataFilename())
-        s_scene_file_name        = s_scene_file_name.replace("\\", "/")
+        self.s_scene_file_name        = self.GetPluginInfoEntryWithDefault("SceneFile", self.GetDataFilename())
+        self.s_scene_file_name   = s_scene_file_name.replace("\\", "/")
 
         s_output_file_name       = self.GetPluginInfoEntry("OutputFile")
         i_output_id              = self.GetPluginInfoEntryWithDefault("output_id", "-1")
@@ -276,9 +276,19 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             s_model_set_name    = self.GetPluginInfoEntryWithDefault("active_model_set", str())
             s_studio            = self.GetPluginInfoEntryWithDefault("active_studio", str())
 
-        s_scene_name, s_ext = os.path.splitext(os.path.basename(s_scene_file_name))
-        s_temp_scene_file_name = s_scene_name + "_{}".format(self.s_random) + "_{}".format(str(i_start_frame)) + s_ext
+        s_scene_name, s_ext = os.path.splitext(os.path.basename(self.s_scene_file_name))
+        self.s_temp_scene_file_name = s_scene_name + "_{}".format(self.s_random) + "_{}".format(str(i_start_frame)) + s_ext
 
+        # local/network/temp file operations
+
+        s_file_name = os.path.basename(self.s_scene_file_name)
+        self.s_home_path = os.path.join("C:/Temp")
+
+        self.network_file_dir = os.path.dirname(self.s_scene_file_name)
+        network_dir_name = os.path.basename(self.network_file_dir)
+        self.dest_path = os.path.join(self.s_home_path, network_dir_name)
+        new_scene_path = os.path.join(self.dest_path, s_file_name)
+        new_scene_temp_path = os.path.join(self.dest_path, self.s_temp_scene_file_name)
 
         ######################################################################
         ## Constructing ENV file
@@ -286,11 +296,13 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
         renderScript = os.path.join(self.GetPluginDirectory(), "KeyShot_Deadline.py")
 
-        d_data_file = {
+        self.d_data_file = {
             "version":                          i_version,
             "output_id":                        i_output_id,
-            "DAT_SCENE_FILE_NAME":              s_scene_file_name,
-            "DAT_TEMP_SCENE_BASE_FILE_NAME":    s_temp_scene_file_name,
+            "DAT_SCENE_FILE_NAME":              self.s_scene_file_name,
+            "DAT_TEMP_SCENE_BASE_FILE_NAME":    self.s_temp_scene_file_name,
+            "new_scene_path":                   new_scene_path,
+            "new_scene_temp_path":              new_scene_temp_path,
             "DAT_CAMERA":                       s_camera_name,
             "DAT_MODEL_SET":                    [s_model_set_name],
             "DAT_STUDIO":                       s_studio,
@@ -335,9 +347,9 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         self.LogInfo(self.infoFilePath)
 
         with open(self.infoFilePath, 'w') as JsonData:
-            json.dump(d_data_file, JsonData, indent=4)
+            json.dump(self.d_data_file, JsonData, indent=4)
 
-        for key, value in sorted(d_data_file.items()):
+        for key, value in sorted(self.d_data_file.items()):
             self.LogInfo("\t%s=%s" % (key, value))
 
         arguments = " -script \"%s\"" % renderScript
@@ -349,6 +361,8 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         self.infoFilePath = os.path.join( self.GetJobsDataDirectory(), "deadline_KeyShot_info.json")
         self.SetEnvironmentVariable("DEADLINE_KEYSHOT_INFO", self.infoFilePath)
         self.LogInfo('Setting DEADLINE_KEYSHOT_INFO environment variable to "%s"' % self.infoFilePath)
+
+        self.localize_files()
 
     def PostRenderTasks(self):
         self.LogInfo("Running PostRenderTasks")
@@ -376,3 +390,48 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         shutil.move(o_package, out_path)
         self.LogInfo("Removing Directory : %s " % src_path)
         shutil.rmtree(src_path)
+
+    def localize_files(self):
+        self.LogInfo("Start Localization")
+
+        if os.path.exists(self.dest_path) and self.dir_update_check(self.network_file_dir, self.dest_path):
+            self.LogInfo('Render folder has already been transferred , returning immediately .')
+        elif os.path.exists(self.dest_path) and not self.dir_update_check(self.network_file_dir, self.dest_path):
+            shutil.rmtree(self.dest_path)
+            self.LogInfo('Render folder has been removed.')
+
+        if self.valid_temp_folder():
+            try:
+                shutil.copytree(self.network_file_dir, self.dest_path)
+                self.LogInfo('Render folder transferred successfully.')
+            except IOError as _err:
+                self.LogWarning('Render folder could not be transferred. err : %s' % _err)
+        else:
+            self.LogWarning('File transfer failed')
+
+    def dir_update_check(self, network_path, dest_path):
+
+        NETWORK_FILE_DIR_LIST=os.listdir(network_path)
+        DESTINATION_PATH_LIST=os.listdir(dest_path)
+
+        if len(NETWORK_FILE_DIR_LIST) == len(DESTINATION_PATH_LIST) or len(NETWORK_FILE_DIR_LIST) < len(
+                DESTINATION_PATH_LIST):
+            self.LogInfo('No directory update required.')
+            return True
+        else:
+            self.LogInfo('Directory update required.')
+            return False
+
+    def valid_temp_folder(self):
+
+        if os.path.exists(self.s_home_path):
+            self.LogInfo('Temp folder has already been created.')
+            return True
+        else:
+            try:
+                os.makedirs(self.s_home_path)
+                self.LogInfo('Temp folder created successfully.')
+                return True
+            except IOError as _err:
+                self.LogWarning('Temp folder could not be created. err : %s' % _err)
+                return False
