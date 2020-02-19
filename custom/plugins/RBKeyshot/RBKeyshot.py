@@ -267,7 +267,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         # local/network/temp file operations
 
         s_file_name = os.path.basename(self.s_scene_file_name)
-        self.s_home_path = os.path.join("C:/Temp")
+        self.s_home_path = os.path.join(r"C:\Temp")
 
         self.network_file_dir = os.path.dirname(self.s_scene_file_name)
         network_dir_name = os.path.basename(self.network_file_dir)
