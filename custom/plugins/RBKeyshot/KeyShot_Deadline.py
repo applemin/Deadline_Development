@@ -160,6 +160,6 @@ def main():
     if b_reload:
         print("\t Removing temp scene: %s" % s_new_file_p)
         os.remove(s_new_file_p)
-
+    exit()
 
 main()
