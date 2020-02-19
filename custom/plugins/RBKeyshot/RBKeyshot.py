@@ -144,6 +144,8 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         self.PluginType = PluginType.Simple
         self.StdoutHandling = True
 
+        self.network_file_dir = "network_file_dir"
+
     def RenderExecutable(self):
         version = self.GetPluginInfoEntryWithDefault("version","7")
 
