@@ -398,6 +398,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         dir_check = self.dir_update_check()
         if os.path.exists(self.dest_path) and dir_check:
             self.LogInfo('Render folder has already been transferred , returning immediately .')
+            return
         elif os.path.exists(self.dest_path) and not dir_check:
             shutil.rmtree(self.dest_path)
             self.LogInfo('Render folder has been removed.')
