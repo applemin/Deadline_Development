@@ -144,6 +144,22 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         self.PluginType = PluginType.Simple
         self.StdoutHandling = True
 
+
+    def RenderExecutable(self):
+        version = self.GetPluginInfoEntryWithDefault("version","7")
+
+        keyshotExeList = self.GetConfigEntry("RenderExecutable%s" % version)
+        keyshotExe = FileUtils.SearchFileList(keyshotExeList)
+        if (keyshotExe == ""):
+            self.FailRender("KeyShot "
+                            + version
+                            + " render executable was not found in the semicolon separated list \""
+                            + keyshotExeList)
+
+        return keyshotExe
+
+    def RenderArgument(self):
+
         currentJob = self.GetJob()
         self.s_job_name = str(currentJob.JobName)
         self.TempCleanup()
@@ -328,20 +344,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             "setOutputShadowPass":              setOutputShadowPass,
             "setOutputAmbientOcclusionPass":    setOutputAmbientOcclusionPass}
 
-    def RenderExecutable(self):
-        version = self.GetPluginInfoEntryWithDefault("version","7")
-
-        keyshotExeList = self.GetConfigEntry("RenderExecutable%s" % version)
-        keyshotExe = FileUtils.SearchFileList(keyshotExeList)
-        if (keyshotExe == ""):
-            self.FailRender("KeyShot "
-                            + version
-                            + " render executable was not found in the semicolon separated list \""
-                            + keyshotExeList)
-
-        return keyshotExe
-
-    def RenderArgument(self):
+        self.localize_files()
 
         self.LogInfo("Contents of DEADLINE_KEYSHOT_INFO file:")
         self.LogInfo(self.infoFilePath)
@@ -362,8 +365,6 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         self.SetEnvironmentVariable("DEADLINE_KEYSHOT_INFO", self.infoFilePath)
         self.LogInfo('Setting DEADLINE_KEYSHOT_INFO environment variable to "%s"' % self.infoFilePath)
 
-        self.LogInfo(self.network_file_dir)
-        self.localize_files()
 
     def PostRenderTasks(self):
         self.LogInfo("Running PostRenderTasks")
