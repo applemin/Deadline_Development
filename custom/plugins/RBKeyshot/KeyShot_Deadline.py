@@ -95,7 +95,7 @@ def main():
     if d_data["DAT_STUDIO"]:
         lux.setActiveStudio(d_data["DAT_STUDIO"])
         target_image_style = lux.getActiveImageStyle()
-        print('Set active image style: %s' % target_image_style)
+        print('Set active image style: %s' % str(target_image_style))
         lux.setActiveImageStyle(target_image_style)
 
 
