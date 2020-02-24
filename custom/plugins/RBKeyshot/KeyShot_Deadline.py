@@ -94,6 +94,7 @@ def main():
         lux.setModelSets(d_data["DAT_MODEL_SET"])
     if d_data["DAT_STUDIO"]:
         lux.setActiveStudio(d_data["DAT_STUDIO"])
+        print('Set active studio : %s' % d_data["DAT_STUDIO"])
         target_image_style = lux.getActiveImageStyle().getName()
         print('Set active image style: %s' % target_image_style)
         lux.setActiveImageStyle(target_image_style)
@@ -139,6 +140,7 @@ def main():
         lux.setModelSets(d_data["DAT_MODEL_SET"])
     if d_data["DAT_STUDIO"]:
         lux.setActiveStudio(d_data["DAT_STUDIO"])
+        print('Set active studio : %s' % d_data["DAT_STUDIO"])
         target_image_style = lux.getActiveImageStyle().getName()
         print('Set active image style: %s' % target_image_style)
         lux.setActiveImageStyle(target_image_style)
