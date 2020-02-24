@@ -268,6 +268,9 @@ class RB_KeyshotPlugin(DeadlinePlugin):
                 add_string = s_studio
             else:
                 add_string = s_camera_name + "_" + s_model_set_name
+
+            if not add_string:
+                add_string = "render"
             s_output_file_name = os.path.join(s_temp_render_path, add_string, str(s_file_name + s_ext))
 
             self.d_transfer_data["src_path"] = os.path.dirname(s_output_file_name)
