@@ -255,7 +255,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             i_end_frame   = self.GetEndFrame()
 
 
-        if b_still_batch:
+        if b_still_batch or i_start_frame == i_end_frame:
             self.b_output_transfer = True
             s_camera_name       = self.GetPluginInfoEntryWithDefault("camera_batch" + str(s_task_id), str())
             s_model_set_name    = self.GetPluginInfoEntryWithDefault("moldelset_batch" + str(s_task_id), str())
