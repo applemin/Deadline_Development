@@ -133,6 +133,16 @@ def main():
     for parameter, value in sorted(renderOptions.getDict().items()):
         print('{0:35}{1:35}{2:35}'.format(str(parameter), str(type(value)), str(value)))
 
+    if d_data["DAT_CAMERA"]:
+        lux.setCamera(d_data["DAT_CAMERA"])
+    if any(d_data["DAT_MODEL_SET"]):
+        lux.setModelSets(d_data["DAT_MODEL_SET"])
+    if d_data["DAT_STUDIO"]:
+        lux.setActiveStudio(d_data["DAT_STUDIO"])
+        target_image_style = lux.getActiveImageStyle().getName()
+        print('Set active image style: %s' % target_image_style)
+        lux.setActiveImageStyle(target_image_style)
+
     for frame in range(d_data["DAT_START_FRAME"], d_data["DAT_END_FRAME"]+1):
         corrected_frame = int(frame) - 1 if not int(frame) <= 0 else int(frame)
         print("Rendering Frame : %s Corrected Frame : %s" % (frame, corrected_frame))
