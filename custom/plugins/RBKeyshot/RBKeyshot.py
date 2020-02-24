@@ -248,6 +248,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             s_output_file_name  = s_output_file_name.replace("\\", "/")
             self.LogInfo("Multitask : %s | Output path : %s" % (b_multi_camera_rendering, s_output_file_name))
 
+        b_still_frame = i_start_frame == i_end_frame
 
         if i_start_frame != i_end_frame:
             # TODO : this needs testing
@@ -255,7 +256,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
             i_end_frame   = self.GetEndFrame()
 
 
-        if b_still_batch :
+        if b_still_batch or b_still_frame:
             self.b_output_transfer = True
             s_camera_name       = self.GetPluginInfoEntryWithDefault("camera_batch" + str(s_task_id), str())
             s_model_set_name    = self.GetPluginInfoEntryWithDefault("moldelset_batch" + str(s_task_id), str())
