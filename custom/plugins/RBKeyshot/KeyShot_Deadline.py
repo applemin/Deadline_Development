@@ -94,6 +94,10 @@ def main():
         lux.setModelSets(d_data["DAT_MODEL_SET"])
     if d_data["DAT_STUDIO"]:
         lux.setActiveStudio(d_data["DAT_STUDIO"])
+        target_image_style = lux.getActiveImageStyle()
+        print('Set active image style: %s' % target_image_style)
+        lux.setActiveImageStyle(target_image_style)
+
 
     lux.setAnimationFrame(d_data["DAT_START_FRAME"])
 
@@ -130,23 +134,24 @@ def main():
         print('{0:35}{1:35}{2:35}'.format(str(parameter), str(type(value)), str(value)))
 
     for frame in range(d_data["DAT_START_FRAME"], d_data["DAT_END_FRAME"]+1):
-        print("Rendering Frame : %s" % frame)
+        corrected_frame = int(frame) - 1 if not int(frame) <= 0 else int(frame)
+        print("Rendering Frame : %s Corrected Frame : %s" % (frame, corrected_frame))
         print(d_data["DAT_OUTPUT_FILE_NAME"], type(d_data["DAT_OUTPUT_FILE_NAME"]))
         print(d_data["DAT_WIDTH"], type(d_data["DAT_WIDTH"]))
         print(d_data["DAT_HEIGHT"], type(d_data["DAT_HEIGHT"]))
 
-        lux.setAnimationFrame(frame)
+        lux.setAnimationFrame(corrected_frame)
 
         if d_data["version"] == 8:
             print("Rendering started with KeyShot%s" % d_data["version"])
-            lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
+            lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(corrected_frame)),
                             width=d_data["DAT_WIDTH"],
                             height=d_data["DAT_HEIGHT"],
                             opts=renderOptions)
 
         elif d_data["version"] == 9:
             print("Rendering started with KeyShot%s" % d_data["version"])
-            lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
+            lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(corrected_frame)),
                             width=d_data["DAT_WIDTH"],
                             height=d_data["DAT_HEIGHT"],
                             opts=renderOptions,
