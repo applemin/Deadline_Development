@@ -175,8 +175,20 @@ def main():
         print("Rendered Image: %s" % d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)))
 
     if b_reload:
-        print("\t Removing temp scene: %s" % s_new_file_p)
-        os.remove(s_new_file_p)
+        src_dir = os.path.dirname(s_new_file_p)
+        src_file = os.path.basename(s_file_p)
+        files = [f for f in os.listdir(src_dir) if f.endswith(".bip")]
+        print("Scene directory: %s" % src_dir)
+        print("Main Scene File : %s" % src_file)
+        print("Temp BIP Files : %s" % files)
+
+        if src_file in files:
+            files.remove(src_file)
+        if len(files):
+            for path in files:
+                del_path = os.path.join(src_dir, path)
+                print("\t Removing temp scene: %s" % del_path)
+                os.remove(del_path)
     exit()
 
 main()
