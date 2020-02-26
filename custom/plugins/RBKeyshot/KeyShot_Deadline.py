@@ -78,6 +78,20 @@ def main():
     s_file_p = d_data["new_scene_path"]
     s_new_file_p = d_data["new_scene_temp_path"]
 
+    src_dir = os.path.dirname(s_new_file_p)
+    src_file = os.path.basename(s_file_p)
+    src_temp_file = os.path.basename(s_new_file_p)
+    files = [f for f in os.listdir(src_dir) if f.endswith(".bip") and f not in [src_file, src_temp_file]]
+    print("Scene directory: %s" % src_dir)
+    print("Main Scene File : %s" % src_file)
+    print("Crrupted Temp BIP Files : %s" % files)
+
+    if len(files):
+        for path in files:
+            del_path=os.path.join(src_dir, path)
+            print("\t Removing temp scene: %s" % del_path)
+            os.remove(del_path)
+
     b_reload = not any([d_data["DAT_MULTI_CAMERA_RENDERING"], d_data["DAT_MULTI_TASK_RENDERING"]])
     print('s_new_file_path ={}'.format(s_file_p))
     print('s_new_temp_file_path ={}'.format(s_new_file_p))
@@ -175,20 +189,8 @@ def main():
         print("Rendered Image: %s" % d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)))
 
     if b_reload:
-        src_dir = os.path.dirname(s_new_file_p)
-        src_file = os.path.basename(s_file_p)
-        files = [f for f in os.listdir(src_dir) if f.endswith(".bip")]
-        print("Scene directory: %s" % src_dir)
-        print("Main Scene File : %s" % src_file)
-        print("Temp BIP Files : %s" % files)
-
-        if src_file in files:
-            files.remove(src_file)
-        if len(files):
-            for path in files:
-                del_path = os.path.join(src_dir, path)
-                print("\t Removing temp scene: %s" % del_path)
-                os.remove(del_path)
+        print("\t Removing temp scene: %s" % s_new_file_p)
+        os.remove(s_new_file_p)
     exit()
 
 main()
