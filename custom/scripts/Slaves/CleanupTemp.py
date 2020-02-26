@@ -9,7 +9,8 @@ def __main__():
     machineNames = SlaveUtils.GetMachineNameOrIPAddresses(selectedSlaveInfoSettings)
 
     temp_folders = [r"C:\Users\mrb\Desktop\Temp",
-                   r"C:\Users\mrb\Desktop\TempRender"]
+                    r"C:\Users\mrb\Desktop\TempRender",
+                    r"C:\Temp"]
     for machineName in machineNames:
         print "Running on Machine : %s" % machineName
         for path in temp_folders:
