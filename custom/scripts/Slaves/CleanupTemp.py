@@ -10,7 +10,7 @@ def __main__():
 
     temp_folders = [r"C:\Users\mrb\Desktop\Temp",
                     r"C:\Users\mrb\Desktop\TempRender",
-                    r"C:\Temp"
+                    r"C:\Temp",
                     r"C:\Users\mrb\AppData\Roaming\Luxion\Crashpad 9\keyshot\minidumps\reports"]
     for machineName in machineNames:
         print "Running on Machine : %s" % machineName
