@@ -160,24 +160,24 @@ def main():
         lux.setActiveImageStyle(target_image_style)
 
     for frame in range(d_data["DAT_START_FRAME"], d_data["DAT_END_FRAME"]+1):
-        corrected_frame = int(frame) - 1 if not int(frame) <= 0 else int(frame)
-        print("Rendering Frame : %s Corrected Frame : %s" % (frame, corrected_frame))
+        # corrected_frame = int(frame) - 1 if not int(frame) <= 0 else int(frame)
+        print("Rendering Frame : %s Corrected Frame : %s" % (frame, frame))
         print(d_data["DAT_OUTPUT_FILE_NAME"], type(d_data["DAT_OUTPUT_FILE_NAME"]))
         print(d_data["DAT_WIDTH"], type(d_data["DAT_WIDTH"]))
         print(d_data["DAT_HEIGHT"], type(d_data["DAT_HEIGHT"]))
 
-        lux.setAnimationFrame(corrected_frame)
+        lux.setAnimationFrame(frame)
 
         if d_data["version"] == 8:
             print("Rendering started with KeyShot%s" % d_data["version"])
-            lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(corrected_frame)),
+            lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
                             width=d_data["DAT_WIDTH"],
                             height=d_data["DAT_HEIGHT"],
                             opts=renderOptions)
 
         elif d_data["version"] == 9:
             print("Rendering started with KeyShot%s" % d_data["version"])
-            lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(corrected_frame)),
+            lux.renderImage(path=d_data["DAT_OUTPUT_FILE_NAME"].replace("%d", str(frame)),
                             width=d_data["DAT_WIDTH"],
                             height=d_data["DAT_HEIGHT"],
                             opts=renderOptions,
