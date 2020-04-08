@@ -12,7 +12,8 @@ def get_windows():
 def is_keyshot_running():
 
     windows = get_windows()
-    keyshot_string = ["KeyShot 9.2 Pro", ]
+    keyshot_string = ["KeyShot 9.2 Pro",
+                      "KeyShot 9.1 Pro"]
     keyshot_status = False
     for window in windows:
         w_title = window.window_text()
