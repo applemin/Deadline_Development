@@ -53,11 +53,6 @@ print("Data File Path : ", s_data_file)
 
 
 def main():
-    ping = subprocess.Popen(['%s %s' % (local_python, progress_script)],
-                            stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE,
-                            shell=True)
-    out = ping.communicate()[0]
 
     l_advanced_render_options = ["setAdvancedRendering",
                                  "setGlobalIllumination",
@@ -167,6 +162,12 @@ def main():
         target_image_style = lux.getActiveImageStyle().getName()
         print('Set active image style: %s' % target_image_style)
         lux.setActiveImageStyle(target_image_style)
+
+    ping = subprocess.Popen(['%s %s' % (local_python, progress_script)],
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE,
+                            shell=True)
+    out = ping.communicate()[0]
 
     for frame in range(d_data["DAT_START_FRAME"], d_data["DAT_END_FRAME"]+1):
         # corrected_frame = int(frame) - 1 if not int(frame) <= 0 else int(frame)
