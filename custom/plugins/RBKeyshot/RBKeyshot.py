@@ -162,6 +162,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
         currentJob = self.GetJob()
         self.s_job_name = str(currentJob.JobName)
+        self.job_id = currentJob.JobId
         self.TempCleanup()
         s_temp_render_path = self.RenderTempSetup()
 
@@ -302,6 +303,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         self.renderScript = os.path.join(self.GetPluginDirectory(), "KeyShot_Deadline.py")
 
         self.d_data_file = {
+            "job_id":                           self.job_id,
             "version":                          i_version,
             "output_id":                        i_output_id,
             "DAT_SCENE_FILE_NAME":              self.s_scene_file_name,
