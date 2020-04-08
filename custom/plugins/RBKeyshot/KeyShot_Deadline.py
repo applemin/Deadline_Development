@@ -167,9 +167,9 @@ def main():
                             stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE,
                             shell=True)
-    print "Running progress %s :'%s %s" % (process.pid,  local_python, progress_script)
+    print ("Running progress %s :'%s %s" % (process.pid,  local_python, progress_script))
     out = process.communicate()[0]
-    print str(out)
+    print (str(out))
 
     for frame in range(d_data["DAT_START_FRAME"], d_data["DAT_END_FRAME"]+1):
         # corrected_frame = int(frame) - 1 if not int(frame) <= 0 else int(frame)
