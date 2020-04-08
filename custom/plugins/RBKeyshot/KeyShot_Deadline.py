@@ -39,16 +39,25 @@
 import os
 import json
 import sys
+import subprocess
 
 
 # get data file path and load data fom json file
 s_data_file = os.environ['DEADLINE_KEYSHOT_INFO']
+progress_script = os.environ['PROGRESS_SCRIPT']
+local_python = r"C:\Python27\python.exe"
+
 with open(s_data_file, 'r') as json_data:
     d_data = json.load(json_data)
 print("Data File Path : ", s_data_file)
 
 
 def main():
+    ping = subprocess.Popen(['%s %s' % (local_python, progress_script)],
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE,
+                            shell=True)
+    out = ping.communicate()[0]
 
     l_advanced_render_options = ["setAdvancedRendering",
                                  "setGlobalIllumination",
