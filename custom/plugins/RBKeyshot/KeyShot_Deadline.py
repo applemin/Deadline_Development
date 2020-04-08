@@ -164,8 +164,6 @@ def main():
         lux.setActiveImageStyle(target_image_style)
 
     process = subprocess.Popen('%s %s' % (local_python, progress_script),
-                               stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE,
                                shell=True)
 
     print ("Running progress %s : %s %s" % (process.pid,  local_python, progress_script))
