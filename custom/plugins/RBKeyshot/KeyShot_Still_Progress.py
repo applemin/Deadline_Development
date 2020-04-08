@@ -37,6 +37,8 @@ def is_render_started():
 
 def main(args):
     print args
+    deadline_class = eval(args[0])
+    deadline_class.LogInfo('Testing Log')
     global render_started
 
     def get_progress():

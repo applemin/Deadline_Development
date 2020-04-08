@@ -375,7 +375,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         self.LogInfo('Setting DEADLINE_KEYSHOT_INFO environment variable to "%s"' % self.infoFilePath)
 
         local_python = r"C:\Python27\python.exe"
-        process = subprocess.Popen('%s %s' % (local_python, self.progress_script),
+        process = subprocess.Popen('%s %s %s' % (local_python, self.progress_script, self),
                                    stdout=subprocess.PIPE,
                                    stdin=subprocess.PIPE,
                                    stderr=subprocess.PIPE,
