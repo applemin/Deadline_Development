@@ -376,7 +376,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
 
         local_python = r"C:\Python27\python.exe"
         process = subprocess.Popen('%s %s' % (local_python, self.progress_script), shell=True)
-        print ("Running progress %s : %s %s" % (process.pid,  local_python, progress_script))
+        print ("Running progress %s : %s %s" % (process.pid,  local_python, self.progress_script))
 
     def PostRenderTasks(self):
         self.LogInfo("Running PostRenderTasks")
