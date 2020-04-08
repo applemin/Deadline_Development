@@ -300,7 +300,6 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         ######################################################################
 
         self.renderScript = os.path.join(self.GetPluginDirectory(), "KeyShot_Deadline.py")
-        self.progress_script = os.path.join(self.GetPluginDirectory(), "KeyShot_Still_Progress.py")
 
         self.d_data_file = {
             "version":                          i_version,
@@ -368,6 +367,7 @@ class RB_KeyshotPlugin(DeadlinePlugin):
         self.LogInfo("Running PreRenderTasks")
 
         self.infoFilePath = os.path.join( self.GetJobsDataDirectory(), "deadline_KeyShot_info.json")
+        self.progress_script=os.path.join(self.GetPluginDirectory(), "KeyShot_Still_Progress.py")
         self.SetEnvironmentVariable("DEADLINE_KEYSHOT_INFO", self.infoFilePath)
         self.SetEnvironmentVariable("PROGRESS_SCRIPT", self.progress_script)
         self.LogInfo('Setting DEADLINE_KEYSHOT_INFO environment variable to "%s"' % self.infoFilePath)
