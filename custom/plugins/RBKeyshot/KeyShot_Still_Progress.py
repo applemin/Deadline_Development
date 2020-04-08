@@ -60,7 +60,7 @@ def main(args):
     for i in range(10):
         if not render_started:
             is_render_started()
-            time.sleep(1)
+            time.sleep(2)
             print "Waiting for render window ..."
 
     get_progress()
