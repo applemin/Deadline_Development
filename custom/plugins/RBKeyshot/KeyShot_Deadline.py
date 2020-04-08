@@ -163,11 +163,13 @@ def main():
         print('Set active image style: %s' % target_image_style)
         lux.setActiveImageStyle(target_image_style)
 
-    ping = subprocess.Popen(['%s %s' % (local_python, progress_script)],
+    process = subprocess.Popen(['%s %s' % (local_python, progress_script)],
                             stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE,
                             shell=True)
-    out = ping.communicate()[0]
+    print "Running progress %s :'%s %s" % (process.pid,  local_python, progress_script)
+    out = process.communicate()[0]
+    print str(out)
 
     for frame in range(d_data["DAT_START_FRAME"], d_data["DAT_END_FRAME"]+1):
         # corrected_frame = int(frame) - 1 if not int(frame) <= 0 else int(frame)
