@@ -1,5 +1,6 @@
 import time
 import sys
+import De
 from pywinauto import Desktop
 
 render_started = False
@@ -49,6 +50,7 @@ def main(args):
                     render_window = True
                     if text != last_text:
                         last_text = text
+                        sys.stdout.write(str(text) + "\n")
                         print text
                     time.sleep(2)
             if not render_window:
